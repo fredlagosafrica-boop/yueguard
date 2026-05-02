@@ -1,0 +1,45 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "微软雅黑", sans-serif; }
+.app-container { width: 100%; max-width: 700px; margin: 0 auto; padding: 20px 15px; min-height: 100vh; background-color: #f5f5f5; }
+.app-container.dark-mode { background-color: #1a1a1a; color: #e0e0e0; }
+.app-title { text-align: center; color: #2d3748; margin-bottom: 20px; font-size: 24px; font-weight: 600; }
+.dark-mode .app-title { color: #e0e0e0; }
+.breadcrumb { font-size: 14px; color: #666; margin-bottom: 15px; padding: 8px 12px; background: #fff; border-radius: 8px; }
+.dark-mode .breadcrumb { background: #2d2d2d; color: #aaa; }
+.breadcrumb-item { cursor: pointer; color: #0284c7; }
+.breadcrumb-item:hover { text-decoration: underline; }
+.section-title { font-size: 18px; color: #2d3748; margin-bottom: 15px; }
+.dark-mode .section-title { color: #e0e0e0; }
+.category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.category-item { background: #fff; padding: 20px 15px; border-radius: 12px; text-align: center; font-size: 15px; font-weight: 500; color: #2d3748; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.2s; }
+.category-item:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.category-item:active { transform: scale(0.98); }
+.dark-mode .category-item { background: #2d2d2d; color: #e0e0e0; }
+.item-list { display: flex; flex-direction: column; gap: 10px; }
+.list-item { background: #fff; padding: 15px 18px; border-radius: 10px; font-size: 15px; color: #2d3748; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.08); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
+.list-item:hover { background: #f0f9ff; }
+.list-item:active { transform: scale(0.98); }
+.list-item::after { content: "→"; color: #0284c7; }
+.dark-mode .list-item { background: #2d2d2d; color: #e0e0e0; }
+.dark-mode .list-item:hover { background: #3d3d3d; }
+.back-btn { background: #0284c7; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-size: 15px; cursor: pointer; margin-bottom: 15px; }
+#docTitle { font-size: 20px; color: #2d3748; margin-bottom: 10px; }
+.dark-mode #docTitle { color: #e0e0e0; }
+.reading-progress { font-size: 14px; color: #666; padding: 8px 12px; background: #fff; border-radius: 8px; display: inline-block; }
+.dark-mode .reading-progress { background: #2d2d2d; color: #888; }
+.doc-content { background: #fff; padding: 20px 18px; border-radius: 12px; line-height: 1.8; font-size: 15px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.dark-mode .doc-content { background: #2d2d2d; color: #e0e0e0; }
+.doc-content h2 { font-size: 17px; color: #0284c7; margin: 18px 0 10px; }
+.doc-content h3 { font-size: 15px; color: #2d3748; margin: 12px 0 8px; }
+.doc-content p { margin-bottom: 10px; }
+.doc-content ul { margin: 10px 0 12px 20px; }
+.doc-content li { margin-bottom: 6px; }
+.doc-footer { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+.font-size-btn, .back-top-btn { background: #e8f4f8; color: #0284c7; border: none; padding: 10px 15px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+.dark-mode .font-size-btn, .dark-mode .back-top-btn { background: #2d2d2d; color: #0284c7; }
+.font-size-btn:active, .back-top-btn:active { transform: scale(0.95); }
+.mode-toggle { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: #fff; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.15); z-index: 100; }
+.dark-mode .mode-toggle { background: #2d2d2d; }
+.loading { text-align: center; padding: 40px; color: #666; }
+.loading::after { content: ""; display: inline-block; width: 20px; height: 20px; border: 2px solid #0284c7; border-radius: 50%; border-top-color: transparent; animation: spin 1s linear infinite; margin-left: 10px; vertical-align: middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 375px) { .app-title { font-size: 20px; } .category-grid { grid-template-columns: 1fr; } .category-item { padding: 18px; font-size: 14px; } .doc-content { font-size: 14px; padding: 16px 14px; } }
