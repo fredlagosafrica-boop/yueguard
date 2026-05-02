@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>智能点灯APP</title>
+ <!-- 关联CSS样式文件 -->
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div class="app-container">
+ <!-- 页面标题 -->
+ <h1 class="app-title">智能点灯控制</h1>
+
+ <!-- 状态显示区：显示灯光状态、亮度值、连接状态 -->
+ <div class="status-area">
+ <p>灯光状态：<span id="light-status">关闭</span></p>
+ <p>亮度值：<span id="brightness-value">0%</span></p>
+ <p>连接状态：<span id="connect-status">已连接</span></p>
+ </div>
+
+ <!-- 核心控制区：点灯、关灯按钮，亮度调节滑块 -->
+ <div class="control-area">
+ <button id="light-on">点灯</button>
+ <button id="light-off">关灯</button>
+ <div class="brightness-control">
+ <label for="brightness-slider">亮度调节：</label>
+ <input type="range" id="brightness-slider" min="0" max="100" value="0">
+ </div>
+ </div>
+ </div>
+
+ <!-- 关联JavaScript交互文件 -->
+ <script src="script.js"></script>
+</body>
+</html>

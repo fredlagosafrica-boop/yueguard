@@ -1,0 +1,118 @@
+/* 全局样式重置，避免默认样式错乱 */
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: "微软雅黑", sans-serif;
+}
+
+/* 页面容器，适配手机端全屏显示，优化背景色（柔和浅蓝，替代原浅灰，更清爽） */
+.app-container {
+ width: 100%;
+ max-width: 500px;
+ margin: 0 auto;
+ padding: 25px 20px;
+ min-height: 100vh;
+ background-color: #e8f4f8; /* 美化：柔和浅蓝色背景，不刺眼 */
+}
+
+/* 页面标题样式，优化字体大小和颜色，增加轻微阴影更醒目 */
+.app-title {
+ text-align: center;
+ color: #2d3748; /* 深灰黑色，替代原浅灰，更清晰 */
+ margin-bottom: 35px;
+ font-size: 26px; /* 美化：标题稍大，更突出 */
+ font-weight: 600;
+ text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 状态显示区样式，优化背景色和阴影，提升层次感 */
+.status-area {
+ background-color: #ffffff;
+ padding: 22px;
+ border-radius: 12px; /* 美化：圆角更大，更柔和 */
+ margin-bottom: 35px;
+ box-shadow: 0 3px 8px rgba(0,0,0,0.12); /* 美化：阴影更柔和，有层次感 */
+}
+
+.status-area p {
+ font-size: 19px;
+ margin: 12px 0;
+ color: #2d3748;
+}
+
+.status-area span {
+ color: #0284c7; /* 美化：更柔和的蓝色，替代原亮蓝 */
+ font-weight: bold;
+}
+
+/* 核心控制区样式，优化背景和阴影，与状态区呼应 */
+.control-area {
+ background-color: #ffffff;
+ padding: 22px;
+ border-radius: 12px;
+ box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* 点灯、关灯按钮样式，优化大小和圆角，提升触摸体验（核心美化点） */
+.control-area button {
+ width: 46%;
+ height: 65px; /* 美化：按钮稍高，触摸更舒适 */
+ font-size: 22px; /* 美化：按钮文字稍大，更清晰 */
+ border: none;
+ border-radius: 10px; /* 美化：按钮圆角更大，更圆润 */
+ color: #fff;
+ cursor: pointer;
+ margin: 0 2% 25px;
+ transition: all 0.2s;
+ box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 按钮增加轻微阴影 */
+}
+
+#light-on {
+ background-color: #10b981; /* 美化：更柔和的绿色，替代原亮绿 */
+}
+
+#light-off {
+ background-color: #ef4444; /* 美化：更柔和的红色，替代原亮红 */
+}
+
+/* 按钮点击效果优化，更有反馈感 */
+.control-area button:active {
+ transform: scale(0.95);
+ box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 亮度调节滑块样式，优化颜色和大小，更美观 */
+.brightness-control {
+ margin-top: 25px;
+ font-size: 19px;
+ color: #2d3748;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+}
+
+#brightness-slider {
+ width: 100%;
+ height: 10px; /* 美化：滑块稍粗，更易拖动 */
+ margin-top: 10px;
+ accent-color: #0284c7; /* 滑块颜色与状态文字呼应 */
+ cursor: pointer;
+}
+
+/* 响应式适配，确保手机端显示正常，同步优化细节 */
+@media (max-width: 375px) {
+ .app-title {
+ font-size: 24px;
+ }
+ .control-area button {
+ height: 58px;
+ font-size: 20px;
+ }
+ .status-area p, .brightness-control {
+ font-size: 17px;
+ }
+ .app-container {
+ padding: 20px 15px;
+ }
+}
