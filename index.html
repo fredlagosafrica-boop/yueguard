@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>文本内容展示平台</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div class="app-container">
+ <h1 class="app-title">📚 文本内容展示平台</h1>
+ <div class="breadcrumb" id="breadcrumb">
+ <span class="breadcrumb-item" onclick="goHome()">首页</span>
+ </div>
+ <div class="nav-area" id="navArea">
+ <h2 class="section-title">选择分类</h2>
+ <div class="category-grid" id="categoryGrid"></div>
+ </div>
+ <div class="content-area" id="contentArea" style="display:none;">
+ <h2 class="section-title" id="contentTitle"></h2>
+ <div class="item-list" id="itemList"></div>
+ </div>
+ <div class="detail-area" id="detailArea" style="display:none;">
+ <button class="back-btn" onclick="goBack()">← 返回</button>
+ <div class="doc-header">
+ <h2 id="docTitle">文档标题</h2>
+ <div class="reading-progress"><span id="progressText">第 1 章</span></div>
+ </div>
+ <div class="doc-content" id="docContent"></div>
+ <div class="doc-footer">
+ <button class="font-size-btn" onclick="adjustFontSize(-1)">字号 -</button>
+ <button class="font-size-btn" onclick="adjustFontSize(1)">字号 +</button>
+ <button class="back-top-btn" onclick="scrollToTop()">回到顶部</button>
+ </div>
+ </div>
+ <button class="mode-toggle" id="modeToggle" onclick="toggleMode()">🌙</button>
+ </div>
+ <script src="script.js"></script>
+</body>
+</html>
