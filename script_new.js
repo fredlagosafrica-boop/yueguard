@@ -130,7 +130,21 @@ function toggleMode() {
 }
 
 // 动态加载所有 chunks
-  document.write('<script src="ifa_content.js"><\/script>');
-  document.write('<script src="wiki_content.js"><\/script>');
-  document.write('<script src="sales_content.js"><\/script>');
-  document.write('<script src="materials_content.js"><\/script>');
+ var scripts = [
+ 3   'ifa_content.js',
+ 4   'wiki_content.js',
+ 5   'sales_content.js',
+ 6   'materials_content.js'
+ 7 ];
+ 8 
+ 9 function loadScript(i) {
+ 10   if (i >= scripts.length) {
+ 11     renderCategories();
+ 12     return;
+ 13   }
+ 14   var script = document.createElement('script');
+ 15   script.src = scripts[i];
+ 16   script.onload = function() { loadScript(i + 1); };
+ 17   document.head.appendChild(script);
+ 18 }
+ 19 loadScript(0);
