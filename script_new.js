@@ -25,12 +25,12 @@ let fontSizeLevel = 0;
 let isDarkMode = false;
 const fontSizes = [13, 14, 15, 16, 17, 18];
 
-// ─── 动态加载 content chunks ───
+// ─── 动态加载 content chunks（根目录，无chunks/前缀）────
 var scripts = [
-  'chunks/ifa_content.js',
-  'chunks/wiki_content.js',
-  'chunks/sales_content.js',
-  'chunks/materials_content.js'
+  'ifa_content.js',
+  'wiki_content.js',
+  'sales_content.js',
+  'materials_content.js'
 ];
 
 function loadScript(i) {
