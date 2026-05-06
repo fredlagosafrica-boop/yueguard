@@ -130,7 +130,7 @@ function toggleMode() {
 }
 
 // 动态加载所有 chunks
-document.write('<script src="chunks/ifa_content.js"><\/script>');
-document.write('<script src="chunks/wiki_content.js"><\/script>');
-document.write('<script src="chunks/sales_content.js"><\/script>');
-document.write('<script src="chunks/materials_content.js"><\/script>');
+  document.write('<script src="ifa_content.js"><\/script>');
+  document.write('<script src="wiki_content.js"><\/script>');
+  document.write('<script src="sales_content.js"><\/script>');
+  document.write('<script src="materials_content.js"><\/script>');
