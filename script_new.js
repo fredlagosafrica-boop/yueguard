@@ -58,6 +58,8 @@ function showCategory(cat) {
   var detailArea = document.getElementById('detailArea');
   if (!navArea || !contentArea || !detailArea) return;
   
+  window.lastCatId = cat.id; // 记住当前分类ID，返回时用
+  
   navArea.style.display = 'none';
   detailArea.style.display = 'none';
   contentArea.style.display = 'block';
@@ -154,7 +156,11 @@ function goHome() {
 }
 
 function goBack() {
-  showCategory(contentData.categories.find(function(c) { return c.id === window.lastCatId; }) || contentData.categories[0]);
+  if (window.lastCatId) {
+    var cat = contentData.categories.find(function(c) { return c.id === window.lastCatId; });
+    if (cat) { showCategory(cat); return; }
+  }
+  goHome();
 }
 
 function goBackChild() {
