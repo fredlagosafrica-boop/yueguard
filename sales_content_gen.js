@@ -1,4 +1,5 @@
-
+// 进阶销售内容数据
+// 生成时间: 2026-05-07  恒玥 Yuanguard
 
 contentData.categories.push({
   id: 'sales',
