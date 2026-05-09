@@ -165,17 +165,19 @@ function showChild(cat, child) {
   // 构建子项列表，支持任意层级
   console.log('Building child list for:', child.id, 'with', child.children ? child.children.length : 0, 'children');
   var html = '<div class="child-items-list">';
-  child.children.forEach(function(item) {
+  child.children.forEach(function(item, idx) {
     var hasChildren = item.children && item.children.length > 0;
     if (hasChildren) {
+      var subListId = 'sub-list-' + child.id + '-' + idx;
       // 有子节点：点击展开
-      html += '<div class="child-item has-children" onclick="toggleChildren(this, \'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
+      html += '<div class="child-item has-children" onclick="toggleChildren(\'' + subListId + '\', this)">' +
         '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow child-arrow">›</span></div>' +
-        '<div class="sub-child-list" style="display:none;padding-left:16px;">';
-      item.children.forEach(function(sub) {
+        '<div class="sub-child-list" id="' + subListId + '" style="display:none;padding-left:16px;">';
+      item.children.forEach(function(sub, subIdx) {
         var subHasChildren = sub.children && sub.children.length > 0;
         if (subHasChildren) {
-          html += '<div class="child-item has-children" onclick="toggleChildren(this, \'' + cat.id + '\',\'' + item.id + '\',\'' + sub.id + '\')">' +
+          var subSubListId = 'sub-list-' + item.id + '-' + idx + '-' + subIdx;
+          html += '<div class="child-item has-children" onclick="toggleChildren(\'' + subSubListId + '\', this)">' +
             '<span class="child-item-title">' + (sub.name || sub.title) + '</span><span class="child-item-arrow child-arrow">›</span></div>';
         } else {
           html += '<div class="child-item" onclick="loadDoc(\'' + sub.id + '\', \'' + cat.id + '\', \'' + sub.id + '\')">' +
@@ -194,34 +196,14 @@ function showChild(cat, child) {
 }
 
 // ─── 展开/收起子节点 ───
-function toggleChildren(el, catId, childId, itemId) {
-  console.log('toggleChildren called:', catId, childId, itemId);
-  // 查找 sub-child-list（直接子元素，或作为同级节点紧随其后）
-  var subList = null;
-  var next = el.nextElementSibling;
-  if (next && next.classList.contains('sub-child-list')) {
-    subList = next;
-  }
-  // 备用：在 parent 内查找所有 sub-child-list
-  if (!subList) {
-    var parent = el.parentElement;
-    if (parent) {
-      var lists = parent.querySelectorAll ? parent.querySelectorAll('.sub-child-list') : [];
-      console.log('parent querySelectorAll found:', lists.length, 'sub-child-lists');
-      for (var i = 0; i < lists.length; i++) {
-        console.log('list', i, 'display:', lists[i].style.display);
-        if (lists[i].style.display === 'none') {
-          subList = lists[i];
-          break;
-        }
-      }
-    }
-  }
+function toggleChildren(listId, el) {
+  console.log('toggleChildren:', listId);
+  var subList = document.getElementById(listId);
   console.log('subList:', subList ? 'found' : 'not found');
   if (subList) {
     var isHidden = subList.style.display === 'none';
     subList.style.display = isHidden ? 'block' : 'none';
-    var arrow = el.querySelector('.child-arrow');
+    var arrow = el.querySelector ? el.querySelector('.child-arrow') : null;
     if (arrow) arrow.textContent = isHidden ? '∨' : '›';
   }
 }
