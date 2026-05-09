@@ -196,10 +196,34 @@ function showChild(cat, child) {
 }
 
 // ─── 展开/收起子节点 ───
+// 兼容两种调用方式：
+//   onclick="toggleChildren(listId, this)" （listId first, el second）
+//   onclick="toggleChildren(this, listId)" （el first, listId second）
 function toggleChildren(listId, el) {
-  console.log('toggleChildren:', listId);
-  var subList = document.getElementById(listId);
-  console.log('subList:', subList ? 'found' : 'not found');
+  // 如果第一个参数是元素（DOM节点），说明是 el, listId 格式
+  // 如果第一个参数是字符串，说明是 listId, el 格式
+  if (typeof listId === 'object') {
+    // listId actually is el, el is listId
+    var temp = listId;
+    listId = el;
+    el = temp;
+  }
+  console.log('toggleChildren listId=', listId, 'el=', el.tagName);
+  var subList = listId ? document.getElementById(listId) : el.nextElementSibling;
+  console.log('subList:', subList ? 'found id=' + subList.id : 'not found');
+  if (!subList) {
+    var parent = el.parentElement;
+    if (parent) {
+      var lists = parent.querySelectorAll('.sub-child-list');
+      console.log('parent has', lists.length, 'sub-child-lists');
+      for (var i = 0; i < lists.length; i++) {
+        if (lists[i].style.display === 'none') {
+          subList = lists[i];
+          break;
+        }
+      }
+    }
+  }
   if (subList) {
     var isHidden = subList.style.display === 'none';
     subList.style.display = isHidden ? 'block' : 'none';
