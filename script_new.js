@@ -195,16 +195,24 @@ function showChild(cat, child) {
   docContent.innerHTML = html;
 }
 
-// ─── 展开/收起子节点（通过 nextElementSibling 找子列表）───
+// ─── 展开/收起子节点 ───
 function toggleChildren(listId, el) {
-  // 如果 listId 是 DOM 元素，说明是旧调用 toggleChildren(this)
+  // 参数顺序：listId (string), el (DOM element)
+  // 如果调用是 toggleChildren(domElement, listId) 格式（参数顺序反了），自动调整
   if (typeof listId === 'object') {
-    el = listId;
+    var tmp = listId; listId = el; el = tmp;
   }
-  // 找紧随的 .sub-child-list 同级节点
-  var subList = el.nextElementSibling;
-  if (!subList || !subList.classList.contains('sub-child-list')) {
-    // 备用：在 parent 内查找
+  // 优先用 ID 查找 sub-child-list
+  var subList = listId ? document.getElementById(listId) : null;
+  // 如果找不到，尝试用 nextElementSibling
+  if (!subList && el) {
+    var next = el.nextElementSibling;
+    if (next && next.classList.contains('sub-child-list')) {
+      subList = next;
+    }
+  }
+  // 备用：在 parent 内查找
+  if (!subList && el) {
     var parent = el.parentElement;
     if (parent) {
       var lists = parent.querySelectorAll('.sub-child-list');
@@ -216,10 +224,15 @@ function toggleChildren(listId, el) {
       }
     }
   }
+  // 最终备用：如果上述都找不到，尝试 el.parentElement.querySelectorAll
+  if (!subList && el && el.parentElement) {
+    var all = el.parentElement.querySelectorAll('.sub-child-list');
+    if (all.length > 0) subList = all[0];
+  }
   if (subList) {
     var isHidden = subList.style.display === 'none';
     subList.style.display = isHidden ? 'block' : 'none';
-    var arrow = el.querySelector('.child-arrow');
+    var arrow = el.querySelector ? el.querySelector('.child-arrow') : null;
     if (arrow) arrow.textContent = isHidden ? '∨' : '›';
   }
 }
