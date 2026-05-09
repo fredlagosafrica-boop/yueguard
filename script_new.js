@@ -70,12 +70,14 @@ async function loadDoc(docId, catId, itemId) {
     eval(docData);
     
     // 存入缓存
+    console.log('currentDocContent after eval:', window.currentDocContent ? 'set' : 'null');
     if (window.currentDocContent) {
       docCache[docCacheKey] = window.currentDocContent;
       window.currentDocContent = null;
     }
     
-    renderDoc(docCache[docCacheKey]);
+    console.log('cache now:', Object.keys(docCache));
+    renderDoc(docCache[docCacheKey] || '<p style="padding:40px;color:#999;">内容为空</p>');
   } catch (error) {
     console.error('Failed to load doc:', docId, error);
     if (docContent) {
