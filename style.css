@@ -43,3 +43,13 @@
 .loading::after { content: ""; display: inline-block; width: 20px; height: 20px; border: 2px solid #0284c7; border-radius: 50%; border-top-color: transparent; animation: spin 1s linear infinite; margin-left: 10px; vertical-align: middle; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 375px) { .app-title { font-size: 20px; } .category-grid { grid-template-columns: 1fr; } .category-item { padding: 18px; font-size: 14px; } .doc-content { font-size: 14px; padding: 16px 14px; } }
+/* 子项列表（懒加载详情页） */
+.child-items-list { display: flex; flex-direction: column; gap: 8px; }
+.child-item { background: #fff; padding: 12px 16px; border-radius: 8px; font-size: 14px; color: #2d3748; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.08); transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
+.child-item:hover { background: #f0f9ff; }
+.child-item:active { transform: scale(0.98); }
+.child-item-title { flex: 1; }
+.child-item-arrow { color: #0284c7; font-size: 16px; }
+.sub-child-list { }
+.dark-mode .child-item { background: #2d2d2d; color: #e0e0e0; }
+.dark-mode .child-item:hover { background: #3d3d3d; }
