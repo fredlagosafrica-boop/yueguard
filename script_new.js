@@ -16,6 +16,7 @@ function onChunkLoaded() {
 
 // ─── 懒加载：按需获取文档内容 ───
 async function loadDoc(docId, catId, itemId) {
+  console.log('loadDoc called:', docId, catId, itemId);
   var docCacheKey = docId;
 
   // 先检查缓存
