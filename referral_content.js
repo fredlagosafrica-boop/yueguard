@@ -1,8 +1,6 @@
 // referral_content.js - 港险渠道业务
 // 生成时间：2026-05-09 恒玥 Yuanguard
 
-if (typeof contentData === 'undefined') var contentData = { categories: [] };
-
 contentData.categories.push({
   id: 'referral',
   name: '📁 港险渠道业务',
