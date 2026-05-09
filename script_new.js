@@ -306,20 +306,38 @@ function restoreChild(cat, child) {
 function showDoc(catId, childId, itemId) {
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
   if (!cat) return;
-  var child = cat.children.find(function(c) { return c.id === childId; });
-  if (!child) return;
-  var item = child.children.find(function(i) { return i.id === itemId; });
+
+  // 递归搜索：支持任意深度的 children 查找
+  function findItem(children, targetId) {
+    if (!children) return null;
+    for (var i = 0; i < children.length; i++) {
+      if (children[i].id === targetId) return children[i];
+      if (children[i].children) {
+        var found = findItem(children[i].children, targetId);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
+  var item = findItem(cat.children, itemId);
   if (!item) return;
+
+  // 有 children 的项目 → 调用 showChild 显示子项目列表
+  if (item.children && item.children.length > 0) {
+    showChild(cat, item);
+    return;
+  }
 
   var docContent = document.getElementById('docContent');
   if (docContent) {
-    docContent.innerHTML = '<div class="doc-view">' + item.content + '</div>';
+    docContent.innerHTML = '<div class="doc-view">' + (item.content || '<p>内容待补充...</p>') + '</div>';
   }
 
   var docTitle = document.getElementById('docTitle');
   if (docTitle) docTitle.textContent = item.name || item.title || '';
 
-  viewStack.push({ view: 'doc', catId: catId, childId: childId, itemId: itemId });
+  viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: itemId });
   updateBreadcrumb();
 }
 
