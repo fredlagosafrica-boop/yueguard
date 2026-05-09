@@ -23,6 +23,7 @@ var scripts = [
   'ifa_content.js',
   'wiki_content.js',
   'sales_content.js',
+  'referral_content.js',
   'materials_content.js'
 ];
 
@@ -59,11 +60,11 @@ function renderCategories() {
 // 恢复任意历史视图（用于面包屑点击）
 function restoreToIndex(idx) {
   if (idx < 0 || idx >= viewStack.length) return;
-  
+
   // 截断堆栈到目标位置
   viewStack = viewStack.slice(0, idx + 1);
   var target = viewStack[idx];
-  
+
   if (target.view === 'home') {
     goHome();
   } else if (target.view === 'category') {
@@ -74,17 +75,15 @@ function restoreToIndex(idx) {
     var child2 = cat2 ? cat2.children.find(function(ch) { return ch.id === target.childId; }) : null;
     if (cat2 && child2) restoreChild(cat2, child2);
   } else if (target.view === 'doc') {
-    restoreToIndex(idx - 1); // 先恢复到child层，再加载doc
+    restoreToIndex(idx - 1);
     var cat3 = contentData.categories.find(function(c) { return c.id === target.catId; });
     var child3 = cat3 ? cat3.children.find(function(ch) { return ch.id === target.childId; }) : null;
     var item3 = child3 ? child3.children.find(function(i) { return i.id === target.itemId; }) : null;
     if (cat3 && child3 && item3) {
-      // 直接显示文档，不入栈
       var docContent = document.getElementById('docContent');
       var docTitle = document.getElementById('docTitle');
       if (docContent) docContent.innerHTML = '<div class="doc-view">' + item3.content + '</div>';
-      if (docTitle) docTitle.textContent = item3.title;
-      // 更新面包屑到doc状态（不入栈）
+      if (docTitle) docTitle.textContent = item3.name || item3.title || '';
       updateBreadcrumbDocOnly(cat3, child3, item3);
     }
   }
@@ -93,14 +92,14 @@ function restoreToIndex(idx) {
 function updateBreadcrumb() {
   var breadcrumb = document.getElementById('breadcrumb');
   if (!breadcrumb) return;
-  
+
   var html = '<span class="breadcrumb-item" onclick="restoreToIndex(0)">首页</span>';
-  
+
   for (var i = 1; i < viewStack.length; i++) {
     var v = viewStack[i];
     var label = '';
     var isLast = (i === viewStack.length - 1);
-    
+
     if (v.view === 'category') {
       var cat = contentData.categories.find(function(c) { return c.id === v.catId; });
       label = cat ? cat.name : '';
@@ -112,9 +111,9 @@ function updateBreadcrumb() {
       var cat3 = contentData.categories.find(function(c) { return c.id === v.catId; });
       var child3 = cat3 ? cat3.children.find(function(ch) { return ch.id === v.childId; }) : null;
       var item3 = child3 ? child3.children.find(function(it) { return it.id === v.itemId; }) : null;
-      label = item3 ? item3.title : '';
+      label = item3 ? (item3.name || item3.title) : '';
     }
-    
+
     if (label) {
       if (isLast) {
         html += '<span class="sep"> › </span><span class="breadcrumb-current">' + label + '</span>';
@@ -123,21 +122,21 @@ function updateBreadcrumb() {
       }
     }
   }
-  
+
   breadcrumb.innerHTML = html;
 }
 
 function updateBreadcrumbDocOnly(cat, child, item) {
   var breadcrumb = document.getElementById('breadcrumb');
   if (!breadcrumb) return;
-  
+
   var html = '<span class="breadcrumb-item" onclick="restoreToIndex(0)">首页</span>';
-  
+
   for (var i = 1; i < viewStack.length; i++) {
     var v = viewStack[i];
     var label = '';
     var isLast = (i === viewStack.length - 1);
-    
+
     if (v.view === 'category') {
       var c = contentData.categories.find(function(c) { return c.id === v.catId; });
       label = c ? c.name : '';
@@ -149,9 +148,9 @@ function updateBreadcrumbDocOnly(cat, child, item) {
       var c = contentData.categories.find(function(c) { return c.id === v.catId; });
       var ch = c ? c.children.find(function(ch) { return ch.id === v.childId; }) : null;
       var it = ch ? ch.children.find(function(it) { return it.id === v.itemId; }) : null;
-      label = it ? it.title : '';
+      label = it ? (it.name || it.title) : '';
     }
-    
+
     if (label) {
       if (isLast) {
         html += '<span class="sep"> › </span><span class="breadcrumb-current">' + label + '</span>';
@@ -160,7 +159,7 @@ function updateBreadcrumbDocOnly(cat, child, item) {
       }
     }
   }
-  
+
   breadcrumb.innerHTML = html;
 }
 
@@ -169,20 +168,19 @@ function showCategory(cat) {
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
   if (!navArea || !contentArea || !detailArea) return;
-  
+
   navArea.style.display = 'none';
   detailArea.style.display = 'none';
   contentArea.style.display = 'block';
-  
-  // 入栈
+
   viewStack.push({ view: 'category', catId: cat.id });
   updateBreadcrumb();
-  
+
   var contentTitle = document.getElementById('contentTitle');
   var itemList = document.getElementById('itemList');
   if (contentTitle) contentTitle.textContent = cat.name;
   if (!itemList) return;
-  
+
   itemList.innerHTML = '';
   cat.children.forEach(function(child) {
     var item = document.createElement('div');
@@ -198,11 +196,11 @@ function restoreCategory(cat) {
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
   if (!navArea || !contentArea || !detailArea) return;
-  
+
   navArea.style.display = 'none';
   detailArea.style.display = 'none';
   contentArea.style.display = 'block';
-  
+
   var contentTitle = document.getElementById('contentTitle');
   var itemList = document.getElementById('itemList');
   if (contentTitle) contentTitle.textContent = cat.name;
@@ -216,7 +214,7 @@ function restoreCategory(cat) {
       itemList.appendChild(item);
     });
   }
-  
+
   updateBreadcrumb();
 }
 
@@ -224,51 +222,84 @@ function showChild(cat, child) {
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
   if (!contentArea || !detailArea) return;
-  
+
   contentArea.style.display = 'none';
   detailArea.style.display = 'block';
-  
+
   var docTitle = document.getElementById('docTitle');
   var docContent = document.getElementById('docContent');
-  if (docTitle) docTitle.textText = cat.name + ' - ' + child.name;
-  
+  if (docTitle) docTitle.textContent = cat.name + ' - ' + child.name;
+
   if (!docContent) return;
-  
-  // 入栈
+
   viewStack.push({ view: 'child', catId: cat.id, childId: child.id });
   updateBreadcrumb();
-  
-  // 构建子项列表
+
+  // 构建子项列表，支持第3层有children的情况
   var html = '<div class="child-items-list">';
   child.children.forEach(function(item) {
-    html += '<div class="child-item" onclick="showDoc(\'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
-      '<span class="child-item-title">' + item.title + '</span><span class="child-item-arrow">›</span></div>';
+    if (item.children && item.children.length > 0) {
+      // 第3层节点还有children → 第4层 → 点击展开显示第4层列表
+      html += '<div class="child-item has-children" onclick="expandSubChildren(this, \'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
+        '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow child-arrow">›</span></div>' +
+        '<div class="sub-child-list" style="display:none;padding-left:16px;">';
+      item.children.forEach(function(sub) {
+        html += '<div class="child-item" onclick="showDoc(\'' + cat.id + '\',\'' + child.id + '\',\'' + sub.id + '\')">' +
+          '<span class="child-item-title">' + (sub.name || sub.title) + '</span><span class="child-item-arrow">›</span></div>';
+      });
+      html += '</div>';
+    } else {
+      // 第3层没有children → 直接是文章
+      html += '<div class="child-item" onclick="showDoc(\'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
+        '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow">›</span></div>';
+    }
   });
   html += '</div>';
   docContent.innerHTML = html;
+}
+
+// 展开第4层子节点（点击有children的第3层节点时触发）
+function expandSubChildren(el, catId, childId, itemId) {
+  var subList = el.nextElementSibling;
+  if (subList && subList.classList.contains('sub-child-list')) {
+    var isHidden = subList.style.display === 'none';
+    subList.style.display = isHidden ? 'block' : 'none';
+    el.querySelector('.child-arrow').textContent = isHidden ? '∨' : '›';
+  }
 }
 
 function restoreChild(cat, child) {
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
   if (!contentArea || !detailArea) return;
-  
+
   contentArea.style.display = 'none';
   detailArea.style.display = 'block';
-  
+
   var docTitle = document.getElementById('docTitle');
   var docContent = document.getElementById('docContent');
   if (docTitle) docTitle.textContent = cat.name + ' - ' + child.name;
   if (docContent) {
     var html = '<div class="child-items-list">';
     child.children.forEach(function(item) {
-      html += '<div class="child-item" onclick="showDoc(\'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
-        '<span class="child-item-title">' + item.title + '</span><span class="child-item-arrow">›</span></div>';
+      if (item.children && item.children.length > 0) {
+        html += '<div class="child-item has-children" onclick="expandSubChildren(this, \'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
+          '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow child-arrow">›</span></div>' +
+          '<div class="sub-child-list" style="display:none;padding-left:16px;">';
+        item.children.forEach(function(sub) {
+          html += '<div class="child-item" onclick="showDoc(\'' + cat.id + '\',\'' + child.id + '\',\'' + sub.id + '\')">' +
+            '<span class="child-item-title">' + (sub.name || sub.title) + '</span><span class="child-item-arrow">›</span></div>';
+        });
+        html += '</div>';
+      } else {
+        html += '<div class="child-item" onclick="showDoc(\'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
+          '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow">›</span></div>';
+      }
     });
     html += '</div>';
     docContent.innerHTML = html;
   }
-  
+
   updateBreadcrumb();
 }
 
@@ -279,16 +310,15 @@ function showDoc(catId, childId, itemId) {
   if (!child) return;
   var item = child.children.find(function(i) { return i.id === itemId; });
   if (!item) return;
-  
+
   var docContent = document.getElementById('docContent');
   if (docContent) {
     docContent.innerHTML = '<div class="doc-view">' + item.content + '</div>';
   }
-  
+
   var docTitle = document.getElementById('docTitle');
-  if (docTitle) docTitle.textContent = item.title;
-  
-  // 入栈
+  if (docTitle) docTitle.textContent = item.name || item.title || '';
+
   viewStack.push({ view: 'doc', catId: catId, childId: childId, itemId: itemId });
   updateBreadcrumb();
 }
@@ -300,22 +330,21 @@ function goHome() {
   if (navArea) navArea.style.display = 'block';
   if (contentArea) contentArea.style.display = 'none';
   if (detailArea) detailArea.style.display = 'none';
-  
+
   viewStack = [{ view: 'home' }];
   updateBreadcrumb();
   renderCategories();
 }
 
-// 逐层返回：每次 goBack 弹出一层
 function goBack() {
   if (viewStack.length <= 1) {
     goHome();
     return;
   }
-  
-  viewStack.pop(); // 移除当前层
+
+  viewStack.pop();
   var prev = viewStack[viewStack.length - 1];
-  
+
   if (prev.view === 'home') {
     goHome();
   } else if (prev.view === 'category') {
@@ -326,16 +355,13 @@ function goBack() {
     var child2 = cat2 ? cat2.children.find(function(ch) { return ch.id === prev.childId; }) : null;
     if (cat2 && child2) restoreChild(cat2, child2);
   } else if (prev.view === 'doc') {
-    // 回到doc视图的子列表
     var cat3 = contentData.categories.find(function(c) { return c.id === prev.catId; });
     var child3 = cat3 ? cat3.children.find(function(ch) { return ch.id === prev.childId; }) : null;
     if (cat3 && child3) restoreChild(cat3, child3);
   }
 }
 
-// 返回到子列表层（doc → child 专用）
 function goBackChild() {
-  // 找到child层的索引
   for (var i = viewStack.length - 2; i >= 0; i--) {
     if (viewStack[i].view === 'child') {
       restoreToIndex(i);
