@@ -8,6 +8,12 @@ const docCache = {};  // 文档缓存，避免重复请求
 // ─── 视图堆栈：追踪完整导航路径 ───
 let viewStack = [{ view: 'home' }];
 
+// ─── 向后兼容：旧版 onChunkLoaded（已废弃，由 loadCategoryScript 替代）────
+function onChunkLoaded() {
+  // 新架构不再使用此函数，保留以兼容旧版内容文件
+  console.log('onChunkLoaded called (deprecated)');
+}
+
 // ─── 懒加载：按需获取文档内容 ───
 async function loadDoc(docId, catId, itemId) {
   var docCacheKey = docId;
