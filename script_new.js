@@ -186,7 +186,7 @@ function showChild(cat, child) {
   if (child.children && child.children.length > 0) {
     child.children.forEach(function(item, idx) {
       var hasGrandChildren = item.children && item.children.length > 0;
-      var isFolder = item.type === 'folder' || hasGrandChildren;
+      var isFolder = hasGrandChildren; // Only expand if actually has children
       
       if (isFolder) {
         var subListId = 'sub-list-' + child.id + '-' + idx;
@@ -198,7 +198,7 @@ function showChild(cat, child) {
         if (hasGrandChildren) {
           item.children.forEach(function(sub, subIdx) {
             var subHasChildren = sub.children && sub.children.length > 0;
-            var subIsFolder = sub.type === 'folder' || subHasChildren;
+            var subIsFolder = subHasChildren;
             
             if (subIsFolder) {
               var subSubListId = 'sub-list-' + item.id + '-' + idx + '-' + subIdx;
