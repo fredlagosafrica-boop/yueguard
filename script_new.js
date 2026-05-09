@@ -196,25 +196,33 @@ function showChild(cat, child) {
 // ─── 展开/收起子节点 ───
 function toggleChildren(el, catId, childId, itemId) {
   console.log('toggleChildren called:', catId, childId, itemId);
-  console.log('el.innerHTML:', el.innerHTML.substring(0, 100));
-  var subList = el.nextElementSibling;
-  console.log('subList found:', subList ? 'yes - ' + subList.className : 'no');
-  // 如果找不到，尝试找下一个兄弟节点中的 sub-child-list
+  // 查找 sub-child-list（直接子元素，或作为同级节点紧随其后）
+  var subList = null;
+  var next = el.nextElementSibling;
+  if (next && next.classList.contains('sub-child-list')) {
+    subList = next;
+  }
+  // 备用：在 parent 内查找所有 sub-child-list
   if (!subList) {
-    var siblings = el.parentElement.children;
-    console.log('siblings count:', siblings.length);
-    for (var i = 0; i < siblings.length; i++) {
-      if (siblings[i] !== el && siblings[i].classList && siblings[i].classList.contains('sub-child-list')) {
-        subList = siblings[i];
-        console.log('found sub-child-list at index', i);
-        break;
+    var parent = el.parentElement;
+    if (parent) {
+      var lists = parent.querySelectorAll ? parent.querySelectorAll('.sub-child-list') : [];
+      console.log('parent querySelectorAll found:', lists.length, 'sub-child-lists');
+      for (var i = 0; i < lists.length; i++) {
+        console.log('list', i, 'display:', lists[i].style.display);
+        if (lists[i].style.display === 'none') {
+          subList = lists[i];
+          break;
+        }
       }
     }
   }
-  if (subList && subList.classList.contains('sub-child-list')) {
+  console.log('subList:', subList ? 'found' : 'not found');
+  if (subList) {
     var isHidden = subList.style.display === 'none';
     subList.style.display = isHidden ? 'block' : 'none';
-    el.querySelector('.child-arrow').textContent = isHidden ? '∨' : '›';
+    var arrow = el.querySelector('.child-arrow');
+    if (arrow) arrow.textContent = isHidden ? '∨' : '›';
   }
 }
 
