@@ -43,6 +43,7 @@ async function loadDoc(docId, catId, itemId) {
       return null;
     }
     var inlineContent = findContent(cat.children);
+    console.log('inlineContent for', docId, ':', inlineContent ? 'found' : 'not found');
     if (inlineContent) {
       docCache[docCacheKey] = inlineContent;
       renderDoc(inlineContent);
