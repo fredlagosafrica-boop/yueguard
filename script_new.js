@@ -24,6 +24,31 @@ async function loadDoc(docId, catId, itemId) {
     return;
   }
 
+  // 先检查分类数据中是否有内联内容
+  var cat = contentData.categories.find(function(c) { return c.id === catId; });
+  if (cat) {
+    // 递归查找文档内容
+    function findContent(children) {
+      if (!children) return null;
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].id === docId && children[i].content) {
+          return children[i].content;
+        }
+        if (children[i].children) {
+          var found = findContent(children[i].children);
+          if (found) return found;
+        }
+      }
+      return null;
+    }
+    var inlineContent = findContent(cat.children);
+    if (inlineContent) {
+      docCache[docCacheKey] = inlineContent;
+      renderDoc(inlineContent);
+      return;
+    }
+  }
+
   // 显示加载中
   var docContent = document.getElementById('docContent');
   if (docContent) {
