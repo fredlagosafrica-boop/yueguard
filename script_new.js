@@ -26,8 +26,11 @@ async function loadDoc(docId, catId, itemId) {
   }
 
   // 先检查分类数据中是否有内联内容
+  console.log('finding cat by id:', catId);
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
+  console.log('cat found:', cat ? cat.id : 'null');
   if (cat) {
+    console.log('cat.children count:', cat.children ? cat.children.length : 'null');
     // 递归查找文档内容
     function findContent(children) {
       if (!children) return null;
