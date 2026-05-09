@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 4;
+const totalChunks = 5;
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
