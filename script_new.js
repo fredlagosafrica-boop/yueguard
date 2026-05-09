@@ -1,105 +1,125 @@
-// ============ IFA内容库 - 懒加载架构（按需请求版）============
-// 匹配 index.html 结构：navArea/categoryGrid/contentArea/detailArea
+// ============ IFA内容库 - 懒加载架构（按需请求版 v3）============
+// 修复：支持 window.__CHUNKS__ 格式 + showChild 展开逻辑
 // ─────────────────────────────────────────────
 
 const contentData = { categories: [] };
-const docCache = {};  // 文档缓存，避免重复请求
-
-// ─── 视图堆栈：追踪完整导航路径 ───
+const docCache = {};
 let viewStack = [{ view: 'home' }];
 
-// ─── 向后兼容：旧版 onChunkLoaded（已废弃，由 loadCategoryScript 替代）────
-function onChunkLoaded() {
-  // 新架构不再使用此函数，保留以兼容旧版内容文件
-  console.log('onChunkLoaded called (deprecated)');
+// ─── 加载 window.__CHUNKS__ 到 contentData.categories ───
+function registerChunks() {
+  if (!window.__CHUNKS__ || !Array.isArray(window.__CHUNKS__)) return;
+  
+  window.__CHUNKS__.forEach(function(chunk) {
+    if (contentData.categories.find(function(c) { return c.id === chunk.id; })) return;
+    
+    var cat = {
+      id: chunk.id,
+      name: chunk.title || chunk.name || '',
+      icon: chunk.icon || '📁',
+      subtitle: chunk.subtitle || '',
+      children: (chunk.children || []).map(function(ch) {
+        return {
+          id: ch.id,
+          name: ch.title || ch.name || '',
+          type: ch.type,
+          children: (ch.children || []).map(function(sub) {
+            return {
+              id: sub.id,
+              name: sub.title || sub.name || '',
+              type: sub.type,
+              content: sub.content || null,
+              children: (sub.children || []).map(function(leaf) {
+                return {
+                  id: leaf.id,
+                  name: leaf.title || leaf.name || '',
+                  type: leaf.type,
+                  content: leaf.content || null
+                };
+              })
+            };
+          })
+        };
+      })
+    };
+    
+    if (chunk.content && (!chunk.children || chunk.children.length === 0)) {
+      cat.content = chunk.content;
+    }
+    
+    contentData.categories.push(cat);
+  });
 }
 
-// ─── 懒加载：按需获取文档内容 ───
-async function loadDoc(docId, catId, itemId) {
-  console.log('loadDoc called:', docId, catId, itemId);
-  var docCacheKey = docId;
+function onChunkLoaded() {
+  registerChunks();
+}
 
-  // 先检查缓存
+async function loadDoc(docId, catId, itemId) {
+  var docCacheKey = docId;
   if (docCache[docCacheKey]) {
     renderDoc(docCache[docCacheKey]);
+    viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: docId });
+    updateBreadcrumb();
     return;
   }
 
-  // 先检查分类数据中是否有内联内容
-  console.log('finding cat by id:', catId);
-  var cat = contentData.categories.find(function(c) { return c.id === catId; });
-  console.log('cat found:', cat ? cat.id : 'null');
-  if (cat) {
-    console.log('cat.children count:', cat.children ? cat.children.length : 'null');
-    // 递归查找文档内容
-    function findContent(children) {
-      if (!children) return null;
-      for (var i = 0; i < children.length; i++) {
-        if (children[i].id === docId && children[i].content) {
-          return children[i].content;
-        }
-        if (children[i].children) {
-          var found = findContent(children[i].children);
-          if (found) return found;
-        }
+  function findContent(children, targetId) {
+    if (!children) return null;
+    for (var i = 0; i < children.length; i++) {
+      if (children[i].id === targetId) return children[i].content || null;
+      if (children[i].children) {
+        var found = findContent(children[i].children, targetId);
+        if (found !== null) return found;
       }
-      return null;
     }
-    var inlineContent = findContent(cat.children);
-    console.log('inlineContent for', docId, ':', inlineContent ? 'found' : 'not found');
-    if (inlineContent) {
-      docCache[docCacheKey] = inlineContent;
-      renderDoc(inlineContent);
-      return;
-    }
+    return null;
   }
 
-  // 显示加载中
+  var inlineContent = findContent(contentData.categories, docId);
   var docContent = document.getElementById('docContent');
+  
   if (docContent) {
     docContent.innerHTML = '<div class="doc-view"><p style="text-align:center;padding:40px;color:#666;">内容加载中...</p></div>';
   }
 
+  if (inlineContent) {
+    docCache[docCacheKey] = inlineContent;
+    renderDoc(inlineContent);
+    viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: docId });
+    updateBreadcrumb();
+    return;
+  }
+
   try {
-    // 按需获取文档
     var response = await fetch('docs/' + docId + '.js');
     if (!response.ok) throw new Error('Doc not found');
-    var docData = await response.text();
-    
-    // 执行文档内容
-    eval(docData);
-    
-    // 存入缓存
-    console.log('currentDocContent after eval:', window.currentDocContent ? 'set' : 'null');
+    eval(await response.text());
     if (window.currentDocContent) {
       docCache[docCacheKey] = window.currentDocContent;
-      window.currentDocContent = null;
+      renderDoc(window.currentDocContent);
     }
-    
-    console.log('cache now:', Object.keys(docCache));
-    renderDoc(docCache[docCacheKey] || '<p style="padding:40px;color:#999;">内容为空</p>');
-  } catch (error) {
-    console.error('Failed to load doc:', docId, error);
+  } catch(e) {
     if (docContent) {
-      docContent.innerHTML = '<div class="doc-view"><p style="text-align:center;padding:40px;color:#999;">内容加载失败，请稍后重试。</p></div>';
+      docContent.innerHTML = '<div class="doc-view"><p style="text-align:center;padding:40px;color:#999;">内容为空或加载失败</p></div>';
     }
   }
+  
+  viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: docId });
+  updateBreadcrumb();
 }
 
-// ─── 渲染文档内容 ───
 function renderDoc(content) {
   var docContent = document.getElementById('docContent');
   if (docContent) {
-    docContent.innerHTML = '<div class="doc-view">' + content + '</div>';
+    docContent.innerHTML = '<div class="doc-view">' + (content || '<p>暂无内容</p>') + '</div>';
   }
 }
 
-// ─── 渲染目录分类（一级分类） ───
 function renderCategories() {
   var grid = document.getElementById('categoryGrid');
   if (!grid) return;
   grid.innerHTML = '';
-  
   contentData.categories.forEach(function(cat) {
     var card = document.createElement('div');
     card.className = 'category-card';
@@ -111,7 +131,6 @@ function renderCategories() {
   });
 }
 
-// ─── 显示一级分类 ───
 function showCategory(cat) {
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
@@ -129,9 +148,10 @@ function showCategory(cat) {
     var item = document.createElement('div');
     item.className = 'content-item';
     var hasChildren = child.children && child.children.length > 0;
-    item.innerHTML = '<span>' + child.name + '</span>' + (hasChildren ? '<span class="arrow">›</span>' : '');
+    item.innerHTML = '<span>' + (child.name || child.title || '') + '</span>' +
+      (hasChildren ? '<span class="arrow">›</span>' : '');
     item.onclick = function() {
-      if (hasChildren) {
+      if (hasChildren || child.type === 'folder') {
         showChild(cat, child);
       } else {
         loadDoc(child.id, cat.id, child.id);
@@ -144,7 +164,6 @@ function showCategory(cat) {
   updateBreadcrumb();
 }
 
-// ─── 显示二级分类（子项目列表） ───
 function showChild(cat, child) {
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
@@ -155,62 +174,81 @@ function showChild(cat, child) {
   var docTitle = document.getElementById('docTitle');
   var docContent = document.getElementById('docContent');
   
-  if (docTitle) docTitle.textContent = cat.name + ' - ' + child.name;
+  if (docTitle) docTitle.textContent = cat.name + ' - ' + (child.name || child.title || '');
   
   viewStack.push({ view: 'child', catId: cat.id, childId: child.id });
   updateBreadcrumb();
   
   if (!docContent) return;
   
-  // 构建子项列表，支持任意层级
-  console.log('Building child list for:', child.id, 'with', child.children ? child.children.length : 0, 'children');
   var html = '<div class="child-items-list">';
-  child.children.forEach(function(item, idx) {
-    var hasChildren = item.children && item.children.length > 0;
-    if (hasChildren) {
-      var subListId = 'sub-list-' + child.id + '-' + idx;
-      // 有子节点：点击展开
-      html += '<div class="child-item has-children" onclick="toggleChildren(\'' + subListId + '\', this)">' +
-        '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow child-arrow">›</span></div>' +
-        '<div class="sub-child-list" id="' + subListId + '" style="display:none;padding-left:16px;">';
-      item.children.forEach(function(sub, subIdx) {
-        var subHasChildren = sub.children && sub.children.length > 0;
-        if (subHasChildren) {
-          var subSubListId = 'sub-list-' + item.id + '-' + idx + '-' + subIdx;
-          html += '<div class="child-item has-children" onclick="toggleChildren(\'' + subSubListId + '\', this)">' +
-            '<span class="child-item-title">' + (sub.name || sub.title) + '</span><span class="child-item-arrow child-arrow">›</span></div>';
+  
+  if (child.children && child.children.length > 0) {
+    child.children.forEach(function(item, idx) {
+      var hasGrandChildren = item.children && item.children.length > 0;
+      var isFolder = item.type === 'folder' || hasGrandChildren;
+      
+      if (isFolder) {
+        var subListId = 'sub-list-' + child.id + '-' + idx;
+        html += '<div class="child-item has-children" onclick="toggleChildren(\'' + subListId + '\', this)">' +
+          '<span class="child-item-title">' + (item.name || item.title || '') + '</span>' +
+          '<span class="child-item-arrow child-arrow">›</span></div>' +
+          '<div class="sub-child-list" id="' + subListId + '" style="display:none;padding-left:16px;">';
+        
+        if (hasGrandChildren) {
+          item.children.forEach(function(sub, subIdx) {
+            var subHasChildren = sub.children && sub.children.length > 0;
+            var subIsFolder = sub.type === 'folder' || subHasChildren;
+            
+            if (subIsFolder) {
+              var subSubListId = 'sub-list-' + item.id + '-' + idx + '-' + subIdx;
+              html += '<div class="child-item has-children" onclick="toggleChildren(\'' + subSubListId + '\', this)">' +
+                '<span class="child-item-title">' + (sub.name || sub.title || '') + '</span>' +
+                '<span class="child-item-arrow child-arrow">›</span></div>' +
+                '<div class="sub-child-list" id="' + subSubListId + '" style="display:none;padding-left:16px;">';
+              
+              if (sub.children) {
+                sub.children.forEach(function(leaf, leafIdx) {
+                  html += '<div class="child-item" onclick="loadDoc(\'' + leaf.id + '\', \'' + cat.id + '\', \'' + leaf.id + '\')">' +
+                    '<span class="child-item-title">' + (leaf.name || leaf.title || '') + '</span></div>';
+                });
+              }
+              html += '</div>';
+            } else {
+              html += '<div class="child-item" onclick="loadDoc(\'' + sub.id + '\', \'' + cat.id + '\', \'' + sub.id + '\')">' +
+                '<span class="child-item-title">' + (sub.name || sub.title || '') + '</span></div>';
+            }
+          });
         } else {
-          html += '<div class="child-item" onclick="loadDoc(\'' + sub.id + '\', \'' + cat.id + '\', \'' + sub.id + '\')">' +
-            '<span class="child-item-title">' + (sub.name || sub.title) + '</span><span class="child-item-arrow">›</span></div>';
+          html += '<div class="child-item" onclick="loadDoc(\'' + item.id + '\', \'' + cat.id + '\', \'' + item.id + '\')">' +
+            '<span class="child-item-title">' + (item.name || item.title || '') + '</span></div>';
         }
-      });
-      html += '</div>';
-    } else {
-      // 没有子节点：直接加载文档
-      html += '<div class="child-item" onclick="loadDoc(\'' + item.id + '\', \'' + cat.id + '\', \'' + item.id + '\')">' +
-        '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow">›</span></div>';
-    }
-  });
+        html += '</div>';
+      } else {
+        html += '<div class="child-item" onclick="loadDoc(\'' + item.id + '\', \'' + cat.id + '\', \'' + item.id + '\')">' +
+          '<span class="child-item-title">' + (item.name || item.title || '') + '</span></div>';
+      }
+    });
+  } else if (child.content) {
+    html += '<div class="doc-view">' + child.content + '</div>';
+  }
+  
   html += '</div>';
   docContent.innerHTML = html;
 }
 
-// ─── 展开/收起子节点 ───
 function toggleChildren(listId, el) {
   if (typeof listId === 'object') {
     var tmp = listId; listId = el; el = tmp;
   }
-  // 找到 el 所属的 sub-child-list（向上找）
   var subList = null;
   var cur = el;
   while (cur && cur !== document.body) {
     if (cur.classList && cur.classList.contains('sub-child-list')) {
-      subList = cur;
-      break;
+      subList = cur; break;
     }
     cur = cur.parentElement;
   }
-  // 如果找不到，尝试 el 的下一个兄弟节点
   if (!subList) {
     var next = el.nextElementSibling;
     if (next && next.classList && next.classList.contains('sub-child-list')) {
@@ -225,19 +263,13 @@ function toggleChildren(listId, el) {
   }
 }
 
-// ─── 返回 ───
 function goBack() {
-  if (viewStack.length <= 1) {
-    goHome();
-    return;
-  }
-  
+  if (viewStack.length <= 1) { goHome(); return; }
   var prev = viewStack[viewStack.length - 2];
   viewStack.pop();
   
-  if (prev.view === 'home') {
-    goHome();
-  } else if (prev.view === 'category') {
+  if (prev.view === 'home') goHome();
+  else if (prev.view === 'category') {
     var cat = contentData.categories.find(function(c) { return c.id === prev.catId; });
     if (cat) showCategory(cat);
   } else if (prev.view === 'child') {
@@ -245,37 +277,30 @@ function goBack() {
     var child2 = cat2 ? cat2.children.find(function(ch) { return ch.id === prev.childId; }) : null;
     if (cat2 && child2) showChild(cat2, child2);
   } else if (prev.view === 'doc') {
-    goBack(); // 再退一步
+    goBack();
   }
-  
   updateBreadcrumb();
 }
 
-// ─── 返回首页 ───
 function goHome() {
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
-  
   if (navArea) navArea.style.display = 'block';
   if (contentArea) contentArea.style.display = 'none';
   if (detailArea) detailArea.style.display = 'none';
-  
   viewStack = [{ view: 'home' }];
   updateBreadcrumb();
   renderCategories();
 }
 
-// ─── 面包屑导航 ───
 function updateBreadcrumb() {
   var breadcrumb = document.getElementById('breadcrumb');
   if (!breadcrumb) return;
-  
   var html = '<span class="breadcrumb-item" onclick="goHome()">首页</span>';
   
   viewStack.forEach(function(item, index) {
     if (item.view === 'home') return;
-    
     var label = '';
     if (item.view === 'category') {
       var cat = contentData.categories.find(function(c) { return c.id === item.catId; });
@@ -283,9 +308,8 @@ function updateBreadcrumb() {
     } else if (item.view === 'child') {
       var cat2 = contentData.categories.find(function(c) { return c.id === item.catId; });
       var child2 = cat2 ? cat2.children.find(function(ch) { return ch.id === item.childId; }) : null;
-      label = child2 ? child2.name : '';
+      label = child2 ? (child2.name || child2.title || '') : '';
     }
-    
     if (label) {
       html += ' <span class="breadcrumb-sep">›</span> ';
       if (index < viewStack.length - 1) {
@@ -295,19 +319,15 @@ function updateBreadcrumb() {
       }
     }
   });
-  
   breadcrumb.innerHTML = html;
 }
 
-// ─── 恢复指定索引的视图 ───
 function restoreToIndex(idx) {
   if (idx < 0 || idx >= viewStack.length) return;
   viewStack = viewStack.slice(0, idx + 1);
   var target = viewStack[idx];
-  
-  if (target.view === 'home') {
-    goHome();
-  } else if (target.view === 'category') {
+  if (target.view === 'home') goHome();
+  else if (target.view === 'category') {
     var cat = contentData.categories.find(function(c) { return c.id === target.catId; });
     if (cat) showCategory(cat);
   } else if (target.view === 'child') {
@@ -315,16 +335,14 @@ function restoreToIndex(idx) {
     var child2 = cat2 ? cat2.children.find(function(ch) { return ch.id === target.childId; }) : null;
     if (cat2 && child2) showChild(cat2, child2);
   }
+  updateBreadcrumb();
 }
 
-// ─── 字体调整 ───
 var currentFontSize = 16;
 function adjustFontSize(delta) {
   currentFontSize += delta;
   var docContent = document.getElementById('docContent');
-  if (docContent) {
-    docContent.style.fontSize = currentFontSize + 'px';
-  }
+  if (docContent) docContent.style.fontSize = currentFontSize + 'px';
 }
 
 function scrollToTop() {
@@ -332,7 +350,7 @@ function scrollToTop() {
   if (docContent) docContent.scrollTop = 0;
 }
 
-// ─── 加载目录（只需要4个分类文件） ───
+// ─── 加载目录 + 懒注册 chunks ───
 var categoryScripts = [
   'ifa_content.js',
   'wiki_content.js',
@@ -343,13 +361,20 @@ var categoryScripts = [
 
 function loadCategoryScript(i) {
   if (i >= categoryScripts.length) {
+    registerChunks();
     renderCategories();
     return;
   }
   var script = document.createElement('script');
   script.src = categoryScripts[i];
-  script.onload = function() { loadCategoryScript(i + 1); };
-  script.onerror = function() { console.error('Failed to load: ' + categoryScripts[i]); loadCategoryScript(i + 1); };
+  script.onload = function() {
+    if (window.__CHUNKS__) registerChunks();
+    loadCategoryScript(i + 1);
+  };
+  script.onerror = function() {
+    console.error('Failed to load: ' + categoryScripts[i]);
+    loadCategoryScript(i + 1);
+  };
   document.head.appendChild(script);
 }
 
