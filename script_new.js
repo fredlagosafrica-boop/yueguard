@@ -161,6 +161,7 @@ function showChild(cat, child) {
   if (!docContent) return;
   
   // 构建子项列表，支持任意层级
+  console.log('Building child list for:', child.id, 'with', child.children ? child.children.length : 0, 'children');
   var html = '<div class="child-items-list">';
   child.children.forEach(function(item) {
     var hasChildren = item.children && item.children.length > 0;
