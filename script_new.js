@@ -195,7 +195,9 @@ function showChild(cat, child) {
 
 // ─── 展开/收起子节点 ───
 function toggleChildren(el, catId, childId, itemId) {
+  console.log('toggleChildren called:', catId, childId, itemId);
   var subList = el.nextElementSibling;
+  console.log('subList found:', subList ? 'yes' : 'no', subList ? subList.className : '');
   if (subList && subList.classList.contains('sub-child-list')) {
     var isHidden = subList.style.display === 'none';
     subList.style.display = isHidden ? 'block' : 'none';
