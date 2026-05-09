@@ -196,8 +196,21 @@ function showChild(cat, child) {
 // ─── 展开/收起子节点 ───
 function toggleChildren(el, catId, childId, itemId) {
   console.log('toggleChildren called:', catId, childId, itemId);
+  console.log('el.innerHTML:', el.innerHTML.substring(0, 100));
   var subList = el.nextElementSibling;
-  console.log('subList found:', subList ? 'yes' : 'no', subList ? subList.className : '');
+  console.log('subList found:', subList ? 'yes - ' + subList.className : 'no');
+  // 如果找不到，尝试找下一个兄弟节点中的 sub-child-list
+  if (!subList) {
+    var siblings = el.parentElement.children;
+    console.log('siblings count:', siblings.length);
+    for (var i = 0; i < siblings.length; i++) {
+      if (siblings[i] !== el && siblings[i].classList && siblings[i].classList.contains('sub-child-list')) {
+        subList = siblings[i];
+        console.log('found sub-child-list at index', i);
+        break;
+      }
+    }
+  }
   if (subList && subList.classList.contains('sub-child-list')) {
     var isHidden = subList.style.display === 'none';
     subList.style.display = isHidden ? 'block' : 'none';
