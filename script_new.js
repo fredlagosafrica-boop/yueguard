@@ -197,37 +197,25 @@ function showChild(cat, child) {
 
 // ─── 展开/收起子节点 ───
 function toggleChildren(listId, el) {
-  // 参数顺序：listId (string), el (DOM element)
-  // 如果调用是 toggleChildren(domElement, listId) 格式（参数顺序反了），自动调整
   if (typeof listId === 'object') {
     var tmp = listId; listId = el; el = tmp;
   }
-  // 优先用 ID 查找 sub-child-list
-  var subList = listId ? document.getElementById(listId) : null;
-  // 如果找不到，尝试用 nextElementSibling
-  if (!subList && el) {
+  // 找到 el 所属的 sub-child-list（向上找）
+  var subList = null;
+  var cur = el;
+  while (cur && cur !== document.body) {
+    if (cur.classList && cur.classList.contains('sub-child-list')) {
+      subList = cur;
+      break;
+    }
+    cur = cur.parentElement;
+  }
+  // 如果找不到，尝试 el 的下一个兄弟节点
+  if (!subList) {
     var next = el.nextElementSibling;
-    if (next && next.classList.contains('sub-child-list')) {
+    if (next && next.classList && next.classList.contains('sub-child-list')) {
       subList = next;
     }
-  }
-  // 备用：在 parent 内查找
-  if (!subList && el) {
-    var parent = el.parentElement;
-    if (parent) {
-      var lists = parent.querySelectorAll('.sub-child-list');
-      for (var i = 0; i < lists.length; i++) {
-        if (lists[i].style.display === 'none') {
-          subList = lists[i];
-          break;
-        }
-      }
-    }
-  }
-  // 最终备用：如果上述都找不到，尝试 el.parentElement.querySelectorAll
-  if (!subList && el && el.parentElement) {
-    var all = el.parentElement.querySelectorAll('.sub-child-list');
-    if (all.length > 0) subList = all[0];
   }
   if (subList) {
     var isHidden = subList.style.display === 'none';
