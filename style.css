@@ -53,3 +53,20 @@
 .sub-child-list { }
 .dark-mode .child-item { background: #2d2d2d; color: #e0e0e0; }
 .dark-mode .child-item:hover { background: #3d3d3d; }
+/* 搜索功能 */
+.search-box { position: relative; margin-bottom: 15px; }
+#searchInput { width: 100%; padding: 12px 15px; border: 2px solid #e8f4f8; border-radius: 10px; font-size: 15px; outline: none; background: #fff; color: #2d3748; transition: border-color 0.2s; }
+#searchInput:focus { border-color: #0284c7; }
+.dark-mode #searchInput { background: #2d2d2d; color: #e0e0e0; border-color: #3d3d3d; }
+.search-results { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); max-height: 400px; overflow-y: auto; z-index: 200; display: none; }
+.search-results.active { display: block; }
+.search-result-item { padding: 12px 15px; border-bottom: 1px solid #f0f0f0; cursor: pointer; font-size: 14px; color: #2d3748; transition: background 0.2s; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: #f0f9ff; }
+.search-result-item .result-cat { font-size: 12px; color: #0284c7; margin-bottom: 3px; }
+.search-result-item .result-title { font-weight: 500; }
+.search-no-result { padding: 20px; text-align: center; color: #999; font-size: 14px; }
+.dark-mode .search-results { background: #2d2d2d; }
+.dark-mode .search-result-item { border-color: #3d3d3d; color: #e0e0e0; }
+.dark-mode .search-result-item:hover { background: #3d3d3d; }
+.dark-mode .search-no-result { color: #888; }

@@ -41,6 +41,90 @@ function loadScript(i) {
 
 loadScript(0);
 
+// ─── 搜索功能 ───
+function handleSearch(keyword) {
+  var resultsContainer = document.getElementById('searchResults');
+  if (!resultsContainer) return;
+  
+  if (!keyword || keyword.trim().length < 1) {
+    resultsContainer.classList.remove('active');
+    return;
+  }
+  
+  keyword = keyword.trim().toLowerCase();
+  var results = [];
+  
+  // 遍历所有分类、子类、内容项进行搜索
+  contentData.categories.forEach(function(cat) {
+    // 匹配分类名
+    if (cat.name && cat.name.toLowerCase().includes(keyword)) {
+      results.push({ type: 'category', cat: cat.name, title: cat.name, item: cat });
+    }
+    // 匹配子类
+    if (cat.children) {
+      cat.children.forEach(function(child) {
+        if (child.name && child.name.toLowerCase().includes(keyword)) {
+          results.push({ type: 'child', cat: cat.name, title: child.name, item: child, catId: cat.id });
+        }
+        // 匹配内容项
+        if (child.children) {
+          child.children.forEach(function(sub) {
+            var matchTitle = sub.name && sub.name.toLowerCase().includes(keyword);
+            var matchContent = sub.content && sub.content.toLowerCase().includes(keyword);
+            if (matchTitle || matchContent) {
+              results.push({ type: 'item', cat: cat.name, title: sub.name || sub.title || '未命名', item: sub, catId: cat.id, childId: child.id });
+            }
+          });
+        }
+      });
+    }
+  });
+  
+  // 渲染结果
+  if (results.length === 0) {
+    resultsContainer.innerHTML = '<div class="search-no-result">未找到相关内容</div>';
+  } else {
+    resultsContainer.innerHTML = results.slice(0, 20).map(function(r) {
+      return '<div class="search-result-item" onclick="openSearchResult(\'' + r.type + '\',' + (r.catId ? '\'' + r.catId + '\',' : 'null,') + (r.childId ? '\'' + r.childId + '\',' : 'null,') + (r.item ? 'null' : 'null') + ')">' +
+        '<div class="result-cat">' + r.cat + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
+        '<div class="result-title">' + r.title + '</div></div>';
+    }).join('');
+  }
+  
+  resultsContainer.classList.add('active');
+}
+
+function openSearchResult(type, catId, childId, item) {
+  var resultsContainer = document.getElementById('searchResults');
+  if (resultsContainer) resultsContainer.classList.remove('active');
+  document.getElementById('searchInput').value = '';
+  
+  if (type === 'category') {
+    showCategory(item);
+  } else if (type === 'child') {
+    var cat = contentData.categories.find(function(c) { return c.id === catId; });
+    if (cat) {
+      var child = cat.children.find(function(c) { return c.id === childId; });
+      if (child) showChild(cat, child);
+    }
+  } else if (type === 'item') {
+    var cat2 = contentData.categories.find(function(c) { return c.id === catId; });
+    if (cat2) {
+      var child2 = cat2.children.find(function(c) { return c.id === childId; });
+      if (child2) showChild(cat2, child2, item.id);
+    }
+  }
+}
+
+// 点击空白处关闭搜索结果
+document.addEventListener('click', function(e) {
+  var searchBox = document.getElementById('searchBox');
+  var resultsContainer = document.getElementById('searchResults');
+  if (searchBox && !searchBox.contains(e.target)) {
+    if (resultsContainer) resultsContainer.classList.remove('active');
+  }
+});
+
 // ─── 渲染函数 ───
 function renderCategories() {
   var grid = document.getElementById('categoryGrid');

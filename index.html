@@ -9,6 +9,10 @@
 <body>
  <div class="app-container">
  <h1 class="app-title">📚 恒玥IFA内容库</h1>
+ <div class="search-box" id="searchBox">
+  <input type="text" id="searchInput" placeholder="🔍 搜索站内内容..." oninput="handleSearch(this.value)">
+  <div class="search-results" id="searchResults"></div>
+ </div>
  <div class="breadcrumb" id="breadcrumb">
  <span class="breadcrumb-item" onclick="goHome()">首页</span>
  </div>
