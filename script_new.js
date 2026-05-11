@@ -72,7 +72,7 @@ function handleSearch(keyword) {
             var matchTitle = sub.name && sub.name.toLowerCase().includes(keyword);
             var matchContent = sub.content && sub.content.toLowerCase().includes(keyword);
             if (matchTitle || matchContent) {
-              results.push({ type: 'item', cat: cat.name, title: sub.name || sub.title || '未命名', item: sub, catId: cat.id, childId: child.id });
+              results.push({ type: 'item', cat: cat.name, title: sub.name || sub.title || '未命名', item: sub, catId: cat.id, childId: child.id, matchContent: matchContent ? sub.content : null });
             }
           });
         }
@@ -84,10 +84,23 @@ function handleSearch(keyword) {
   if (results.length === 0) {
     resultsContainer.innerHTML = '<div class="search-no-result">未找到相关内容</div>';
   } else {
-    resultsContainer.innerHTML = results.slice(0, 20).map(function(r, idx) {
+    resultsContainer.innerHTML = results.slice(0, 20).map(function(r) {
+      // 提取内容匹配片段
+      var snippet = '';
+      if (r.type === 'item' && r.matchContent) {
+        var plain = r.matchContent.replace(/<[^>]+>/g, ''); // 去掉HTML标签
+        var idx = plain.toLowerCase().indexOf(keyword);
+        if (idx > -1) {
+          var start = Math.max(0, idx - 15);
+          var end = Math.min(plain.length, idx + keyword.length + 20);
+          snippet = '...' + plain.slice(start, end) + '...';
+          snippet = snippet.replace(new RegExp(keyword, 'gi'), '<mark>$&</mark>');
+        }
+      }
       return '<div class="search-result-item" data-type="' + r.type + '" data-cat="' + (r.catId || '') + '" data-child="' + (r.childId || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
         '<div class="result-cat">' + r.cat + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
-        '<div class="result-title">' + r.title + '</div></div>';
+        '<div class="result-title">' + r.title + '</div>' +
+        (snippet ? '<div class="result-snippet">' + snippet + '</div>' : '') + '</div>';
     }).join('');
   }
   

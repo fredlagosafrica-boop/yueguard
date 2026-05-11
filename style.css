@@ -65,6 +65,8 @@
 .search-result-item:hover { background: #f0f9ff; }
 .search-result-item .result-cat { font-size: 12px; color: #0284c7; margin-bottom: 3px; }
 .search-result-item .result-title { font-weight: 500; }
+.search-result-item .result-snippet { font-size: 12px; color: #666; margin-top: 4px; line-height: 1.4; }
+.search-result-item .result-snippet mark { background: #fef08a; color: #92400e; padding: 0 2px; border-radius: 2px; }
 .search-no-result { padding: 20px; text-align: center; color: #999; font-size: 14px; }
 .dark-mode .search-results { background: #2d2d2d; }
 .dark-mode .search-result-item { border-color: #3d3d3d; color: #e0e0e0; }
