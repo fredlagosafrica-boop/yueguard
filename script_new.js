@@ -128,7 +128,17 @@ function openSearchResult(type, catId, childId, title) {
   
   if (type === 'category') {
     var cat = contentData.categories.find(function(c) { return c.name === title; });
-    if (cat) showCategory(cat);
+    if (cat) {
+      showCategory(cat);
+    } else {
+      // fallback: 遍历找
+      for (var i = 0; i < contentData.categories.length; i++) {
+        if (contentData.categories[i].name === title) {
+          showCategory(contentData.categories[i]);
+          break;
+        }
+      }
+    }
   } else if (type === 'child') {
     var cat = contentData.categories.find(function(c) { return c.id === catId; });
     if (cat) {
@@ -163,7 +173,7 @@ function renderCategories() {
   grid.innerHTML = '';
   contentData.categories.forEach(function(cat) {
     var card = document.createElement('div');
-    card.className = 'category-card';
+    card.className = 'category-item';
     card.innerHTML = '<div class="cat-icon">' + (cat.icon || '📁') + '</div>' +
       '<div class="cat-name">' + cat.name + '</div>' +
       '<div class="cat-sub">' + (cat.subtitle || '') + '</div>';
@@ -299,7 +309,7 @@ function showCategory(cat) {
   itemList.innerHTML = '';
   cat.children.forEach(function(child) {
     var item = document.createElement('div');
-    item.className = 'item-row';
+    item.className = 'list-item';
     item.innerHTML = '<span class="item-name">' + child.name + '</span><span class="item-arrow">›</span>';
     item.onclick = function() { showChild(cat, child); };
     itemList.appendChild(item);
