@@ -350,6 +350,13 @@ function showChild(cat, child) {
   // 构建子项列表，支持第3层有children的情况
   var html = '<div class="child-items-list">';
   child.children.forEach(function(item) {
+    // 提取内容摘要（如果有content字段）
+    var snippetHtml = '';
+    if (item.content) {
+      var plain = item.content.replace(/<[^>]+>/g, '');
+      var short = plain.length > 60 ? plain.slice(0, 60) + '...' : plain;
+      snippetHtml = '<div class="child-item-snippet">' + short + '</div>';
+    }
     if (item.children && item.children.length > 0) {
       // 第3层节点还有children → 第4层 → 点击展开显示第4层列表
       html += '<div class="child-item has-children" onclick="expandSubChildren(this, \'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
@@ -364,6 +371,9 @@ function showChild(cat, child) {
       // 第3层没有children → 直接是文章
       html += '<div class="child-item" onclick="showDoc(\'' + cat.id + '\',\'' + child.id + '\',\'' + item.id + '\')">' +
         '<span class="child-item-title">' + (item.name || item.title) + '</span><span class="child-item-arrow">›</span></div>';
+      if (snippetHtml) {
+        html = html.replace(/(<div class="child-item"[^>]* onclick="showDoc[^"]+">)/, '$1' + snippetHtml.replace('class="child-item-snippet"', 'class="child-item-snippet child-snippet-inline"'));
+      }
     }
   });
   html += '</div>';
