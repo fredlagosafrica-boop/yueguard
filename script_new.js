@@ -42,6 +42,8 @@ function loadScript(i) {
 loadScript(0);
 
 // ─── 搜索功能 ───
+var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
+
 function handleSearch(keyword) {
   var resultsContainer = document.getElementById('searchResults');
   if (!resultsContainer) return;
@@ -52,6 +54,7 @@ function handleSearch(keyword) {
   }
   
   keyword = keyword.trim().toLowerCase();
+  lastSearchKeyword = keyword; // 记录关键词
   var results = [];
   
   // 遍历所有分类、子类、内容项进行搜索
@@ -453,7 +456,12 @@ function showDoc(catId, childId, itemId) {
 
   var docContent = document.getElementById('docContent');
   if (docContent) {
-    docContent.innerHTML = '<div class="doc-view">' + (item.content || '<p>内容待补充...</p>') + '</div>';
+    var rawContent = item.content || '<p>内容待补充...</p>';
+    // 如果有搜索关键词，对内容进行高亮处理
+    if (lastSearchKeyword) {
+      rawContent = rawContent.replace(new RegExp(lastSearchKeyword, 'gi'), '<mark class="search-highlight">$&</mark>');
+    }
+    docContent.innerHTML = '<div class="doc-view">' + rawContent + '</div>';
   }
 
   var docTitle = document.getElementById('docTitle');
@@ -461,6 +469,16 @@ function showDoc(catId, childId, itemId) {
 
   viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: itemId });
   updateBreadcrumb();
+  
+  // 如果有高亮内容，滚动到第一个高亮位置
+  if (lastSearchKeyword) {
+    setTimeout(function() {
+      var highlight = document.querySelector('.search-highlight');
+      if (highlight) {
+        highlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100);
+  }
 }
 
 function goHome() {
