@@ -58,10 +58,16 @@ function handleSearch(keyword) {
   var results = [];
   
   // 遍历所有分类、子类、内容项进行搜索
+  if (!contentData || !contentData.categories || contentData.categories.length === 0) {
+    resultsContainer.innerHTML = '<div class="search-no-result">内容加载中，请稍候...</div>';
+    resultsContainer.classList.add('active');
+    return;
+  }
+  
   contentData.categories.forEach(function(cat) {
     // 匹配分类名
     if (cat.name && cat.name.toLowerCase().includes(keyword)) {
-      results.push({ type: 'category', cat: cat.name, title: cat.name, item: cat });
+      results.push({ type: 'category', cat: cat.name, catId: cat.id, title: cat.name, item: cat });
     }
     // 匹配子类
     if (cat.children) {
@@ -127,18 +133,9 @@ function openSearchResult(type, catId, childId, title) {
   document.getElementById('searchInput').value = '';
   
   if (type === 'category') {
-    var cat = contentData.categories.find(function(c) { return c.name === title; });
-    if (cat) {
-      showCategory(cat);
-    } else {
-      // fallback: 遍历找
-      for (var i = 0; i < contentData.categories.length; i++) {
-        if (contentData.categories[i].name === title) {
-          showCategory(contentData.categories[i]);
-          break;
-        }
-      }
-    }
+    var cat = catId ? contentData.categories.find(function(c) { return c.id === catId; }) : null;
+    if (!cat) cat = contentData.categories.find(function(c) { return c.name === title; });
+    if (cat) showCategory(cat);
   } else if (type === 'child') {
     var cat = contentData.categories.find(function(c) { return c.id === catId; });
     if (cat) {
