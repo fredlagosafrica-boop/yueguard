@@ -84,34 +84,49 @@ function handleSearch(keyword) {
   if (results.length === 0) {
     resultsContainer.innerHTML = '<div class="search-no-result">未找到相关内容</div>';
   } else {
-    resultsContainer.innerHTML = results.slice(0, 20).map(function(r) {
-      return '<div class="search-result-item" onclick="openSearchResult(\'' + r.type + '\',' + (r.catId ? '\'' + r.catId + '\',' : 'null,') + (r.childId ? '\'' + r.childId + '\',' : 'null,') + (r.item ? 'null' : 'null') + ')">' +
+    resultsContainer.innerHTML = results.slice(0, 20).map(function(r, idx) {
+      return '<div class="search-result-item" data-type="' + r.type + '" data-cat="' + (r.catId || '') + '" data-child="' + (r.childId || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
         '<div class="result-cat">' + r.cat + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
         '<div class="result-title">' + r.title + '</div></div>';
     }).join('');
   }
   
   resultsContainer.classList.add('active');
+  
+  // 绑定点击事件（事件委托）
+  resultsContainer.querySelectorAll('.search-result-item').forEach(function(el) {
+    el.onclick = function() {
+      var type = this.getAttribute('data-type');
+      var catId = this.getAttribute('data-cat');
+      var childId = this.getAttribute('data-child');
+      var title = decodeURIComponent(this.getAttribute('data-title'));
+      openSearchResult(type, catId, childId, title);
+    };
+  });
 }
 
-function openSearchResult(type, catId, childId, item) {
+function openSearchResult(type, catId, childId, title) {
   var resultsContainer = document.getElementById('searchResults');
   if (resultsContainer) resultsContainer.classList.remove('active');
   document.getElementById('searchInput').value = '';
   
   if (type === 'category') {
-    showCategory(item);
+    var cat = contentData.categories.find(function(c) { return c.name === title; });
+    if (cat) showCategory(cat);
   } else if (type === 'child') {
     var cat = contentData.categories.find(function(c) { return c.id === catId; });
     if (cat) {
-      var child = cat.children.find(function(c) { return c.id === childId; });
+      var child = cat.children.find(function(c) { return c.name === title; });
       if (child) showChild(cat, child);
     }
   } else if (type === 'item') {
     var cat2 = contentData.categories.find(function(c) { return c.id === catId; });
     if (cat2) {
       var child2 = cat2.children.find(function(c) { return c.id === childId; });
-      if (child2) showChild(cat2, child2, item.id);
+      if (child2) {
+        var item = child2.children.find(function(i) { return (i.name || i.title) === title; });
+        if (item) showChild(cat2, child2, item.id);
+      }
     }
   }
 }
