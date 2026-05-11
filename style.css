@@ -65,10 +65,12 @@
 .search-result-item:hover { background: #f0f9ff; }
 .search-result-item .result-cat { font-size: 12px; color: #0284c7; margin-bottom: 3px; }
 .search-result-item .result-title { font-weight: 500; }
-.search-result-item .result-snippet { font-size: 12px; color: #666; margin-top: 4px; line-height: 1.4; }
-.search-result-item .result-snippet mark { background: #fef08a; color: #92400e; padding: 0 2px; border-radius: 2px; }
+.search-result-item .result-snippet { font-size: 12px; color: #444; margin-top: 5px; line-height: 1.5; padding: 6px 8px; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #0284c7; }
+.search-result-item .result-snippet mark { background: #fef08a; color: #92400e; padding: 0 2px; border-radius: 2px; font-weight: 500; }
 .search-no-result { padding: 20px; text-align: center; color: #999; font-size: 14px; }
 .dark-mode .search-results { background: #2d2d2d; }
 .dark-mode .search-result-item { border-color: #3d3d3d; color: #e0e0e0; }
 .dark-mode .search-result-item:hover { background: #3d3d3d; }
+.dark-mode .search-result-item .result-snippet { background: #3d3d3d; color: #ccc; border-left-color: #4da6d8; }
+.dark-mode .search-result-item .result-snippet mark { background: #554d2a; color: #fcd34d; }
 .dark-mode .search-no-result { color: #888; }
