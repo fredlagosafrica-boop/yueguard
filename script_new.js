@@ -203,8 +203,11 @@ function openSearchResult(type, catId, childId, title, itemId) {
     }
   } else if (type === 'item') {
     // 搜索结果点击 → 直接用 itemId 跳转到文章页（itemId 由渲染时 data-itemid 传入）
+    console.log('[DEBUG openSearchResult] type=item', {catId, childId, title, itemId});
     if (itemId) {
       showDoc(catId, childId, itemId);
+    } else {
+      console.warn('[DEBUG openSearchResult] itemId is empty!');
     }
   }
 }
@@ -497,7 +500,9 @@ function restoreChild(cat, child) {
 }
 
 function showDoc(catId, childId, itemId) {
+  console.log('[DEBUG showDoc] called', {catId, childId, itemId});
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
+  console.log('[DEBUG showDoc] cat found:', cat ? cat.name : 'NULL');
   if (!cat) return;
 
   // 递归搜索：支持任意深度的 children + items 混合查找
@@ -521,18 +526,29 @@ function showDoc(catId, childId, itemId) {
   }
 
   var item = findItemDeep(cat.children, itemId);
+  console.log('[DEBUG showDoc] item found:', item ? (item.name || item.title) : 'NULL', 'itemId:', itemId);
   if (!item) return;
 
   // 有 children 的项目 → 调用 showChild 显示子项目列表
   if (item.children && item.children.length > 0) {
+    console.log('[DEBUG showDoc] item has children, calling showChild instead');
     showChild(cat, item);
     return;
   }
 
+  // 显示详情区，隐藏分类列表区
+  var categoryGrid = document.getElementById('categoryGrid');
+  var contentArea = document.getElementById('contentArea');
+  var detailArea = document.getElementById('detailArea');
+  console.log('[DEBUG showDoc] before switch - categoryGrid:', categoryGrid ? categoryGrid.style.display : 'N/A', 'detailArea:', detailArea ? detailArea.style.display : 'N/A');
+  if (categoryGrid) categoryGrid.style.display = 'none';
+  if (contentArea) contentArea.style.display = 'none';
+  if (detailArea) detailArea.style.display = 'block';
+  console.log('[DEBUG showDoc] after switch - detailArea:', detailArea ? detailArea.style.display : 'N/A');
+
   var docContent = document.getElementById('docContent');
   if (docContent) {
     var rawContent = item.content || '<p>内容待补充...</p>';
-    // 如果有搜索关键词，对内容进行高亮处理
     if (lastSearchKeyword) {
       rawContent = rawContent.replace(new RegExp(lastSearchKeyword, 'gi'), '<mark class="search-highlight">$&</mark>');
     }
@@ -541,14 +557,6 @@ function showDoc(catId, childId, itemId) {
 
   var docTitle = document.getElementById('docTitle');
   if (docTitle) docTitle.textContent = item.name || item.title || '';
-
-  // 显示详情区，隐藏分类列表区
-  var categoryGrid = document.getElementById('categoryGrid');
-  var contentArea = document.getElementById('contentArea');
-  var detailArea = document.getElementById('detailArea');
-  if (categoryGrid) categoryGrid.style.display = 'none';
-  if (contentArea) contentArea.style.display = 'none';
-  if (detailArea) detailArea.style.display = 'block';
 
   viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: itemId });
   updateBreadcrumb();
