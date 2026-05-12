@@ -542,9 +542,11 @@ function showDoc(catId, childId, itemId) {
   var docTitle = document.getElementById('docTitle');
   if (docTitle) docTitle.textContent = item.name || item.title || '';
 
-  // 显示详情区，隐藏内容列表区
+  // 显示详情区，隐藏分类列表区
+  var categoryGrid = document.getElementById('categoryGrid');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
+  if (categoryGrid) categoryGrid.style.display = 'none';
   if (contentArea) contentArea.style.display = 'none';
   if (detailArea) detailArea.style.display = 'block';
 
