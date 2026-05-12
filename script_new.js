@@ -340,7 +340,7 @@ function restoreCategory(cat) {
   updateBreadcrumb();
 }
 
-function showChild(cat, child) {
+function showChild(cat, child, itemIdToShow) {
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
   if (!contentArea || !detailArea) return;
@@ -356,6 +356,12 @@ function showChild(cat, child) {
 
   viewStack.push({ view: 'child', catId: cat.id, childId: child.id });
   updateBreadcrumb();
+
+  // 如果传入了 itemIdToShow，直接跳转到文章
+  if (itemIdToShow) {
+    showDoc(cat.id, child.id, itemIdToShow);
+    return;
+  }
 
   // 构建子项列表，支持第3层有children的情况
   var html = '<div class="child-items-list">';
