@@ -301,6 +301,7 @@ function updateBreadcrumb() {
   }
 
   breadcrumb.innerHTML = html;
+  console.log('[updateBreadcrumb] html=', html);
 }
 
 function updateBreadcrumbDocOnly(cat, child, item) {
@@ -567,13 +568,20 @@ function goHome() {
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
+  var categoryGrid = document.getElementById('categoryGrid');
   if (navArea) navArea.style.display = 'block';
+  if (categoryGrid) categoryGrid.style.display = 'grid';
   if (contentArea) contentArea.style.display = 'none';
   if (detailArea) detailArea.style.display = 'none';
 
   viewStack = [{ view: 'home' }];
   updateBreadcrumb();
   renderCategories();
+
+  // DEBUG
+  console.log('[goHome] navArea.display=' + (navArea ? navArea.style.display : 'null') +
+    ' categoryGrid.display=' + (categoryGrid ? categoryGrid.style.display : 'null') +
+    ' contentArea.display=' + (contentArea ? contentArea.style.display : 'null'));
 }
 
 function goBack() {
