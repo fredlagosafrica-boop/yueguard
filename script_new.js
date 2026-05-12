@@ -75,13 +75,71 @@ function handleSearch(keyword) {
         if (child.name && child.name.toLowerCase().includes(keyword)) {
           results.push({ type: 'child', cat: cat.name, title: child.name, item: child, catId: cat.id });
         }
-        // 匹配内容项
+        // 匹配直接挂在 child 下的 items（如 flat 类内容库）
+        if (child.items) {
+          child.items.forEach(function(it) {
+            var matchTitle = it.name && it.name.toLowerCase().includes(keyword);
+            var matchContent = it.content && it.content.toLowerCase().includes(keyword);
+            if (matchTitle || matchContent) {
+              results.push({ type: 'item', cat: cat.name, title: it.name || it.title || '未命名', item: it, catId: cat.id, childId: child.id, matchContent: matchContent ? it.content : null });
+            }
+          });
+        }
+        // 匹配子子分类 child.children（递归查到底）
         if (child.children) {
           child.children.forEach(function(sub) {
             var matchTitle = sub.name && sub.name.toLowerCase().includes(keyword);
             var matchContent = sub.content && sub.content.toLowerCase().includes(keyword);
             if (matchTitle || matchContent) {
               results.push({ type: 'item', cat: cat.name, title: sub.name || sub.title || '未命名', item: sub, catId: cat.id, childId: child.id, matchContent: matchContent ? sub.content : null });
+            }
+            // 递归：sub 也可能有 items 或更深层 children
+            if (sub.items) {
+              sub.items.forEach(function(it) {
+                var mT = it.name && it.name.toLowerCase().includes(keyword);
+                var mC = it.content && it.content.toLowerCase().includes(keyword);
+                if (mT || mC) {
+                  results.push({ type: 'item', cat: cat.name, title: it.name || it.title || '未命名', item: it, catId: cat.id, childId: child.id, matchContent: mC ? it.content : null });
+                }
+              });
+            }
+            if (sub.children) {
+              sub.children.forEach(function(sub2) {
+                var mT2 = sub2.name && sub2.name.toLowerCase().includes(keyword);
+                var mC2 = sub2.content && sub2.content.toLowerCase().includes(keyword);
+                if (mT2 || mC2) {
+                  results.push({ type: 'item', cat: cat.name, title: sub2.name || sub2.title || '未命名', item: sub2, catId: cat.id, childId: child.id, matchContent: mC2 ? sub2.content : null });
+                }
+                // 第四层
+                if (sub2.items) {
+                  sub2.items.forEach(function(it2) {
+                    var mT3 = it2.name && it2.name.toLowerCase().includes(keyword);
+                    var mC3 = it2.content && it2.content.toLowerCase().includes(keyword);
+                    if (mT3 || mC3) {
+                      results.push({ type: 'item', cat: cat.name, title: it2.name || it2.title || '未命名', item: it2, catId: cat.id, childId: child.id, matchContent: mC3 ? it2.content : null });
+                    }
+                  });
+                }
+                if (sub2.children) {
+                  sub2.children.forEach(function(sub3) {
+                    var mT3 = sub3.name && sub3.name.toLowerCase().includes(keyword);
+                    var mC3 = sub3.content && sub3.content.toLowerCase().includes(keyword);
+                    if (mT3 || mC3) {
+                      results.push({ type: 'item', cat: cat.name, title: sub3.name || sub3.title || '未命名', item: sub3, catId: cat.id, childId: child.id, matchContent: mC3 ? sub3.content : null });
+                    }
+                    // 第五层（安全兜底）
+                    if (sub3.items) {
+                      sub3.items.forEach(function(it3) {
+                        var mT4 = it3.name && it3.name.toLowerCase().includes(keyword);
+                        var mC4 = it3.content && it3.content.toLowerCase().includes(keyword);
+                        if (mT4 || mC4) {
+                          results.push({ type: 'item', cat: cat.name, title: it3.name || it3.title || '未命名', item: it3, catId: cat.id, childId: child.id, matchContent: mC4 ? it3.content : null });
+                        }
+                      });
+                    }
+                  });
+                }
+              });
             }
           });
         }
@@ -143,26 +201,41 @@ function openSearchResult(type, catId, childId, title) {
       if (child) showChild(cat, child);
     }
   } else if (type === 'item') {
-    // 搜索结果点击 → 直接跳转到对应文章
+    // 搜索结果点击 → 递归查找深层文章并直接跳转
     var cat2 = contentData.categories.find(function(c) { return c.id === catId; });
     if (cat2) {
       var child2 = cat2.children.find(function(c) { return c.id === childId; });
       if (child2) {
-        // 用递归查找匹配的文章
-        function findItemByTitle(children, t) {
-          if (!children) return null;
+        // 递归查找（支持 children + items 多层嵌套）
+        function findItemDeep(nodes, t) {
+          if (!nodes) return null;
           t = t.toLowerCase();
-          for (var i = 0; i < children.length; i++) {
-            var name = (children[i].name || children[i].title || '').toLowerCase();
-            if (name === t) return children[i];
-            if (children[i].children) {
-              var found = findItemByTitle(children[i].children, t);
+          for (var i = 0; i < nodes.length; i++) {
+            var name = (nodes[i].name || nodes[i].title || '').toLowerCase();
+            if (name === t) return nodes[i];
+            // 也检查 items 数组
+            if (nodes[i].items) {
+              for (var j = 0; j < nodes[i].items.length; j++) {
+                var iname = (nodes[i].items[j].name || nodes[i].items[j].title || '').toLowerCase();
+                if (iname === t) return nodes[i].items[j];
+              }
+            }
+            if (nodes[i].children) {
+              var found = findItemDeep(nodes[i].children, t);
               if (found) return found;
             }
           }
           return null;
         }
-        var item = findItemByTitle(child2.children, title);
+        // 先查 child2.items（flat 类内容库）
+        var item = null;
+        if (child2.items) {
+          item = child2.items.find(function(it) { return (it.name||it.title||'').toLowerCase() === title.toLowerCase(); });
+        }
+        // 再递归查 children
+        if (!item && child2.children) {
+          item = findItemDeep(child2.children, title);
+        }
         if (item) {
           showDoc(catId, childId, item.id);
         }
