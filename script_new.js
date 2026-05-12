@@ -202,12 +202,9 @@ function openSearchResult(type, catId, childId, title, itemId) {
       if (child) showChild(cat, child);
     }
   } else if (type === 'item') {
-    // 搜索结果点击 → 直接用 itemId 跳转到文章页（itemId 由渲染时 data-itemid 传入）
-    console.log('[DEBUG openSearchResult] type=item', {catId, childId, title, itemId});
+    // 搜索结果点击 → 直接用 itemId 跳转到文章页
     if (itemId) {
       showDoc(catId, childId, itemId);
-    } else {
-      console.warn('[DEBUG openSearchResult] itemId is empty!');
     }
   }
 }
@@ -273,7 +270,7 @@ function updateBreadcrumb() {
   var breadcrumb = document.getElementById('breadcrumb');
   if (!breadcrumb) return;
 
-  var html = '<span class="breadcrumb-item" onclick="restoreToIndex(0)">首页</span>';
+  var html = '<span class="breadcrumb-item" onclick="goHome()">首页</span>';
 
   for (var i = 1; i < viewStack.length; i++) {
     var v = viewStack[i];
@@ -310,7 +307,7 @@ function updateBreadcrumbDocOnly(cat, child, item) {
   var breadcrumb = document.getElementById('breadcrumb');
   if (!breadcrumb) return;
 
-  var html = '<span class="breadcrumb-item" onclick="restoreToIndex(0)">首页</span>';
+  var html = '<span class="breadcrumb-item" onclick="goHome()">首页</span>';
 
   for (var i = 1; i < viewStack.length; i++) {
     var v = viewStack[i];
@@ -500,9 +497,7 @@ function restoreChild(cat, child) {
 }
 
 function showDoc(catId, childId, itemId) {
-  console.log('[DEBUG showDoc] called', {catId, childId, itemId});
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
-  console.log('[DEBUG showDoc] cat found:', cat ? cat.name : 'NULL');
   if (!cat) return;
 
   // 递归搜索：支持任意深度的 children + items 混合查找
@@ -526,12 +521,10 @@ function showDoc(catId, childId, itemId) {
   }
 
   var item = findItemDeep(cat.children, itemId);
-  console.log('[DEBUG showDoc] item found:', item ? (item.name || item.title) : 'NULL', 'itemId:', itemId);
   if (!item) return;
 
   // 有 children 的项目 → 调用 showChild 显示子项目列表
   if (item.children && item.children.length > 0) {
-    console.log('[DEBUG showDoc] item has children, calling showChild instead');
     showChild(cat, item);
     return;
   }
@@ -540,11 +533,9 @@ function showDoc(catId, childId, itemId) {
   var categoryGrid = document.getElementById('categoryGrid');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
-  console.log('[DEBUG showDoc] before switch - categoryGrid:', categoryGrid ? categoryGrid.style.display : 'N/A', 'detailArea:', detailArea ? detailArea.style.display : 'N/A');
   if (categoryGrid) categoryGrid.style.display = 'none';
   if (contentArea) contentArea.style.display = 'none';
   if (detailArea) detailArea.style.display = 'block';
-  console.log('[DEBUG showDoc] after switch - detailArea:', detailArea ? detailArea.style.display : 'N/A');
 
   var docContent = document.getElementById('docContent');
   if (docContent) {
