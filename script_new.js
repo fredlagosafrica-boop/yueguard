@@ -143,12 +143,29 @@ function openSearchResult(type, catId, childId, title) {
       if (child) showChild(cat, child);
     }
   } else if (type === 'item') {
+    // 搜索结果点击 → 直接跳转到对应文章
     var cat2 = contentData.categories.find(function(c) { return c.id === catId; });
     if (cat2) {
       var child2 = cat2.children.find(function(c) { return c.id === childId; });
       if (child2) {
-        var item = child2.children.find(function(i) { return (i.name || i.title) === title; });
-        if (item) showChild(cat2, child2, item.id);
+        // 用递归查找匹配的文章
+        function findItemByTitle(children, t) {
+          if (!children) return null;
+          t = t.toLowerCase();
+          for (var i = 0; i < children.length; i++) {
+            var name = (children[i].name || children[i].title || '').toLowerCase();
+            if (name === t) return children[i];
+            if (children[i].children) {
+              var found = findItemByTitle(children[i].children, t);
+              if (found) return found;
+            }
+          }
+          return null;
+        }
+        var item = findItemByTitle(child2.children, title);
+        if (item) {
+          showDoc(catId, childId, item.id);
+        }
       }
     }
   }
