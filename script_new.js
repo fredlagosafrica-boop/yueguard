@@ -542,6 +542,12 @@ function showDoc(catId, childId, itemId) {
   var docTitle = document.getElementById('docTitle');
   if (docTitle) docTitle.textContent = item.name || item.title || '';
 
+  // 显示详情区，隐藏内容列表区
+  var contentArea = document.getElementById('contentArea');
+  var detailArea = document.getElementById('detailArea');
+  if (contentArea) contentArea.style.display = 'none';
+  if (detailArea) detailArea.style.display = 'block';
+
   viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: itemId });
   updateBreadcrumb();
   
