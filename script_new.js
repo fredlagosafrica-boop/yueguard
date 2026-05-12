@@ -164,7 +164,7 @@ function handleSearch(keyword) {
           snippet = snippet.replace(new RegExp(keyword, 'gi'), '<mark>$&</mark>');
         }
       }
-      return '<div class="search-result-item" data-type="' + r.type + '" data-cat="' + (r.catId || '') + '" data-child="' + (r.childId || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
+      return '<div class="search-result-item" data-type="' + r.type + '" data-cat="' + (r.catId || '') + '" data-child="' + (r.childId || '') + '" data-itemid="' + (r.item.id || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
         '<div class="result-cat">' + r.cat + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
         '<div class="result-title">' + r.title + '</div>' +
         (snippet ? '<div class="result-snippet">' + snippet + '</div>' : '') + '</div>';
@@ -179,13 +179,14 @@ function handleSearch(keyword) {
       var type = this.getAttribute('data-type');
       var catId = this.getAttribute('data-cat');
       var childId = this.getAttribute('data-child');
+      var itemId = this.getAttribute('data-itemid');
       var title = decodeURIComponent(this.getAttribute('data-title'));
-      openSearchResult(type, catId, childId, title);
+      openSearchResult(type, catId, childId, title, itemId);
     };
   });
 }
 
-function openSearchResult(type, catId, childId, title) {
+function openSearchResult(type, catId, childId, title, itemId) {
   var resultsContainer = document.getElementById('searchResults');
   if (resultsContainer) resultsContainer.classList.remove('active');
   document.getElementById('searchInput').value = '';
@@ -201,45 +202,9 @@ function openSearchResult(type, catId, childId, title) {
       if (child) showChild(cat, child);
     }
   } else if (type === 'item') {
-    // 搜索结果点击 → 递归查找深层文章并直接跳转
-    var cat2 = contentData.categories.find(function(c) { return c.id === catId; });
-    if (cat2) {
-      var child2 = cat2.children.find(function(c) { return c.id === childId; });
-      if (child2) {
-        // 递归查找（支持 children + items 多层嵌套）
-        function findItemDeep(nodes, t) {
-          if (!nodes) return null;
-          t = t.toLowerCase();
-          for (var i = 0; i < nodes.length; i++) {
-            var name = (nodes[i].name || nodes[i].title || '').toLowerCase();
-            if (name === t) return nodes[i];
-            // 也检查 items 数组
-            if (nodes[i].items) {
-              for (var j = 0; j < nodes[i].items.length; j++) {
-                var iname = (nodes[i].items[j].name || nodes[i].items[j].title || '').toLowerCase();
-                if (iname === t) return nodes[i].items[j];
-              }
-            }
-            if (nodes[i].children) {
-              var found = findItemDeep(nodes[i].children, t);
-              if (found) return found;
-            }
-          }
-          return null;
-        }
-        // 先查 child2.items（flat 类内容库）
-        var item = null;
-        if (child2.items) {
-          item = child2.items.find(function(it) { return (it.name||it.title||'').toLowerCase() === title.toLowerCase(); });
-        }
-        // 再递归查 children
-        if (!item && child2.children) {
-          item = findItemDeep(child2.children, title);
-        }
-        if (item) {
-          showDoc(catId, childId, item.id);
-        }
-      }
+    // 搜索结果点击 → 直接用 itemId 跳转到文章页（itemId 由渲染时 data-itemid 传入）
+    if (itemId) {
+      showDoc(catId, childId, itemId);
     }
   }
 }
