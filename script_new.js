@@ -500,20 +500,27 @@ function showDoc(catId, childId, itemId) {
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
   if (!cat) return;
 
-  // 递归搜索：支持任意深度的 children 查找
-  function findItem(children, targetId) {
-    if (!children) return null;
-    for (var i = 0; i < children.length; i++) {
-      if (children[i].id === targetId) return children[i];
-      if (children[i].children) {
-        var found = findItem(children[i].children, targetId);
+  // 递归搜索：支持任意深度的 children + items 混合查找
+  function findItemDeep(nodes, targetId) {
+    if (!nodes) return null;
+    for (var i = 0; i < nodes.length; i++) {
+      if (nodes[i].id === targetId) return nodes[i];
+      // items 数组里的直接项目（如 flat 结构）
+      if (nodes[i].items) {
+        for (var j = 0; j < nodes[i].items.length; j++) {
+          if (nodes[i].items[j].id === targetId) return nodes[i].items[j];
+        }
+      }
+      // children 嵌套
+      if (nodes[i].children) {
+        var found = findItemDeep(nodes[i].children, targetId);
         if (found) return found;
       }
     }
     return null;
   }
 
-  var item = findItem(cat.children, itemId);
+  var item = findItemDeep(cat.children, itemId);
   if (!item) return;
 
   // 有 children 的项目 → 调用 showChild 显示子项目列表
