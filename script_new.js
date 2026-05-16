@@ -20,11 +20,13 @@ function onChunkLoaded() {
 
 // ─── 动态加载 content chunks（根目录，无chunks/前缀）────
 var scripts = [
-  'ifa_content.js',
-  'wiki_content.js',
-  'sales_content.js',
-  'referral_content.js',
-  'materials_content.js'
+  'ifa_content.js?v=20260516',
+  'wiki_content.js?v=20260516',
+  'sales_content.js?v=20260516',
+  'referral_content.js?v=20260516',
+  'materials_content.js?v=20260516',
+  'chatbot_content.js?v=20260516',
+  'referral_update.js'
 ];
 
 function loadScript(i) {
@@ -419,6 +421,12 @@ function showChild(cat, child, itemIdToShow) {
     return;
   }
 
+  // 如果没有 children（叶子节点），直接显示内容
+  if (!child.children || child.children.length === 0) {
+    showDoc(cat.id, child.id, child.id);
+    return;
+  }
+
   // 构建子项列表，支持第3层有children的情况
   var html = '<div class="child-items-list">';
   child.children.forEach(function(item) {
@@ -498,18 +506,21 @@ function restoreChild(cat, child) {
 }
 
 function showDoc(catId, childId, itemId) {
+  console.log('[DEBUG showDoc] catId:', catId, 'childId:', childId, 'itemId:', itemId);
+  console.log('[DEBUG showDoc] REFERRAL_UPDATES["ref-4-2-3"]?', !!window.REFERRAL_UPDATES && !!window.REFERRAL_UPDATES['ref-4-2-3']);
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
-  if (!cat) return;
+  if (!cat) { console.log('[DEBUG showDoc] cat not found!'); return; }
 
-  // 递归搜索：支持任意深度的 children + items 混合查找
+  // 递归搜索：支持任意深度的 children + items 混合查找（含稀疏数组防护）
   function findItemDeep(nodes, targetId) {
     if (!nodes) return null;
     for (var i = 0; i < nodes.length; i++) {
+      if (!nodes[i]) continue; // 稀疏数组防护，跳过 undefined/null 空位
       if (nodes[i].id === targetId) return nodes[i];
       // items 数组里的直接项目（如 flat 结构）
       if (nodes[i].items) {
         for (var j = 0; j < nodes[i].items.length; j++) {
-          if (nodes[i].items[j].id === targetId) return nodes[i].items[j];
+          if (nodes[i].items[j] && nodes[i].items[j].id === targetId) return nodes[i].items[j];
         }
       }
       // children 嵌套
@@ -523,6 +534,26 @@ function showDoc(catId, childId, itemId) {
 
   var item = findItemDeep(cat.children, itemId);
   if (!item) return;
+
+  // 热补丁：优先用 referral_update.js 里的更新内容（即使有 children 也优先显示补丁内容）
+  if (window.REFERRAL_UPDATES && window.REFERRAL_UPDATES[itemId]) {
+    console.log('[DEBUG showDoc] HOT PATCH APPLIED for itemId:', itemId);
+    var rawContent = window.REFERRAL_UPDATES[itemId];
+    // 显示详情区，隐藏分类列表区
+    var categoryGrid = document.getElementById('categoryGrid');
+    var contentArea = document.getElementById('contentArea');
+    var detailArea = document.getElementById('detailArea');
+    if (categoryGrid) categoryGrid.style.display = 'none';
+    if (contentArea) contentArea.style.display = 'none';
+    if (detailArea) detailArea.style.display = 'block';
+    var docContent = document.getElementById('docContent');
+    if (docContent) docContent.innerHTML = '<div class="doc-view">' + rawContent + '</div>';
+    var docTitle = document.getElementById('docTitle');
+    if (docTitle) docTitle.textContent = item.name || item.title || '';
+    viewStack.push({ view: 'doc', catId: catId, childId: itemId, itemId: itemId });
+    updateBreadcrumb();
+    return;
+  }
 
   // 有 children 的项目 → 调用 showChild 显示子项目列表
   if (item.children && item.children.length > 0) {
@@ -540,7 +571,7 @@ function showDoc(catId, childId, itemId) {
 
   var docContent = document.getElementById('docContent');
   if (docContent) {
-    var rawContent = item.content || '<p>内容待补充...</p>';
+    rawContent = item.content || '<p>内容待补充...</p>';
     if (lastSearchKeyword) {
       rawContent = rawContent.replace(new RegExp(lastSearchKeyword, 'gi'), '<mark class="search-highlight">$&</mark>');
     }
