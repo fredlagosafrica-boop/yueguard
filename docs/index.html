@@ -4,34 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>恒玥IFA内容库</title>
-  <style>
-    :root {
-      --primary-color: #1a7f37;
-      --accent-color: #29b45e;
-      --bg-color: #f8f9fa;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-  </style>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="lib/vue.css">
 </head>
 <body>
   <div id="app">加载中...</div>
+  <script src="lib/docsify.min.js"></script>
   <script>
     window.$docsify = {
       name: '恒玥IFA内容库',
       repo: 'fredlagosafrica-boop/yueguard',
-      loadSidebar: true,
+      loadSidebar: '_sidebar.md',
       subMaxLevel: 4,
       auto2top: true,
       search: {
         maxAge: 86400000,
-        placeholder: '🔍 搜索内容...',
+        placeholder: '搜索内容...',
         noData: '未找到结果'
       }
     };
   </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 </body>
 </html>
