@@ -1,2 +1,0 @@
-// Doc: i11 - 1.2 核心能力二：合规底线坚守
-window.currentDocContent = `<h2>二、进阶销售核心能力要求</h2>`;

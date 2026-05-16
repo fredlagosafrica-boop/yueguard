@@ -1,2 +1,0 @@
-// Doc: s2_066 - 规则传递
-window.currentDocContent = `<h3>规则传递</h3><p><strong>规则：</strong>明确告知转介绍的好处与边界（合规范围内的奖励/感谢），不得承诺返佣</p>`;
