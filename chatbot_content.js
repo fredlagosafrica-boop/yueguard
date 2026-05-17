@@ -1105,9 +1105,7 @@ contentData.categories.push({
       ]
     },
   ]
-
 });
-
 contentData.categories.push({
   id: "yl_faq",
   name: "f4cb 港险新人常见问题答疑",
