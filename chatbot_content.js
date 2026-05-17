@@ -1109,7 +1109,7 @@ contentData.categories.push({
 contentData.categories.push({
   id: "yl_faq",
   name: "港险新人常见问题答疑",
-  subtitle: "港险新人常见问题答疑，共94条问答14个分类",
+  subtitle: "",
   children: [
     {
       id: "yl_fag_1",
