@@ -1106,7 +1106,6 @@ contentData.categories.push({
     },
   ]
 
-  ]
 });
 
 contentData.categories.push({
