@@ -42,6 +42,17 @@ contentData.categories.push({
         { id: 'content04b', title: '3.4.2 2026年', content: '<h2>3.4.2 2026年综合题材</h2><p>内容待补充...</p>' },
         { id: 'content04c', title: '3.4.3 2027年', content: '<h2>3.4.3 2027年综合题材</h2><p>内容待补充...</p>' }
       ]
+    },
+    {
+      id: 'content05',
+      name: '3.5 APP下载指引',
+      children: [
+        { 
+          id: 'content05a', 
+          title: 'LifeBee APP 操作说明', 
+          content: '<h2>LifeBee APP 操作说明</h2><p>恒玥团队专用APP操作指引文档，支持团队日常业务管理。</p><p style="margin-top:20px;"><a href="assets/LifeBee_APP操作説明.pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:bold;">📥 下载PDF完整版</a></p><p style="margin-top:15px;color:#888;font-size:14px;">文件大小：9.4MB，共33页</p>' 
+        }
+      ]
     }
   ]
 });
