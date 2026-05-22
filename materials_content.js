@@ -64,6 +64,28 @@ contentData.categories.push({
           content: '<h2>ZUU直营新人行政手册</h2><p>ZUU直营新人入职行政手册，包含入职流程、行政指引及日常操作规范。</p><p style="margin-top:20px;"><a href="assets/ZUU直营新人行政手册.pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:bold;">📥 下载PDF完整版</a></p><p style="margin-top:15px;color:#888;font-size:14px;">文件大小：15MB</p>' 
         }
       ]
+    },
+    {
+      id: 'content07',
+      name: '3.7 智能客服问答库',
+      children: [
+        { 
+          id: 'content07a', 
+          title: '🤖 智能客服问答库', 
+          content: '<h2>🤖 智能客服问答库</h2><p>恒玥团队智能客服（Chatbot）问答库，收录常见客户问题及标准回答，助你高效响应客户咨询。</p><p style="margin-top:20px;"><a href="assets/chatbot_content.js" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:bold;">📥 下载问答库文件</a></p>' 
+        }
+      ]
+    },
+    {
+      id: 'content08',
+      name: '3.8 港险新人常见问题答疑',
+      children: [
+        { 
+          id: 'content08a', 
+          title: '❓ 港险新人常见问题答疑', 
+          content: '<h2>❓ 港险新人常见问题答疑</h2><p>针对香港保险新人常见疑问的汇总解答，涵盖入职、考牌、展业等各环节常见问题。</p><p style="margin-top:20px;"><a href="assets/faq_content.js" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:bold;">📥 下载FAQ文件</a></p>' 
+        }
+      ]
     }
   ]
 });
