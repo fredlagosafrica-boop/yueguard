@@ -428,6 +428,7 @@ function showChild(cat, child, itemIdToShow) {
   }
 
   // 构建子项列表，支持第3层有children的情况
+  console.log('[showChild] 开始渲染子目录列表，清空docContent');
   var html = '<div class="child-items-list">';
   child.children.forEach(function(item) {
     // 提取内容摘要（如果有content字段）
@@ -459,7 +460,9 @@ function showChild(cat, child, itemIdToShow) {
     }
   });
   html += '</div>';
+  docContent.innerHTML = ''; // 强制清空
   docContent.innerHTML = html;
+  console.log('[showChild] 渲染完成，innerHTML已设置');
 }
 
 // 展开第4层子节点（点击有children的第3层节点时触发）
