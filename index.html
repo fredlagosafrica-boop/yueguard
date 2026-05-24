@@ -29,8 +29,8 @@
   </div>
 </div>
 <script>
-function checkDisclaimer(){if(!localStorage.getItem('disclaimerAccepted')){document.getElementById('disclaimerModal').style.display='flex';}}
-function acceptDisclaimer(){localStorage.setItem('disclaimerAccepted','1');document.getElementById('disclaimerModal').style.display='none';}
+function checkDisclaimer(){document.getElementById('disclaimerModal').style.display='flex';}
+function acceptDisclaimer(){document.getElementById('disclaimerModal').style.display='none';}
 checkDisclaimer();
 </script>
 <div class="app-container">
