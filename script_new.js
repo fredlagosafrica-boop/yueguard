@@ -678,16 +678,28 @@ function toggleMode() {
   if (btn) btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
 }
 
-// 使用声明弹窗
-function acceptDisclaimer(){localStorage.setItem("disclaimerAccepted","1"),document.getElementById("disclaimerModal").style.display="none"}
-function showDisclaimer(){var e=document.getElementById("disclaimerModal");"1"!==localStorage.getItem("disclaimerAccepted")?e.style.display="flex":e.style.display="none"}
-document.addEventListener("DOMContentLoaded",showDisclaimer);
+// 声明弹窗
+function acceptDisclaimer(){
+  localStorage.setItem("disclaimerAccepted","1");
+  document.getElementById("disclaimerModal").style.display = "none";
+}
+function showDisclaimer(){
+  var e = document.getElementById("disclaimerModal");
+  // 仅在密码正确后、未点过同意时弹出
+  if(localStorage.getItem("disclaimerAccepted") !== "1"){
+    e.style.display = "flex";
+  } else {
+    e.style.display = "none";
+  }
+}
 
 // 密码锁屏（每次访问都需要输入，不记住）
 function checkPassword(){
   var val = document.getElementById("lockInput").value;
   if(val === "8888"){
     document.getElementById("passwordLock").style.display = "none";
+    // 每次输入正确密码后都弹出声明
+    localStorage.removeItem("disclaimerAccepted");
     showDisclaimer();
   } else {
     var err = document.getElementById("lockError");
