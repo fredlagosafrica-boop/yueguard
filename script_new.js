@@ -677,3 +677,8 @@ function toggleMode() {
   var btn = document.getElementById('modeToggle');
   if (btn) btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
 }
+
+// 使用声明弹窗
+function acceptDisclaimer(){localStorage.setItem("disclaimerAccepted","1"),document.getElementById("disclaimerModal").style.display="none"}
+function showDisclaimer(){var e=document.getElementById("disclaimerModal");"1"!==localStorage.getItem("disclaimerAccepted")?e.style.display="flex":e.style.display="none"}
+document.addEventListener("DOMContentLoaded",showDisclaimer);

@@ -7,7 +7,26 @@
  <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <div class="app-container">
+
+<!-- 使用声明弹窗 -->
+<div id="disclaimerModal" class="modal-overlay">
+ <div class="modal-box">
+  <div class="modal-header">
+   <div class="modal-icon">⚠️</div>
+   <h2 class="modal-title">资料库使用声明及免责条款</h2>
+  </div>
+  <div class="modal-body">
+   <p>本资料库所有内容版权归本机构所有，受相关知识产权法律法规保护。未经本机构书面授权，任何单位及个人不得擅自复制、转载、篡改、传播、商用或以其他方式使用资料库内容。</p>
+   <p>本资料库内容仅限香港地区合法持牌保险经纪人内部参考使用，严格禁止跨地域、超权限使用，亦不得向非合规人员、异地机构或第三方对外流转、分享资料内容。</p>
+   <p>资料库所有内容仅作业务参考用途，不构成任何保险投保建议、法律意见、专业决策依据。任何使用者因超范围使用、自行依据资料内容开展业务所产生的一切纠纷、损失及相关法律责任，均由使用者自行全额承担，本机构不承担任何连带法律责任与相关后果。</p>
+  </div>
+  <div class="modal-footer">
+   <button class="modal-btn" onclick="acceptDisclaimer()">✓ 我已知悉并同意</button>
+  </div>
+ </div>
+</div>
+
+<div class="app-container">
  <h1 class="app-title">📚 恒玥IFA内容库</h1>
  <div class="search-box" id="searchBox">
   <input type="text" id="searchInput" placeholder="🔍 搜索站内内容..." oninput="handleSearch(this.value)">
@@ -39,7 +58,6 @@
  </div>
  <button class="mode-toggle" id="modeToggle" onclick="toggleMode()">🌙</button>
  </div>
- <script src="script_new.js?v=2026052320"></script>
-<!-- rebuilt -->
+ <script src="script_new.js?v=2026052520"></script>
 </body>
 </html>
