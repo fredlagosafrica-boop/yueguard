@@ -24,7 +24,7 @@ contentData.categories.push({
         {
           id: 'ref-1-3',
           name: '1.3 认识你的支持网络',
-          content: '<h3>1.3 认识你的支持网络</h3><p>作为IFA，你代理多家保险公司的产品，各公司也提供相应支持：例如</p>'
+          content: '<h3>1.3 认识你的支持网络</h3><p>作为IFA，你代理多家保险公司的产品，各公司也提供相应支持：例如</p><h4>行业层面资源</h4><ul><li>香港保险业监管局（IA）：牌照申请、续期、监管条例查询 | <a href="https://www.ia.org.hk" target="_blank">www.ia.org.hk</a></li><li>香港保险业联会（HKFI）：行业标准制定、保险从业员认证</li><li>职业训练局（VTC）：资格考试报名、考试成绩查询</li><li>积金局（MPFA）：强积金（MPF）相关规管及指引 | <a href="https://www.mpfa.org.hk" target="_blank">www.mpfa.org.hk</a></li></ul>'
         }
       ]
     },
