@@ -55,12 +55,22 @@ contentData.categories.push({
     },
     {
       id: 'content06',
-      name: '3.6 ZUU直营新人行政手册',
+      name: '3.6 团队文化',
       children: [
         {
           id: 'content06a',
-          title: 'ZUU直营新人行政手册',
-          content: '<h2>ZUU直营新人行政手册</h2><p>ZUU直营新人入职行政手册，包含入职流程、行政指引及日常操作规范。</p><p style="margin-top:20px;"><a href="assets/ZUU直营新人行政手册.pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:bold;">📥 下载PDF完整版</a></p><p style="margin-top:15px;color:#888;font-size:14px;">文件大小：15MB</p>'
+          title: '3.6.1 团队创立',
+          content: '<h2>3.6.1 团队创立</h2><p>内容待补充...</p>'
+        },
+        {
+          id: 'content06b',
+          title: '3.6.2 团队说明',
+          content: '<h2>3.6.2 团队说明</h2><p>内容待补充...</p>'
+        },
+        {
+          id: 'content06c',
+          title: '3.6.3 团队架构',
+          content: '<h2>3.6.3 团队架构</h2><p>内容待补充...</p>'
         }
       ]
     },
