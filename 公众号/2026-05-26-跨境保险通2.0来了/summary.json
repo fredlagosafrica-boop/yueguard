@@ -1,0 +1,27 @@
+{
+  "topic": "跨境保险通2.0来了",
+  "publishedAt": null,
+  "审核状态": "待审核",
+  "审核文档": "https://www.feishu.cn/docx/NQdzd4e8LoJBVTxPVKhcRrl4nRd",
+  "内容": {
+    "情报简报": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-26-yb-insurance-crossover/intel.json",
+      "summary": "跨境通2.0启动+AIA股价年内涨82%+CAR-T免疫疗法纳入高端医疗险"
+    },
+    "公众号文章": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-26-yb-insurance-crossover/wechat-article.md",
+      "summary": "1500字深度文：跨境通2.0核心变化、产品对比IRR、适合人群分析"
+    },
+    "小红书": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-26-yb-insurance-crossover/xhs-post.json",
+      "summary": "种草文案：大湾区港险升级三大亮点，标签7个"
+    },
+    "TK脚本": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-26-yb-insurance-crossover/tk-script.json",
+      "summary": "60秒口播脚本：开场Hook→核心信息→产品推荐→风险提示→收尾CTA"
+    }
+  },
+  "微信公众号发布状态": "失败-需添加IP白名单",
+  "失败原因": "IP 14.199.117.5 不在微信白名单中，需登录 mp.weixin.qq.com 添加",
+  "解决方案": "在微信公众平台 → 设置与开发 → 基本配置 → IP白名单 添加 14.199.117.5"
+}

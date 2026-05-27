@@ -1,0 +1,45 @@
+{
+  "date": "2026-05-18",
+  "datetime": "2026-05-18T09:00:33",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": ["HSI", "HK_TENCENT", "HK_PRU", "HK_AIA", "HK_MANULIFE", "CNBC"],
+  "news_items": [
+    {"title": "Tech Sell-Off Batters Asian Stock Markets", "description": "Asian stock markets retreated as traders weighed geopolitical concerns, inflation", "pubDate": "Fri, 15 May 2026", "source": "HSI"},
+    {"title": "Trump Clears Nvidia H200 Sales To Alibaba, Tencent", "description": "US authorized sale of Nvidia H200 AI chips to Chinese tech giants", "pubDate": "Sat, 16 May 2026", "source": "HK_TENCENT"},
+    {"title": "Is It Too Late To Consider AIA Group (SEHK:1299) After Its 82% One Year Rally?", "description": "AIA stock at HK$88.95, 82% over 1 year, 6.8% YTD, positioning in insurance sector", "pubDate": "Sat, 11 Apr 2026", "source": "HK_AIA"},
+    {"title": "Manulife Financial Q1 Earnings Call Highlights", "description": "Solid Q1 2026 results, growth in insurance sales and earnings in Asia", "pubDate": "Fri, 15 May 2026", "source": "HK_MANULIFE"},
+    {"title": "Manulife Canada's Business May Rebound Earlier, Stronger Than Expected", "description": "RBC expects Manulife Canada business to rebound earlier and stronger than expected", "pubDate": "Fri, 15 May 2026", "source": "HK_MANULIFE"},
+    {"title": "Kevin Warsh Faces Fed Rate Cut Battle", "description": "New Fed governor facing big fight over cutting interest rates amid inflation spike", "pubDate": "Sat, 16 May 2026", "source": "CNBC"},
+    {"title": "Beijing-Washington Summit Roils Asian Markets", "description": "Summit between Beijing and Washington impacts investor sentiment", "pubDate": "Thu, 14 May 2026", "source": "HSI"}
+  ],
+  "summary": {
+    "total_items": 30,
+    "sources_reachable": 6
+  },
+  "hot_topics": [
+    "AIA股价82%涨幅后，机构重新评估港险板块配置价值",
+    "科技股抛售潮 + 地缘政治风险，港险储蓄险成资金避风港",
+    "宏利Q1业绩超预期，香港保险业基本面强劲"
+  ],
+  "market_data": {
+    "AIA": {"price": "HK$88.95", "1y_return": "+82.2%", "YTD": "+6.8%", "30d": "+2.9%", "7d": "+3.3%"},
+    "HSI": {"trend": "mixed", "drivers": ["tech_selloff", "geopolitical", "inflation"]},
+    "Manulife": {"Q1_2026": "solid growth", "Asia": "strong performer", "Canada": "rebound expected"}
+  },
+  "policy_updates": [
+    "跨境保险通2.0持续推进，大湾区医疗险升级预期",
+    "北京-华盛顿峰会影响资本市场情绪，避险需求上升",
+    "美联储Kevin Warsh面临利率决策压力，降息预期降温"
+  ],
+  "product_updates": [
+    "宏利Q1：亚洲保险销售和盈利双增长",
+    "AIA：全年业绩创纪录，新股回购计划启动",
+    "保诚：分析师目标价调整（£13.73→£14.12）"
+  ],
+  "topic_suggestion": {
+    "primary": "AIA股价82%涨幅后，港险板块配置价值重估",
+    "angle": "在地缘政治风险升温、科技股震荡的背景下，香港保险板块凭借稳健的基本面和独特的避险属性，正成为资金配置的新焦点。本文将从AIA、宏利等龙头股最新业绩出发，深入分析港险板块的投资机遇。",
+    "keywords": ["香港保险", "AIA", "港险配置", "储蓄险", "避风港", "大湾区保险通"]
+  },
+  "key_takeaways": "1. AIA股价创82%年涨幅，但机构仍看好配置价值；2. 科技股震荡+地缘风险→港险避险属性凸显；3. 宏利Q1亚洲业务强劲，基本面支撑板块估值；4. 跨境保险通2.0预期持续利好港险；5. 美联储利率政策不确定→储蓄险IRR优势相对显现"
+}

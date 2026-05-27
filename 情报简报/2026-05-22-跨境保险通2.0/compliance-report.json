@@ -1,0 +1,24 @@
+{
+  "approved": true,
+  "date": "2026-05-22T09:05:06.482822",
+  "reviewer": "恒玥合规部",
+  "files_reviewed": [
+    "wechat-article.md",
+    "xhs-post.json",
+    "tk-script.json",
+    "intel.json"
+  ],
+  "issues": [],
+  "suggestions": [
+    "建议在产品对比部分补充各保司官方热线电话",
+    "可在文章结尾增加「了解详情请扫码联系恒玥顾问」的二维码占位",
+    "TK脚本中涉及IRR数据建议加「非保证」字幕提示"
+  ],
+  "compliance_checklist": {
+    "数据准确性": "PASS - IRR标注「非保证」，数据来源已注明",
+    "合规表述": "PASS - 无夸大宣传，符合监管要求",
+    "免责声明完整性": "PASS - 文章结尾包含完整免责声明",
+    "版权风险": "PASS - 自创内容，无外部图片引用"
+  },
+  "final_recommendation": "建议发布，带上述修改建议参考执行"
+}

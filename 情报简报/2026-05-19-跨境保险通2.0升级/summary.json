@@ -1,0 +1,34 @@
+{
+  "topic": "跨境保险通2.0 + 大湾区医疗险升级",
+  "publishedAt": null,
+  "审核状态": "待审核（飞书文档已创建）",
+  "内容": {
+    "情报简报": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-19-kbyxlct2-dadyzx/intel.json",
+      "summary": "跨境保险通2.0四大升级、CAR-T免疫疗法全覆盖、免体检额提升至75万美元"
+    },
+    "公众号文章": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-19-kbyxlct2-dadyzx/wechat-article.md",
+      "summary": "1500字深度解读，包含政策对比表、产品对比表、配置指南",
+      "word_count": 1500
+    },
+    "小红书": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-19-kbyxlct2-dadyzx/xhs-post.json",
+      "summary": "种草文案，含10个标签，覆盖保险通2.0核心卖点"
+    },
+    "TK脚本": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-19-kbyxlct2-dadyzx/tk-script.json",
+      "summary": "60秒口播脚本，开场→CAR-T→免体检→税务优惠→CTA"
+    }
+  },
+  "feishu_doc": {
+    "doc_id": "A5zHd0WJNoXUdnx82cfcR84Wnvw",
+    "doc_url": "https://www.feishu.cn/docx/A5zHd0WJNoXUdnx82cfcR84Wnvw",
+    "status": "created"
+  },
+  "wechat_draft": {
+    "status": "pending_ip_whitelist",
+    "error": "40164 invalid ip 14.199.117.5 not in whitelist",
+    "action_required": "登录微信公众平台 → 设置与开发 → 基本配置 → IP白名单 → 添加 14.199.117.5"
+  }
+}

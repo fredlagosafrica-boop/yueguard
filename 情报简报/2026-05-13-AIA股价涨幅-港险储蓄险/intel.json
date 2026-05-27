@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-13",
+  "datetime": "2026-05-13T09:01:05",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": [
+    "HSI",
+    "HK_TENCENT",
+    "HK_PRU",
+    "HK_AIA",
+    "HK_MANULIFE",
+    "CNBC"
+  ],
+  "news_items": [
+    {
+      "title": "Is It Too Late To Consider AIA Group (SEHK:1299) After Its 82% One Year Rally?",
+      "description": "AIA股价一年涨幅82.2%，引发市场对港险板块配置价值的重新评估",
+      "pubDate": "Sat, 11 Apr 2026 04:21:00 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/too-consider-aia-group-sehk-042100864.html",
+      "source": "HK_AIA"
+    },
+    {
+      "title": "AIA Group Ltd Full Year 2025 Earnings Call Highlights: Record Growth and Strategic Expansion",
+      "description": "AIA 2025全年业绩双位数增长，新一轮股份回购，战略扩张",
+      "pubDate": "Thu, 19 Mar 2026 07:00:27 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/aia-group-ltd-aagiy-full-070027207.html",
+      "source": "HK_AIA"
+    },
+    {
+      "title": "Why The Prudential (LSE:PRU) Story Is Shifting As Analysts Rework Valuation Targets",
+      "description": "Prudential合理价值从£13.73调整为£14.12，分析师重新校准目标价",
+      "pubDate": "Sun, 10 May 2026 15:13:41 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/why-prudential-lse-pru-story-151341764.html",
+      "source": "HK_PRU"
+    },
+    {
+      "title": "Manulife Financial announces Conversion Privileges for its Series 3 and Series 4 Class 1 Preferred Shares",
+      "description": "宏利公布2026年6月不赎回优先股，显示资本充足",
+      "pubDate": "Mon, 04 May 2026 12:30:00 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/manulife-financial-announces-conversion-privileges-123000855.html",
+      "source": "HK_MANULIFE"
+    },
+    {
+      "title": "Five things to watch in Asia as Trump prepares to meet China",
+      "description": "中美首脑本周四周五在北京会晤，市场观望贸易谈判进展",
+      "pubDate": "Tue, 12 May 2026 02:47:29 GMT",
+      "link": "https://www.cnbc.com/2026/05/12/tump-xi-china-summit-taiwan-iran-trade.html",
+      "source": "CNBC"
+    }
+  ],
+  "market_news": [
+    "AIA股价HK$88.95，过去一年涨幅82.2%，远超恒生指数表现",
+    "Prudential分析师目标价调整至GBP14.12，显示保险板块估值重估",
+    "Manulife 2026年6月不赎回优先股，显示资本充足",
+    "中美首脑本周北京会晤，贸易局势影响市场情绪"
+  ],
+  "product_updates": [
+    "AIA 2025全年业绩创纪录，宣布新股份回购计划",
+    "港险储蓄险IRR普遍在5.5-7%（非保证），超越内地同类产品",
+    "跨境保险通2.0预期进一步放宽，吸引大湾区客户"
+  ],
+  "policy_updates": [
+    "特朗普与习近平本周会晤，中美贸易关系走向影响离岸保险需求",
+    "香港保险业监管局持续推动监管现代化",
+    "大湾区保险通预期升级，跨境医疗险覆盖扩大"
+  ],
+  "customer_insights": [
+    "高净值客户青睐香港储蓄险，对冲人民币贬值风险",
+    "免疫疗法等高端医疗需求上升，重疾险配置增加",
+    "内地客户对港险兴趣回暖，关注财富传承功能"
+  ],
+  "key_takeaways": "当前港险板块核心逻辑：①AIA等保险股大涨反映市场对保险资产配置信心回升；②储蓄险IRR（非保证）5.5-7%具备竞争力；③跨境保险通2.0预期升温。建议围绕AIA的强劲表现，结合储蓄险配置价值撰写内容。",
+  "topic_suggestions": [
+    "AIA股价82%涨幅后，港险储蓄险配置价值重估",
+    "跨境保险通2.0要来了？大湾区保险机遇全解读",
+    "免疫疗法纳入港险重疾险，高端医疗新趋势"
+  ]
+}

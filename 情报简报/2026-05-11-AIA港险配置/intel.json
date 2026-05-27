@@ -1,0 +1,94 @@
+{
+  "date": "2026-05-11",
+  "datetime": "2026-05-11T09:29:54+08:00",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": [
+    "HSI",
+    "HK_TENCENT",
+    "HK_PRU",
+    "HK_AIA",
+    "HK_MANULIFE",
+    "CNBC"
+  ],
+  "news_items": [
+    {
+      "title": "Is It Too Late To Consider AIA Group (SEHK:1299) After Its 82% One Year Rally?",
+      "description": "AIA股价一年涨幅82%，当前估值是否合理？",
+      "pubDate": "Sat, 11 Apr 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/too-consider-aia-group-sehk-042100864.html",
+      "source": "HK_AIA"
+    },
+    {
+      "title": "Higher Oil Prices, Persian Gulf Outlook Lower Asian Stock Markets",
+      "description": "油价上涨影响亚洲股市，地缘风险升温",
+      "pubDate": "Fri, 08 May 2026",
+      "link": "https://finance.yahoo.com/markets/world-indices/articles/higher-oil-prices-persian-gulf-103625771.html",
+      "source": "HSI"
+    },
+    {
+      "title": "DeepSeek value could be up to $50 billion in first fundraising",
+      "description": "DeepSeek AI融资估值500亿美元，腾讯参与投资谈判",
+      "pubDate": "Wed, 06 May 2026",
+      "link": "https://finance.yahoo.com/video/deepseek-value-could-50-billion-151730055.html",
+      "source": "HK_TENCENT"
+    },
+    {
+      "title": "Why The Prudential (LSE:PRU) Story Is Shifting As Analysts Rework Valuation Targets",
+      "description": "保诚估值目标被分析师重新调整",
+      "pubDate": "Sun, 10 May 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/why-prudential-lse-pru-story-151341764.html",
+      "source": "HK_PRU"
+    },
+    {
+      "title": "Assessing Manulife Financial (TSX:MFC) Valuation After Recent Share Price Moves",
+      "description": "宏利金融股价表现强劲，年涨幅26%",
+      "pubDate": "Tue, 05 May 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/assessing-manulife-financial-tsx-mfc-132051353.html",
+      "source": "HK_MANULIFE"
+    },
+    {
+      "title": "Michael Burry says the market today feels like 'the last months of the 1999-2000 bubble'",
+      "description": "Michael Burry警告市场泡沫风险",
+      "pubDate": "Fri, 08 May 2026",
+      "link": "https://www.cnbc.com/2026/05/08/michael-burry-says-the-market-today-feels-like-the-last-months-of-the-1999-2000-bubble.html",
+      "source": "CNBC"
+    },
+    {
+      "title": "AIA Group Ltd (AAGIY) Full Year 2025 Earnings Call Highlights",
+      "description": "友邦保险2025全年财报：双位数增长，新股票回购计划",
+      "pubDate": "Thu, 19 Mar 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/aia-group-ltd-aagiy-full-070027207.html",
+      "source": "HK_AIA"
+    },
+    {
+      "title": "Iran focus at Trump-Xi summit may delay progress on tariffs, rare earths",
+      "description": "中美贸易关税谈判受伊朗局势影响延后",
+      "pubDate": "Fri, 08 May 2026",
+      "link": "https://www.cnbc.com/2026/05/08/iran-focus-at-trump-xi-summit-may-delay-progress-on-tariffs-rare-earths.html",
+      "source": "CNBC"
+    }
+  ],
+  "market_news": [
+    "AIA股价创历史新高，一年涨幅达82%，成为港险板块领头羊",
+    "港股恒生指数受油价上涨和中东局势影响，短期波动加剧",
+    "DeepSeek AI融资估值500亿美元，科技板块持续吸引资金关注",
+    "保诚(Prudential)估值目标被分析师重新调整，市场观点分化"
+  ],
+  "product_updates": [
+    "友邦保险2025全年业绩：双位数增长，新启动股票回购计划",
+    "宏利金融年涨幅26%，资管业务ETF产品线扩张",
+    "大湾区跨境保险通政策持续推进，医疗险升级成焦点"
+  ],
+  "policy_updates": [
+    "跨境保险通2.0预期上半年出台，大湾区医疗险覆盖扩大",
+    "特朗普-习近平峰会聚焦伊朗问题，贸易关税谈判延后",
+    "香港保险业监管局关注地缘风险对保险资金配置影响"
+  ],
+  "customer_insights": [
+    "高净值客户在地缘风险下寻求保险资产避险需求上升",
+    "储蓄型保险产品IRR（非保证）吸引力增强，对冲股市波动",
+    "免疫疗法等高端医疗险需求增长，覆盖范围成卖点"
+  ],
+  "key_takeaways": "AIA股价82%涨幅后，港险板块配置价值仍被看好。跨境保险通2.0政策预期和大湾区医疗险升级为近期焦点。地缘风险下，保险资产避险属性凸显。",
+  "topic_suggestion": "AIA股价82%涨幅后，港险板块配置价值"
+}

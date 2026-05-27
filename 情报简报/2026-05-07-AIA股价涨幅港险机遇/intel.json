@@ -1,0 +1,51 @@
+{
+  "date": "2026-05-07",
+  "datetime": "2026-05-07T11:19:56+08:00",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": ["HSI", "HK_TENCENT", "HK_PRU", "HK_AIA", "HK_MANULIFE", "CNBC"],
+  "news_items": [
+    {"title": "Is It Too Late To Consider AIA Group (SEHK:1299) After Its 82% One Year Rally?", "description": "AIA股价82%一年涨幅后，现在考虑买入是否太晚？分析师关注港险板块配置价值。", "pubDate": "Sat, 11 Apr 2026 04:21:00 +0000", "link": "https://finance.yahoo.com/markets/stocks/articles/too-consider-aia-group-sehk-042100864.html", "source": "HK_AIA"},
+    {"title": "Assessing AIA Group (SEHK:1299) Valuation After Mixed Short Term Returns And Stronger Long Term Momentum", "description": "AIA股价短期回调，但长期动能强劲，90天回报6.77%。", "pubDate": "Thu, 12 Mar 2026 17:13:24 +0000", "link": "https://finance.yahoo.com/news/assessing-aia-group-sehk-1299-171324212.html", "source": "HK_AIA"},
+    {"title": "AIA Group Ltd (AAGIY) Full Year 2025 Earnings Call Highlights: Record Growth and Strategic Expansion", "description": "AIA 2025全年财报：双位数增长、新股回购计划、关键市场战略扩张。", "pubDate": "Thu, 19 Mar 2026 07:00:27 +0000", "link": "https://finance.yahoo.com/markets/stocks/articles/aia-group-ltd-aagiy-full-070027207.html", "source": "HK_AIA"},
+    {"title": "Prudential Health Summit: Improving Care for Every Patient", "description": "保诚健康峰会汇聚大湾区医疗专家，推动跨境协作医疗系统。", "pubDate": "Wed, 01 Apr 2026 10:53:00 +0000", "link": "https://finance.yahoo.com/sectors/healthcare/articles/prudential-health-summit-improving-care-105300727.html", "source": "HK_PRU"},
+    {"title": "Assessing Manulife Financial (TSX:MFC) Valuation After Recent Share Price Moves", "description": "宏利股价一年总回报26%，30天回报8%，资管业务强劲。", "pubDate": "Tue, 05 May 2026 13:20:51 +0000", "link": "https://finance.yahoo.com/markets/stocks/articles/assessing-manulife-financial-tsx-mfc-132051353.html", "source": "HK_MANULIFE"},
+    {"title": "Manulife Financial announces Conversion Privileges for its Series 3 and Series 4 Class 1 Preferred Shares", "description": "宏利公布优先股转换特权，2026年6月19日不行使赎回权。", "pubDate": "Mon, 04 May 2026 12:30:00 +0000", "link": "https://finance.yahoo.com/markets/stocks/articles/manulife-financial-announces-conversion-privileges-123000855.html", "source": "HK_MANULIFE"},
+    {"title": "DeepSeek could be valued at up to $50 billion in first fundraising, sources say", "description": "DeepSeek IPO前估值500亿美元，腾讯已参与洽谈，科技投资情绪利好港股。", "pubDate": "Wed, 06 May 2026 05:56:21 +0000", "link": "https://finance.yahoo.com/sectors/technology/articles/deepseek-nears-45-billion-valuation-055621463.html", "source": "HK_TENCENT"},
+    {"title": "North American AI Data Center Expansion Drives 2026 CapEx of Top Nine CSPs to US$830 Billion", "description": "AI投资浪潮：全球九大CSP 2026年资本支出达8300亿美元，腾讯阿里字节齐参与。", "pubDate": "Wed, 06 May 2026 12:00:00 +0000", "link": "https://finance.yahoo.com/sectors/technology/articles/north-american-ai-data-center-120000137.html", "source": "HK_TENCENT"},
+    {"title": "Falling Oil Prices, Middle East Views Lift Asian Stock Markets", "description": "油价下跌+中东局势缓解，亚洲股市普遍上扬，恒指五一后反弹。", "pubDate": "Wed, 06 May 2026 10:36:35 +0000", "link": "https://finance.yahoo.com/markets/world-indices/articles/falling-oil-prices-middle-east-103635431.html", "source": "HSI"},
+    {"title": "Apollo CEO Rowan warns of market correction, slams egregious practices at rival insurers", "description": "Apollo CEO警告市场调整风险，批评同业保险做法，暗示保险业需警惕。", "pubDate": "Wed, 06 May 2026 20:33:58 GMT", "link": "https://www.cnbc.com/2026/05/06/apollo-ceo-rowan-market-correction-rival-insurers.html", "source": "CNBC"}
+  ],
+  "summary": {
+    "total_items": 30,
+    "sources_reachable": 6
+  },
+  "market_news": [
+    "AIA股价创一年新高82%涨幅，成为港股保险板块领头羊",
+    "DeepSeek IPO前估值500亿美元，腾讯参投，科技股情绪回暖带动恒指",
+    "宏利Manulife 30天回报8%，一年回报26%，资管和保险双轮驱动",
+    "保诚举办大湾区健康峰会，推动跨境医疗协作",
+    "国际油价下跌+中东局势缓和，亚洲股市普遍反弹"
+  ],
+  "product_updates": [
+    "AIA 2025全年财报：双位数增长+新股回购，估值吸引力提升",
+    "保诚聚焦大湾区医疗合作，跨境保险通2.0预期升温",
+    "宏利优先股转换特权发布，股东权益保障机制明确"
+  ],
+  "policy_updates": [
+    "跨境保险通2.0预期：大湾区医疗险升级成为监管重点",
+    "香港保险业监局推动产品创新监管沙盒",
+    "内地与香港保险互联互通政策持续推进"
+  ],
+  "customer_insights": [
+    "82%涨幅后AIA是否仍值得配置？长期投资者关注价值重估",
+    "大湾区客户对跨境医疗险需求旺盛，重疾险升级换代加速",
+    "高净值客户资产配置转向避险资产，香港储蓄险吸引力提升"
+  ],
+  "hot_topics_top3": [
+    "AIA股价82%涨幅后，港险板块配置价值深度分析",
+    "DeepSeek IPO+AI资本支出爆发：大湾区科技赋能保险新机遇",
+    "跨境保险通2.0预期升温：大湾区医疗险升级配置指南"
+  ],
+  "key_takeaways": "今日最佳选题方向：结合AIA股价强势表现+大湾区跨境保险通政策预期+DeepSeek IPO带动的科技投资情绪，建议以「82%涨幅后的AIA及港险配置机遇」为核心选题，融合跨境医疗险升级趋势，既有时效性又有实用价值。",
+  "recommended_topic": "AIA股价82%涨幅后，港险储蓄险还能买吗？大湾区跨境保险通2.0带来新机遇"
+}

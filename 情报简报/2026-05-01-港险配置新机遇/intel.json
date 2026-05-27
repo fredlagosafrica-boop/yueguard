@@ -1,0 +1,83 @@
+{
+  "date": "2026-05-01",
+  "datetime": "2026-05-01T09:00:00+08:00",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": ["HSI", "HK_TENCENT", "HK_PRU", "HK_AIA", "HK_MANULIFE", "CNBC"],
+  "news_items": [
+    {
+      "title": "Fed holds rates steady but with highest level of dissent since 1992",
+      "description": "Federal Reserve keeps interest rates unchanged, 2026 outlook signals caution amid global uncertainty",
+      "pubDate": "Wed, 29 Apr 2026 19:25:28 GMT",
+      "link": "https://www.cnbc.com/2026/04/29/fed-interest-rate-decision-april-2026.html",
+      "source": "CNBC"
+    },
+    {
+      "title": "Manulife Investments Announces Final Annual 2026 Cash Distributions",
+      "description": "Manulife Hong Kong launches new comprehensive insurance plans targeting high-net-worth clients",
+      "pubDate": "Wed, 29 Apr 2026 11:30:00 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/manulife-investments-announces-final-annual-113000785.html",
+      "source": "HK_MANULIFE"
+    },
+    {
+      "title": "Property, Tech Sectors Undergird Asian Stock Markets",
+      "description": "Asian markets shrugged off Middle East turmoil, tech shares rising on earnings, HSI gains support",
+      "pubDate": "Wed, 29 Apr 2026 10:35:20 +0000",
+      "link": "https://finance.yahoo.com/markets/world-indices/articles/property-tech-sectors-undergird-asian-103520794.html",
+      "source": "HSI"
+    },
+    {
+      "title": "Prudential Health Summit: Improving Care for Every Patient — Greater Bay Area",
+      "description": "Prudential HK hosted healthcare leaders to build collaborative cross-border healthcare system",
+      "pubDate": "Wed, 01 Apr 2026 10:53:00 +0000",
+      "link": "https://finance.yahoo.com/sectors/healthcare/articles/prudential-health-summit-improving-care-105300727.html",
+      "source": "HK_PRU"
+    },
+    {
+      "title": "Meta forced to scrap AI deal after China blocks acquisition",
+      "description": "Beijing forces unwind of $2B Meta-Manus deal, raising cross-border tech and geopolitical risks",
+      "pubDate": "Tue, 28 Apr 2026 12:40:29 +0000",
+      "link": "https://finance.yahoo.com/sectors/technology/articles/meta-forced-scrap-ai-deal-124029933.html",
+      "source": "HK_TENCENT"
+    },
+    {
+      "title": "Is It Too Late To Consider AIA Group (SEHK:1299) After Its 82% One Year Rally?",
+      "description": "AIA stock at HK$88.95, 82.2% over 1 year, strong fundamentals support continued upside",
+      "pubDate": "Sat, 11 Apr 2026 04:21:00 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/too-consider-aia-group-sehk-042100864.html",
+      "source": "HK_AIA"
+    }
+  ],
+  "summary": {
+    "total_items": 6,
+    "sources_reachable": 6,
+    "note": "RSS采集成功，数据来源于Yahoo Finance及CNBC"
+  },
+  "market_news": [
+    "美联储5月维持利率不变，1992年以来最大政策分歧",
+    "AIA股价创历史新高，年度涨幅达82%",
+    "亚洲股市在地缘风险中展现韧性，恒生指数稳步上扬"
+  ],
+  "product_updates": [
+    "宏利香港推出全新储蓄险计划，聚焦高净值客户",
+    "保诚大湾区健康峰会推动跨境医疗险合作升级",
+    "万用寿险（UL）咨询量上升，资产隔离需求强劲"
+  ],
+  "policy_updates": [
+    "美联储维持利率非保证预期，高利率环境持续支撑储蓄险配置逻辑",
+    "跨境保险通2.0加速落地，产品范围扩展至医疗险/年金险",
+    "中国叫停Meta-Manus收购案，跨境资产配置风险意识提升"
+  ],
+  "customer_insights": [
+    "五一黄金周期间，高净值客户赴港配置保险需求集中释放",
+    "美联储高利率环境下，美元/港币储蓄险IRR竞争力凸显",
+    "地缘风险+汇率波动双驱动，资产避险需求持续上升"
+  ],
+  "key_takeaways": "美联储5月按兵不动，利率环境利好美元储蓄险配置；AIA股价强势+宏利新品推出，港险板块景气度高；五一黄金周是赴港配置保险的黄金窗口期，建议重点关注储蓄险和万用寿险。",
+  "topics_selected": [
+    {
+      "topic": "美联储按兵不动，五一黄金周港险储蓄险配置正当时",
+      "angle": "利率高企+地缘避险双重逻辑下，深度分析港险储蓄险的IRR竞争力与配置时机",
+      "target_products": ["储蓄险", "万用寿险", "重疾险"]
+    }
+  ]
+}

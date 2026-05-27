@@ -1,0 +1,36 @@
+{
+  "name": "恒玥KYC智能匹配引擎",
+  "short_name": "KYC引擎",
+  "description": "香港保险KYC智能产品匹配引擎 - 恒玥团队专用工具",
+  "start_url": "/工具/KYC-PWA/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d1117",
+  "theme_color": "#1f6feb",
+  "lang": "zh-CN",
+  "categories": ["business", "finance", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "运行KYC评估",
+      "short_name": "KYC评估",
+      "description": "快速运行KYC风险评估",
+      "url": "/工具/KYC-PWA/index.html#profile",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

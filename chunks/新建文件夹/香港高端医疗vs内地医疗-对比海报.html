@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>香港高端医疗 VS 内地医疗</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%);
+  min-height: 100vh;
+  padding: 30px 20px;
+  color: #fff;
+}
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.header h1 {
+  font-size: 22px;
+  color: #FFD700;
+  margin-bottom: 4px;
+}
+.header p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.table th {
+  background: rgba(255,215,0,0.15);
+  color: #FFD700;
+  font-size: 13px;
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: 600;
+}
+.table td {
+  padding: 0;
+  font-size: 12px;
+  vertical-align: top;
+}
+.row-label {
+  width: 28%;
+  background: rgba(255,255,255,0.03);
+  padding: 10px 8px;
+  font-weight: bold;
+  color: #FFD700;
+  font-size: 11px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.hk-cell, .cn-cell {
+  width: 36%;
+  padding: 8px;
+  vertical-align: top;
+}
+.hk-cell {
+  background: rgba(0,200,100,0.08);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.cn-cell {
+  background: rgba(200,50,50,0.08);
+}
+.cell-label {
+  font-size: 9px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: block;
+}
+.hk-label { color: #00c864; }
+.cn-label { color: #ff6b6b; }
+.cell-text {
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+}
+.hk-icon { color: #00c864; }
+.cn-icon { color: #ff6b6b; }
+.summary {
+  margin-top: 20px;
+  background: rgba(255,215,0,0.1);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 10px;
+  padding: 14px;
+}
+.summary-title {
+  font-size: 11px;
+  color: #FFD700;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.summary-item {
+  font-size: 11px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.summary-item:last-child { margin-bottom: 0; }
+.footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>🏥 香港高端医疗 VS 内地医疗</h1>
+    <p>恒玥 YUEGUARD | 9:16 精简对比版</p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>对比维度</th>
+        <th>🇭🇰 香港高端医疗</th>
+        <th>🇨🇳 内地医疗</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">1️⃣ 续保稳定性</td>
+        <td class="hk-cell">
+          <span class="cell-label hk-label">✅ 香港</span>
+          <span class="cell-text">终身保证续保<br>不因理赔、健康变差拒保涨价</span>
+        </td>
+        <td class="cn-cell">
+          <span class="cell-label cn-label">❌ 内地</span>
+          <span class="cell-text">最长 20 年续保<br>到期重核保，后期易拒保、涨价</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-label">2️⃣ 就医用药</td>
+        <td class="hk-cell">
+          <span class="cell-label hk-label">✅ 香港</span>
+          <span class="cell-text">全球就医全覆盖<br>进口新药、靶向药、海外医院均可报</span>
+        </td>
+        <td class="cn-cell">
+          <span class="cell-label cn-label">❌ 内地</span>
+          <span class="cell-text">仅限内地公立<br>特药、进口药、海外医疗大多不报</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-label">3️⃣ 理赔体验</td>
+        <td class="hk-cell">
+          <span class="cell-label hk-label">✅ 香港</span>
+          <span class="cell-text">全球直付 无需垫付<br>高端医院直接结算，省心省力</span>
+        </td>
+        <td class="cn-cell">
+          <span class="cell-label cn-label">❌ 内地</span>
+          <span class="cell-text">先行垫付为主<br>港澳台、海外基本不保障</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-label">4️⃣ 长期保障</td>
+        <td class="hk-cell">
+          <span class="cell-label hk-label">✅ 香港</span>
+          <span class="cell-text">一次投保 终身安心锁定</span>
+        </td>
+        <td class="cn-cell">
+          <span class="cell-label cn-label">❌ 内地</span>
+          <span class="cell-text">一年一保<br>产品停售、身体变化易断保</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="summary">
+    <div class="summary-title">💡 一句话总结</div>
+    <div class="summary-item">🇨🇳 <strong>内地医疗：</strong>满足基础日常就医</div>
+    <div class="summary-item">🇭🇰 <strong>香港高端医疗：</strong>终身稳定 + 全球医疗自由</div>
+    <div class="summary-item" style="color:#FFD700; margin-top:6px;">⭐ 高净值家庭优选 🇭🇰</div>
+  </div>
+
+  <div class="footer">
+    恒玥 YUEGUARD | IFA独立理财顾问服务<br>
+    以上内容为个人观点，不构成投资建议
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "topic": "AIA股价飙升82%后，港险板块配置价值",
+  "publishedAt": null,
+  "审核状态": "待审核",
+  "createdAt": "2026-05-11T09:30:00+08:00",
+  "内容": {
+    "情报简报": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-11-aia-hk-insurance/intel.json",
+      "summary": "AIA股价一年涨幅82%，港险板块配置价值凸显。跨境保险通2.0政策预期上半年出台，大湾区医疗险升级为焦点。"
+    },
+    "公众号文章": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-11-aia-hk-insurance/wechat-article.md",
+      "summary": "2500字深度分析，涵盖AIA业绩解读、港险配置策略、大湾区政策红利。标题已压缩至30字节以内。"
+    },
+    "小红书": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-11-aia-hk-insurance/xhs-post.json",
+      "summary": "种草文案，涵盖AIA股价热点和港险储蓄险优势，含10个相关标签。"
+    },
+    "TK脚本": {
+      "file": "/home/lenovo12348/.agents/workflows/2026-05-11-aia-hk-insurance/tk-script.json",
+      "summary": "60秒口播脚本，5个场景分镜，含风险提示和CTA。"
+    }
+  }
+}

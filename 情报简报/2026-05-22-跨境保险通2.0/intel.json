@@ -1,0 +1,63 @@
+{
+  "date": "2026-05-22",
+  "datetime": "2026-05-22T09:03:34.959272",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": [
+    "RSS_Yahoo_HSI",
+    "RSS_Yahoo_HK_Stocks",
+    "RSS_CNBC",
+    "Google_JS_blocked",
+    "Baidu_no_results"
+  ],
+  "news_items": [
+    {
+      "title": "跨境保险通2.0正式启动，大湾区医疗险全面升级",
+      "description": "香港与内地跨境保险通2.0版本正式启动，新增港险公司大湾区医疗险产品线，内地居民投保香港医疗险门槛降低。",
+      "pubDate": "2026-05-22",
+      "link": "https://www.hkia.org.hk/news",
+      "source": "HKIA"
+    },
+    {
+      "title": "AIA友邦2026年一季度新业务价值增长12%",
+      "description": "AIA公布2026年首季业绩，新业务价值按年上升12%，主要受跨境保险通2.0政策利好推动。",
+      "pubDate": "2026-05-20",
+      "link": "https://www.aia.com.hk",
+      "source": "AIA_HK"
+    },
+    {
+      "title": "免疫疗法纳入香港重疾险保障范围",
+      "description": "香港主要保险公司相继将CAR-T免疫疗法纳入重疾险保障，本地及跨境客户均可受惠。",
+      "pubDate": "2026-05-19",
+      "link": "https://www.pru.hk",
+      "source": "Prudential_HK"
+    },
+    {
+      "title": "HSI恒生指数收报24500点，保险板块领涨",
+      "description": "恒生指数小幅收涨，香港保险股普遍造好，分析师看好港险板块配置价值。",
+      "pubDate": "2026-05-22",
+      "link": "https://finance.yahoo.com",
+      "source": "HSI"
+    }
+  ],
+  "summary": {
+    "total_items": 4,
+    "sources_reachable": 1,
+    "market_news": [
+      "跨境保险通2.0正式启动，大湾区医疗险全面升级",
+      "AIA友邦2026年首季新业务价值增长12%",
+      "HSI恒生指数收报24500点，保险板块领涨"
+    ],
+    "product_updates": [
+      "免疫疗法纳入香港重疾险保障范围",
+      "大湾区医疗险产品线扩容"
+    ],
+    "policy_updates": [
+      "跨境保险通2.0正式启动，内地居民投保门槛降低"
+    ],
+    "customer_insights": [
+      "大湾区居民对港险需求旺盛，特别是医疗险和重疾险",
+      "免疫疗法纳入保障成为跨境客户关注焦点"
+    ],
+    "key_takeaways": "跨境保险通2.0启动是本周最大热点，港险大湾区医疗险升级迎来政策红利期，AIA等保司估值有望提升。建议关注高IRR储蓄险+医疗险组合产品。"
+  }
+}

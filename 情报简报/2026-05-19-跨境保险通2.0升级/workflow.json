@@ -1,0 +1,10 @@
+{
+  "topic": "跨境保险通2.0 + 大湾区医疗险升级",
+  "date": "2026-05-19",
+  "datetime": "2026-05-19T09:00:00+08:00",
+  "status": "approved",
+  "intel_source": "行业知识降级采集",
+  "proxy_used": null,
+  "sources_tested": ["RSS_TIMEOUT", "WEBSEARCH_FALLBACK"],
+  "注意": "RSS采集超时，代理不可达，情报来源于行业知识库"
+}

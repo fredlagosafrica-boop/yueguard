@@ -1,0 +1,64 @@
+{
+  "date": "2026-05-04",
+  "datetime": "2026-05-04T09:01:04",
+  "topic": "AIA股价82%涨幅后，港险板块配置价值",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": [
+    "HSI",
+    "HK_TENCENT",
+    "HK_PRU",
+    "HK_AIA",
+    "HK_MANULIFE",
+    "CNBC"
+  ],
+  "news_items": [
+    {
+      "title": "Earnings, Wall Street Cues Lift Asian Stock Markets",
+      "description": "Asian stock markets gained in holiday-thinned trading",
+      "pubDate": "Fri, 01 May 2026",
+      "link": "https://finance.yahoo.com/markets/",
+      "source": "HSI"
+    },
+    {
+      "title": "Is It Too Late To Consider AIA Group After Its 82% Rally?",
+      "description": "AIA at HK$88.95, 82.2% 1-year return",
+      "pubDate": "Sat, 11 Apr 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/",
+      "source": "HK_AIA"
+    },
+    {
+      "title": "AIA Group Full Year 2025 Earnings: Record Growth",
+      "description": "Double-digit growth, new share buyback, strategic expansion",
+      "pubDate": "Thu, 19 Mar 2026",
+      "link": "https://finance.yahoo.com/markets/stocks/",
+      "source": "HK_AIA"
+    },
+    {
+      "title": "Prudential Health Summit GBA",
+      "description": "Prudential Hong Kong hosted Health Summit for Greater Bay Area",
+      "pubDate": "Wed, 01 Apr 2026",
+      "link": "https://finance.yahoo.com/sectors/healthcare/",
+      "source": "HK_PRU"
+    }
+  ],
+  "market_news": [
+    "AIA股价创历史新高，12个月涨幅达82.2%",
+    "港股五一假期后反弹，科技股业绩提振市场情绪",
+    "全球油价上涨至$113，滞胀风险升温"
+  ],
+  "product_updates": [
+    "AIA全年业绩双位数增长，启动股票回购计划",
+    "保诚大湾区健康峰会召开，跨境医疗网络扩展",
+    "跨境保险通2.0政策推进中，大湾区医疗险升级"
+  ],
+  "policy_updates": [
+    "跨境保险通2.0进入试点阶段",
+    "香港保险业监管局加强投资相连保单合规要求"
+  ],
+  "customer_insights": [
+    "高净值客户青睐储蓄险避险功能",
+    "大湾区居民对跨境医疗险需求旺盛",
+    "免疫疗法等高端医疗保障受关注"
+  ],
+  "key_takeaways": "AIA领涨港险板块，基本面强劲但估值已高；地缘风险下储蓄险避险需求上升；跨境保险通2.0政策利好持续"
+}

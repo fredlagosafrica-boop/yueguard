@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>香港保险 KYC 风险评估模型</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #0f1419; color: #e7e9ea; min-height: 100vh; padding: 20px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 22px; text-align: center; margin-bottom: 8px; color: #fff; }
+  .subtitle { text-align: center; color: #71767b; font-size: 13px; margin-bottom: 24px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 340px; gap: 16px; }
+  .card { background: #16181c; border-radius: 16px; padding: 20px; }
+  .card-title { font-size: 14px; color: #71767b; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Risk Score Gauge */
+  .gauge-wrap { text-align: center; margin-bottom: 20px; }
+  .gauge { position: relative; width: 200px; height: 100px; margin: 0 auto; }
+  .gauge-bg { position: absolute; width: 200px; height: 100px; border-radius: 100px 100px 0 0; background: conic-gradient(from 180deg at 50% 100%, #1a7f37 0%, #f5a623 60%, #d32f2f 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  .gauge-inner { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 140px; height: 70px; background: #16181c; border-radius: 70px 70px 0 0; }
+  .gauge-needle { position: absolute; bottom: 0; left: 50%; width: 4px; height: 80px; background: #fff; transform-origin: bottom center; transform: translateX(-50%) rotate(-90deg); transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 2px; }
+  .gauge-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; background: #fff; border-radius: 50%; }
+  .score-display { font-size: 48px; font-weight: 700; margin-top: 8px; transition: color 0.5s; }
+  .score-label { font-size: 13px; color: #71767b; margin-top: 4px; }
+  .risk-badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 10px; }
+  .risk-low { background: #1a7f37; color: #fff; }
+  .risk-medium { background: #f5a623; color: #000; }
+  .risk-high { background: #ea4335; color: #fff; }
+  .risk-enhanced { background: #9c27b0; color: #fff; }
+
+  /* Factor Inputs */
+  .factor-group { margin-bottom: 14px; }
+  .factor-label { display: flex; justify-content: space-between; font-size: 13px; color: #e7e9ea; margin-bottom: 6px; }
+  .factor-label span { color: #71767b; font-size: 12px; }
+  .factor-options { display: flex; gap: 6px; flex-wrap: wrap; }
+  .opt-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid #2f3336; background: transparent; color: #71767b; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+  .opt-btn:hover { border-color: #536471; color: #e7e9ea; }
+  .opt-btn.active { background: #1d9bf0; border-color: #1d9bf0; color: #fff; }
+  .opt-btn.active.low { background: #1a7f37; border-color: #1a7f37; }
+  .opt-btn.active.medium { background: #f5a623; border-color: #f5a623; color: #000; }
+  .opt-btn.active.high { background: #ea4335; border-color: #ea4335; }
+
+  /* Score Breakdown */
+  .breakdown-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #2f3336; font-size: 13px; }
+  .breakdown-item:last-child { border-bottom: none; }
+  .breakdown-name { color: #e7e9ea; }
+  .breakdown-val { font-weight: 600; }
+  .breakdown-total { background: #2f3336; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 14px; }
+  .breakdown-total .label { color: #71767b; }
+  .breakdown-total .val { color: #fff; font-weight: 700; font-size: 18px; }
+
+  /* Decision Panel */
+  .decision-box { padding: 14px; border-radius: 12px; text-align: center; margin-bottom: 14px; }
+  .decision-box.approve { background: rgba(26, 127, 55, 0.15); border: 1px solid #1a7f37; }
+  .decision-box.review { background: rgba(245, 166, 35, 0.15); border: 1px solid #f5a623; }
+  .decision-box.escalate { background: rgba(234, 67, 53, 0.15); border: 1px solid #ea4335; }
+  .decision-box h3 { font-size: 16px; margin-bottom: 4px; }
+  .decision-box p { font-size: 12px; color: #71767b; }
+  .decision-box.approve h3 { color: #1a7f37; }
+  .decision-box.review h3 { color: #f5a623; }
+  .decision-box.escalate h3 { color: #ea4335; }
+
+  /* Matrix */
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .matrix-table th { color: #71767b; font-weight: 500; padding: 6px 8px; text-align: center; }
+  .matrix-table td { padding: 8px; text-align: center; border-radius: 6px; font-weight: 600; }
+  .matrix-low { background: rgba(26,127,55,0.2); color: #1a7f37; }
+  .matrix-medium { background: rgba(245,166,35,0.2); color: #f5a623; }
+  .matrix-high { background: rgba(234,67,53,0.2); color: #ea4335; }
+  .matrix-enhanced { background: rgba(156,39,176,0.2); color: #9c27b0; }
+
+  /* Flow */
+  .flow { font-size: 12px; }
+  .flow-step { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .flow-num { width: 24px; height: 24px; border-radius: 50%; background: #2f3336; color: #71767b; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+  .flow-text { color: #e7e9ea; }
+  .flow-arrow { color: #536471; font-size: 11px; margin-left: 36px; margin-bottom: 4px; }
+
+  .section-title { font-size: 15px; color: #e7e9ea; margin: 20px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #2f3336; }
+  .formula-box { background: #0d1117; border: 1px solid #2f3336; border-radius: 8px; padding: 12px 16px; font-family: "Courier New", monospace; font-size: 12px; color: #79c0ff; line-height: 1.8; }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🧠 香港保险 KYC 智能评估模型</h1>
+  <p class="subtitle">恒玥 YUEGUARD | 风险评分 × 客群分类 × 合规路由</p>
+
+  <div class="grid">
+    <!-- LEFT: Factors & Gauge -->
+    <div>
+      <div class="card">
+        <div class="card-title">风险评分</div>
+        <div class="gauge-wrap">
+          <div class="gauge">
+            <div class="gauge-bg"></div>
+            <div class="gauge-inner"></div>
+            <div class="gauge-needle" id="needle"></div>
+            <div class="gauge-center"></div>
+          </div>
+          <div class="score-display" id="scoreDisplay">0</div>
+          <div class="score-label">综合风险评分</div>
+          <div id="riskBadge" class="risk-badge risk-low">低风险</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-title">评估因子</div>
+
+        <div class="factor-group">
+          <div class="factor-label">客群来源 <span>Client Origin</span></div>
+          <div class="factor-options">
+            <button class="opt-btn" data-cat="origin" data-val="0" data-label="本地客户（香港居民）">本地客户</button>
+            <button class="opt-btn" data-cat="origin" data-val="15" data-label="内地赴港客户">内地赴港</button>
+            <button class="opt-btn" data-cat="origin" data-val="25" data-label="海外华人/华侨">海外华人</button>
+            <button class="opt-btn" data-cat="origin" data-val="30" data-label="高风险国家/地区护照">高风险地区</button>
+          </div>
+        </div>
+
+        <div class="factor-group">
+          <div class="factor-label">证件完整度 <span>ID Completeness</span></div>
+          <div class="factor-options">
+            <button class="opt-btn" data-cat="id" data-val="0" data-label="三证齐全（身份证+通行证+小白条）">三证齐全</button>
+            <button class="opt-btn" data-cat="id" data-val="10" data-label="两证齐全">两证齐全</button>
+            <button class="opt-btn" data-cat="id" data-val="20" data-label="仅单一证件">单证</button>
+            <button class="opt-btn" data-cat="id" data-val="30" data-label="证件存疑/过期/照片不符">存疑/过期</button>
+          </div>
+        </div>
+
+        <div class="factor-group">
+          <div class="factor-label">资金来源风险 <span>Source of Funds</span></div>
+          <div class="factor-options">
+            <button class="opt-btn" data-cat="sof" data-val="0" data-label="工资储蓄/常规收入证明完整">常规收入</button>
+            <button class="opt-btn" data-cat="sof" data-val="15" data-label="部分资金来源证明">部分证明</button>
+            <button class="opt-btn" data-cat="sof" data-val="25" data-label="现金/第三方转账/来源不明">高风险来源</button>
+            <button class="opt-btn" data-cat="sof" data-val="35" data-label="涉嫌洗钱/恐怖融资">严重可疑</button>
+          </div>
+        </div>
+
+        <div class="factor-group">
+          <div class="factor-label">PEP筛查 <span>Politically Exposed Person</span></div>
+          <div class="factor-options">
+            <button class="opt-btn" data-cat="pep" data-val="0" data-label="非PEP，无政府背景关联">非PEP</button>
+            <button class="opt-btn" data-cat="pep" data-val="20" data-label="PEP家属/关联人">PEP关联</button>
+            <button class="opt-btn" data-cat="pep" data-val="35" data-label="现任/前任政府高官">PEP本人</button>
+          </div>
+        </div>
+
+        <div class="factor-group">
+          <div class="factor-label">保额与财力匹配 <span>Coverage vs Capacity</span></div>
+          <div class="factor-options">
+            <button class="opt-btn" data-cat="match" data-val="0" data-label="保额与财务状况完全匹配">完全匹配</button>
+            <button class="opt-btn" data-cat="match" data-val="10" data-label="保额略高于财力（1.2倍以内）">轻微超出</button>
+            <button class="opt-btn" data-cat="match" data-val="20" data-label="保额显著超出财力（2倍以上）">严重超出</button>
+            <button class="opt-btn" data-cat="match" data-val="30" data-label="无法核实财务状况">无法核实</button>
+          </div>
+        </div>
+
+        <div class="factor-group">
+          <div class="factor-label">CRS/FATCA税务身份 <span>Tax Status</span></div>
+          <div class="factor-options">
+            <button class="opt-btn" data-cat="tax" data-val="0" data-label="单一低风险税务居民身份">单一税务居民</button>
+            <button class="opt-btn" data-cat="tax" data-val="10" data-label="双重税务居民（可解释）">双重居民</button>
+            <button class="opt-btn" data-cat="tax" data-val="20" data-label="美国税务义务（FATCA）">美国税务</button>
+            <button class="opt-btn" data-cat="tax" data-val="25" data-label="拒绝申报/信息不全">拒绝申报</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Breakdown + Decision + Matrix + Flow -->
+    <div>
+      <div class="card">
+        <div class="card-title">评分明细</div>
+        <div id="breakdown">
+          <div class="breakdown-item"><span class="breakdown-name">客群来源</span><span class="breakdown-val" id="bd-origin">—</span></div>
+          <div class="breakdown-item"><span class="breakdown-name">证件完整度</span><span class="breakdown-val" id="bd-id">—</span></div>
+          <div class="breakdown-item"><span class="breakdown-name">资金来源风险</span><span class="breakdown-val" id="bd-sof">—</span></div>
+          <div class="breakdown-item"><span class="breakdown-name">PEP筛查</span><span class="breakdown-val" id="bd-pep">—</span></div>
+          <div class="breakdown-item"><span class="breakdown-name">保额财力匹配</span><span class="breakdown-val" id="bd-match">—</span></div>
+          <div class="breakdown-item"><span class="breakdown-name">CRS/FATCA税务</span><span class="breakdown-val" id="bd-tax">—</span></div>
+        </div>
+        <div class="breakdown-total">
+          <span class="label">总分</span><span class="val" id="totalScore">0</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-title">合规决策</div>
+        <div class="decision-box approve" id="decisionBox">
+          <h3 id="decisionTitle">✅ 标准流程</h3>
+          <p id="decisionText">完成基础KYC后可承保，建议正常跟进</p>
+        </div>
+        <div style="font-size: 12px; color: #71767b; line-height: 1.7;">
+          <div>• <strong style="color:#e7e9ea">0–30分</strong>：标准流程（STD）</div>
+          <div>• <strong style="color:#e7e9ea">31–55分</strong>：强化审查（EDD）</div>
+          <div>• <strong style="color:#e7e9ea">56–80分</strong>：高级审查（High）</div>
+          <div>• <strong style="color:#e7e9ea">81+分</strong>：增强尽调+高管审批（Enhanced）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom: Matrix + Flow + Formula -->
+  <div class="grid" style="margin-top: 16px;">
+    <div>
+      <div class="card">
+        <div class="card-title">客群 × 风险 分类矩阵</div>
+        <table class="matrix-table">
+          <tr>
+            <th></th>
+            <th>低风险客群</th>
+            <th>内地赴港</th>
+            <th>海外华人</th>
+            <th>PEP/高风险</th>
+          </tr>
+          <tr>
+            <th>标准财力</th>
+            <td class="matrix-low">低风险 STD</td>
+            <td class="matrix-medium">中风险 EDD</td>
+            <td class="matrix-medium">中风险 EDD</td>
+            <td class="matrix-high">高风险 HIGH</td>
+          </tr>
+          <tr>
+            <th>高净值</th>
+            <td class="matrix-medium">中风险 EDD</td>
+            <td class="matrix-medium">中风险 EDD</td>
+            <td class="matrix-high">高风险 HIGH</td>
+            <td class="matrix-enhanced">强增强 EDD+</td>
+          </tr>
+          <tr>
+            <th>超高净值</th>
+            <td class="matrix-medium">中风险 EDD</td>
+            <td class="matrix-high">高风险 HIGH</td>
+            <td class="matrix-high">高风险 HIGH</td>
+            <td class="matrix-enhanced">强增强 EDD+</td>
+          </tr>
+          <tr>
+            <th>资金来源不明</th>
+            <td class="matrix-high">高风险 HIGH</td>
+            <td class="matrix-high">高风险 HIGH</td>
+            <td class="matrix-enhanced">强增强 EDD+</td>
+            <td class="matrix-enhanced">强增强 EDD+</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">KYC 决策流程</div>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-num">1</div><div class="flow-text">收集证件（三证验证）</div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><div class="flow-num">2</div><div class="flow-text">填写风险评分（6维度）</div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><div class="flow-num">3</div><div class="flow-text">系统计算综合风险分</div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><div class="flow-num">4</div><div class="flow-text">路由至对应审查路径</div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><div class="flow-num">5</div><div class="flow-text">EDD/高管审批（如需要）</div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><div class="flow-num">6</div><div class="flow-text">定期复审 + 持续监察</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formula -->
+  <div class="card" style="margin-top: 16px;">
+    <div class="card-title">评分算法</div>
+    <div class="formula-box">
+# KYC 综合风险评分模型
+# 公式：总分 = Σ(各因子得分 × 权重)
+#
+# 权重分配：
+# W_origin  = 0.20   # 客群来源（权重最高）
+# W_id       = 0.20   # 证件完整度
+# W_sof      = 0.25   # 资金来源风险（最高权重）
+# W_pep      = 0.15   # PEP筛查
+# W_match    = 0.10   # 保额财力匹配
+# W_tax      = 0.10   # CRS/FATCA税务
+#
+# 风险等级阈值：
+# 0  - 30  →  低风险（STD）标准流程
+# 31 - 55  →  中风险（EDD）强化审查
+# 56 - 80  →  高风险（HIGH）高级审查
+# 81+      →  强增强（Enhanced）高管审批
+#
+# 示例：
+# 内地客(15) + 证件齐全(0) + 常规收入(0) + PEP(0) + 轻微超出(10) + 双重税务(10)
+# = 35分 → 中风险（EDD）强化审查
+    </div>
+  </div>
+</div>
+
+<script>
+const weights = { origin: 0.20, id: 0.20, sof: 0.25, pep: 0.15, match: 0.10, tax: 0.10 };
+const state = { origin: null, id: null, sof: null, pep: null, match: null, tax: null };
+
+function calcScore() {
+  let total = 0;
+  const breakdown = {};
+  Object.keys(state).forEach(k => {
+    const v = state[k] ?? 0;
+    breakdown[k] = v;
+    total += v * weights[k];
+  });
+  return { total: Math.round(total), breakdown };
+}
+
+function updateUI() {
+  const { total, breakdown } = calcScore();
+
+  // Score display
+  document.getElementById('scoreDisplay').textContent = total;
+  document.getElementById('totalScore').textContent = total;
+
+  // Breakdown
+  document.getElementById('bd-origin').textContent = breakdown.origin ?? '—';
+  document.getElementById('bd-id').textContent = breakdown.id ?? '—';
+  document.getElementById('bd-sof').textContent = breakdown.sof ?? '—';
+  document.getElementById('bd-pep').textContent = breakdown.pep ?? '—';
+  document.getElementById('bd-match').textContent = breakdown.match ?? '—';
+  document.getElementById('bd-tax').textContent = breakdown.tax ?? '—';
+
+  // Needle rotation: -90deg (0) to +90deg (100)
+  const angle = -90 + (total / 100) * 180;
+  document.getElementById('needle').style.transform = `translateX(-50%) rotate(${angle}deg)`;
+
+  // Badge & decision
+  const badge = document.getElementById('riskBadge');
+  const decBox = document.getElementById('decisionBox');
+  const decTitle = document.getElementById('decisionTitle');
+  const decText = document.getElementById('decisionText');
+
+  if (total <= 30) {
+    badge.className = 'risk-badge risk-low';
+    badge.textContent = '低风险';
+    decBox.className = 'decision-box approve';
+    decTitle.textContent = '✅ 标准流程';
+    decText.textContent = '完成基础KYC后可承保，建议正常跟进';
+  } else if (total <= 55) {
+    badge.className = 'risk-badge risk-medium';
+    badge.textContent = '中风险';
+    decBox.className = 'decision-box review';
+    decTitle.textContent = '⚠️ 强化审查 EDD';
+    decText.textContent = '需补充财务文件，资金来源说明，主管批准后可承保';
+  } else if (total <= 80) {
+    badge.className = 'risk-badge risk-high';
+    badge.textContent = '高风险';
+    decBox.className = 'decision-box escalate';
+    decTitle.textContent = '🔴 高级审查 HIGH';
+    decText.textContent = '需EDD+高管审批+强化资金来源证明，保留拒绝权';
+  } else {
+    badge.className = 'risk-badge risk-enhanced';
+    badge.textContent = '强增强';
+    decBox.className = 'decision-box escalate';
+    decTitle.textContent = '🚨 增强尽调 Enhanced';
+    decText.textContent = '高管+合规委员会联合审批，必要时上报STR';
+  }
+}
+
+// Init buttons
+document.querySelectorAll('.opt-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cat = btn.dataset.cat;
+    const val = parseInt(btn.dataset.val);
+
+    // Reset siblings
+    document.querySelectorAll(`.opt-btn[data-cat="${cat}"]`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Highlight selected value level
+    document.querySelectorAll(`.opt-btn[data-cat="${cat}"]`).forEach(b => {
+      b.classList.remove('low', 'medium', 'high');
+      if (b === btn) {
+        if (val <= 5) b.classList.add('low');
+        else if (val <= 20) b.classList.add('medium');
+        else b.classList.add('high');
+      }
+    });
+
+    state[cat] = val;
+    updateUI();
+  });
+});
+
+// Default: select first options (lowest risk)
+document.querySelectorAll('.opt-btn[data-cat="origin"]').forEach((b, i) => { if (i === 0) b.click(); });
+document.querySelectorAll('.opt-btn[data-cat="id"]').forEach((b, i) => { if (i === 0) b.click(); });
+document.querySelectorAll('.opt-btn[data-cat="sof"]').forEach((b, i) => { if (i === 0) b.click(); });
+document.querySelectorAll('.opt-btn[data-cat="pep"]').forEach((b, i) => { if (i === 0) b.click(); });
+document.querySelectorAll('.opt-btn[data-cat="match"]').forEach((b, i) => { if (i === 0) b.click(); });
+document.querySelectorAll('.opt-btn[data-cat="tax"]').forEach((b, i) => { if (i === 0) b.click(); });
+</script>
+</body>
+</html>

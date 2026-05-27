@@ -1,0 +1,81 @@
+{
+  "date": "2026-05-08",
+  "datetime": "2026-05-08T09:01:15.996067",
+  "proxy_used": "http://172.24.48.1:7890",
+  "sources_tested": [
+    "HSI",
+    "HK_TENCENT",
+    "HK_PRU",
+    "HK_AIA",
+    "HK_MANULIFE",
+    "CNBC"
+  ],
+  "news_items": [
+    {
+      "title": "Oil, AI Outlooks Buoy Asian Stock Markets",
+      "description": "Asian stock markets rallied on Thursday as global crude prices continued to slip on media reports that",
+      "pubDate": "Thu, 07 May 2026 10:34:49 +0000",
+      "link": "https://finance.yahoo.com/markets/world-indices/articles/oil-ai-outlooks-buoy-asian-103449174.html?.tsrc=rss",
+      "source": "HSI"
+    },
+    {
+      "title": "DeepSeek value could be up to $50 billion in first fundraising, sources say",
+      "description": "Chinese AI startup DeepSeek could be valued at as much as $50 billion in its opening fundraising drive.",
+      "pubDate": "Wed, 06 May 2026 15:17:30 +0000",
+      "link": "https://finance.yahoo.com/video/deepseek-value-could-50-billion-151730055.html?.tsrc=rss",
+      "source": "HK_TENCENT"
+    },
+    {
+      "title": "Is It Too Late To Consider AIA Group (SEHK:1299) After Its 82% One Year Rally?",
+      "description": "AIA Group share price at HK$88.95, showing 82.2% one-year rally, 6.8% YTD",
+      "pubDate": "Sat, 11 Apr 2026 04:21:00 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/too-consider-aia-group-sehk-042100864.html?.tsrc=rss",
+      "source": "HK_AIA"
+    },
+    {
+      "title": "Assessing Manulife Financial (TSX:MFC) Valuation After Recent Share Price Moves",
+      "description": "Manulife Financial shows 30-day return of 8% and 1-year total shareholder return of 26%",
+      "pubDate": "Tue, 05 May 2026 13:20:51 +0000",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/assessing-manulife-financial-tsx-mfc-132051353.html?.tsrc=rss",
+      "source": "HK_MANULIFE"
+    },
+    {
+      "title": "Prudential Health Summit: Improving Care for Every Patient",
+      "description": "Prudential Hong Kong hosted Health Summit bringing together healthcare experts from HK and Greater Bay Area",
+      "pubDate": "Wed, 01 Apr 2026 10:53:00 +0000",
+      "link": "https://finance.yahoo.com/sectors/healthcare/articles/prudential-health-summit-improving-care-105300727.html?.tsrc=rss",
+      "source": "HK_PRU"
+    },
+    {
+      "title": "Asian Development Bank's $70 billion energy and digital infra push puts Southeast Asia center stage",
+      "description": "Southeast Asia to benefit significantly from ADB's $70 billion new energy and digital infrastructure plan by 2035",
+      "pubDate": "Thu, 07 May 2026 05:47:25 GMT",
+      "link": "https://www.cnbc.com/2026/05/07/adb-70-billion-plan-southeast-asia-digital-infrastructure-power.html",
+      "source": "CNBC"
+    }
+  ],
+  "summary": {
+    "total_items": 30,
+    "sources_reachable": 6
+  },
+  "market_news": [
+    "AIA股价一年涨幅达82%，股价HK$88.95，显示港险板块强劲动能",
+    "腾讯被曝洽谈投资DeepSeek，估值500亿美元，AI+保险科技概念受关注",
+    "亚洲股市受油价下跌和中东局势缓和预期提振，恒指有望继续走高"
+  ],
+  "product_updates": [
+    "保诚举办健康峰会，聚焦大湾区医疗协作，展示健康险产品升级方向",
+    "Manulife宣布魁北克青年心理健康计划投资50万加元，凸显险司ESG责任",
+    "宏利优先股转换安排公布，显示资本结构稳健"
+  ],
+  "policy_updates": [
+    "亚洲开发银行宣布700亿美元能源和数字基础设施计划，东南亚受益",
+    "中美AI竞争持续，DeepSeek首轮融资估值或达500亿美元，科技赋能保险成趋势"
+  ],
+  "customer_insights": [
+    "82%涨幅后AIA仍被机构看好，港险配置价值获重新评估",
+    "伊朗局势导致全球经济波动，避险资金青睐香港储蓄险",
+    "大湾区医疗融合加速，高端医疗险需求上升"
+  ],
+  "key_takeaways": "5月港险三大核心主题：①AIA强势上涨后板块配置价值重估 ②DeepSeek AI热潮延伸至保险科技 ③地缘风险下储蓄险避风港属性凸显"
+}
