@@ -25,6 +25,7 @@ var scripts = [
   'sales_content.js?v=2026052320',
   'referral_content.js?v=20260516',
   'materials_content.js?v=20260516',
+  'chatbot_content.js?v=20260516',
   'biyuan_content.js?v=2026052301',
 ];
 
