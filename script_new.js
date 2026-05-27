@@ -26,7 +26,7 @@ var scripts = [
   'referral_content.js?v=20260516',
   'materials_content.js?v=20260516',
   'chatbot_content.js?v=20260516',
-  'faq_content.js?v=2026052701',
+  'faq_content.js?v=2026052801',
   'biyuan_content.js?v=2026052301',
 ];
 
