@@ -76,12 +76,12 @@ contentData.categories.push({
     },
     {
       id: 'content07',
-      name: '3.7 智能客服问答库',
+      name: '3.7 团队活动',
       children: [
         {
           id: 'content07a',
-          title: '🤖 智能客服问答库',
-          content: '<h2>🤖 智能客服问答库</h2><p>恒玥团队智能客服（Chatbot）问答库，收录常见客户问题及标准回答，助你高效响应客户咨询。</p><p style="margin-top:20px;"><a href="assets/chatbot_content.js" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;padding:12px 30px;border-radius:8px;text-decoration:none;font-weight:bold;">📥 下载问答库文件</a></p>'
+          title: '3.7 团队活动',
+          content: '<h2>3.7 团队活动</h2><p>内容待补充...</p>'
         }
       ]
     },
