@@ -351,6 +351,7 @@ function updateBreadcrumbDocOnly(cat, child, item) {
 }
 
 function showCategory(cat) {
+  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
@@ -406,6 +407,7 @@ function restoreCategory(cat) {
 }
 
 function showChild(cat, child, itemIdToShow) {
+  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
   if (!contentArea || !detailArea) return;
@@ -521,6 +523,7 @@ function restoreChild(cat, child) {
 }
 
 function showDoc(catId, childId, itemId) {
+  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   console.log('[DEBUG showDoc] catId:', catId, 'childId:', childId, 'itemId:', itemId);
   console.log('[DEBUG showDoc] REFERRAL_UPDATES["ref-4-2-3"]?', !!window.REFERRAL_UPDATES && !!window.REFERRAL_UPDATES['ref-4-2-3']);
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
@@ -625,6 +628,7 @@ function showDoc(catId, childId, itemId) {
 }
 
 function goHome() {
+  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
