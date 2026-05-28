@@ -38,7 +38,7 @@ contentData.categories.push({
       name: '3.4 综合题材',
       children: [
         { id: 'content04a', name: '3.4.1 2025年', children: [
-          { id: 'content04a_01', title: '3.4.1.1 5月', content: '<h2>3.4.1.1 5月综合题材</h2><p>内容待补充...</p><div class="doc-section"><h3>📄 文档资料</h3><ul><li><a href="assets/2026年香港银行开户指南.pdf" target="_blank">📥 2026年香港银行开户指南</a></li></ul></div>' }
+          { id: 'content04a_01', title: '3.4.1.1 5月', content: '<h2>3.4.1.1 5月综合题材</h2><p>内容待补充...</p><div class="doc-section"><h3>📄 文档资料</h3><ul><li><a href="assets/2026年香港银行开户指南.pdf" target="_blank">📥 2026年香港银行开户指南</a></li></ul></div>' },
           { id: 'content04a_02', title: '3.4.1.2 6月', content: '<h2>3.4.1.2 6月综合题材</h2><p>内容待补充...</p>' },
           { id: 'content04a_03', title: '3.4.1.3 7月', content: '<h2>3.4.1.3 7月综合题材</h2><p>内容待补充...</p>' },
           { id: 'content04a_04', title: '3.4.1.4 8月', content: '<h2>3.4.1.4 8月综合题材</h2><p>内容待补充...</p>' },
