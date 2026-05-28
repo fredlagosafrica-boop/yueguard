@@ -47,6 +47,12 @@ loadScript(0);
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
 
+// HTML转义：防止搜索结果注入HTML到属性和文本
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 function handleSearch(keyword) {
   var resultsContainer = document.getElementById('searchResults');
   if (!resultsContainer) return;
@@ -167,9 +173,9 @@ function handleSearch(keyword) {
           snippet = snippet.replace(new RegExp(keyword, 'gi'), '<mark>$&</mark>');
         }
       }
-      return '<div class="search-result-item" data-type="' + r.type + '" data-cat="' + (r.catId || '') + '" data-child="' + (r.childId || '') + '" data-itemid="' + (r.item.id || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
-        '<div class="result-cat">' + r.cat + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
-        '<div class="result-title">' + r.title + '</div>' +
+      return '<div class="search-result-item" data-type="' + escapeHtml(r.type) + '" data-cat="' + escapeHtml(r.catId || '') + '" data-child="' + escapeHtml(r.childId || '') + '" data-itemid="' + escapeHtml(r.item.id || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
+        '<div class="result-cat">' + escapeHtml(r.cat) + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
+        '<div class="result-title">' + escapeHtml(r.title) + '</div>' +
         (snippet ? '<div class="result-snippet">' + snippet + '</div>' : '') + '</div>';
     }).join('');
   }
@@ -582,8 +588,20 @@ function showDoc(catId, childId, itemId) {
   if (docContent) {
     docContent.innerHTML = ''; // 先清空旧内容
     rawContent = item.content || '<p>内容待补充...</p>';
+    // 安全高亮：只在文本节点中替换关键词，不碰HTML标签和属性，防止破坏iframe等结构
     if (lastSearchKeyword) {
-      rawContent = rawContent.replace(new RegExp(lastSearchKeyword, 'gi'), '<mark class="search-highlight">$&</mark>');
+      var tempDiv = document.createElement('div');
+      tempDiv.innerHTML = rawContent;
+      var walk = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
+      var nodesToHighlight = [];
+      while (walk.nextNode()) nodesToHighlight.push(walk.currentNode);
+      nodesToHighlight.forEach(function(textNode) {
+        textNode.textContent = textNode.textContent.replace(
+          new RegExp(lastSearchKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'),
+          '<mark class="search-highlight">$&</mark>'
+        );
+      });
+      rawContent = tempDiv.innerHTML;
     }
     docContent.innerHTML = '<div class="doc-view">' + rawContent + '</div>';
   }
