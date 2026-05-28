@@ -37,16 +37,24 @@ contentData.categories.push({
       id: 'content04',
       name: '3.4 综合题材',
       children: [
-        { id: 'content04a', name: '3.4.1 2025年', children: [
-          { id: 'content04a_01', title: '3.4.1.1 5月', content: '<h2>3.4.1.1 5月综合题材</h2><p>内容待补充...</p><div class="doc-section"><h3>📄 文档资料</h3><iframe src="https://docs.google.com/gview?url=https://fredlagosafrica-boop.github.io/yueguard/assets/2026%E5%B9%B4%E9%A6%99%E6%B8%AF%E9%93%B6%E8%A1%8C%E5%BC%80%E6%88%B7%E6%8C%87%E5%8D%97.pdf&embedded=true" style="width:100%;height:700px;border:none;" frameborder="0"></iframe><p><a href="assets/2026年香港银行开户指南.pdf" target="_blank">📥 下载PDF文件</a></p></div>' },
-          { id: 'content04a_02', title: '3.4.1.2 6月', content: '<h2>3.4.1.2 6月综合题材</h2><p>内容待补充...</p>' },
-          { id: 'content04a_03', title: '3.4.1.3 7月', content: '<h2>3.4.1.3 7月综合题材</h2><p>内容待补充...</p>' },
-          { id: 'content04a_04', title: '3.4.1.4 8月', content: '<h2>3.4.1.4 8月综合题材</h2><p>内容待补充...</p>' },
-          { id: 'content04a_05', title: '3.4.1.5 9月', content: '<h2>3.4.1.5 9月综合题材</h2><p>内容待补充...</p>' },
-          { id: 'content04a_06', title: '3.4.1.6 10月', content: '<h2>3.4.1.6 10月综合题材</h2><p>内容待补充...</p>' },
-          { id: 'content04a_07', title: '3.4.1.7 11月', content: '<h2>3.4.1.7 11月综合题材</h2><p>内容待补充...</p>' },
-          { id: 'content04a_08', title: '3.4.1.8 12月', content: '<h2>3.4.1.8 12月综合题材</h2><p>内容待补充...</p>' }
-        ] },
+        {
+          id: 'content04a',
+          name: '3.4.1 2025年',
+          children: [
+            {
+              id: 'content04a_01',
+              title: '3.4.1.1 5月｜2026年香港银行开户指南.pdf',
+              content: '<h2>3.4.1.1 5月综合题材</h2><p>内容待补充...</p><div class="doc-section"><h3>📄 文档资料</h3><p>📥 <strong>2026年香港银行开户指南</strong>（点击直接在新标签页打开）</p><p><a href="assets/2026年香港银行开户指南.pdf" target="_blank" style="font-size:16px;padding:10px 20px;background:#1890f0;color:#fff;text-decoration:none;border-radius:6px;display:inline-block;">▶ 打开PDF</a></p><details style="margin-top:16px;padding:12px;background:#f5f5f5;border-radius:8px;"><summary style="cursor:pointer;font-weight:bold;">📋 内容大纲预览</summary><ul><li>01 政策背景与趋势</li><li>02 主流银行详解（汇丰/中银/恒生/渣打）</li><li>03 开户材料与流程</li><li>04 最佳选择与避坑指南</li></ul></details></div>'
+            },
+            { id: 'content04a_02', title: '3.4.1.2 6月', content: '<h2>3.4.1.2 6月综合题材</h2><p>内容待补充...</p>' },
+            { id: 'content04a_03', title: '3.4.1.3 7月', content: '<h2>3.4.1.3 7月综合题材</h2><p>内容待补充...</p>' },
+            { id: 'content04a_04', title: '3.4.1.4 8月', content: '<h2>3.4.1.4 8月综合题材</h2><p>内容待补充...</p>' },
+            { id: 'content04a_05', title: '3.4.1.5 9月', content: '<h2>3.4.1.5 9月综合题材</h2><p>内容待补充...</p>' },
+            { id: 'content04a_06', title: '3.4.1.6 10月', content: '<h2>3.4.1.6 10月综合题材</h2><p>内容待补充...</p>' },
+            { id: 'content04a_07', title: '3.4.1.7 11月', content: '<h2>3.4.1.7 11月综合题材</h2><p>内容待补充...</p>' },
+            { id: 'content04a_08', title: '3.4.1.8 12月', content: '<h2>3.4.1.8 12月综合题材</h2><p>内容待补充...</p>' }
+          ]
+        },
         { id: 'content04b', title: '3.4.2 2026年', content: '<h2>3.4.2 2026年综合题材</h2><p>内容待补充...</p>' },
         { id: 'content04c', title: '3.4.3 2027年', content: '<h2>3.4.3 2027年综合题材</h2><p>内容待补充...</p>' }
       ]
@@ -55,44 +63,28 @@ contentData.categories.push({
       id: 'content05',
       name: '3.5 公司文件汇总',
       children: [
-        {
-          id: 'content05a',
-          title: '3.5 公司文件汇总',
-          content: '<h2>3.5 公司文件汇总</h2><p>内容待补充...</p>'
-        }
+        { id: 'content05a', title: '3.5 公司文件汇总', content: '<h2>3.5 公司文件汇总</h2><p>内容待补充...</p>' }
       ]
     },
     {
       id: 'content06',
       name: '3.6 团队文化',
       children: [
-        {
-          id: 'content06a',
-          title: '3.6 团队文化',
-          content: '<h2>3.6 团队文化</h2><p>内容待补充...</p>'
-        }
+        { id: 'content06a', title: '3.6 团队文化', content: '<h2>3.6 团队文化</h2><p>内容待补充...</p>' }
       ]
     },
     {
       id: 'content07',
       name: '3.7 团队活动',
       children: [
-        {
-          id: 'content07a',
-          title: '3.7 团队活动',
-          content: '<h2>3.7 团队活动</h2><p>内容待补充...</p>'
-        }
+        { id: 'content07a', title: '3.7 团队活动', content: '<h2>3.7 团队活动</h2><p>内容待补充...</p>' }
       ]
     },
     {
       id: 'content08',
       name: '3.8 团队照片素材',
       children: [
-        {
-          id: 'content08a',
-          title: '3.8 团队照片素材',
-          content: '<h2>3.8 团队照片素材</h2><p>内容待补充...</p>'
-        }
+        { id: 'content08a', title: '3.8 团队照片素材', content: '<h2>3.8 团队照片素材</h2><p>内容待补充...</p>' }
       ]
     }
   ]
