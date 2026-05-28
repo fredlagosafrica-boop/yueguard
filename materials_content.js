@@ -38,7 +38,7 @@ contentData.categories.push({
       name: '3.4 综合题材',
       children: [
         { id: 'content04a', name: '3.4.1 2025年', children: [
-          { id: 'content04a_01', title: '3.4.1.1 5月', content: '<h2>3.4.1.1 5月综合题材</h2><p>内容待补充...</p><div class="doc-section"><h3>📄 文档资料</h3><ul><li><a href="assets/2026年香港银行开户指南.pdf" target="_blank">📥 2026年香港银行开户指南</a></li></ul></div>' },
+          { id: 'content04a_01', title: '3.4.1.1 5月', content: '<h2>3.4.1.1 5月综合题材</h2><p>内容待补充...</p><div class="doc-section"><h3>📄 文档资料</h3><iframe src="https://docs.google.com/gview?url=https://fredlagosafrica-boop.github.io/yueguard/assets/2026%E5%B9%B4%E9%A6%99%E6%B8%AF%E9%93%B6%E8%A1%8C%E5%BC%80%E6%88%B7%E6%8C%87%E5%8D%97.pdf&embedded=true" style="width:100%;height:700px;border:none;" frameborder="0"></iframe><p><a href="assets/2026年香港银行开户指南.pdf" target="_blank">📥 下载PDF文件</a></p></div>' },
           { id: 'content04a_02', title: '3.4.1.2 6月', content: '<h2>3.4.1.2 6月综合题材</h2><p>内容待补充...</p>' },
           { id: 'content04a_03', title: '3.4.1.3 7月', content: '<h2>3.4.1.3 7月综合题材</h2><p>内容待补充...</p>' },
           { id: 'content04a_04', title: '3.4.1.4 8月', content: '<h2>3.4.1.4 8月综合题材</h2><p>内容待补充...</p>' },
