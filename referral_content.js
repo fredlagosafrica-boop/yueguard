@@ -159,7 +159,7 @@ contentData.categories.push({
     {
       id: 'ref-4-3',
       name: '五、转介绍表格图片资料',
-      content: '<h3>五、转介绍表格图片资料</h3><p>图片资料稍后补充上传。</p>'
+      content: '<h3>五、转介绍表格图片资料</h3><p>以下收录转介绍业务核心协议模板及佣金发放流程文件，供团队内部使用。</p><p style="margin-top:15px;"><a href="assets/转介合作协议(2026).pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;font-size:14px;text-decoration:underline;padding:2px 8px;border-radius:4px;margin:3px 0;">📄 转介合作协议(2026)</a><a href="assets/转介协议模板（2026）(1).pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;font-size:14px;text-decoration:underline;padding:2px 8px;border-radius:4px;margin:3px 0;">📄 转介协议模板（2026）</a><a href="assets/补充协议(1).pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;font-size:14px;text-decoration:underline;padding:2px 8px;border-radius:4px;margin:3px 0;">📄 补充协议</a><a href="assets/佣金及转介费发放流程(2026-03-16).pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;font-size:14px;text-decoration:underline;padding:2px 8px;border-radius:4px;margin:3px 0;">📄 佣金及转介费发放流程</a></p>'
     }
   ]
 });
