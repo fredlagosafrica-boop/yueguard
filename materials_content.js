@@ -63,7 +63,12 @@ contentData.categories.push({
       id: 'content05',
       name: '3.5 公司文件汇总',
       children: [
-        { id: 'content05a', title: '3.5 公司文件汇总', content: `<h2>🔗 恒玥工具箱 · 设计架构文档</h2>
+        { id: 'content05a', title: '3.5 公司文件汇总', content: `<h2>🔗 恒玥工具箱</h2>
+<div style="text-align:center; margin: 30px 0;">
+<a href="https://fredlagosafrica-boop.github.io/tools-links/" target="_blank" style="display:inline-block; background:linear-gradient(145deg,#1e1e3f,#252550); border:2px solid #d4af37; border-radius:16px; padding:40px 60px; text-decoration:none; color:#d4af37; font-size:1.5rem; font-weight:600; transition:all 0.3s; box-shadow:0 8px 30px rgba(212,175,55,0.2);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 30px rgba(212,175,55,0.2)';">🔗 进入恒玥工具箱<br><span style="font-size:0.9rem; color:#888; font-weight:400;">点击跳转 → 7个工具聚合页</span></a>
+</div>
+<hr style="border-color:#333; margin:30px 0;">
+<h3 style="color:#d4af37;">🎨 设计架构文档</h3>
 <div style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f0f23); border: 2px solid #d4af37; border-radius: 16px; padding: 30px 24px; margin: 20px 0; color: #fff;">
 <h3 style="color:#d4af37; margin-bottom:16px;">🏗️ 页面架构</h3>
 <pre style="background:#0d0d1a; padding:16px; border-radius:8px; color:#aaa; font-size:13px; line-height:1.6; overflow-x:auto;">单页结构（无导航、无子页面）
