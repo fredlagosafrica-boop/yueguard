@@ -63,7 +63,52 @@ contentData.categories.push({
       id: 'content05',
       name: '3.5 公司文件汇总',
       children: [
-        { id: 'content05a', title: '3.5 公司文件汇总', content: `<h2>🔗 恒玥工具箱</h2>
+        <h2>🔗 恒玥工具箱</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1000px; margin: 30px auto;">
+<a href="https://z-web-wealthpro360.pages.dev/" target="_blank" style="background: linear-gradient(145deg, #1e1e3f, #252550); border: 2px solid #d4af37; border-radius: 14px; padding: 28px 20px; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 35px rgba(212,175,55,0.25)'; this.style.borderColor='#f0d060';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='#d4af37';">
+<span style="font-size: 2.2rem; display: block; margin-bottom: 12px;">💰</span>
+<div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">分紅360</div>
+<div style="color: #666; font-size: 0.78rem;">z-web-wealthpro360.pages.dev</div>
+<div style="color: #d4af37; margin-top: 12px; font-size: 1.1rem;">→</div>
+</a>
+<a href="https://z-web-kuaikuai20.pages.dev/#" target="_blank" style="background: linear-gradient(145deg, #1e1e3f, #252550); border: 2px solid #d4af37; border-radius: 14px; padding: 28px 20px; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 35px rgba(212,175,55,0.25)'; this.style.borderColor='#f0d060';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='#d4af37';">
+<span style="font-size: 2.2rem; display: block; margin-bottom: 12px;">⚡</span>
+<div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">快快20</div>
+<div style="color: #666; font-size: 0.78rem;">z-web-kuaikuai20.pages.dev</div>
+<div style="color: #d4af37; margin-top: 12px; font-size: 1.1rem;">→</div>
+</a>
+<a href="https://z-web-nodex.pages.dev/" target="_blank" style="background: linear-gradient(145deg, #1e1e3f, #252550); border: 2px solid #d4af37; border-radius: 14px; padding: 28px 20px; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 35px rgba(212,175,55,0.25)'; this.style.borderColor='#f0d060';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='#d4af37';">
+<span style="font-size: 2.2rem; display: block; margin-bottom: 12px;">📊</span>
+<div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">行业数据洞察</div>
+<div style="color: #666; font-size: 0.78rem;">z-web-nodex.pages.dev</div>
+<div style="color: #d4af37; margin-top: 12px; font-size: 1.1rem;">→</div>
+</a>
+<a href="https://z-web-phactuarialhelp.pages.dev/" target="_blank" style="background: linear-gradient(145deg, #1e1e3f, #252550); border: 2px solid #d4af37; border-radius: 14px; padding: 28px 20px; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 35px rgba(212,175,55,0.25)'; this.style.borderColor='#f0d060';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='#d4af37';">
+<span style="font-size: 2.2rem; display: block; margin-bottom: 12px;">🧮</span>
+<div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">精算帮</div>
+<div style="color: #666; font-size: 0.78rem;">z-web-phactuarialhelp.pages.dev</div>
+<div style="color: #d4af37; margin-top: 12px; font-size: 1.1rem;">→</div>
+</a>
+<a href="https://z-web-calendar4.pages.dev/" target="_blank" style="background: linear-gradient(145deg, #1e1e3f, #252550); border: 2px solid #d4af37; border-radius: 14px; padding: 28px 20px; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 35px rgba(212,175,55,0.25)'; this.style.borderColor='#f0d060';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='#d4af37';">
+<span style="font-size: 2.2rem; display: block; margin-bottom: 12px;">📅</span>
+<div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">保司日历</div>
+<div style="color: #666; font-size: 0.78rem;">z-web-calendar4.pages.dev</div>
+<div style="color: #d4af37; margin-top: 12px; font-size: 1.1rem;">→</div>
+</a>
+<a href="https://z-web-ph.pages.dev/" target="_blank" style="background: linear-gradient(145deg, #1e1e3f, #252550); border: 2px solid #d4af37; border-radius: 14px; padding: 28px 20px; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 35px rgba(212,175,55,0.25)'; this.style.borderColor='#f0d060';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='#d4af37';">
+<span style="font-size: 2.2rem; display: block; margin-bottom: 12px;">🔬</span>
+<div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">PH值</div>
+<div style="color: #666; font-size: 0.78rem;">z-web-ph.pages.dev</div>
+<div style="color: #d4af37; margin-top: 12px; font-size: 1.1rem;">→</div>
+</a>
+<a href="https://z-web-actuarialhelp.pages.dev/" target="_blank" style="background: linear-gradient(145deg, #1e1e3f, #252550); border: 2px solid #d4af37; border-radius: 14px; padding: 28px 20px; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 35px rgba(212,175,55,0.25)'; this.style.borderColor='#f0d060';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='#d4af37';">
+<span style="font-size: 2.2rem; display: block; margin-bottom: 12px;">📐</span>
+<div style="color: #d4af37; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">精算帮 单复利</div>
+<div style="color: #666; font-size: 0.78rem;">z-web-actuarialhelp.pages.dev</div>
+<div style="color: #d4af37; margin-top: 12px; font-size: 1.1rem;">→</div>
+</a>
+</div>
+<div style="text-align: center; margin-top: 30px; color: #555; font-size: 0.85rem;">恒玥 Yuanguard <span style="color:#d4af37;">|</span> IFA 工具聚合页</div>
 <div style="text-align:center; margin: 30px 0;">
 <a href="https://fredlagosafrica-boop.github.io/tools-links/" target="_blank" style="display:inline-block; background:linear-gradient(145deg,#1e1e3f,#252550); border:2px solid #d4af37; border-radius:16px; padding:40px 60px; text-decoration:none; color:#d4af37; font-size:1.5rem; font-weight:600; transition:all 0.3s; box-shadow:0 8px 30px rgba(212,175,55,0.2);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform=''; this.style.boxShadow='0 8px 30px rgba(212,175,55,0.2)';">🔗 进入恒玥工具箱<br><span style="font-size:0.9rem; color:#888; font-weight:400;">点击跳转 → 7个工具聚合页</span></a>
 </div>
