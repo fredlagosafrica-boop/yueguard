@@ -530,21 +530,23 @@ function showDoc(catId, childId, itemId) {
   if (!cat) { console.log('[DEBUG showDoc] cat not found!'); return; }
 
   // 递归搜索：支持任意深度的 children + items 混合查找（含稀疏数组防护）
+  // 迭代版 findItemDeep：用栈代替递归，彻底避免堆栈溢出
   function findItemDeep(nodes, targetId) {
     if (!nodes) return null;
-    for (var i = 0; i < nodes.length; i++) {
-      if (!nodes[i]) continue; // 稀疏数组防护，跳过 undefined/null 空位
-      if (nodes[i].id === targetId) return nodes[i];
-      // items 数组里的直接项目（如 flat 结构）
-      if (nodes[i].items) {
-        for (var j = 0; j < nodes[i].items.length; j++) {
-          if (nodes[i].items[j] && nodes[i].items[j].id === targetId) return nodes[i].items[j];
+    var stack = nodes.slice ? nodes.slice() : Object.values(nodes).filter(Boolean);
+    while (stack.length > 0) {
+      var node = stack.pop();
+      if (!node) continue;
+      if (node.id === targetId) return node;
+      if (node.items) {
+        for (var j = 0; j < node.items.length; j++) {
+          if (node.items[j] && node.items[j].id === targetId) return node.items[j];
         }
       }
-      // children 嵌套
-      if (nodes[i].children) {
-        var found = findItemDeep(nodes[i].children, targetId);
-        if (found) return found;
+      if (node.children) {
+        for (var k = node.children.length - 1; k >= 0; k--) {
+          if (node.children[k]) stack.push(node.children[k]);
+        }
       }
     }
     return null;
