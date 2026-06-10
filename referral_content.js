@@ -125,6 +125,18 @@ contentData.categories.push({
         { id: 'ref-3-5', name: '五、违规责任警示', content: '<h3>五、违规责任警示</h3><p>凡触碰以上签单红线，一经查实将面临监管追责、业务作废、合规处罚、账号风控封禁；同时会引发保单效力争议、理赔纠纷、资金合规风险，相关业务员、转介渠道一律连带追责，严格落实合规一票否决制。</p><h4>监管层面</h4><ul><li>香港持牌顾问违规 → 牌照被吊销、罚款、公示处分</li><li>转介人违规 → 纳入行业黑名单、终止合作、追回转介费</li></ul><h4>保单层面</h4><ul><li>保单被判定无效 → 客户已缴保费无法退还</li><li>理赔争议 → 保单效力存疑无法正常理赔</li></ul><h4>法律层面</h4><ul><li>涉嫌违法 → 追究民事及刑事责任</li><li>客户追偿 → 赔偿客户及保险公司全部损失</li></ul><h4>执行要求</h4><p>所有人员须严格恪守上述红线，不抱侥幸心理，不搞任何变通操作，发现违规苗头立即终止并纠正。</p>'}
       ]
     },
+    // 1.2 入职流程
+    {
+      id: 'ref-5',
+      name: '1.2 入职流程',
+      children: [
+        {
+          id: 'ref-5-1',
+          name: '1.2.1 考牌准备（保险中介人资格考试）',
+          content: '<h3>1.2.1 考牌准备（保险中介人资格考试）</h3><p>以下为香港保险中介人资格考试（IIQE）考前注意事项及核心信息，请仔细阅读。</p><p style="margin-top:15px;"><a href="IIQE%E8%80%83%E5%89%8D%E6%8F%90%E9%86%92.pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;font-size:14px;text-decoration:underline;padding:6px 14px;border-radius:4px;margin:3px 0;">📄 IIQE考前提醒（PDF）</a></p>'
+        }
+      ]
+    },
     // 四、内地保险转介绍业务开发方法
     {
       id: 'ref-4',
