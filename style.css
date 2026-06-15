@@ -211,3 +211,60 @@ mark.search-highlight { background: #fef08a; color: #92400e; padding: 1px 4px; b
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(201,168,76,0.3);
 }
+
+/* === PDF 双按钮：预览 + 下载 === */
+.pdf-btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 0;
+}
+.pdf-btn-row .pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.pdf-btn-row .pdf-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* 预览按钮：深蓝底白字 */
+.pdf-btn-row .pdf-btn[target="_blank"] {
+  background: #1e3a5f;
+  color: #fff;
+}
+.pdf-btn-row .pdf-btn[target="_blank"]:hover {
+  background: #2a4a7a;
+}
+/* 下载按钮：金色底深字 */
+.pdf-btn-row .pdf-btn[download] {
+  background: #c9a84c;
+  color: #0a1628;
+}
+.pdf-btn-row .pdf-btn[download]:hover {
+  background: #d4b85c;
+}
+
+/* 手机端：竖向堆叠，按钮宽度撑满 */
+@media (max-width: 600px) {
+  .pdf-btn-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pdf-btn-row .pdf-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+}
