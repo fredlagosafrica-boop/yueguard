@@ -19,6 +19,7 @@ function onChunkLoaded() {
 }
 
 // ─── 动态加载 content chunks（根目录，无chunks/前缀）────
+// 并行加载 + 超时处理（解决GitHub Pages TTFB慢的问题）
 var scripts = [
   'ifa_content.js?v=2026061001',
   'wiki_content.js?v=2026052301',
@@ -30,19 +31,75 @@ var scripts = [
   'biyuan_content.js?v=2026052301',
 ];
 
-function loadScript(i) {
-  if (i >= scripts.length) {
-    renderCategories();
-    return;
-  }
-  var script = document.createElement('script');
-  script.src = scripts[i];
-  script.onload = function() { loadScript(i + 1); };
-  script.onerror = function() { console.error('Failed to load: ' + scripts[i]); loadScript(i + 1); };
-  document.head.appendChild(script);
+var loadedCount = 0;
+var loadTimeout = null;
+
+// 收集所有 contentData.categories 到主 contentData
+function mergeContent() {
+  if (window.ifa_content) contentData.categories.push(...ifa_content.categories);
+  if (window.wiki_content) contentData.categories.push(...wiki_content.categories);
+  if (window.sales_content) contentData.categories.push(...sales_content.categories);
+  if (window.referral_content) contentData.categories.push(...referral_content.categories);
+  if (window.materials_content) contentData.categories.push(...materials_content.categories);
+  if (window.chatbot_content) contentData.categories.push(...chatbot_content.categories);
+  if (window.faq_content) contentData.categories.push(...faq_content.categories);
+  if (window.biyuan_content) contentData.categories.push(...biyuan_content.categories);
 }
 
-loadScript(0);
+function onScriptLoaded(name) {
+  loadedCount++;
+  var progress = document.getElementById('loadProgress');
+  if (progress) {
+    progress.textContent = '已加载 ' + loadedCount + '/' + scripts.length + ' (' + name + ')...';
+  }
+  if (loadedCount >= scripts.length) {
+    clearTimeout(loadTimeout);
+    if (progress) progress.textContent = '正在渲染页面...';
+    mergeContent();
+    renderCategories();
+    if (progress) progress.style.display = 'none';
+  }
+}
+
+function loadScript(url) {
+  return new Promise(function(resolve, reject) {
+    var script = document.createElement('script');
+    script.src = url;
+    var timer = setTimeout(function() {
+      console.warn('加载超时: ' + url);
+      resolve(); // 不阻塞，继续加载其他文件
+    }, 15000); // 15秒超时
+    script.onload = function() { clearTimeout(timer); resolve(); };
+    script.onerror = function() { clearTimeout(timer); console.error('加载失败: ' + url); resolve(); };
+    document.head.appendChild(script);
+  });
+}
+
+// 并行加载所有脚本
+Promise.all(scripts.map(loadScript)).then(function() {
+  // 检查是否有内容已加载（即使部分失败）
+  var hasContent = window.ifa_content || window.wiki_content || window.sales_content;
+  if (!hasContent) {
+    // 最后兜底：尝试直接渲染（内容可能已经加载但还没触发onload）
+    mergeContent();
+  }
+  if (contentData.categories.length > 0) {
+    var progress = document.getElementById('loadProgress');
+    if (progress) progress.style.display = 'none';
+    renderCategories();
+  }
+}).catch(function() {
+  mergeContent();
+  renderCategories();
+});
+
+// 全局超时保护：即使有脚本一直不返回，30秒后也强制渲染
+loadTimeout = setTimeout(function() {
+  var progress = document.getElementById('loadProgress');
+  if (progress) { progress.textContent = '加载完成'; setTimeout(function() { progress.style.display = 'none'; }, 1000); }
+  mergeContent();
+  if (contentData.categories.length > 0) renderCategories();
+}, 30000);
 
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
