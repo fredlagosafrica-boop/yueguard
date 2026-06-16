@@ -144,7 +144,7 @@ files.forEach(f => {
     <div class="card-company">🏢 ${f.company}</div>
     <div class="card-size">📦 ${f.size}</div>
     <div class="btn-row">
-      <a class="btn btn-preview" href="${previewUrl}" target="_blank">${previewLabel}</a>
+      <a class="btn btn-preview" href="${previewUrl}" target="_blank">📄 ${f.company}</a>
       <button class="btn btn-download" data-key="${f.key}" onclick="downloadFile('${encodedKey}', '${fileName}')">⬇ 下载</button>
     </div>
   `;
