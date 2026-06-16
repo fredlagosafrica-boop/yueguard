@@ -18,7 +18,7 @@ function onChunkLoaded() {
   }
 }
 
-// ─── 动态加载 content chunks（根目录，无chunks/前缀）────
+// ─── 并行加载所有 content chunks ────
 var scripts = [
   'ifa_content.js?v=2026061001',
   'wiki_content.js?v=2026052301',
@@ -30,19 +30,17 @@ var scripts = [
   'biyuan_content.js?v=2026052301',
 ];
 
-function loadScript(i) {
-  if (i >= scripts.length) {
-    renderCategories();
-    return;
-  }
-  var script = document.createElement('script');
-  script.src = scripts[i];
-  script.onload = function() { loadScript(i + 1); };
-  script.onerror = function() { console.error('Failed to load: ' + scripts[i]); loadScript(i + 1); };
-  document.head.appendChild(script);
-}
-
-loadScript(0);
+// 并行下载所有JS，然后用 eval 执行（比串行 script src 快很多）
+Promise.all(scripts.map(function(src) {
+  return fetch(src)
+    .then(function(r) { return r.text(); })
+    .then(function(text) {
+      try { eval(text); } catch(e) { console.error('Eval error in ' + src + ':', e); }
+    })
+    .catch(function(e) { console.error('Failed to load: ' + src, e); });
+})).then(function() {
+  renderCategories();
+});
 
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
