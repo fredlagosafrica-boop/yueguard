@@ -291,6 +291,7 @@ let currentFilter = '全部';
 let currentSearch = '';
 let currentPdfKey = null;
 let currentFilename = '';
+let currentAction = 'preview'; // 'preview' or 'download'
 let pdfDoc = null;
 
 function formatSize(s) { return s; }
@@ -345,6 +346,24 @@ function filterList() {
   renderList();
 }
 
+// 从URL参数自动打开
+(function autoOpen() {
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('file');
+  const action = params.get('action');
+  if (file) {
+    const decoded = decodeURIComponent(file);
+    const name = decoded.split('/').pop().replace('%2F', '/');
+    const fakePdf = pdfs.find(p => p.key === decoded) || { name: name, category: 'PDF', size: '未知' };
+    if (action === 'download') {
+      downloadFile(decoded, name.split('/').pop());
+    } else {
+      openPreview(decoded, fakePdf.name, fakePdf.size);
+    }
+  }
+})();
+
+
 async function openPreview(key, name, size) {
   const panel = document.getElementById('previewPanel');
   const canvas = document.getElementById('pdfCanvas');
@@ -353,9 +372,12 @@ async function openPreview(key, name, size) {
   currentPdfKey = key;
   currentFilename = key.split('/').pop();
 
+  currentAction = 'preview';
+
   document.getElementById('previewTitle').textContent = name;
   document.getElementById('fileInfo').textContent = '📦 ' + size;
   document.getElementById('rawLink').href = RAW_BASE + key;
+  document.getElementById('downloadBtn').textContent = '⬇ 下载';
   panel.classList.add('active');
   panel.scrollIntoView({ behavior: 'smooth' });
 
@@ -392,14 +414,18 @@ function closePreview() {
 
 async function downloadCurrentPdf() {
   if (!currentPdfKey) return;
-  const url = RAW_BASE + currentPdfKey;
+  downloadFile(currentPdfKey, currentFilename);
+}
+
+async function downloadFile(key, filename) {
+  const url = RAW_BASE + key;
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error();
     const blob = await res.blob();
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = currentFilename;
+    a.download = filename;
     a.click();
   } catch (e) {
     window.open(url, '_blank');
