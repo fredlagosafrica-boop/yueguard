@@ -19,7 +19,7 @@ function onChunkLoaded() {
 }
 
 // ─── 动态加载 content chunks（根目录，无chunks/前缀）────
-// 并行加载 + 超时处理（解决GitHub Pages TTFB慢的问题）
+// 串行加载确保 contentData.categories 在 renderCategories 前全部就绪
 var scripts = [
   'ifa_content.js?v=2026061001',
   'wiki_content.js?v=2026052301',
@@ -31,75 +31,48 @@ var scripts = [
   'biyuan_content.js?v=2026052301',
 ];
 
-var loadedCount = 0;
+var loadIndex = 0;
 var loadTimeout = null;
 
-// 收集所有 contentData.categories 到主 contentData
-function mergeContent() {
-  if (window.ifa_content) contentData.categories.push(...ifa_content.categories);
-  if (window.wiki_content) contentData.categories.push(...wiki_content.categories);
-  if (window.sales_content) contentData.categories.push(...sales_content.categories);
-  if (window.referral_content) contentData.categories.push(...referral_content.categories);
-  if (window.materials_content) contentData.categories.push(...materials_content.categories);
-  if (window.chatbot_content) contentData.categories.push(...chatbot_content.categories);
-  if (window.faq_content) contentData.categories.push(...faq_content.categories);
-  if (window.biyuan_content) contentData.categories.push(...biyuan_content.categories);
+function updateProgress(name, loaded, total) {
+  var p = document.getElementById('loadProgress');
+  if (p) p.textContent = '⏳ 加载中 ' + loaded + '/' + total + '：' + name;
 }
 
-function onScriptLoaded(name) {
-  loadedCount++;
-  var progress = document.getElementById('loadProgress');
-  if (progress) {
-    progress.textContent = '已加载 ' + loadedCount + '/' + scripts.length + ' (' + name + ')...';
-  }
-  if (loadedCount >= scripts.length) {
+function loadNext() {
+  if (loadIndex >= scripts.length) {
     clearTimeout(loadTimeout);
-    if (progress) progress.textContent = '正在渲染页面...';
-    mergeContent();
+    var p = document.getElementById('loadProgress');
+    if (p) { p.textContent = '✅ 加载完成，正在渲染...'; setTimeout(function() { if (p) p.style.display = 'none'; }, 500); }
     renderCategories();
-    if (progress) progress.style.display = 'none';
+    return;
   }
+  var url = scripts[loadIndex];
+  var name = url.split('.js')[0];
+  updateProgress(name, loadIndex + 1, scripts.length);
+  var script = document.createElement('script');
+  script.src = url;
+  script.onload = function() {
+    loadIndex++;
+    loadNext();
+  };
+  script.onerror = function() {
+    console.error('加载失败（跳过）: ' + url);
+    loadIndex++;
+    loadNext();
+  };
+  document.head.appendChild(script);
 }
 
-function loadScript(url) {
-  return new Promise(function(resolve, reject) {
-    var script = document.createElement('script');
-    script.src = url;
-    var timer = setTimeout(function() {
-      console.warn('加载超时: ' + url);
-      resolve(); // 不阻塞，继续加载其他文件
-    }, 15000); // 15秒超时
-    script.onload = function() { clearTimeout(timer); resolve(); };
-    script.onerror = function() { clearTimeout(timer); console.error('加载失败: ' + url); resolve(); };
-    document.head.appendChild(script);
-  });
-}
+// 启动加载
+loadNext();
 
-// 并行加载所有脚本
-Promise.all(scripts.map(loadScript)).then(function() {
-  // 检查是否有内容已加载（即使部分失败）
-  var hasContent = window.ifa_content || window.wiki_content || window.sales_content;
-  if (!hasContent) {
-    // 最后兜底：尝试直接渲染（内容可能已经加载但还没触发onload）
-    mergeContent();
-  }
-  if (contentData.categories.length > 0) {
-    var progress = document.getElementById('loadProgress');
-    if (progress) progress.style.display = 'none';
-    renderCategories();
-  }
-}).catch(function() {
-  mergeContent();
-  renderCategories();
-});
-
-// 全局超时保护：即使有脚本一直不返回，30秒后也强制渲染
+// 全局超时：25秒后强制渲染（即使未全部加载完）
 loadTimeout = setTimeout(function() {
-  var progress = document.getElementById('loadProgress');
-  if (progress) { progress.textContent = '加载完成'; setTimeout(function() { progress.style.display = 'none'; }, 1000); }
-  mergeContent();
+  var p = document.getElementById('loadProgress');
+  if (p) { p.textContent = '⚠️ 加载超时，已显示已加载内容'; setTimeout(function() { if (p) p.style.display = 'none'; }, 2000); }
   if (contentData.categories.length > 0) renderCategories();
-}, 30000);
+}, 25000);
 
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
