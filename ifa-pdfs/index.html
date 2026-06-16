@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>各保司签单APP使用说明 - 恒玥IFA内容库</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f4f1ec;color:#1a1a1a;padding:20px}
+.header{padding:20px;text-align:center}
+.title{font-size:22px;font-weight:700;color:#1e3a5f;margin-bottom:8px}
+.subtitle{font-size:14px;color:#888;margin-bottom:4px}
+.info{font-size:12px;color:#aaa;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:16px}
+.card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:transform .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.card-name{font-size:15px;font-weight:600;color:#1e3a5f;margin-bottom:4px}
+.card-company{font-size:13px;color:#c9a84c;margin-bottom:4px}
+.card-size{font-size:12px;color:#aaa;margin-bottom:14px}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-preview{background:#1e3a5f;color:#fff}
+.btn-preview:hover{background:#2a4a6f}
+.btn-download{background:#c9a84c;color:#0a1628}
+.btn-download:hover{background:#b8963a}
+.btn-download:active{background:#a08030}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#fff;color:#1e3a5f;border:1.5px solid #1e3a5f;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;margin:16px 20px}
+.back-btn:hover{background:#1e3a5f;color:#fff}
+.downloading{opacity:.6;pointer-events:none}
+.loading{text-align:center;padding:40px;color:#888}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="title">📱 各保司签单APP使用说明</div>
+  <div class="subtitle">恒玥团队 · IFA指引流程 · 签单指引</div>
+  <div class="info">🔒 R2私有存储 · 预览+下载双模式 · 手机/电脑通用</div>
+</div>
+<a class="back-btn" href="../">← 返回内容库首页</a>
+<div class="grid" id="fileGrid"><div class="loading">加载中...</div></div>
+
+<script>
+// ====== R2 配置 ======
+const CF = {
+  accountId: '', // ⚠️ 请填入 Cloudflare Account ID
+  bucket:    'yueguard',
+  token:     '', // ⚠️ 请填入你的 R2 API Token
+  apiBase:   'https://api.cloudflare.com/client/v4/accounts'
+};
+
+// ====== 文件列表 ======
+const files = [
+  // ifa-pdfs/1.4.1/
+  { key: 'ifa-pdfs/1.4.1/wantong.pdf',             name: '万通Smart App deck',         company: '万通 YF Life',       size: '4.7MB' },
+  { key: 'ifa-pdfs/1.4.1/youbang-ipos.pdf',       name: '友邦iPoS Training Deck',    company: '友邦 AIA',         size: '8.6MB' },
+  { key: 'ifa-pdfs/1.4.1/youbang-xuexi.pdf',      name: '友邦AIA-MBW学习手册',       company: '友邦 AIA',         size: '14MB' },
+  { key: 'ifa-pdfs/1.4.1/youbang-app.pdf',        name: '友邦APP指引',               company: '友邦 AIA',         size: '13MB' },
+  { key: 'ifa-pdfs/1.4.1/ansheng-ibuy.pdf',       name: '安盛iBuy Manual',            company: '安盛 AXA',         size: '2.7MB' },
+  { key: 'ifa-pdfs/1.4.1/ansheng-emcv.pdf',       name: '安盛iBuy eMCV Manual',       company: '安盛 AXA',         size: '2.9MB' },
+  { key: 'ifa-pdfs/1.4.1/zhongguataipingyang.pdf',name: '中国太平洋新销售操作系统', company: '中国太平洋',       size: '2.8MB' },
+  { key: 'ifa-pdfs/1.4.1/zhongguoren shoutming-cq.pdf', name: '中国人寿ePOS操作常见问题', company: '中国人寿（海外）', size: '1.8MB' },
+  { key: 'ifa-pdfs/1.4.1/zhongguoren shoutming-zz.pdf', name: '中国人寿ePOS操作简介',   company: '中国人寿（海外）', size: '4.0MB' },
+  { key: 'ifa-pdfs/1.4.1/baibai.pdf',             name: '保柏APP Sample',             company: '保柏 Bupa',         size: '1.5MB' },
+  { key: 'ifa-pdfs/1.4.1/zhongyi.pdf',           name: '忠意GEN电子投保指南',       company: '忠意 Zurich',      size: '33MB' },
+  { key: 'ifa-pdfs/1.4.1/zhoudafu.pdf',           name: '周大福CTF Life eForm指南',  company: '周大福 CTF Life',  size: '11MB' },
+  { key: 'ifa-pdfs/1.4.1/lanyitong.pdf',          name: '蓝易通BlueConnect演示',     company: '蓝易通',           size: '6.0MB' },
+  { key: 'ifa-pdfs/1.4.1/liqiao.pdf',             name: '立桥ePos电子签单系统',       company: '立桥',             size: '9.0MB' },
+  { key: 'ifa-pdfs/1.4.1/baocheng.pdf',            name: '保诚PRUsubmit User Guide',   company: '保诚 Prudential',  size: '20MB' },
+  // 签单指引/ (补充更多)
+  { key: '签单指引/万通顾问Smart App deck.pdf',  name: '万通顾问Smart App deck',     company: '万通 YF Life',     size: '12MB' },
+  { key: '签单指引/中国太平洋新銷售作業系統使用手冊202507_training.pdf', name: '中国太平洋新销售操作系统手册', company: '中国太平洋', size: '2.8MB' },
+  { key: '签单指引/中國人壽電子投保ePOS操作常見問題_2025.01.22.pdf', name: '中国人寿ePOS常见问题', company: '中国人寿（海外）', size: '1.8MB' },
+  { key: '签单指引/中國人壽電子投保ePOS操作簡介（代理人及中介）_2025.01.22.pdf', name: '中国人寿ePOS简介', company: '中国人寿（海外）', size: '4.0MB' },
+  { key: '签单指引/保柏app sample.pdf',           name: '保柏APP Sample',            company: '保柏 Bupa',        size: '1.5MB' },
+  { key: '签单指引/保诚PRUsubmit User Guide_Broker Version 20240217.pdf', name: '保诚PRUsubmit User Guide', company: '保诚 Prudential', size: '20MB' },
+  { key: '签单指引/友邦-Broker iPoS Training Deck_TC.pdf', name: '友邦iPoS Training Deck TC', company: '友邦 AIA', size: '8.6MB' },
+  { key: '签单指引/友邦AIA-MBW_iPoS 學習手冊 2023 Jan 8 v4.pdf', name: '友邦AIA-MBW学习手册', company: '友邦 AIA', size: '14MB' },
+  { key: '签单指引/周大福CTF Life_eForm_User Guide_SC_20260108.pdf', name: '周大福eForm User Guide SC', company: '周大福 CTF Life', size: '11MB' },
+  { key: '签单指引/安盛iBuy Manual_V3.pdf',       name: '安盛iBuy Manual V3',         company: '安盛 AXA',         size: '2.7MB' },
+  { key: '签单指引/安盛iBuy_eMCV Manual_202303.pdf', name: '安盛iBuy eMCV Manual',    company: '安盛 AXA',         size: '2.9MB' },
+  { key: '签单指引/宏利5be9da6a45ace4779e65a77185306bc0.pdf', name: '宏利Manulife APP签单指引', company: '宏利 Manulife', size: '12MB' },
+  { key: '签单指引/忠意GEN-电子投保指南.pdf',       name: '忠意GEN电子投保指南',        company: '忠意 Zurich',       size: '33MB' },
+  { key: '签单指引/新入职IFA签单管理及执业安排指引.jpg', name: '新入职IFA签单管理指引', company: '恒玥团队',        size: '2.6MB' },
+  { key: '签单指引/永明CEP training for AG & FI orientation 14Oct2025_TC.pdf', name: '永明CEP培训', company: '永明 Sunlife', size: '11MB' },
+  { key: '签单指引/立桥202605 - ePos 電子簽單系統.pdf', name: '立桥ePos电子签单系统',   company: '立桥',            size: '9.0MB' },
+  { key: '签单指引/蓝易通BlueConnect Easy 示範 v3.1.pdf', name: '蓝易通BlueConnect演示', company: '蓝易通',     size: '6.0MB' },
+];
+
+// ====== 构建文件URL ======
+function buildUrl(key) {
+  const encoded = encodeURIComponent(key);
+  return `${CF.apiBase}/${CF.accountId}/r2/buckets/${CF.bucket}/objects/${encoded}`;
+}
+
+function getFileName(key) {
+  return key.split('/').pop();
+}
+
+// ====== 下载函数（带Authorization header，手机可用）======
+async function downloadFile(key, fileName) {
+  const btn = document.querySelector(`[data-key="${CSS.escape(key)}"]`);
+  if (btn) { btn.classList.add('downloading'); btn.textContent = '⏳ 下载中...'; }
+
+  try {
+    const url = buildUrl(key);
+    const resp = await fetch(url, {
+      headers: { 'Authorization': `Bearer ${CF.token}` }
+    });
+    if (!resp.ok) throw new Error('下载失败，请重试');
+    const blob = await resp.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(blobUrl);
+  } catch(e) {
+    alert('下载失败: ' + e.message);
+  } finally {
+    if (btn) { btn.classList.remove('downloading'); btn.textContent = '⬇ 下载'; }
+  }
+}
+
+// ====== 渲染卡片 ======
+const grid = document.getElementById('fileGrid');
+grid.innerHTML = '';
+
+files.forEach(f => {
+  const fileName = getFileName(f.key);
+  const previewUrl = buildUrl(f.key);
+  const encodedKey = encodeURIComponent(f.key);
+
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  // 判断文件类型
+  const isImage = fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.png');
+  const previewLabel = isImage ? '🖼 查看' : '📄 预览';
+
+  card.innerHTML = `
+    <div class="card-name">${f.name}</div>
+    <div class="card-company">🏢 ${f.company}</div>
+    <div class="card-size">📦 ${f.size}</div>
+    <div class="btn-row">
+      <a class="btn btn-preview" href="${previewUrl}" target="_blank">${previewLabel}</a>
+      <button class="btn btn-download" data-key="${f.key}" onclick="downloadFile('${encodedKey}', '${fileName}')">⬇ 下载</button>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
