@@ -738,23 +738,3 @@ document.getElementById("lockInput").addEventListener("keyup",function(e){
 document.addEventListener("DOMContentLoaded",function(){
   // 锁屏由HTML内联style="display:flex"控制，这里仅在密码正确时隐藏
 });
-
-// PDF 强制下载函数（手机也能用）
-async function downloadPdf(url, filename) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Network error');
-    const blob = await response.blob();
-    const blobUrl = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(blobUrl);
-  } catch (e) {
-    // 降级：直接打开让浏览器处理
-    window.open(url, '_blank');
-  }
-}
