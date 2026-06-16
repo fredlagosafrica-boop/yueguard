@@ -3,93 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>PDF 预览</title>
+  <title>下载 PDF</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #1a1a2e; color: #fff; min-height: 100vh;
-      display: flex; flex-direction: column;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 20px;
     }
-    .header {
-      position: fixed; top: 0; left: 0; right: 0; height: 56px;
-      background: rgba(26,26,46,0.95); backdrop-filter: blur(10px);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 16px; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1);
+    .card {
+      background: #2a2a4e; border-radius: 16px; padding: 32px 24px;
+      width: 100%; max-width: 400px; text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
-    .header .back { color: #4a9eff; font-size: 16px; cursor: pointer; text-decoration: none; }
-    .header .title { font-size: 17px; font-weight: 600; flex: 1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 10px; }
-    .header .dl-btn { background: #4a9eff; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 14px; cursor: pointer; white-space: nowrap; }
-
-    .content { padding-top: 56px; flex: 1; display: flex; flex-direction: column; }
-
-    /* iframe 承载 PDF 预览 */
-    #pdf-frame {
-      flex: 1; width: 100%; border: none; background: #fff; min-height: 70vh;
-    }
-
-    /* 备用的直接下载区 */
-    .download-section {
-      padding: 20px; background: #2a2a4e; margin-top: auto;
-    }
-    .download-section h3 { font-size: 15px; margin-bottom: 12px; color: #4a9eff; }
+    .icon { font-size: 64px; margin-bottom: 20px; }
+    .title { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+    .subtitle { font-size: 14px; color: #888; margin-bottom: 28px; line-height: 1.6; }
     .download-btn {
       display: block; width: 100%; background: #4a9eff; color: #fff;
-      text-decoration: none; padding: 14px; border-radius: 10px;
-      text-align: center; font-size: 16px; font-weight: 600;
+      text-decoration: none; padding: 16px; border-radius: 12px;
+      font-size: 17px; font-weight: 600; margin-bottom: 16px;
     }
     .download-btn:hover { background: #3a8eef; }
-    .tip { margin-top: 12px; font-size: 13px; color: #888; line-height: 1.6; }
-
-    .loading {
-      position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      text-align: center; color: #aaa; z-index: 999;
-    }
-    .loading .spinner {
-      width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1);
-      border-top-color: #4a9eff; border-radius: 50%;
-      animation: spin 1s linear infinite; margin: 0 auto 16px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .error-info {
-      position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      text-align: center; color: #ff6b6b; padding: 20px; z-index: 999;
-      background: rgba(26,26,46,0.95); border-radius: 12px; max-width: 90%;
-    }
-
-    @media (max-width: 600px) {
-      .header .title { font-size: 15px; }
-    }
+    .tip { font-size: 12px; color: #666; line-height: 1.8; text-align: left; padding: 16px; background: #1a1a2e; border-radius: 10px; }
+    .tip strong { color: #4a9eff; }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <a href="javascript:void(0)" onclick="goBack()" class="back">← 返回</a>
-    <div class="title" id="doc-title">PDF 预览</div>
-    <button class="dl-btn" id="dl-btn">下载</button>
-  </div>
+  <div class="card">
+    <div class="icon">📄</div>
+    <div class="title" id="doc-title">PDF 文档</div>
+    <div class="subtitle" id="doc-size"></div>
 
-  <div class="content">
-    <!-- iframe 直接加载 PDF，让浏览器内置 PDF 预览器处理 -->
-    <iframe id="pdf-frame" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+    <a class="download-btn" id="open-btn" href="#" onclick="openExternal()">
+      🔽 用浏览器打开并下载
+    </a>
 
-    <div class="download-section">
-      <h3>📥 高速下载</h3>
-      <a class="download-btn" id="direct-dl" href="#" download>点击下载 PDF 文件</a>
-      <div class="tip">
-        💡 若无法预览：请点击上方「下载」按钮，或点击右上角 ┆ → 复制链接 → 用 Safari/Chrome 打开
-      </div>
+    <div class="tip">
+      <strong>操作说明：</strong><br>
+      1. 点击上方按钮<br>
+      2. 微信会提示「即将打开外部链接」→ 确认<br>
+      3. 在 Safari / Chrome / 夸克 等浏览器中打开<br>
+      4. 浏览器内可直接预览 PDF，也可点击下载按钮保存
     </div>
   </div>
-
-  <div class="loading" id="loading">
-    <div class="spinner"></div>
-    <div>正在加载 PDF...</div>
-  </div>
-
-  <div class="error-info" id="error" style="display:none"></div>
 
   <script>
     var urlParams = new URLSearchParams(window.location.search);
@@ -97,42 +56,40 @@
     var PAGE_TITLE = decodeURIComponent(urlParams.get('title') || '文档');
 
     document.getElementById('doc-title').textContent = PAGE_TITLE;
-    document.getElementById('dl-btn').textContent = '下载';
-    var dlBtn = document.getElementById('direct-dl');
+
+    // 尝试直接下载（电脑浏览器）
+    var dlBtn = document.getElementById('open-btn');
     dlBtn.href = PDF_URL;
     dlBtn.download = PAGE_TITLE + '.pdf';
+    dlBtn.target = '_blank';
 
-    function goBack() {
-      if (document.referrer && document.referrer.indexOf(window.location.hostname) !== -1) {
-        history.back();
-      } else {
-        window.close();
+    // 微信环境检测：如果是微信，引导用外部浏览器打开
+    var isWechat = navigator.userAgent.toLowerCase().includes('micromessenger');
+    if (isWechat) {
+      dlBtn.textContent = '🔽 用浏览器打开并下载';
+    }
+
+    // 点击时如果是微信，先尝试跳转外部浏览器
+    function openExternal() {
+      var isWechat = navigator.userAgent.toLowerCase().includes('micromessenger');
+      if (isWechat) {
+        // 微信环境：尝试跳转到夸克、QQ等第三方浏览器
+        // 使用 universal link / app link 尝试拉起浏览器
+        // 如果失败，href 兜底直接下载
+        try {
+          // iOS 尝试拉起夸克浏览器
+          var iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.src = 'quark://open?url=' + encodeURIComponent(PDF_URL);
+          document.body.appendChild(iframe);
+          // 如果 0.5 秒没反应，说明没安装夸克，href 兜底
+          setTimeout(function() {
+            document.body.removeChild(iframe);
+          }, 500);
+        } catch(e) {}
       }
     }
-
-    document.getElementById('dl-btn').addEventListener('click', function() {
-      window.open(PDF_URL, '_blank');
-    });
-
-    if (!PDF_URL) {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').style.display = 'block';
-      document.getElementById('error').textContent = '错误：未指定 PDF 地址\n\n请使用：\npdf-viewer.html?url=PDF链接&title=标题';
-    } else {
-      // 直接用 iframe 加载 PDF
-      var iframe = document.getElementById('pdf-frame');
-      iframe.src = PDF_URL;
-      document.getElementById('loading').style.display = 'none';
-
-      // 监听 iframe 加载完成（不管成功失败都隐藏 loading）
-      iframe.onload = function() {
-        document.getElementById('loading').style.display = 'none';
-      };
-      // 如果 5 秒还没加载完也隐藏 loading
-      setTimeout(function() {
-        document.getElementById('loading').style.display = 'none';
-      }, 5000);
-    }
   </script>
+
 </body>
 </html>
