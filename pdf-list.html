@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恒玥IFA资料库 - PDF资料中心</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root {
+  --gold: #c9a84c;
+  --navy: #1e3a5f;
+  --bg: #0a1628;
+  --card-bg: #111d2e;
+  --text: #e8dcc8;
+  --text-muted: #8a9bb0;
+  --border: rgba(201,168,76,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 20px;
+}
+.header {
+  text-align: center;
+  padding: 20px 0 30px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 30px;
+}
+.header h1 { font-size: 22px; color: var(--gold); margin-bottom: 8px; }
+.header p { color: var(--text-muted); font-size: 14px; }
+
+/* 预览区 */
+.preview-panel {
+  display: none;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+.preview-panel.active { display: block; }
+.preview-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.preview-top h3 { font-size: 16px; color: var(--gold); flex: 1; }
+.preview-top .file-info { font-size: 13px; color: var(--text-muted); margin-right: 10px; }
+.btn-close {
+  background: var(--navy);
+  color: var(--text);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.btn-row a, .btn-row button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-preview {
+  background: var(--navy);
+  color: #fff;
+}
+.btn-download {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: bold;
+}
+#pdfCanvas {
+  width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: block;
+  background: #fff;
+}
+
+/* 分类筛选 */
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.filter-btn {
+  background: var(--card-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
+
+/* 搜索 */
+.search-box {
+  margin-bottom: 20px;
+}
+.search-box input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+}
+.search-box input:focus { border-color: var(--gold); }
+
+/* PDF卡片 */
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.pdf-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pdf-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.card-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--gold);
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-company {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.card-size {
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📁 恒玥IFA PDF资料中心</h1>
+  <p>点击卡片名称预览 · 点击按钮下载</p>
+</div>
+
+<!-- 预览面板 -->
+<div class="preview-panel" id="previewPanel">
+  <div class="preview-top">
+    <h3 id="previewTitle">-</h3>
+    <span class="file-info" id="fileInfo"></span>
+    <button class="btn-close" onclick="closePreview()">✕ 关闭</button>
+  </div>
+  <canvas id="pdfCanvas"></canvas>
+  <div class="btn-row">
+    <a class="btn-preview" id="rawLink" href="#" target="_blank">📄 在新窗口打开</a>
+    <button class="btn-download" id="downloadBtn" onclick="downloadCurrentPdf()">⬇ 下载</button>
+  </div>
+</div>
+
+<!-- 搜索 -->
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="🔍 搜索PDF名称或公司..." oninput="filterList()">
+</div>
+
+<!-- 分类筛选 -->
+<div class="filters" id="filters">
+  <button class="filter-btn active" onclick="setFilter('全部')">全部</button>
+  <button class="filter-btn" onclick="setFilter('保险公司')">🏢 保险公司</button>
+  <button class="filter-btn" onclick="setFilter('理赔')">🌀 理赔</button>
+  <button class="filter-btn" onclick="setFilter('产品手册')">📋 产品手册</button>
+  <button class="filter-btn" onclick="setFilter('入职')">📖 入职</button>
+  <button class="filter-btn" onclick="setFilter('理赔')">🏥 理赔</button>
+  <button class="filter-btn" onclick="setFilter('强积金')">🏦 MPF/强积金</button>
+</div>
+
+<!-- PDF列表 -->
+<div class="pdf-grid" id="pdfGrid"></div>
+<div class="empty-state" id="emptyState" style="display:none">没有找到匹配的PDF</div>
+
+<script>
+// PDF.js 初始化
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+const RAW_BASE = 'https://raw.githubusercontent.com/fredlagosafrica-boop/yueguard/main/';
+const GITHUB_BASE = 'https://github.com/fredlagosafrica-boop/yueguard/blob/main/';
+
+// 所有PDF数据（名称、文件key、分类）
+const pdfs = [
+  // 保险公司PDF
+  { key: 'assets/保司_安盛-公司简介.pdf', name: '安盛-公司简介', category: '保险公司', size: '1.2MB' },
+  { key: 'assets/保司_友邦+-公司简介.pdf', name: '友邦+-公司简介', category: '保险公司', size: '1.5MB' },
+  { key: 'assets/保司_保诚-公司简介.pdf', name: '保诚-公司简介', category: '保险公司', size: '1.1MB' },
+  { key: 'assets/保司_万通-公司简介.pdf', name: '万通-公司简介', category: '保险公司', size: '0.9MB' },
+  { key: 'assets/保司_宏利-公司简介.pdf', name: '宏利-公司简介', category: '保险公司', size: '1.3MB' },
+  { key: 'assets/保司_富卫-公司简介.pdf', name: '富卫-公司简介', category: '保险公司', size: '0.8MB' },
+  { key: 'assets/保司_永明-公司简介.pdf', name: '永明-公司简介', category: '保险公司', size: '0.7MB' },
+  { key: 'assets/保司_中国人寿（海外）-公司介绍.pdf', name: '中国人寿（海外）-公司介绍', category: '保险公司', size: '1.0MB' },
+  { key: 'assets/保司_中银-公司简介.pdf', name: '中银-公司简介', category: '保险公司', size: '0.9MB' },
+  { key: 'assets/保司_周大福-公司简介.pdf', name: '周大福-公司简介', category: '保险公司', size: '1.1MB' },
+  { key: 'assets/保司_太平洋香港-公司简介）.pdf', name: '太平洋香港-公司简介', category: '保险公司', size: '0.8MB' },
+  // APP操作指引
+  { key: 'assets/aia_ipos_training_tc.pdf', name: '友邦iPoS培训手册', category: 'APP操作', size: '2.5MB' },
+  { key: 'assets/aia_mbw_manual.pdf', name: '友邦MBW学习手册', category: 'APP操作', size: '3.2MB' },
+  { key: 'assets/axa_ibuy_manual_v3.pdf', name: '安盛iBuy手册v3', category: 'APP操作', size: '4.1MB' },
+  { key: 'assets/axa_ibuy_emcv.pdf', name: '安盛eMCV手册', category: 'APP操作', size: '2.8MB' },
+  { key: 'assets/宏利Manulife_APP签单指引.pdf', name: '宏利Manulife APP签单指引', category: 'APP操作', size: '3.5MB' },
+  { key: 'assets/wt_smart_app.pdf', name: '万通APP操作指引', category: 'APP操作', size: '2.2MB' },
+  { key: 'assets/taipao_sales_manual.pdf', name: '太平洋销售手册', category: 'APP操作', size: '1.8MB' },
+  { key: 'assets/chinalife_epos_guide.pdf', name: '中国人寿ePOS操作简介', category: 'APP操作', size: '1.5MB' },
+  { key: 'assets/chinalife_epos_faq.pdf', name: '中国人寿ePOS常见问题', category: 'APP操作', size: '0.9MB' },
+  { key: 'assets/ctflife_eform_guide.pdf', name: '周大福eForm指南', category: 'APP操作', size: '2.1MB' },
+  { key: 'assets/lianqiao_epos.pdf', name: '立桥ePos系统', category: 'APP操作', size: '1.7MB' },
+  { key: 'assets/zurich_gen_guide.pdf', name: '忠意GenBRAVO使用指南', category: 'APP操作', size: '33.5MB' },
+  { key: 'assets/prudential_prusubmit.pdf', name: '保诚PRUsubmit手册', category: 'APP操作', size: '20.4MB' },
+  { key: 'assets/LifeBee_APP操作説明.pdf', name: 'LifeBee APP操作手册', category: 'APP操作', size: '9.4MB' },
+  { key: 'assets/blueconnect_demo.pdf', name: '蓝易通演示', category: 'APP操作', size: '1.3MB' },
+  { key: 'assets/bupa_app.pdf', name: '保柏APP', category: 'APP操作', size: '2.0MB' },
+  // 入职相关
+  { key: 'assets/ZUU直营新人行政手册.pdf', name: 'ZUU直营新人行政手册', category: '入职', size: '14.5MB' },
+  { key: 'assets/强积金挂牌申请表格.pdf', name: '强积金挂牌申请表格', category: '入职', size: '1.2MB' },
+  { key: 'IIQE%E8%80%83%E5%89%8D%E6%8F%90%E9%86%92.pdf', name: 'IIQE考前提醒', category: '入职', size: '0.5MB' },
+  { key: 'assets/BCT_MPF_Update_ZUU_May2026.pdf', name: 'BCT强积金更新2026年5月', category: '强积金', size: '17.0MB' },
+  // 理赔相关
+  { key: 'assets/理赔_安盛理赔流程总结(1).pdf', name: '安盛理赔流程总结', category: '理赔', size: '1.5MB' },
+  { key: 'assets/理赔_保诚理赔流程总结.pdf', name: '保诚理赔流程总结', category: '理赔', size: '1.8MB' },
+  { key: 'assets/理赔_中国人寿海外理赔流程总结.pdf', name: '中国人寿海外理赔流程', category: '理赔', size: '1.4MB' },
+  { key: 'assets/理赔_周大福理赔流程总结.pdf', name: '周大福理赔流程总结', category: '理赔', size: '1.3MB' },
+  { key: 'assets/理赔_太平人寿理赔流程总结(1).pdf', name: '太平人寿理赔流程', category: '理赔', size: '1.2MB' },
+  { key: 'assets/理赔_太平洋人寿理赔流程总结(1).pdf', name: '太平洋人寿理赔流程', category: '理赔', size: '1.1MB' },
+  { key: 'assets/理赔_中银理赔流程总结.pdf', name: '中银理赔流程总结', category: '理赔', size: '1.0MB' },
+  { key: 'assets/理赔_BupaGlobal理赔流程总结.pdf', name: 'BupaGlobal理赔流程', category: '理赔', size: '1.6MB' },
+  { key: 'assets/理赔_富卫理赔流程总结.pdf', name: '富卫理赔流程总结', category: '理赔', size: '1.3MB' },
+  { key: 'assets/理赔_宏利理赔流程总结.pdf', name: '宏利理赔流程总结', category: '理赔', size: '1.4MB' },
+  { key: 'assets/理赔_忠意理赔流程总结.pdf', name: '忠意理赔流程总结', category: '理赔', size: '1.2MB' },
+  { key: 'assets/理赔_立桥理赔流程总结.pdf', name: '立桥理赔流程总结', category: '理赔', size: '1.1MB' },
+  { key: 'assets/理赔_苏黎世理赔流程总结(1).pdf', name: '苏黎世理赔流程总结', category: '理赔', size: '1.0MB' },
+  { key: 'assets/bupa_中文理赔表.pdf', name: '保柏中文理赔表', category: '理赔', size: '0.8MB' },
+  { key: 'assets/bupa_英文理赔表.pdf', name: '保柏英文理赔表', category: '理赔', size: '0.9MB' },
+  { key: 'assets/理赔_意外索偿表格.pdf', name: '意外索偿表格', category: '理赔', size: '0.6MB' },
+  // 合规
+  { key: 'assets/资遇代理人合规要点与监管新动态_0515.pdf', name: '合规要点与监管新动态', category: '合规', size: '2.1MB' },
+  { key: 'assets/香港经纪公司与保险经纪人权责义务及法律责任.pdf', name: '经纪公司法定义务', category: '合规', size: '3.5MB' },
+];
+
+let currentFilter = '全部';
+let currentSearch = '';
+let currentPdfKey = null;
+let currentFilename = '';
+let pdfDoc = null;
+
+function formatSize(s) { return s; }
+
+function getCategoryLabel(cat) {
+  const map = { '保险公司':'🏢', 'APP操作':'📱', '入职':'📖', '强积金':'🏦', '理赔':'🌀', '合规':'⚖️' };
+  return (map[cat] || '📄') + ' ' + cat;
+}
+
+function renderList() {
+  const grid = document.getElementById('pdfGrid');
+  const empty = document.getElementById('emptyState');
+  grid.innerHTML = '';
+
+  const filtered = pdfs.filter(p => {
+    const matchFilter = currentFilter === '全部' || p.category === currentFilter;
+    const matchSearch = !currentSearch || p.name.includes(currentSearch) || p.category.includes(currentSearch);
+    return matchFilter && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+  grid.style.display = 'grid';
+  empty.style.display = 'none';
+
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'pdf-card';
+    card.innerHTML = `
+      <div class="card-name">${p.name}</div>
+      <div class="card-company">${getCategoryLabel(p.category)}</div>
+      <div class="card-size">📦 ${p.size}</div>
+    `;
+    card.onclick = () => openPreview(p.key, p.name, p.size);
+    grid.appendChild(card);
+  });
+}
+
+function setFilter(cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.includes(cat) || (cat === '全部' && b.textContent === '全部'));
+  });
+  renderList();
+}
+
+function filterList() {
+  currentSearch = document.getElementById('searchInput').value.trim();
+  renderList();
+}
+
+async function openPreview(key, name, size) {
+  const panel = document.getElementById('previewPanel');
+  const canvas = document.getElementById('pdfCanvas');
+  const ctx = canvas.getContext('2d');
+
+  currentPdfKey = key;
+  currentFilename = key.split('/').pop();
+
+  document.getElementById('previewTitle').textContent = name;
+  document.getElementById('fileInfo').textContent = '📦 ' + size;
+  document.getElementById('rawLink').href = RAW_BASE + key;
+  panel.classList.add('active');
+  panel.scrollIntoView({ behavior: 'smooth' });
+
+  // 加载PDF
+  if (pdfDoc) { pdfDoc.destroy(); pdfDoc = null; }
+  canvas.height = 0;
+
+  try {
+    const url = RAW_BASE + key;
+    const loadingTask = pdfjsLib.getDocument(url);
+    pdfDoc = await loadingTask.promise;
+    const page = await pdfDoc.getPage(1);
+    const viewport = page.getViewport({ scale: 1.5 });
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    await page.render({ canvasContext: ctx, viewport }).promise;
+  } catch (e) {
+    canvas.height = 200;
+    ctx.fillStyle = '#1e3a5f';
+    ctx.fillRect(0, 0, canvas.width, 200);
+    ctx.fillStyle = '#c9a84c';
+    ctx.font = '16px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('PDF加载失败，请点击上方"在新窗口打开"', canvas.width/2, 100);
+    console.error('PDF load error:', e);
+  }
+}
+
+function closePreview() {
+  document.getElementById('previewPanel').classList.remove('active');
+  if (pdfDoc) { pdfDoc.destroy(); pdfDoc = null; }
+  currentPdfKey = null;
+}
+
+async function downloadCurrentPdf() {
+  if (!currentPdfKey) return;
+  const url = RAW_BASE + currentPdfKey;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error();
+    const blob = await res.blob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = currentFilename;
+    a.click();
+  } catch (e) {
+    window.open(url, '_blank');
+  }
+}
+
+renderList();
+</script>
+</body>
+</html>
