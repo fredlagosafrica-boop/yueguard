@@ -20,14 +20,19 @@
     .header .title { font-size: 17px; font-weight: 600; flex: 1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 10px; }
     .header .dl-btn { background: #4a9eff; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 14px; cursor: pointer; }
 
-    #preview-frame {
-      position: fixed; top: 56px; left: 0; right: 0; bottom: 0;
-      width: 100%; border: none; background: #fff;
-    }
-
-    .download-card {
-      display: none; /* 默认隐藏，电脑浏览器直接用 iframe 预览 */
-    </style>
+    .content { padding-top: 56px; }
+    .preview-img { width: 100%; display: block; background: #fff; }
+    .page-label { text-align: center; padding: 12px; color: #888; font-size: 14px; }
+    .download-section { padding: 20px; background: #2a2a4e; margin-top: 0; }
+    .download-btn { display: block; width: 100%; background: #4a9eff; color: #fff; text-decoration: none; padding: 16px; border-radius: 12px; font-size: 17px; font-weight: 600; text-align: center; box-sizing: border-box; }
+    .download-btn:hover { background: #3a8eef; }
+    .tip { margin-top: 12px; font-size: 13px; color: #888; line-height: 1.8; }
+    .loading { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; color: #aaa; z-index: 999; }
+    .loading .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-top-color: #4a9eff; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-msg { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; color: #ff6b6b; padding: 20px; z-index: 999; white-space: pre-wrap; max-width: 90%; }
+    #hidden-canvas { display: none; }
+  </style>
 </head>
 <body>
 
@@ -37,8 +42,31 @@
     <button class="dl-btn" id="dl-btn" onclick="downloadFile()">下载</button>
   </div>
 
-  <!-- 电脑浏览器：用 iframe 直接预览 PDF -->
-  <iframe id="preview-frame" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+  <div class="content">
+    <!-- 预览图片区域 -->
+    <div id="preview-area">
+      <img id="preview-img" class="preview-img" style="display:none" />
+      <div class="page-label" id="page-label"></div>
+    </div>
+
+    <!-- 下载区域 -->
+    <div class="download-section">
+      <a class="download-btn" id="dl-link" href="#" download>🔽 下载 PDF 文件</a>
+      <div class="tip">💡 若微信无法下载：点右上角 ┆ → 复制链接 → 用 Safari/Chrome 打开下载</div>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div>正在生成预览...</div>
+  </div>
+
+  <div class="error-msg" id="error" style="display:none"></div>
+
+  <!-- PDF.js：内嵌不依赖CDN -->
+  <script>var pdfjsLib=null, pdfDoc=null;</script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.bootcdn.net/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
 
   <script>
     var urlParams = new URLSearchParams(window.location.search);
@@ -47,6 +75,8 @@
 
     document.getElementById('page-title').textContent = PAGE_TITLE + ' - PDF 预览';
     document.getElementById('doc-title').textContent = PAGE_TITLE;
+    document.getElementById('dl-link').download = PAGE_TITLE + '.pdf';
+    document.getElementById('dl-link').href = PDF_URL;
 
     function goBack() {
       if (document.referrer && document.referrer.indexOf(window.location.hostname) !== -1) {
@@ -60,31 +90,45 @@
       window.open(PDF_URL, '_blank');
     }
 
+    function showError(msg) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error').textContent = msg;
+    }
+
     if (!PDF_URL) {
-      document.getElementById('preview-frame').style.display = 'none';
-      document.body.innerHTML += '<div style="padding:56px 20px 20px;color:#ff6b6b;text-align:center">错误：未指定 PDF 地址</div>';
+      showError('错误：未指定 PDF 地址\n\n请使用：\npdf-viewer.html?url=PDF链接&title=标题');
     } else {
-      // 优先用 iframe 预览（电脑浏览器）
-      document.getElementById('preview-frame').src = PDF_URL;
+      // 生成第一页预览图
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      var scale = 2; // 2倍清晰度
 
-      // 检测是否为手机微信环境
-      var ua = navigator.userAgent.toLowerCase();
-      var isMobile = /android|iphone|ipad|ipod|micromessenger|mobile/i.test(ua);
-
-      if (isMobile) {
-        // 手机/微信：iframe 可能无法预览，直接显示下载提示
-        document.getElementById('preview-frame').style.display = 'none';
-        document.body.innerHTML +=
-          '<div style="padding:80px 20px 20px;text-align:center">' +
-          '<div style="font-size:80px;margin-bottom:20px">📄</div>' +
-          '<div style="font-size:20px;font-weight:600;margin-bottom:12px">' + PAGE_TITLE + '</div>' +
-          '<div style="font-size:14px;color:#888;margin-bottom:30px">点击下方按钮下载或用浏览器打开</div>' +
-          '<a href="' + PDF_URL + '" download="' + PAGE_TITLE + '.pdf" style="display:block;background:#4a9eff;color:#fff;text-decoration:none;padding:16px;border-radius:12px;font-size:17px;font-weight:600;margin:0 20px">🔽 下载 PDF</a>' +
-          '<div style="margin-top:20px;font-size:13px;color:#666;line-height:1.8;padding:0 30px">' +
-          '💡 若无法下载：点右上角 ┆ → 复制链接 → 用 Safari/Chrome 打开' +
-          '</div>' +
+      pdfjsLib.getDocument(PDF_URL).promise.then(function(doc) {
+        pdfDoc = doc;
+        return doc.getPage(1);
+      }).then(function(page) {
+        var viewport = page.getViewport({ scale: scale });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        return page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      }).then(function() {
+        // 转成图片
+        var img = document.getElementById('preview-img');
+        img.src = canvas.toDataURL('image/jpeg', 0.85);
+        img.style.display = 'block';
+        document.getElementById('page-label').textContent = '第 1 / ' + (pdfDoc ? pdfDoc.numPages : '?') + ' 页预览';
+        document.getElementById('loading').style.display = 'none';
+      }).catch(function(err) {
+        // 微信无法加载 PDF.js，降级显示下载卡片
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('preview-area').innerHTML =
+          '<div style="padding:60px 20px;text-align:center;color:#888">' +
+          '<div style="font-size:60px;margin-bottom:16px">📄</div>' +
+          '<div style="font-size:16px;margin-bottom:8px">' + PAGE_TITLE + '</div>' +
+          '<div style="font-size:14px;color:#666">点击下方按钮下载文件</div>' +
           '</div>';
-      }
+      });
     }
   </script>
 
