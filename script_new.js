@@ -21,9 +21,9 @@ function onChunkLoaded() {
 // ─── 动态加载 content chunks（根目录，无chunks/前缀）────
 // 串行加载确保 contentData.categories 在 renderCategories 前全部就绪
 var scripts = [
-  'ifa_content.js?v=2026061001',
+  'ifa_content.js?v=2026052401',
   'wiki_content.js?v=2026052301',
-  'sales_content.js?v=2026052320',
+  'sales_content.js?v=2026052401',
   'referral_content.js?v=20260610',
   'materials_content.js?v=2026060102',
   'chatbot_content.js?v=20260516',
