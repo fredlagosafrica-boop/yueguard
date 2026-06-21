@@ -28,11 +28,15 @@ var CDN_BASE = 'https://cdn.jsdelivr.net/gh/fredlagosafrica-boop/yueguard@main/'
 var scripts = [
   CDN_BASE + 'ifa_content.js?v=2026052401',
   CDN_BASE + 'wiki_content.js?v=2026052301',
+  // [FIX 2026-06-21] hk_medical_content.js (260KB) 恢复首屏加载
+  //   让 2.6 香港医疗工具包直接作为「📚 百科全书」下的子分类
+  //   之前是懒加载占位卡，导致 2.6 看起来像顶级分类
+  //   现在首屏加载（多 60-80KB gzip），用户首屏就能看到完整结构
+  CDN_BASE + 'hk_medical_content.js?v=20260621',
   CDN_BASE + 'sales_content.js?v=2026052401',
   CDN_BASE + 'referral_content.js?v=20260610',
   CDN_BASE + 'materials_content.js?v=2026060102',
   // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
-  // hk_medical_content.js 改为懒加载：见 loadMedicalPackage()
   CDN_BASE + 'faq_content.js?v=2026052901',
   CDN_BASE + 'biyuan_content.js?v=2026052301',
 ];
@@ -322,25 +326,9 @@ function renderCategories() {
     cbCard.onclick = loadChatbotCategory;
     grid.appendChild(cbCard);
   }
-  // [PERF 2026-06-21] 香港医疗工具包 (2.6) 懒加载占位卡：未加载时显示，点击触发加载
-  if (!contentData.categories.find(function(c) { return c.id === 'wiki'; }) ||
-      (typeof hkMedicalData === 'undefined' || !contentData.categories.find(function(c) { return c.id === 'wiki'; }).children.find(function(c2) { return c2.id === 'w26'; }))) {
-    var medCard = document.createElement('div');
-    medCard.className = 'category-item medical-lazy';
-    medCard.id = 'medicalLazyCard';
-    medCard.innerHTML = '<div class="cat-icon">🏥</div>' +
-      '<div class="cat-name">香港医疗工具包</div>' +
-      '<div class="cat-sub">点击加载 · 2.6 大类 · 14 份完整文档</div>';
-    medCard.onclick = function() {
-      var card = document.getElementById('medicalLazyCard');
-      if (card) { card.innerHTML = '<div class="cat-icon">⏳</div><div class="cat-name">香港医疗工具包</div><div class="cat-sub">加载中...</div>'; }
-      loadMedicalPackage(function(ok) {
-        if (ok) renderCategories();
-        else { if (card) { card.innerHTML = '<div class="cat-icon">❌</div><div class="cat-name">香港医疗工具包</div><div class="cat-sub">加载失败，点击重试</div>'; } }
-      });
-    };
-    grid.appendChild(medCard);
-  }
+  // [FIX 2026-06-21] 香港医疗工具包 (2.6) 现在是首屏加载，不再需要占位卡
+  //   2.6 会自动作为「📚 百科全书」下的子分类出现
+  //   （见 hk_medical_content.js 末尾的 IIFE 注入逻辑）
 }
 
 // [PERF 2026-06-21] 懒加载智能客服：用户点击时才下载 chatbot_content.js
