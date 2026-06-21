@@ -18,9 +18,10 @@ function onChunkLoaded() {
   }
 }
 
-// ─── 动态加载 content chunks（jsDelivr CDN + 智能客服懒加载）────
+// ─── 动态加载 content chunks（jsDelivr CDN + 多文件懒加载）────
 // [PERF 2026-06-21] 切换 jsDelivr CDN：亚洲节点自动 gzip，总流量从 982KB→~300KB
 // [PERF 2026-06-21] chatbot_content.js (128KB) 改为懒加载：用户点击"智能客服"卡片时才下载
+// [PERF 2026-06-21] hk_medical_content.js (260KB) 改为懒加载：用户进入 2.6 分类时才下载
 //   解决"登录后空白 15s"问题——之前 chatbot_content.js 在 GitHub Pages 上访问极不稳定
 //   实测首次 1.88s 成功，二次请求 15s 超时
 var CDN_BASE = 'https://cdn.jsdelivr.net/gh/fredlagosafrica-boop/yueguard@main/';
@@ -31,6 +32,7 @@ var scripts = [
   CDN_BASE + 'referral_content.js?v=20260610',
   CDN_BASE + 'materials_content.js?v=2026060102',
   // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
+  // hk_medical_content.js 改为懒加载：见 loadMedicalPackage()
   CDN_BASE + 'faq_content.js?v=2026052901',
   CDN_BASE + 'biyuan_content.js?v=2026052301',
 ];
@@ -80,6 +82,37 @@ loadTimeout = setTimeout(function() {
   if (p) { p.textContent = '⚠️ 加载超时（' + loadedCount + '/' + totalScripts + '），已显示已加载内容'; setTimeout(function() { if (p) p.style.display = 'none'; }, 2000); }
   if (contentData.categories.length > 0) renderCategories();
 }, 15000);
+
+// ─── 懒加载 香港医疗工具包 (2.6) ───
+// [PERF 2026-06-21] 用户进入"2.6 香港医疗工具包"时再加载 hk_medical_content.js (260KB)
+// 避免首屏加载全部 14 份内容
+var medicalPackageLoaded = false;
+var medicalPackageLoading = false;
+function loadMedicalPackage(callback) {
+  if (medicalPackageLoaded) { if (callback) callback(true); return; }
+  if (medicalPackageLoading) {
+    // 等待加载完成
+    var checkInterval = setInterval(function() {
+      if (medicalPackageLoaded) { clearInterval(checkInterval); if (callback) callback(true); }
+    }, 200);
+    return;
+  }
+  medicalPackageLoading = true;
+  var s = document.createElement('script');
+  s.src = CDN_BASE + 'hk_medical_content.js?v=20260621';
+  s.onload = function() {
+    medicalPackageLoaded = true;
+    medicalPackageLoading = false;
+    console.log('已加载 2.6 香港医疗工具包');
+    if (callback) callback(true);
+  };
+  s.onerror = function() {
+    medicalPackageLoading = false;
+    console.error('加载 2.6 香港医疗工具包失败');
+    if (callback) callback(false);
+  };
+  document.head.appendChild(s);
+}
 
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
@@ -288,6 +321,25 @@ function renderCategories() {
       '<div class="cat-sub">点击加载 · 18个分组198条话术</div>';
     cbCard.onclick = loadChatbotCategory;
     grid.appendChild(cbCard);
+  }
+  // [PERF 2026-06-21] 香港医疗工具包 (2.6) 懒加载占位卡：未加载时显示，点击触发加载
+  if (!contentData.categories.find(function(c) { return c.id === 'wiki'; }) ||
+      (typeof hkMedicalData === 'undefined' || !contentData.categories.find(function(c) { return c.id === 'wiki'; }).children.find(function(c2) { return c2.id === 'w26'; }))) {
+    var medCard = document.createElement('div');
+    medCard.className = 'category-item medical-lazy';
+    medCard.id = 'medicalLazyCard';
+    medCard.innerHTML = '<div class="cat-icon">🏥</div>' +
+      '<div class="cat-name">香港医疗工具包</div>' +
+      '<div class="cat-sub">点击加载 · 2.6 大类 · 14 份完整文档</div>';
+    medCard.onclick = function() {
+      var card = document.getElementById('medicalLazyCard');
+      if (card) { card.innerHTML = '<div class="cat-icon">⏳</div><div class="cat-name">香港医疗工具包</div><div class="cat-sub">加载中...</div>'; }
+      loadMedicalPackage(function(ok) {
+        if (ok) renderCategories();
+        else { if (card) { card.innerHTML = '<div class="cat-icon">❌</div><div class="cat-name">香港医疗工具包</div><div class="cat-sub">加载失败，点击重试</div>'; } }
+      });
+    };
+    grid.appendChild(medCard);
   }
 }
 
