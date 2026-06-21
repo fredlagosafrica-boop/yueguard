@@ -52,25 +52,25 @@ const hkMedicalData = {
 <table border="1" cellpadding="6">
 <tr><th>医院</th><th>区域</th><th>官网</th><th>中央预约</th><th>地址</th></tr>
 <tr><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
-<tr><td>⭐ <strong>养和医院</strong> (Hong Kong Sanatorium & Hospital)</td><td>跑马地</td><td>https://www.hksh.com</td><td>2572 0211</td><td>香港跑马地山村道 2 号</td></tr>
-<tr><td>⭐ <strong>港怡医院</strong> (Gleneagles Hospital HK)</td><td>黄竹坑</td><td>https://gleneagles.hk</td><td>3153 9000</td><td>香港黄竹坑道 98 号</td></tr>
-<tr><td>⭐ <strong>明德国际医院</strong> (Matilda International Hospital)</td><td>山顶</td><td>https://www.matilda.org</td><td>2849 0111</td><td>香港山顶加列山道 41 号</td></tr>
-<tr><td>⭐ <strong>香港港安医院-司徒拔道</strong> (HK Adventist-SR)</td><td>司徒拔道</td><td>https://www.hkah.org.hk</td><td>3651 8888</td><td>香港司徒拔道 40 号</td></tr>
+<tr><td>⭐ <strong>养和医院</strong> (Hong Kong Sanatorium & Hospital)</td><td>跑马地</td><td><a href="https://www.hksh.com">官网</a></td><td>2572 0211</td><td>香港跑马地山村道 2 号</td></tr>
+<tr><td>⭐ <strong>港怡医院</strong> (Gleneagles Hospital HK)</td><td>黄竹坑</td><td><a href="https://gleneagles.hk">官网</a></td><td>3153 9000</td><td>香港黄竹坑道 98 号</td></tr>
+<tr><td>⭐ <strong>明德国际医院</strong> (Matilda International Hospital)</td><td>山顶</td><td><a href="https://www.matilda.org">官网</a></td><td>2849 0111</td><td>香港山顶加列山道 41 号</td></tr>
+<tr><td>⭐ <strong>香港港安医院-司徒拔道</strong> (HK Adventist-SR)</td><td>司徒拔道</td><td><a href="https://www.hkah.org.hk">官网</a></td><td>3651 8888</td><td>香港司徒拔道 40 号</td></tr>
 </table>
 <h3>综合私立（主流 10 间）</h3>
 <table border="1" cellpadding="6">
 <tr><th>医院</th><th>区域</th><th>官网</th><th>中央预约</th><th>地址</th></tr>
 <tr><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
-<tr><td><strong>圣保禄医院</strong> (St. Paul's Hospital)</td><td>铜锣湾</td><td>https://www.stpaul.org.hk</td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
-<tr><td><strong>播道医院</strong> (Evangel Hospital)</td><td>九龙城</td><td>https://www.evangel.org.hk</td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
-<tr><td><strong>浸信会医院</strong> (Baptist Hospital)</td><td>九龙塘</td><td>https://www.baptistkh.org.hk</td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
-<tr><td><strong>圣德肋撒医院</strong> (St. Teresa's Hospital)</td><td>太子</td><td>https://www.stteresa.org</td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
-<tr><td><strong>嘉诺撒医院</strong> (Canossa Hospital)</td><td>半山</td><td>https://www.canossahospital.org.hk</td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
-<tr><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td>https://www.twah.org.hk</td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
-<tr><td><strong>宝血医院</strong> (Precious Blood Hospital)</td><td>油麻地</td><td>https://www.pbh.hk</td><td>2386 4281</td><td>九龙油麻地石壁道 1 号</td></tr>
-<tr><td><strong>港安医疗中心-铜锣湾</strong></td><td>铜锣湾</td><td>https://www.hkah.org.hk</td><td>3651 8888</td><td>香港铜锣湾百德新街 2-20 号恒隆中心 16 楼</td></tr>
-<tr><td><strong>希愈医疗</strong> (Heal Medical)</td><td>中环</td><td>https://www.healmedical.com</td><td>2849 0123</td><td>香港中环皇后大道中 9 号 25 楼</td></tr>
-<tr><td><strong>亚洲专科医生</strong> (Asia Medical Specialists)</td><td>中环/尖沙咀</td><td>https://www.asiamedicalspecialists.hk</td><td>2521 6830</td><td>中环毕打街 1-3 号中建大厦 16 楼</td></tr>
+<tr><td><strong>圣保禄医院</strong> (St. Paul's Hospital)</td><td>铜锣湾</td><td><a href="https://www.stpaul.org.hk">官网</a></td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
+<tr><td><strong>播道医院</strong> (Evangel Hospital)</td><td>九龙城</td><td><a href="https://www.evangel.org.hk">官网</a></td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
+<tr><td><strong>浸信会医院</strong> (Baptist Hospital)</td><td>九龙塘</td><td><a href="https://www.baptistkh.org.hk">官网</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
+<tr><td><strong>圣德肋撒医院</strong> (St. Teresa's Hospital)</td><td>太子</td><td><a href="https://www.stteresa.org">官网</a></td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
+<tr><td><strong>嘉诺撒医院</strong> (Canossa Hospital)</td><td>半山</td><td><a href="https://www.canossahospital.org.hk">官网</a></td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
+<tr><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td><a href="https://www.twah.org.hk">官网</a></td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
+<tr><td><strong>宝血医院</strong> (Precious Blood Hospital)</td><td>油麻地</td><td><a href="https://www.pbh.hk">官网</a></td><td>2386 4281</td><td>九龙油麻地石壁道 1 号</td></tr>
+<tr><td><strong>港安医疗中心-铜锣湾</strong></td><td>铜锣湾</td><td><a href="https://www.hkah.org.hk">官网</a></td><td>3651 8888</td><td>香港铜锣湾百德新街 2-20 号恒隆中心 16 楼</td></tr>
+<tr><td><strong>希愈医疗</strong> (Heal Medical)</td><td>中环</td><td><a href="https://www.healmedical.com">官网</a></td><td>2849 0123</td><td>香港中环皇后大道中 9 号 25 楼</td></tr>
+<tr><td><strong>亚洲专科医生</strong> (Asia Medical Specialists)</td><td>中环/尖沙咀</td><td><a href="https://www.asiamedicalspecialists.hk">官网</a></td><td>2521 6830</td><td>中环毕打街 1-3 号中建大厦 16 楼</td></tr>
 </table>
 <p>> ⚠️ <strong>宝血医院</strong>：近年服务调整，<strong>以非紧急服务为主</strong>，使用前请电话确认是否提供所需服务</p>
 <hr>
@@ -94,7 +94,7 @@ const hkMedicalData = {
 <tr><th>工具</th><th>功能</th><th>下载/网址</th></tr>
 <tr><td>------</td><td>------</td><td>----------</td></tr>
 <tr><td><strong>HA Go</strong></td><td>公立医院预约、报告、缴费</td><td>App Store / Google Play</td></tr>
-<tr><td><strong>eHealth 医健通</strong></td><td>电子健康记录互通</td><td>https://www.ehealth.gov.hk</td></tr>
+<tr><td><strong>eHealth 医健通</strong></td><td>电子健康记录互通</td><td><a href="https://www.ehealth.gov.hk">官网</a></td></tr>
 <tr><td><strong>个别医院 App</strong></td><td>各私立医院有自己的 App</td><td>养和、港怡等</td></tr>
 </table>
 <hr>
@@ -123,15 +123,7 @@ const hkMedicalData = {
 > ② 批准后医院直接与保险公司结算；  
 > ③ 客户<strong>无需垫付</strong>大额医疗费（自付额/垫底费除外）。
 <hr>
-<h2>⚠️ 第六部分：数据维护说明</h2>
-<li><strong>数据截止</strong>：2026-06-21</li>
-<li><strong>数据来源</strong>：基于各医院公开资料整理</li>
-<li><strong>变动风险</strong>：电话号码、地址、预约流程可能调整</li>
-<li><strong>建议核对</strong>：客户就医前<strong>务必</strong>打电话到该院或查官网最新公告</li>
-<li><strong>维护建议</strong>：每季度 review 一次；可由情报采集 Agent 监控各院官网变化</li>
 <hr>
-<h2>📌 文件位置与后续动作</h2>
-<p>> <strong>本文件已存到 workspace</strong>：<code>/home/lenovo12348/.openclaw/workspace/香港医院大全.md</code>  <br>>  <br>> <strong>建议后续动作（可选）</strong>：<br>> 1. 同步到<strong>飞书云文档</strong>，方便手机随时查（需要我操作请说）<br>> 2. 同步到<strong>桌面文件夹</strong> <code>/mnt/c/Users/Lenovo/Desktop/恒玥内容库/情报简报/2026-06-21/</code><br>> 3. 设定<strong>季度自动更新任务</strong>（让情报采集 Agent 每 3 个月核对一次）<br>> 4. 扩展到<strong>全部 38 间公立医院 + 18 间私立医院</strong>（如需要更全版本）</p>
 <hr>
 <p>> <strong>重要免责声明</strong>：以上信息仅供参考，<strong>不构成医疗建议</strong>。具体就医决策请咨询医生或医院官方。</p>`
   },
