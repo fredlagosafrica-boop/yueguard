@@ -19,7 +19,9 @@ function onChunkLoaded() {
 }
 
 // ─── 动态加载 content chunks（根目录，无chunks/前缀）────
-// 串行加载确保 contentData.categories 在 renderCategories 前全部就绪
+// [PERF] 并行加载：8 个 JS 同时下载，浏览器并行连接限制 ~6，实际 ~3 批完成
+// 之前是串行：8 × 往返时间 = 8-24s 才有内容
+// 现在是并行：max(往返) = 1-3s
 var scripts = [
   'ifa_content.js?v=2026052401',
   'wiki_content.js?v=2026052301',
@@ -31,48 +33,51 @@ var scripts = [
   'biyuan_content.js?v=2026052301',
 ];
 
-var loadIndex = 0;
+var loadedCount = 0;
 var loadTimeout = null;
+var totalScripts = scripts.length;
 
-function updateProgress(name, loaded, total) {
+function updateProgress(loaded, total) {
   var p = document.getElementById('loadProgress');
-  if (p) p.textContent = '⏳ 加载中 ' + loaded + '/' + total + '：' + name;
+  if (p) p.textContent = '⏳ 加载中 ' + loaded + '/' + total;
 }
 
-function loadNext() {
-  if (loadIndex >= scripts.length) {
+function tryRender() {
+  if (loadedCount >= totalScripts) {
     clearTimeout(loadTimeout);
     var p = document.getElementById('loadProgress');
     if (p) { p.textContent = '✅ 加载完成，正在渲染...'; setTimeout(function() { if (p) p.style.display = 'none'; }, 500); }
     renderCategories();
-    return;
   }
-  var url = scripts[loadIndex];
-  var name = url.split('.js')[0];
-  updateProgress(name, loadIndex + 1, scripts.length);
+}
+
+// 并行加载所有 script
+updateProgress(0, totalScripts);
+scripts.forEach(function(url) {
   var script = document.createElement('script');
   script.src = url;
+  script.async = false; // 保持执行顺序（Firefox 上 async=true 可能乱序）
   script.onload = function() {
-    loadIndex++;
-    loadNext();
+    loadedCount++;
+    updateProgress(loadedCount, totalScripts);
+    tryRender();
   };
   script.onerror = function() {
     console.error('加载失败（跳过）: ' + url);
-    loadIndex++;
-    loadNext();
+    loadedCount++;
+    updateProgress(loadedCount, totalScripts);
+    tryRender();
   };
   document.head.appendChild(script);
-}
+});
 
-// 启动加载
-loadNext();
-
-// 全局超时：25秒后强制渲染（即使未全部加载完）
+// 全局超时：15秒后强制渲染（即使未全部加载完）
+// [PERF] 从 25s 缩到 15s，因为并行后正常情况 1-3s 就完了
 loadTimeout = setTimeout(function() {
   var p = document.getElementById('loadProgress');
-  if (p) { p.textContent = '⚠️ 加载超时，已显示已加载内容'; setTimeout(function() { if (p) p.style.display = 'none'; }, 2000); }
+  if (p) { p.textContent = '⚠️ 加载超时（' + loadedCount + '/' + totalScripts + '），已显示已加载内容'; setTimeout(function() { if (p) p.style.display = 'none'; }, 2000); }
   if (contentData.categories.length > 0) renderCategories();
-}, 25000);
+}, 15000);
 
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
