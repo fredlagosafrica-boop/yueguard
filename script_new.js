@@ -18,19 +18,21 @@ function onChunkLoaded() {
   }
 }
 
-// ─── 动态加载 content chunks（根目录，无chunks/前缀）────
-// [PERF] 并行加载：8 个 JS 同时下载，浏览器并行连接限制 ~6，实际 ~3 批完成
-// 之前是串行：8 × 往返时间 = 8-24s 才有内容
-// 现在是并行：max(往返) = 1-3s
+// ─── 动态加载 content chunks（jsDelivr CDN + 智能客服懒加载）────
+// [PERF 2026-06-21] 切换 jsDelivr CDN：亚洲节点自动 gzip，总流量从 982KB→~300KB
+// [PERF 2026-06-21] chatbot_content.js (128KB) 改为懒加载：用户点击"智能客服"卡片时才下载
+//   解决"登录后空白 15s"问题——之前 chatbot_content.js 在 GitHub Pages 上访问极不稳定
+//   实测首次 1.88s 成功，二次请求 15s 超时
+var CDN_BASE = 'https://cdn.jsdelivr.net/gh/fredlagosafrica-boop/yueguard@main/';
 var scripts = [
-  'ifa_content.js?v=2026052401',
-  'wiki_content.js?v=2026052301',
-  'sales_content.js?v=2026052401',
-  'referral_content.js?v=20260610',
-  'materials_content.js?v=2026060102',
-  'chatbot_content.js?v=20260516',
-  'faq_content.js?v=2026052901',
-  'biyuan_content.js?v=2026052301',
+  CDN_BASE + 'ifa_content.js?v=2026052401',
+  CDN_BASE + 'wiki_content.js?v=2026052301',
+  CDN_BASE + 'sales_content.js?v=2026052401',
+  CDN_BASE + 'referral_content.js?v=20260610',
+  CDN_BASE + 'materials_content.js?v=2026060102',
+  // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
+  CDN_BASE + 'faq_content.js?v=2026052901',
+  CDN_BASE + 'biyuan_content.js?v=2026052301',
 ];
 
 var loadedCount = 0;
@@ -276,6 +278,52 @@ function renderCategories() {
     card.onclick = function() { showCategory(cat); };
     grid.appendChild(card);
   });
+  // [PERF 2026-06-21] 智能客服懒加载占位卡：未加载时显示，点击触发加载
+  if (!contentData.categories.find(function(c) { return c.id === 'chatbot'; })) {
+    var cbCard = document.createElement('div');
+    cbCard.className = 'category-item chatbot-lazy';
+    cbCard.id = 'chatbotLazyCard';
+    cbCard.innerHTML = '<div class="cat-icon">🤖</div>' +
+      '<div class="cat-name">智能客服问答库</div>' +
+      '<div class="cat-sub">点击加载 · 18个分组198条话术</div>';
+    cbCard.onclick = loadChatbotCategory;
+    grid.appendChild(cbCard);
+  }
+}
+
+// [PERF 2026-06-21] 懒加载智能客服：用户点击时才下载 chatbot_content.js
+// 解决 GitHub Pages 跨境访问 chatbot_content.js 慢/超时问题
+function loadChatbotCategory() {
+  var card = document.getElementById('chatbotLazyCard');
+  if (!card) return;
+  // 防止重复点击
+  if (card.dataset.loading === '1') return;
+  card.dataset.loading = '1';
+  card.innerHTML = '<div class="cat-icon">⏳</div>' +
+    '<div class="cat-name">智能客服问答库</div>' +
+    '<div class="cat-sub">正在加载（首次约 1-2s）...</div>';
+
+  var s = document.createElement('script');
+  s.src = CDN_BASE + 'chatbot_content.js?v=20260516';
+  s.onload = function() {
+    // 加载完成后，移除占位卡 + 重新渲染（让真实 chatbot 分类卡片出现）
+    var exists = contentData.categories.find(function(c) { return c.id === 'chatbot'; });
+    if (exists) {
+      renderCategories();
+    } else {
+      card.innerHTML = '<div class="cat-icon">⚠️</div>' +
+        '<div class="cat-name">智能客服问答库</div>' +
+        '<div class="cat-sub">加载完成但未找到内容，点击重试</div>';
+      card.dataset.loading = '';
+    }
+  };
+  s.onerror = function() {
+    card.innerHTML = '<div class="cat-icon">❌</div>' +
+      '<div class="cat-name">智能客服问答库</div>' +
+      '<div class="cat-sub">加载失败，点击重试</div>';
+    card.dataset.loading = '';
+  };
+  document.head.appendChild(s);
 }
 
 // 恢复任意历史视图（用于面包屑点击）
