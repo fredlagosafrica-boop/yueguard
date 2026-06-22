@@ -32,7 +32,7 @@ var scripts = [
   //   让 2.6 香港医疗工具包直接作为「📚 百科全书」下的子分类
   //   之前是懒加载占位卡，导致 2.6 看起来像顶级分类
   //   现在首屏加载（多 60-80KB gzip），用户首屏就能看到完整结构
-  CDN_BASE + 'hk_medical_content.js?v=20260621',
+  CDN_BASE + 'hk_medical_content.js?v=20260622a',
   CDN_BASE + 'sales_content.js?v=2026052401',
   CDN_BASE + 'referral_content.js?v=20260610',
   CDN_BASE + 'materials_content.js?v=2026060102',
@@ -103,7 +103,7 @@ function loadMedicalPackage(callback) {
   }
   medicalPackageLoading = true;
   var s = document.createElement('script');
-  s.src = CDN_BASE + 'hk_medical_content.js?v=20260621';
+  s.src = CDN_BASE + 'hk_medical_content.js?v=20260622a';
   s.onload = function() {
     medicalPackageLoaded = true;
     medicalPackageLoading = false;
