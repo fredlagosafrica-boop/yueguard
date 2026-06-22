@@ -10,7 +10,7 @@ const hkMedicalData = {
 <p>> <strong>最后整理</strong>：2026-06-21  <br>> <strong>数据说明</strong>：基于公开资料整理，<strong>电话/地址/预约方式以医院官网最新公告为准</strong>  <br>> <strong>覆盖范围</strong>：公立医院 16 间（香港主要公立）+ 私立医院 14 间（全部主流私立）  <br>> <strong>使用建议</strong>：客户就医前<strong>务必</strong>电话核对或查官网最新信息</p>
 <hr>
 <h2>🏛️ 第一部分：公立医院（医院管理局 Hospital Authority）</h2>
-<p>> <strong>统一查询热线</strong>：📞 <strong>2300 6555</strong>（医院管理局，8am-10pm）  <br>> <strong>24小时紧急救助</strong>：📞 <strong>999</strong>（救护车）  <br>> <strong>HA 官网</strong>：https://www.ha.org.hk  <br>> <strong>预约专科门诊</strong>：需经普通科门诊/私家医生转介；或使用「HA Go」App 自行预约</p>
+<p>> <strong>统一查询热线</strong>：📞 <strong>2300 6555</strong>（医院管理局，8am-10pm）  <br>> <strong>24小时紧急救助</strong>：📞 <strong>999</strong>（救护车）  <br>> <strong>HA 官网</strong>：<a href="https://www.ha.org.hk" target="_blank" rel="noopener">https://www.ha.org.hk</a>  <br>> <strong>预约专科门诊</strong>：需经普通科门诊/私家医生转介；或使用「HA Go」App 自行预约</p>
 <hr>
 <h3>港岛区（含离岛）</h3>
 <table border="1" cellpadding="6">
@@ -52,25 +52,25 @@ const hkMedicalData = {
 <table border="1" cellpadding="6">
 <tr><th>医院</th><th>区域</th><th>官网</th><th>中央预约</th><th>地址</th></tr>
 <tr><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
-<tr><td>⭐ <strong>养和医院</strong> (Hong Kong Sanatorium & Hospital)</td><td>跑马地</td><td><a href="https://www.hksh.com">官网</a></td><td>2572 0211</td><td>香港跑马地山村道 2 号</td></tr>
-<tr><td>⭐ <strong>港怡医院</strong> (Gleneagles Hospital HK)</td><td>黄竹坑</td><td><a href="https://gleneagles.hk">官网</a></td><td>3153 9000</td><td>香港黄竹坑道 98 号</td></tr>
-<tr><td>⭐ <strong>明德国际医院</strong> (Matilda International Hospital)</td><td>山顶</td><td><a href="https://www.matilda.org">官网</a></td><td>2849 0111</td><td>香港山顶加列山道 41 号</td></tr>
-<tr><td>⭐ <strong>香港港安医院-司徒拔道</strong> (HK Adventist-SR)</td><td>司徒拔道</td><td><a href="https://www.hkah.org.hk">官网</a></td><td>3651 8888</td><td>香港司徒拔道 40 号</td></tr>
+<tr><td>⭐ <strong>养和医院</strong> (Hong Kong Sanatorium & Hospital)</td><td>跑马地</td><td><a href="https://www.hksh.com" target="_blank" rel="noopener">官网</a></td><td>2572 0211</td><td>香港跑马地山村道 2 号</td></tr>
+<tr><td>⭐ <strong>港怡医院</strong> (Gleneagles Hospital HK)</td><td>黄竹坑</td><td><a href="https://gleneagles.hk" target="_blank" rel="noopener">官网</a></td><td>3153 9000</td><td>香港黄竹坑道 98 号</td></tr>
+<tr><td>⭐ <strong>明德国际医院</strong> (Matilda International Hospital)</td><td>山顶</td><td><a href="https://www.matilda.org" target="_blank" rel="noopener">官网</a></td><td>2849 0111</td><td>香港山顶加列山道 41 号</td></tr>
+<tr><td>⭐ <strong>香港港安医院-司徒拔道</strong> (HK Adventist-SR)</td><td>司徒拔道</td><td><a href="https://www.hkah.org.hk" target="_blank" rel="noopener">官网</a></td><td>3651 8888</td><td>香港司徒拔道 40 号</td></tr>
 </table>
 <h3>综合私立（主流 10 间）</h3>
 <table border="1" cellpadding="6">
 <tr><th>医院</th><th>区域</th><th>官网</th><th>中央预约</th><th>地址</th></tr>
 <tr><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
-<tr><td><strong>圣保禄医院</strong> (St. Paul's Hospital)</td><td>铜锣湾</td><td><a href="https://www.stpaul.org.hk">官网</a></td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
-<tr><td><strong>播道医院</strong> (Evangel Hospital)</td><td>九龙城</td><td><a href="https://www.evangel.org.hk">官网</a></td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
-<tr><td><strong>浸信会医院</strong> (Baptist Hospital)</td><td>九龙塘</td><td><a href="https://www.baptistkh.org.hk">官网</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
-<tr><td><strong>圣德肋撒医院</strong> (St. Teresa's Hospital)</td><td>太子</td><td><a href="https://www.stteresa.org">官网</a></td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
-<tr><td><strong>嘉诺撒医院</strong> (Canossa Hospital)</td><td>半山</td><td><a href="https://www.canossahospital.org.hk">官网</a></td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
-<tr><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td><a href="https://www.twah.org.hk">官网</a></td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
-<tr><td><strong>宝血医院</strong> (Precious Blood Hospital)</td><td>油麻地</td><td><a href="https://www.pbh.hk">官网</a></td><td>2386 4281</td><td>九龙油麻地石壁道 1 号</td></tr>
-<tr><td><strong>港安医疗中心-铜锣湾</strong></td><td>铜锣湾</td><td><a href="https://www.hkah.org.hk">官网</a></td><td>3651 8888</td><td>香港铜锣湾百德新街 2-20 号恒隆中心 16 楼</td></tr>
-<tr><td><strong>希愈医疗</strong> (Heal Medical)</td><td>中环</td><td><a href="https://www.healmedical.com">官网</a></td><td>2849 0123</td><td>香港中环皇后大道中 9 号 25 楼</td></tr>
-<tr><td><strong>亚洲专科医生</strong> (Asia Medical Specialists)</td><td>中环/尖沙咀</td><td><a href="https://www.asiamedicalspecialists.hk">官网</a></td><td>2521 6830</td><td>中环毕打街 1-3 号中建大厦 16 楼</td></tr>
+<tr><td><strong>圣保禄医院</strong> (St. Paul's Hospital)</td><td>铜锣湾</td><td><a href="https://www.stpaul.org.hk" target="_blank" rel="noopener">官网</a></td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
+<tr><td><strong>播道医院</strong> (Evangel Hospital)</td><td>九龙城</td><td><a href="https://www.evangel.org.hk" target="_blank" rel="noopener">官网</a></td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
+<tr><td><strong>浸信会医院</strong> (Baptist Hospital)</td><td>九龙塘</td><td><a href="https://www.baptistkh.org.hk" target="_blank" rel="noopener">官网</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
+<tr><td><strong>圣德肋撒医院</strong> (St. Teresa's Hospital)</td><td>太子</td><td><a href="https://www.stteresa.org" target="_blank" rel="noopener">官网</a></td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
+<tr><td><strong>嘉诺撒医院</strong> (Canossa Hospital)</td><td>半山</td><td><a href="https://www.canossahospital.org.hk" target="_blank" rel="noopener">官网</a></td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
+<tr><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td><a href="https://www.twah.org.hk" target="_blank" rel="noopener">官网</a></td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
+<tr><td><strong>宝血医院</strong> (Precious Blood Hospital)</td><td>油麻地</td><td><a href="https://www.pbh.hk" target="_blank" rel="noopener">官网</a></td><td>2386 4281</td><td>九龙油麻地石壁道 1 号</td></tr>
+<tr><td><strong>港安医疗中心-铜锣湾</strong></td><td>铜锣湾</td><td><a href="https://www.hkah.org.hk" target="_blank" rel="noopener">官网</a></td><td>3651 8888</td><td>香港铜锣湾百德新街 2-20 号恒隆中心 16 楼</td></tr>
+<tr><td><strong>希愈医疗</strong> (Heal Medical)</td><td>中环</td><td><a href="https://www.healmedical.com" target="_blank" rel="noopener">官网</a></td><td>2849 0123</td><td>香港中环皇后大道中 9 号 25 楼</td></tr>
+<tr><td><strong>亚洲专科医生</strong> (Asia Medical Specialists)</td><td>中环/尖沙咀</td><td><a href="https://www.asiamedicalspecialists.hk" target="_blank" rel="noopener">官网</a></td><td>2521 6830</td><td>中环毕打街 1-3 号中建大厦 16 楼</td></tr>
 </table>
 <p>> ⚠️ <strong>宝血医院</strong>：近年服务调整，<strong>以非紧急服务为主</strong>，使用前请电话确认是否提供所需服务</p>
 <hr>
@@ -94,7 +94,7 @@ const hkMedicalData = {
 <tr><th>工具</th><th>功能</th><th>下载/网址</th></tr>
 <tr><td>------</td><td>------</td><td>----------</td></tr>
 <tr><td><strong>HA Go</strong></td><td>公立医院预约、报告、缴费</td><td>App Store / Google Play</td></tr>
-<tr><td><strong>eHealth 医健通</strong></td><td>电子健康记录互通</td><td><a href="https://www.ehealth.gov.hk">官网</a></td></tr>
+<tr><td><strong>eHealth 医健通</strong></td><td>电子健康记录互通</td><td><a href="https://www.ehealth.gov.hk" target="_blank" rel="noopener">官网</a></td></tr>
 <tr><td><strong>个别医院 App</strong></td><td>各私立医院有自己的 App</td><td>养和、港怡等</td></tr>
 </table>
 <hr>
@@ -292,26 +292,8 @@ const hkMedicalData = {
 <h3>Q8：精神科服务？</h3>
 > A：公立精神科主要由 <strong>葵涌医院、青山医院、九龙医院</strong> 提供，<strong>需转介</strong>；  
 > 私立精神科可去<strong>养和医院精神科</strong>或<strong>私人精神科医生</strong>（中环、铜锣湾多个专科医生）。
-<hr>
-<h2>⚠️ 第七部分：数据维护说明</h2>
-<li><strong>数据截止</strong>：2026-06-21</li>
-<li><strong>数据来源</strong>：基于各医院公开资料整理</li>
-<li><strong>变动风险</strong>：电话号码、地址、预约流程、服务范围都可能调整</li>
-<li><strong>建议核对</strong>：客户就医前<strong>务必</strong>打电话到该院或查官网最新公告</li>
-<li><strong>未列入的机构</strong>：</li>
-  - <strong>HA 辖下的专科诊所</strong>（如：家庭医学专科诊所、牙科诊所等，未单独列出）
-  - <strong>纯疗养院</strong>（如：部分老人/复康院舍，已在公立表中涵盖主要几间）
-  - <strong>小型日间手术中心</strong>（如：眼科、医美中心等）
-<hr>
-<h2>📌 第八部分：文件位置与建议后续动作</h2>
-<p>> <strong>本文件</strong>：<code>/home/lenovo12348/.openclaw/workspace/香港医院大全-完整版.md</code>  <br>> <strong>主流版对照</strong>：<code>/home/lenovo12348/.openclaw/workspace/香港医院大全.md</code></p>
-<h3>建议后续动作</h3>
-<li>⏳ <strong>同步到飞书云文档</strong> — 手机随时查</li>
-<li>⏳ <strong>同步到桌面</strong> <code>/mnt/c/Users/Lenovo/Desktop/恒玥内容库/情报简报/2026-06-21/</code></li>
-<li>⏳ <strong>设定季度自动核对任务</strong> — 让情报采集 Agent 每 3 个月 review</li>
-<li>⏳ <strong>生成简化版海报</strong>（1页A4）— 客户来访时随手给</li>
-<li>⏳ <strong>拆分多个子文档</strong>（按区域/公立私立）</li>
-<hr>
+
+
 <p>> <strong>重要免责声明</strong>：以上信息仅供参考，<strong>不构成医疗建议</strong>。具体就医决策请咨询医生或医院官方。</p>`
   },
   "2.6.3 香港基层医疗大全": {
@@ -592,29 +574,8 @@ const hkMedicalData = {
 > | 中产家庭 | 私人诊所 + 母婴院 + 私人牙医 + 公立专科 |
 > | 高净值 | 私家医院 + 私人医生 + 高端牙科险 |
 > | 长者 | 长者健康中心（免费）+ 公立专科 + 私家辅助 |
-<hr>
-<h2>⚠️ 第十一部分：数据维护说明</h2>
-<li><strong>数据截止</strong>：2026-06-21</li>
-<li><strong>数据来源</strong>：基于衞生署、HA、医院公开资料整理</li>
-<li><strong>变动风险</strong>：服务时间、收费、预约方式都可能调整</li>
-<li><strong>建议核对</strong>：客户就医前<strong>务必</strong>打电话到该机构或查官网最新公告</li>
-<li><strong>未列入的服务</strong>：</li>
-  - 私人连锁诊所（盈健、卓健、德信行等）——需另开文件
-  - 医疗集团旗下的专科中心
-  - 物理治疗 / 复康中心
-  - 心理辅导 / 精神健康中心（私人）
-  - 医美 / 牙医美容中心
-<hr>
-<h2>📌 第十二部分：文件位置与建议后续动作</h2>
-<p>> <strong>本文件</strong>：<code>/home/lenovo12348/.openclaw/workspace/香港基层医疗大全.md</code>  <br>> <strong>配套文件</strong>：<br>> - <code>香港医院大全.md</code>（主流版）<br>> - <code>香港医院大全-完整版.md</code>（完整版）</p>
-<h3>建议后续动作</h3>
-<li>⏳ <strong>同步到飞书云文档</strong>（手机随时查）</li>
-<li>⏳ <strong>同步到桌面</strong> <code>/mnt/c/Users/Lenovo/Desktop/恒玥内容库/情报简报/2026-06-21/</code></li>
-<li>⏳ <strong>生成"全港医疗服务总图"</strong>（含医院+基层，一张图概览）</li>
-<li>⏳ <strong>扩展：私人连锁诊所</strong>（盈健/卓健/德信行/康健 等 50+ 间 24h 诊所地址）</li>
-<li>⏳ <strong>扩展：专科医生清单</strong>（按专科/区域分）</li>
-<li>⏳ <strong>设定季度核对任务</strong>（让情报采集 Agent 每 3 个月 review）</li>
-<hr>
+
+
 <p>> <strong>重要免责声明</strong>：以上信息仅供参考，<strong>不构成医疗建议</strong>。具体就医决策请咨询医生或衞生署。</p>`
   },
   "2.6.4 香港私人连锁诊所大全": {
@@ -987,40 +948,8 @@ const hkMedicalData = {
 <tr><td>💉 <strong>疫苗/体检</strong></td><td>美邦/快验保、卓健</td><td>体检套餐</td></tr>
 <tr><td>🧖 <strong>医美</strong></td><td>医思、Dr. Reborn</td><td>医美专家</td></tr>
 </table>
-<hr>
-<h2>⚠️ 第五部分：数据维护说明</h2>
-<li><strong>数据截止</strong>：2026-06-21</li>
-<li><strong>数据来源</strong>：基于各集团公开资料整理</li>
-<li><strong>变动风险</strong>：</li>
-  - 分店地址、电话<strong>变动频繁</strong>
-  - 24h 营业状态可能调整
-  - 收费可能上涨
-<li><strong>建议核对</strong>：</li>
-  - 客户就医前<strong>务必</strong>打集团总部电话或查官网
-  - 用 <strong>集团 APP</strong> 查看最近分店和实时等候时间
-  - 急症直接去<strong>私立医院</strong>或叫<strong>999</strong>
-<h3>各集团 APP 一览</h3>
-<table border="1" cellpadding="6">
-<tr><th>集团</th><th>APP 名</th><th>适用</th></tr>
-<tr><td>------</td><td>--------</td><td>------</td></tr>
-<tr><td>卓健医疗</td><td>Quality HealthCare</td><td>iOS/Android</td></tr>
-<tr><td>盈健医疗</td><td>Human Health</td><td>iOS/Android</td></tr>
-<tr><td>德信行</td><td>UMP Healthcare</td><td>iOS/Android</td></tr>
-<tr><td>医思健康</td><td>EC Healthcare</td><td>iOS/Android</td></tr>
-<tr><td>匡乔医疗</td><td>NextGen</td><td>iOS/Android</td></tr>
-<tr><td>尚至医疗</td><td>Virtus Medical</td><td>iOS/Android</td></tr>
-</table>
-<hr>
-<h2>📌 第六部分：文件位置与建议后续动作</h2>
-<p>> <strong>本文件</strong>：<code>/home/lenovo12348/.openclaw/workspace/香港私人连锁诊所大全.md</code></p>
-<h3>建议后续动作</h3>
-<li>⏳ <strong>同步到飞书云文档</strong>（手机随时查）</li>
-<li>⏳ <strong>同步到桌面</strong> <code>/mnt/c/Users/Lenovo/Desktop/恒玥内容库/情报简报/2026-06-21/</code></li>
-<li>⏳ <strong>生成 1 页海报</strong>（"客户来港医疗常用 6 大连锁速查"）</li>
-<li>⏳ <strong>继续扩展</strong>：其他 50+ 私人连锁（华仁、康民、康颐等）</li>
-<li>⏳ <strong>扩展</strong>：专科医生清单（按专科/区域分）</li>
-<li>⏳ <strong>生成"全港医疗总图"</strong>（4 份文件整合成一张图）</li>
-<hr>
+
+
 <p>> <strong>重要免责声明</strong>：以上信息仅供参考，<strong>不构成医疗建议</strong>。具体就医决策请咨询医生或医院官方。分店信息变动频繁，使用前请直接联系各集团。</p>`
   },
   "2.6.5 香港医疗总图速查": {
@@ -1704,18 +1633,7 @@ const hkMedicalData = {
 > A：
 > - <strong>公立</strong>：长者健康中心（18 间免费）+ 公立医院老人科门诊
 > - <strong>私立</strong>：养和老人科、港安老人科、尚至、匡乔
-<hr>
-<h2>⚠️ 第八部分：数据维护说明</h2>
-<li><strong>数据截止</strong>：2026-06-21</li>
-<li><strong>数据来源</strong>：基于 HA、医院、机构公开资料整理</li>
-<li><strong>变动风险</strong>：</li>
-  - 医生执业机构变动频繁
-  - 医院专科服务可能调整
-<li><strong>建议核对</strong>：</li>
-  - 客户就医前<strong>务必</strong>打医院/机构电话
-  - 用医院/医生 APP 查最新信息
-  - 紧急情况走 999 或公立急症
-<hr>
+
 <p>> <strong>重要免责声明</strong>：以上信息仅供参考，<strong>不构成医疗建议</strong>。具体就医决策请咨询医生或医院官方。</p>`
   },
   "2.6.8 香港保险直付医院清单": {
@@ -1937,16 +1855,7 @@ const hkMedicalData = {
 <tr><td><strong>网络医院</strong></td><td>Network Hospital</td><td>保险公司有直付协议的医院</td></tr>
 <tr><td><strong>网络外</strong></td><td>Out-of-Network</td><td>不在直付网络的医院</td></tr>
 </table>
-<hr>
-<h2>六、数据维护说明</h2>
-<li>数据截止：2026-06-21</li>
-<li>数据来源：基于各保险公司公开资料整理</li>
-<li>变动风险：直付协议<strong>可能调整</strong></li>
-<li>建议核对：</li>
-  - 客户就医前打保险公司确认
-  - 用保险公司 App / 官网查最新网络医院清单
-  - 重要手术提前 1-2 周申请预先批核
-<hr>
+
 <p>> 重要免责声明：以上信息仅供参考，不构成保险建议。具体保障以保单条款为准。</p>`
   },
   "2.6.9 香港手术住院费参考": {
@@ -2686,18 +2595,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <tr><td>气郁质</td><td>焦虑、失眠</td><td>疏肝（玫瑰、陈皮）</td></tr>
 <tr><td>特禀质</td><td>过敏</td><td>调理（灵芝、黄芪）</td></tr>
 </table>
-<hr>
-<h2>七、数据维护说明</h2>
-<li>数据截止：2026-06-21</li>
-<li>数据来源：基于公开资料整理</li>
-<li>变动风险：</li>
-  - 中医师执业机构<strong>可能变动</strong>
-  - 政府资助中医<strong>轮候时间变化</strong>
-<li>建议核对：</li>
-  - 预约前打诊所电话
-  - 看病前看医生证书
-  - 急症先看西医
-<hr>
+
 <p>> 重要免责声明：以上信息仅供参考，<strong>不构成医疗建议</strong>。具体方案请咨询中医师/西医主治医生。</p>`
   },
   "2.6.12 香港牙医名医清单": {
@@ -2933,18 +2831,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <li><strong>菲腊牙科医院</strong>：周一至五 8:30am-5:00pm（电话预约）</li>
 <li><strong>私人 24h 牙科</strong>：极少数（建议 call 卓健/医思）</li>
 <li><strong>公立医院急症</strong>：可处理严重创伤</li>
-<hr>
-<h2>八、数据维护说明</h2>
-<li>数据截止：2026-06-21</li>
-<li>数据来源：基于公开资料整理</li>
-<li>变动风险：</li>
-  - 牙医执业机构变动
-  - 收费调整
-<li>建议核对：</li>
-  - 预约前打诊所电话
-  - 治疗前看牙医证书
-  - 复杂案例多问 1-2 个医生
-<hr>
+
 <p>> 重要免责声明：以上信息仅供参考，<strong>不构成医疗建议</strong>。具体方案请咨询专业牙医。</p>`
   },
   "2.6.13 香港客户医疗病例库": {
@@ -3149,16 +3036,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <pre><code>"我建议您先从方案A开始，年保费 $15,000，相当于每天 $40。
 我们可以先做健康核保，如果通过，2-3 周保单生效。
 要不要先填个投保申请？我现在就帮您预约体检。"</code></pre>
-<hr>
-<h1>🏥 第八部分：数据维护说明</h1>
-<li>数据截止：2026-06-21</li>
-<li>数据来源：基于公开资料整理</li>
-<li>重要声明：<strong>所有案例为典型情景，非真实客户</strong></li>
-<li>使用建议：</li>
-  - 培训用：直接使用
-  - 客户展示：改用脱敏版本
-  - 实际咨询：根据真实情况调整
-<hr>
+
 <p>> 重要免责声明：以上内容为 IFA 培训/参考用，<strong>不构成实际医疗/保险建议</strong>。具体方案以专业医生/保险顾问为准。</p>`
   },
   "2.6.14 香港医疗监管与认证": {
@@ -3504,17 +3382,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <tr><td>保险业监管局（IA）</td><td>3899 9983</td><td>www.ia.org.hk</td></tr>
 <tr><td>私家医院规管办事处（DH）</td><td>3107 8462</td><td>-</td></tr>
 </table>
-<hr>
-<h2>十三、数据维护说明</h2>
-<li>数据截止：2026-06-21</li>
-<li>数据来源：基于公开资料整理</li>
-<li>变动风险：</li>
-  - 监管机构人员变动
-  - 法规更新
-<li>建议核对：</li>
-  - 查最新法规
-  - 查最新认证状态
-<hr>
+
 <p>> 重要免责声明：以上信息仅供参考，<strong>不构成医疗/法律建议</strong>。具体案件请咨询专业律师/医生/监管机构。</p>`
   },
 };
