@@ -134,7 +134,7 @@ const hkMedicalData = {
 <p>> <strong>最后整理</strong>：2026-06-21  <br>> <strong>覆盖范围</strong>：HA 公立机构 <strong>31 间</strong> + 私立医院 <strong>18 间</strong> + 关键电话/工具/话术  <br>> <strong>数据说明</strong>：基于公开资料整理，<strong>电话/地址/服务以医院官网最新公告为准</strong>  <br>> <strong>使用建议</strong>：客户就医前<strong>务必</strong>电话核对或查官网最新信息</p>
 <hr>
 <h2>🏛️ 第一部分：公立医院（医院管理局 Hospital Authority · 完整清单）</h2>
-<p>> <strong>HA 体系总览</strong>：香港医院管理局下辖约 43 间医院/机构（含疗养院、专科诊所）  <br>> <strong>本文件收录</strong>：综合性医院 17 间 + 专科/疗养/护理机构 14 间 = 共 31 间  <br>> <strong>统一查询热线</strong>：📞 <strong>2300 6555</strong>（HA 总部，8am-10pm）  <br>> <strong>24小时紧急救助</strong>：📞 <strong>999</strong>（救护车）  <br>> <strong>HA 官网</strong>：https://www.ha.org.hk  <br>> <strong>预约 App</strong>：「HA Go」（App Store / Google Play）</p>
+<p>> <strong>HA 体系总览</strong>：香港医院管理局下辖约 43 间医院/机构（含疗养院、专科诊所）  <br>> <strong>本文件收录</strong>：综合性医院 17 间 + 专科/疗养/护理机构 14 间 = 共 31 间  <br>> <strong>统一查询热线</strong>：📞 <strong>2300 6555</strong>（HA 总部，8am-10pm）  <br>> <strong>24小时紧急救助</strong>：📞 <strong>999</strong>（救护车）  <br>> <strong>HA 官网</strong>：<a href="https://www.ha.org.hk" target="_blank" rel="noopener">https://www.ha.org.hk</a>  <br>> <strong>预约 App</strong>：「HA Go」（App Store / Google Play）</p>
 <hr>
 <h3>🟢 港岛区（8 间）</h3>
 <table border="1" cellpadding="6">
@@ -189,25 +189,25 @@ const hkMedicalData = {
 <table border="1" cellpadding="6">
 <tr><th>#</th><th>医院</th><th>区域</th><th>官网</th><th>中央预约</th><th>地址</th></tr>
 <tr><td>---</td><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
-<tr><td>1</td><td>⭐ <strong>养和医院</strong> (HKSH)</td><td>跑马地</td><td>https://www.hksh.com</td><td>2572 0211</td><td>香港跑马地山村道 2 号</td></tr>
-<tr><td>2</td><td>⭐ <strong>港怡医院</strong> (Gleneagles HK)</td><td>黄竹坑</td><td>https://gleneagles.hk</td><td>3153 9000</td><td>香港黄竹坑道 98 号</td></tr>
-<tr><td>3</td><td>⭐ <strong>明德国际医院</strong> (Matilda Int'l)</td><td>山顶</td><td>https://www.matilda.org</td><td>2849 0111</td><td>香港山顶加列山道 41 号</td></tr>
-<tr><td>4</td><td>⭐ <strong>香港港安医院-司徒拔道</strong> (HK Adventist-SR)</td><td>司徒拔道</td><td>https://www.hkah.org.hk</td><td>3651 8888</td><td>香港司徒拔道 40 号</td></tr>
+<tr><td>1</td><td>⭐ <strong>养和医院</strong> (HKSH)</td><td>跑马地</td><td><a href="https://www.hksh.com" target="_blank" rel="noopener">https://www.hksh.com</a></td><td>2572 0211</td><td>香港跑马地山村道 2 号</td></tr>
+<tr><td>2</td><td>⭐ <strong>港怡医院</strong> (Gleneagles HK)</td><td>黄竹坑</td><td><a href="https://gleneagles.hk" target="_blank" rel="noopener">https://gleneagles.hk</a></td><td>3153 9000</td><td>香港黄竹坑道 98 号</td></tr>
+<tr><td>3</td><td>⭐ <strong>明德国际医院</strong> (Matilda Int'l)</td><td>山顶</td><td><a href="https://www.matilda.org" target="_blank" rel="noopener">https://www.matilda.org</a></td><td>2849 0111</td><td>香港山顶加列山道 41 号</td></tr>
+<tr><td>4</td><td>⭐ <strong>香港港安医院-司徒拔道</strong> (HK Adventist-SR)</td><td>司徒拔道</td><td><a href="https://www.hkah.org.hk" target="_blank" rel="noopener">https://www.hkah.org.hk</a></td><td>3651 8888</td><td>香港司徒拔道 40 号</td></tr>
 </table>
 <h3>② 综合私立医院（10 间 · 主流选择）</h3>
 <table border="1" cellpadding="6">
 <tr><th>#</th><th>医院</th><th>区域</th><th>官网</th><th>中央预约</th><th>地址</th></tr>
 <tr><td>---</td><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
-<tr><td>5</td><td><strong>圣保禄医院</strong> (St. Paul's)</td><td>铜锣湾</td><td>https://www.stpaul.org.hk</td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
-<tr><td>6</td><td><strong>播道医院</strong> (Evangel)</td><td>九龙城</td><td>https://www.evangel.org.hk</td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
-<tr><td>7</td><td><strong>浸信会医院</strong> (Baptist)</td><td>九龙塘</td><td>https://www.baptistkh.org.hk</td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
-<tr><td>8</td><td><strong>圣德肋撒医院</strong> (St. Teresa's)</td><td>太子</td><td>https://www.stteresa.org</td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
-<tr><td>9</td><td><strong>嘉诺撒医院</strong> (Canossa)</td><td>半山</td><td>https://www.canossahospital.org.hk</td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
-<tr><td>10</td><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td>https://www.twah.org.hk</td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
-<tr><td>11</td><td><strong>宝血医院</strong> (Precious Blood)</td><td>油麻地</td><td>https://www.pbh.hk</td><td>2386 4281</td><td>九龙油麻地石壁道 1 号</td></tr>
+<tr><td>5</td><td><strong>圣保禄医院</strong> (St. Paul's)</td><td>铜锣湾</td><td><a href="https://www.stpaul.org.hk" target="_blank" rel="noopener">https://www.stpaul.org.hk</a></td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
+<tr><td>6</td><td><strong>播道医院</strong> (Evangel)</td><td>九龙城</td><td><a href="https://www.evangel.org.hk" target="_blank" rel="noopener">https://www.evangel.org.hk</a></td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
+<tr><td>7</td><td><strong>浸信会医院</strong> (Baptist)</td><td>九龙塘</td><td><a href="https://www.baptistkh.org.hk" target="_blank" rel="noopener">https://www.baptistkh.org.hk</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
+<tr><td>8</td><td><strong>圣德肋撒医院</strong> (St. Teresa's)</td><td>太子</td><td><a href="https://www.stteresa.org" target="_blank" rel="noopener">https://www.stteresa.org</a></td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
+<tr><td>9</td><td><strong>嘉诺撒医院</strong> (Canossa)</td><td>半山</td><td><a href="https://www.canossahospital.org.hk" target="_blank" rel="noopener">https://www.canossahospital.org.hk</a></td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
+<tr><td>10</td><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td><a href="https://www.twah.org.hk" target="_blank" rel="noopener">https://www.twah.org.hk</a></td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
+<tr><td>11</td><td><strong>宝血医院</strong> (Precious Blood)</td><td>油麻地</td><td><a href="https://www.pbh.hk" target="_blank" rel="noopener">https://www.pbh.hk</a></td><td>2386 4281</td><td>九龙油麻地石壁道 1 号</td></tr>
 <tr><td>12</td><td><strong>港安医疗中心-铜锣湾</strong></td><td>铜锣湾</td><td>https://www.hkah.org.hk</td><td>3651 8888</td><td>铜锣湾百德新街 2-20 号恒隆中心 16 楼</td></tr>
-<tr><td>13</td><td><strong>希愈医疗</strong> (Heal Medical)</td><td>中环</td><td>https://www.healmedical.com</td><td>2849 0123</td><td>中环皇后大道中 9 号 25 楼</td></tr>
-<tr><td>14</td><td><strong>亚洲专科医生</strong> (Asia Medical Specialists)</td><td>中环/尖沙咀</td><td>https://www.asiamedicalspecialists.hk</td><td>2521 6830</td><td>中环毕打街 1-3 号中建大厦 16 楼</td></tr>
+<tr><td>13</td><td><strong>希愈医疗</strong> (Heal Medical)</td><td>中环</td><td><a href="https://www.healmedical.com" target="_blank" rel="noopener">https://www.healmedical.com</a></td><td>2849 0123</td><td>中环皇后大道中 9 号 25 楼</td></tr>
+<tr><td>14</td><td><strong>亚洲专科医生</strong> (Asia Medical Specialists)</td><td>中环/尖沙咀</td><td><a href="https://www.asiamedicalspecialists.hk" target="_blank" rel="noopener">https://www.asiamedicalspecialists.hk</a></td><td>2521 6830</td><td>中环毕打街 1-3 号中建大厦 16 楼</td></tr>
 </table>
 <h3>③ 专科医疗中心（4 间 · 单/多专科日间服务）</h3>
 <table border="1" cellpadding="6">
@@ -242,7 +242,7 @@ const hkMedicalData = {
 <tr><th>工具</th><th>功能</th><th>下载/网址</th></tr>
 <tr><td>------</td><td>------</td><td>----------</td></tr>
 <tr><td><strong>HA Go</strong></td><td>公立医院预约、报告、缴费</td><td>App Store / Google Play</td></tr>
-<tr><td><strong>eHealth 医健通</strong></td><td>电子健康记录互通</td><td>https://www.ehealth.gov.hk</td></tr>
+<tr><td><strong>eHealth 医健通</strong></td><td>电子健康记录互通</td><td><a href="https://www.ehealth.gov.hk" target="_blank" rel="noopener">https://www.ehealth.gov.hk</a></td></tr>
 <tr><td><strong>个别医院 App</strong></td><td>各私立医院有自己的 App</td><td>养和、港怡、明德、港安等</td></tr>
 <tr><td><strong>医管局「预约通」</strong></td><td>改期/取消专科门诊</td><td>2300 6555 / HA Go</td></tr>
 </table>
@@ -397,7 +397,7 @@ const hkMedicalData = {
 <tr><td>将军澳赛马会牙科诊所</td><td>将军澳宝琳北路 3 号</td><td>2701 9921</td></tr>
 </table>
 <h3>B. 菲腊牙科医院（Prince Philip Dental Hospital）</h3>
-<p>> <strong>地址</strong>：香港西营盘医院道 34 号  <br>> <strong>电话</strong>：2859 0288  <br>> <strong>官网</strong>：https://ppdh.org.hk  <br>> <strong>性质</strong>：<strong>港大牙医学院教学医院</strong>，提供<strong>专科牙科服务</strong>（口腔外科、矫正、植牙、儿童牙科、牙髓病等）  <br>> <strong>预约</strong>：需持有注册私家牙医转介信</p>
+<p>> <strong>地址</strong>：香港西营盘医院道 34 号  <br>> <strong>电话</strong>：2859 0288  <br>> <strong>官网</strong>：<a href="https://ppdh.org.hk" target="_blank" rel="noopener">https://ppdh.org.hk</a>  <br>> <strong>性质</strong>：<strong>港大牙医学院教学医院</strong>，提供<strong>专科牙科服务</strong>（口腔外科、矫正、植牙、儿童牙科、牙髓病等）  <br>> <strong>预约</strong>：需持有注册私家牙医转介信</p>
 <h3>C. 私人牙科诊所</h3>
 <p>> 全港约 <strong>2,300+ 间</strong> 私人牙科诊所  <br>> <strong>服务范围</strong>：一般牙科（洗牙、补牙、拔牙、根管治疗）、牙套/矫正、植牙、牙冠、漂白等  <br>> <strong>预约</strong>：<strong>直接打电话</strong>预约，无需转介  <br>> <strong>收费</strong>：洗牙约 $500-1,000，根管治疗 $2,000-5,000+，<strong>高端诊所更贵</strong>  <br>> <strong>保险</strong>：一般<strong>不被医疗保险覆盖</strong>（需额外加牙科附加险）</p>
 <hr>
@@ -612,7 +612,7 @@ const hkMedicalData = {
 <hr>
 <h2>🏥 第一部分：12 大连锁集团详细清单</h2>
 <h3>1️⃣ 卓健医疗 (Quality HealthCare) — 全港最大</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>8301 8301</strong>  <br>> <strong>官网</strong>：https://www.qhms.com  <br>> <strong>App</strong>：「卓健医疗」/ Quality HealthCare  <br>> <strong>规模</strong>：<strong>全港最大</strong>私人连锁医疗集团，<strong>100+ 分店</strong>  <br>> <strong>24h 店</strong>：中环、观塘有 24h 或长延时店</p>
+<p>> <strong>总部电话</strong>：📞 <strong>8301 8301</strong>  <br>> <strong>官网</strong>：<a href="https://www.qhms.com" target="_blank" rel="noopener">https://www.qhms.com</a>  <br>> <strong>App</strong>：「卓健医疗」/ Quality HealthCare  <br>> <strong>规模</strong>：<strong>全港最大</strong>私人连锁医疗集团，<strong>100+ 分店</strong>  <br>> <strong>24h 店</strong>：中环、观塘有 24h 或长延时店</p>
 <h4>卓健 - 港岛</h4>
 <table border="1" cellpadding="6">
 <tr><th>分店</th><th>地址</th><th>电话</th><th>营业时间</th></tr>
@@ -651,7 +651,7 @@ const hkMedicalData = {
 </table>
 <hr>
 <h3>2️⃣ 盈健医疗 (Human Health) — 新界最强</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>2393 7380</strong>  <br>> <strong>官网</strong>：https://www.humanhealth.com.hk  <br>> <strong>App</strong>：「盈健医疗」  <br>> <strong>规模</strong>：<strong>70+ 分店</strong>，<strong>新界覆盖最广</strong>  <br>> <strong>24h 店</strong>：旺角、荃湾、沙田</p>
+<p>> <strong>总部电话</strong>：📞 <strong>2393 7380</strong>  <br>> <strong>官网</strong>：<a href="https://www.humanhealth.com.hk" target="_blank" rel="noopener">https://www.humanhealth.com.hk</a>  <br>> <strong>App</strong>：「盈健医疗」  <br>> <strong>规模</strong>：<strong>70+ 分店</strong>，<strong>新界覆盖最广</strong>  <br>> <strong>24h 店</strong>：旺角、荃湾、沙田</p>
 <h4>盈健 - 港岛</h4>
 <table border="1" cellpadding="6">
 <tr><th>分店</th><th>地址</th><th>电话</th></tr>
@@ -691,7 +691,7 @@ const hkMedicalData = {
 </table>
 <hr>
 <h3>3️⃣ 德信行医疗 (UMP Healthcare Group) — 上市集团</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>2522 0100</strong>  <br>> <strong>官网</strong>：https://www.ump.com.hk  <br>> <strong>App</strong>：「UMP Healthcare」  <br>> <strong>规模</strong>：<strong>50+ 分店</strong>，上市医疗集团 (01220.HK)  <br>> <strong>24h 店</strong>：中环、旺角</p>
+<p>> <strong>总部电话</strong>：📞 <strong>2522 0100</strong>  <br>> <strong>官网</strong>：<a href="https://www.ump.com.hk" target="_blank" rel="noopener">https://www.ump.com.hk</a>  <br>> <strong>App</strong>：「UMP Healthcare」  <br>> <strong>规模</strong>：<strong>50+ 分店</strong>，上市医疗集团 (01220.HK)  <br>> <strong>24h 店</strong>：中环、旺角</p>
 <h4>德信行 - 港岛</h4>
 <table border="1" cellpadding="6">
 <tr><th>分店</th><th>地址</th><th>电话</th></tr>
@@ -725,7 +725,7 @@ const hkMedicalData = {
 </table>
 <hr>
 <h3>4️⃣ 康健 (Town Health) — 网络型连锁</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>2300 1818</strong>  <br>> <strong>官网</strong>：https://www.townhealth.com  <br>> <strong>规模</strong>：<strong>60+ 分店</strong>，网络型  <br>> <strong>24h 店</strong>：部分分店 24h</p>
+<p>> <strong>总部电话</strong>：📞 <strong>2300 1818</strong>  <br>> <strong>官网</strong>：<a href="https://www.townhealth.com" target="_blank" rel="noopener">https://www.townhealth.com</a>  <br>> <strong>规模</strong>：<strong>60+ 分店</strong>，网络型  <br>> <strong>24h 店</strong>：部分分店 24h</p>
 <h4>康健 - 主要分店</h4>
 <table border="1" cellpadding="6">
 <tr><th>区域</th><th>分布</th><th>备注</th></tr>
@@ -737,7 +737,7 @@ const hkMedicalData = {
 </table>
 <hr>
 <h3>5️⃣ 医思健康 (EC Healthcare / 医思健康 0235.HK)</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>3520 2880</strong>  <br>> <strong>官网</strong>：https://www.echealthcare.com  <br>> <strong>旗下品牌</strong>：<br>> - <strong>Dr. Reborn</strong>（医美）<br>> - <strong>SPARK</strong>（牙医）<br>> - <strong>EC Healthcare</strong>（综合）  <br>> <strong>规模</strong>：30+ 医疗中心，专注<strong>医美 + 牙科 + 健康管理</strong></p>
+<p>> <strong>总部电话</strong>：📞 <strong>3520 2880</strong>  <br>> <strong>官网</strong>：<a href="https://www.echealthcare.com" target="_blank" rel="noopener">https://www.echealthcare.com</a>  <br>> <strong>旗下品牌</strong>：<br>> - <strong>Dr. Reborn</strong>（医美）<br>> - <strong>SPARK</strong>（牙医）<br>> - <strong>EC Healthcare</strong>（综合）  <br>> <strong>规模</strong>：30+ 医疗中心，专注<strong>医美 + 牙科 + 健康管理</strong></p>
 <h4>医思主要分店</h4>
 <table border="1" cellpadding="6">
 <tr><th>区域</th><th>主要分店</th></tr>
@@ -751,7 +751,7 @@ const hkMedicalData = {
 <p>> 适合：<strong>医美、牙医、健康检查</strong></p>
 <hr>
 <h3>6️⃣ 尚至医疗 (Virtus Medical) — 中高端</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>3893 6288</strong>  <br>> <strong>官网</strong>：https://www.virtusmedical.com  <br>> <strong>规模</strong>：<strong>15+ 中心</strong>，港岛/九龙为主  <br>> <strong>24h 店</strong>：无  <br>> <strong>客户定位</strong>：<strong>中高端</strong></p>
+<p>> <strong>总部电话</strong>：📞 <strong>3893 6288</strong>  <br>> <strong>官网</strong>：<a href="https://www.virtusmedical.com" target="_blank" rel="noopener">https://www.virtusmedical.com</a>  <br>> <strong>规模</strong>：<strong>15+ 中心</strong>，港岛/九龙为主  <br>> <strong>24h 店</strong>：无  <br>> <strong>客户定位</strong>：<strong>中高端</strong></p>
 <h4>尚至主要分店</h4>
 <table border="1" cellpadding="6">
 <tr><th>分店</th><th>地址</th><th>特色</th></tr>
@@ -765,7 +765,7 @@ const hkMedicalData = {
 <p>> 适合：<strong>多专科会诊</strong>、<strong>中高端体检</strong></p>
 <hr>
 <h3>7️⃣ 新都医疗 (New Town Medical) — 新界本土</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>2698 1001</strong>  <br>> <strong>官网</strong>：https://www.newtownmedical.com.hk  <br>> <strong>规模</strong>：<strong>20+ 分店</strong>，新界为主  <br>> <strong>24h 店</strong>：部分</p>
+<p>> <strong>总部电话</strong>：📞 <strong>2698 1001</strong>  <br>> <strong>官网</strong>：<a href="https://www.newtownmedical.com.hk" target="_blank" rel="noopener">https://www.newtownmedical.com.hk</a>  <br>> <strong>规模</strong>：<strong>20+ 分店</strong>，新界为主  <br>> <strong>24h 店</strong>：部分</p>
 <h4>新都主要分店</h4>
 <table border="1" cellpadding="6">
 <tr><th>区域</th><th>分店</th></tr>
@@ -782,7 +782,7 @@ const hkMedicalData = {
 <p>> 适合：<strong>新界居民</strong>、<strong>慢性病管理</strong></p>
 <hr>
 <h3>8️⃣ 匡乔医疗 (NextGen / 基因医学)</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>2546 6288</strong>  <br>> <strong>官网</strong>：https://www.nextgen.com.hk  <br>> <strong>规模</strong>：<strong>10+ 中心</strong>，港岛/九龙  <br>> <strong>客户定位</strong>：<strong>中高端、基因检测</strong></p>
+<p>> <strong>总部电话</strong>：📞 <strong>2546 6288</strong>  <br>> <strong>官网</strong>：<a href="https://www.nextgen.com.hk" target="_blank" rel="noopener">https://www.nextgen.com.hk</a>  <br>> <strong>规模</strong>：<strong>10+ 中心</strong>，港岛/九龙  <br>> <strong>客户定位</strong>：<strong>中高端、基因检测</strong></p>
 <h4>匡乔主要分店</h4>
 <table border="1" cellpadding="6">
 <tr><th>分店</th><th>地址</th></tr>
@@ -821,7 +821,7 @@ const hkMedicalData = {
 </table>
 <hr>
 <h3>1️⃣1️⃣ 美邦/快验保 (MediLink) — 体检专家</h3>
-<p>> <strong>总部电话</strong>：📞 <strong>2868 9933</strong>  <br>> <strong>官网</strong>：https://www.medilink.com.hk  <br>> <strong>规模</strong>：<strong>10+ 中心</strong>  <br>> <strong>客户定位</strong>：<strong>体检为主</strong></p>
+<p>> <strong>总部电话</strong>：📞 <strong>2868 9933</strong>  <br>> <strong>官网</strong>：<a href="https://www.medilink.com.hk" target="_blank" rel="noopener">https://www.medilink.com.hk</a>  <br>> <strong>规模</strong>：<strong>10+ 中心</strong>  <br>> <strong>客户定位</strong>：<strong>体检为主</strong></p>
 <h4>美邦主要分店</h4>
 <table border="1" cellpadding="6">
 <tr><th>区域</th><th>分店</th></tr>
@@ -3055,7 +3055,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <hr>
 <h2>一、医院管理局（HA - Hospital Authority）</h2>
 <h3>基本信息</h3>
-<p>> <strong>成立</strong>：1990 年  <br>> <strong>管理</strong>：全港 <strong>43 间</strong>公立医院/机构  <br>> <strong>员工</strong>：约 90,000 人  <br>> <strong>预算</strong>：HK$900 亿+/年（政府拨款）  <br>> <strong>官网</strong>：https://www.ha.org.hk</p>
+<p>> <strong>成立</strong>：1990 年  <br>> <strong>管理</strong>：全港 <strong>43 间</strong>公立医院/机构  <br>> <strong>员工</strong>：约 90,000 人  <br>> <strong>预算</strong>：HK$900 亿+/年（政府拨款）  <br>> <strong>官网</strong>：<a href="https://www.ha.org.hk" target="_blank" rel="noopener">https://www.ha.org.hk</a></p>
 <h3>核心职责</h3>
 <table border="1" cellpadding="6">
 <tr><th>职责</th><th>内容</th></tr>
@@ -3083,7 +3083,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <hr>
 <h2>二、衞生署（DH - Department of Health）</h2>
 <h3>基本信息</h3>
-<p>> <strong>成立</strong>：1939 年（前身）  <br>> <strong>总部</strong>：香港湾仔皇后大道东 213 号  <br>> <strong>员工</strong>：约 6,000 人  <br>> <strong>官网</strong>：https://www.dh.gov.hk  <br>> <strong>署长</strong>：现任 <strong>林文健医生</strong></p>
+<p>> <strong>成立</strong>：1939 年（前身）  <br>> <strong>总部</strong>：香港湾仔皇后大道东 213 号  <br>> <strong>员工</strong>：约 6,000 人  <br>> <strong>官网</strong>：<a href="https://www.dh.gov.hk" target="_blank" rel="noopener">https://www.dh.gov.hk</a>  <br>> <strong>署长</strong>：现任 <strong>林文健医生</strong></p>
 <h3>核心职责</h3>
 <table border="1" cellpadding="6">
 <tr><th>职责</th><th>内容</th></tr>
@@ -3107,7 +3107,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <hr>
 <h2>三、医务委员会（MCHK - Medical Council of Hong Kong）</h2>
 <h3>基本信息</h3>
-<p>> <strong>成立</strong>：1950 年代  <br>> <strong>总部</strong>：香港铜锣湾皇室大厦 17 楼  <br>> <strong>官网</strong>：https://www.mchk.org.hk  <br>> <strong>电话</strong>：2873 5131  <br>> <strong>主席</strong>：现任（由医生选举）</p>
+<p>> <strong>成立</strong>：1950 年代  <br>> <strong>总部</strong>：香港铜锣湾皇室大厦 17 楼  <br>> <strong>官网</strong>：<a href="https://www.mchk.org.hk" target="_blank" rel="noopener">https://www.mchk.org.hk</a>  <br>> <strong>电话</strong>：2873 5131  <br>> <strong>主席</strong>：现任（由医生选举）</p>
 <h3>核心职责</h3>
 <table border="1" cellpadding="6">
 <tr><th>职责</th><th>内容</th></tr>
@@ -3173,19 +3173,19 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <h2>五、其他重要监管机构</h2>
 <h3>1. 药剂业及毒药管理局（PPB）</h3>
 <li><strong>职责</strong>：药物注册、销售监管</li>
-<li><strong>官网</strong>：https://www.ppbhk.org.hk</li>
+<li><strong>官网</strong>：<a href="https://www.ppbhk.org.hk" target="_blank" rel="noopener">https://www.ppbhk.org.hk</a></li>
 <h3>2. 中医药管理委员会（CMC）</h3>
 <li><strong>职责</strong>：中医师注册、中药监管</li>
-<li><strong>官网</strong>：https://www.cmchk.org.hk</li>
+<li><strong>官网</strong>：<a href="https://www.cmchk.org.hk" target="_blank" rel="noopener">https://www.cmchk.org.hk</a></li>
 <h3>3. 牙医管理委员会（DHCHK）</h3>
 <li><strong>职责</strong>：牙医注册、纪律</li>
-<li><strong>官网</strong>：https://www.dchk.org.hk</li>
+<li><strong>官网</strong>：<a href="https://www.dchk.org.hk" target="_blank" rel="noopener">https://www.dchk.org.hk</a></li>
 <h3>4. 护士管理局（NCHK）</h3>
 <li><strong>职责</strong>：护士注册</li>
-<li><strong>官网</strong>：https://www.nchk.org.hk</li>
+<li><strong>官网</strong>：<a href="https://www.nchk.org.hk" target="_blank" rel="noopener">https://www.nchk.org.hk</a></li>
 <h3>5. 辅助医疗业管理局（SMCHK）</h3>
 <li><strong>职责</strong>：物理治疗师、职业治疗师等</li>
-<li><strong>官网</strong>：https://www.smchk.org.hk</li>
+<li><strong>官网</strong>：<a href="https://www.smchk.org.hk" target="_blank" rel="noopener">https://www.smchk.org.hk</a></li>
 <h3>6. 香港药剂师学会</h3>
 <li>药剂师专业组织</li>
 <h3>7. 香港医学会（HKMSS）</h3>
@@ -3193,7 +3193,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <hr>
 <h2>六、国际认证</h2>
 <h3>JCI（Joint Commission International）</h3>
-<p>> <strong>性质</strong>：<strong>国际医院联合委员会</strong>认证  <br>> <strong>总部</strong>：美国芝加哥  <br>> <strong>官网</strong>：https://www.jointcommissioninternational.org</p>
+<p>> <strong>性质</strong>：<strong>国际医院联合委员会</strong>认证  <br>> <strong>总部</strong>：美国芝加哥  <br>> <strong>官网</strong>：<a href="https://www.jointcommissioninternational.org" target="_blank" rel="noopener">https://www.jointcommissioninternational.org</a></p>
 <p><strong>JCI 认证标准</strong>：<br><li>国际化患者安全目标</li><br><li>临床护理质量</li><br><li>医疗管理</li><br><li>设施安全</li><br><li>员工资质</li></p>
 <p><strong>香港 JCI 认证医院</strong>（部分）：</p>
 <table border="1" cellpadding="6">
@@ -3250,7 +3250,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
 <hr>
 <h2>八、医疗保险监管</h2>
 <h3>保险业监管局（IA）</h3>
-<p>> <strong>成立</strong>：2015 年（前身是 OCI）  <br>> <strong>总部</strong>：香港金钟  <br>> <strong>官网</strong>：https://www.ia.org.hk  <br>> <strong>职责</strong>：保险公司监管、保险中介人发牌</p>
+<p>> <strong>成立</strong>：2015 年（前身是 OCI）  <br>> <strong>总部</strong>：香港金钟  <br>> <strong>官网</strong>：<a href="https://www.ia.org.hk" target="_blank" rel="noopener">https://www.ia.org.hk</a>  <br>> <strong>职责</strong>：保险公司监管、保险中介人发牌</p>
 <h3>核心职责</h3>
 <table border="1" cellpadding="6">
 <tr><th>职责</th><th>内容</th></tr>
