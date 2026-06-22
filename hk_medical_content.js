@@ -63,7 +63,7 @@ const hkMedicalData = {
 <tr><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
 <tr><td><strong>圣保禄医院</strong> (St. Paul's Hospital)</td><td>铜锣湾</td><td><a href="https://www.stpaul.org.hk" target="_blank" rel="noopener">官网</a></td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
 <tr><td><strong>播道医院</strong> (Evangel Hospital)</td><td>九龙城</td><td><a href="https://www.evangel.org.hk" target="_blank" rel="noopener">官网</a></td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
-<tr><td><strong>浸信会医院</strong> (Baptist Hospital)</td><td>九龙塘</td><td><a href="https://www.baptistkh.org.hk" target="_blank" rel="noopener">官网</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
+<tr><td><strong>浸信会医院</strong> (Baptist Hospital)</td><td>九龙塘</td><td><a href="https://www.hkbh.org.hk" target="_blank" rel="noopener">官网</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
 <tr><td><strong>圣德肋撒医院</strong> (St. Teresa's Hospital)</td><td>太子</td><td><a href="https://www.stteresa.org" target="_blank" rel="noopener">官网</a></td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
 <tr><td><strong>嘉诺撒医院</strong> (Canossa Hospital)</td><td>半山</td><td><a href="https://www.canossahospital.org.hk" target="_blank" rel="noopener">官网</a></td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
 <tr><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td><a href="https://www.twah.org.hk" target="_blank" rel="noopener">官网</a></td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
@@ -200,7 +200,7 @@ const hkMedicalData = {
 <tr><td>---</td><td>------</td><td>------</td><td>------</td><td>----------</td><td>------</td></tr>
 <tr><td>5</td><td><strong>圣保禄医院</strong> (St. Paul's)</td><td>铜锣湾</td><td><a href="https://www.stpaul.org.hk" target="_blank" rel="noopener">https://www.stpaul.org.hk</a></td><td>2890 6008</td><td>香港铜锣湾东院道 2 号</td></tr>
 <tr><td>6</td><td><strong>播道医院</strong> (Evangel)</td><td>九龙城</td><td><a href="https://www.evangel.org.hk" target="_blank" rel="noopener">https://www.evangel.org.hk</a></td><td>2711 5221</td><td>九龙亚皆老街 222 号</td></tr>
-<tr><td>7</td><td><strong>浸信会医院</strong> (Baptist)</td><td>九龙塘</td><td><a href="https://www.baptistkh.org.hk" target="_blank" rel="noopener">https://www.baptistkh.org.hk</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
+<tr><td>7</td><td><strong>浸信会医院</strong> (Baptist)</td><td>九龙塘</td><td><a href="https://www.hkbh.org.hk" target="_blank" rel="noopener">https://www.hkbh.org.hk</a></td><td>2337 4141</td><td>九龙窝打老道 222 号</td></tr>
 <tr><td>8</td><td><strong>圣德肋撒医院</strong> (St. Teresa's)</td><td>太子</td><td><a href="https://www.stteresa.org" target="_blank" rel="noopener">https://www.stteresa.org</a></td><td>2200 3434</td><td>九龙太子道 327 号</td></tr>
 <tr><td>9</td><td><strong>嘉诺撒医院</strong> (Canossa)</td><td>半山</td><td><a href="https://www.canossahospital.org.hk" target="_blank" rel="noopener">https://www.canossahospital.org.hk</a></td><td>2522 2181</td><td>香港旧山顶道 1 号</td></tr>
 <tr><td>10</td><td><strong>香港港安医院-荃湾</strong> (HK Adventist-TW)</td><td>荃湾</td><td><a href="https://www.twah.org.hk" target="_blank" rel="noopener">https://www.twah.org.hk</a></td><td>2275 6688</td><td>荃湾荃景围 199 号</td></tr>
