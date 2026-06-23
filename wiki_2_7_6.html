@@ -2,23 +2,53 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>2.7.6 IFA Visa 续签流程指南</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2.7.6 IFA Visa 续签流程指南 · 全文</title>
 <style>
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 880px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #333; }
-  h1 { color: #1e3a5f; border-bottom: 3px solid #c9a84c; padding-bottom: 12px; }
-  h2 { color: #1e3a5f; margin-top: 32px; border-left: 4px solid #c9a84c; padding-left: 12px; }
-  h3 { color: #1e3a5f; margin-top: 24px; }
-  .meta { background: #f5f5f5; padding: 12px 16px; border-radius: 6px; font-size: 14px; color: #666; margin: 20px 0; }
-  .callout { background: #fffbe6; border-left: 4px solid #f5b800; padding: 12px 16px; margin: 20px 0; border-radius: 4px; }
-  .step { background: #f9f9f9; padding: 16px 20px; border-radius: 6px; margin: 16px 0; border-left: 4px solid #5b9dd9; }
-  .step-title { font-weight: bold; color: #1e3a5f; margin-bottom: 8px; }
-  .info-box { background: #e8f4ff; border-radius: 6px; padding: 16px; margin: 16px 0; }
-  .red { color: #c0392b; font-weight: bold; }
-  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
-  th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
-  th { background: #1e3a5f; color: #c9a84c; }
-  .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #888; font-size: 13px; text-align: center; }
-  a { color: #5b9dd9; }
+  :root {
+    --navy: #1e3a5f;
+    --gold: #c9a84c;
+    --blue: #5b9dd9;
+    --red: #c0392b;
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --border: #e6e8eb;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; max-width: 920px; margin: 0 auto; padding: 32px 20px 80px; line-height: 1.75; color: #2c3e50; background: var(--bg); }
+  h1 { color: var(--navy); font-size: 32px; border-bottom: 3px solid var(--gold); padding-bottom: 14px; margin-bottom: 8px; }
+  h2 { color: var(--navy); font-size: 24px; margin-top: 48px; padding: 10px 14px; background: linear-gradient(to right, #f0f4f8, transparent); border-left: 5px solid var(--gold); border-radius: 0 6px 6px 0; }
+  h3 { color: var(--navy); font-size: 18px; margin-top: 28px; padding-bottom: 6px; border-bottom: 1px dashed var(--border); }
+  h4 { color: #555; font-size: 16px; margin-top: 20px; }
+  .meta { background: var(--card); border: 1px solid var(--border); padding: 14px 18px; border-radius: 8px; font-size: 14px; color: #555; margin: 20px 0 32px; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .meta b { color: var(--navy); }
+  .callout { background: #fffbe6; border-left: 4px solid #f5b800; padding: 12px 16px; margin: 18px 0; border-radius: 4px; font-size: 14.5px; }
+  .critical { background: #fdecea; border-left: 4px solid var(--red); padding: 12px 16px; margin: 18px 0; border-radius: 4px; font-weight: 500; }
+  .info { background: #e8f4ff; border-left: 4px solid var(--blue); padding: 12px 16px; margin: 18px 0; border-radius: 4px; }
+  .step { background: var(--card); padding: 20px 24px; border-radius: 8px; margin: 20px 0; border-left: 4px solid var(--blue); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .step-title { font-weight: bold; color: var(--navy); font-size: 17px; margin-bottom: 12px; }
+  ol.steps { padding-left: 0; counter-reset: stepnum; list-style: none; }
+  ol.steps > li { position: relative; padding: 8px 0 8px 36px; counter-increment: stepnum; }
+  ol.steps > li::before { content: counter(stepnum); position: absolute; left: 0; top: 8px; width: 24px; height: 24px; line-height: 24px; text-align: center; background: var(--navy); color: var(--gold); border-radius: 50%; font-size: 13px; font-weight: bold; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; background: var(--card); border-radius: 6px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+  th, td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+  th { background: var(--navy); color: var(--gold); font-weight: 600; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0; }
+  .timeline-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .timeline-item .num { font-size: 28px; color: var(--gold); font-weight: bold; }
+  .timeline-item .label { color: #555; font-size: 14px; margin-top: 6px; }
+  .redact { background: #fee; color: #c0392b; padding: 1px 6px; border-radius: 3px; font-family: monospace; }
+  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: "SF Mono", Consolas, monospace; font-size: 13.5px; color: #c0392b; }
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 24px; margin: 24px 0; }
+  .toc h3 { margin-top: 0; border: none; }
+  .toc ol { padding-left: 20px; }
+  .toc a { color: var(--blue); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #888; font-size: 13px; text-align: center; }
+  a { color: var(--blue); }
+  ul, ol { padding-left: 22px; }
+  li { margin: 6px 0; }
 </style>
 </head>
 <body>
@@ -26,148 +56,307 @@
 <h1>2.7.6 IFA Visa 续签流程指南</h1>
 
 <div class="meta">
-  <strong>生效时间：</strong>2026 年 6 月 &nbsp;|&nbsp; <strong>适用对象：</strong>持牌 IFA（独立理财顾问）&nbsp;|&nbsp; <strong>审批单位：</strong>香港入境事务处
+  <span><b>文件版本：</b>1.0</span>
+  <span><b>更新时间：</b>2026 年 6 月</span>
+  <span><b>生效时间：</b>2026 年 6 月</span>
+  <span><b>页数：</b>21</span>
 </div>
 
 <div class="callout">
-  <strong>📌 适用对象：</strong>本指南适用于以「受雇于香港保险/财富管理机构」身份申请或续签工作签证的持牌 IFA（即"独立理财顾问"）。本流程为内部统一指引，所有材料由公司统一准备与递交。
+  <b>📌 适用对象：</b>本指南适用于持有香港非永居身份证的<b>持牌 IFA</b>（独立理财顾问），旨在协助您顺利完成 Visa 续签申请的全流程操作。
 </div>
 
-<h2>一、签证类型与适用类别</h2>
-<p>IFA 在港工作签证主要分为以下两类：</p>
+<div class="toc">
+<h3>目录</h3>
+<ol>
+  <li><a href="#sec1">IFA Visa 续签申请流程概览</a></li>
+  <li><a href="#sec2">续签时间安排</a></li>
+  <li><a href="#sec3">续签文件准备</a></li>
+  <li><a href="#sec4">续签具体操作流程</a>
+    <ol>
+      <li><a href="#stage1">第一阶段：个人资料填写</a></li>
+      <li><a href="#stage2">第二阶段：电邮公司 HR 跟进</a></li>
+      <li><a href="#stage3">第三阶段：缴费</a></li>
+      <li><a href="#stage4">第四阶段：审批结果确认、新签证交 HR 登记</a></li>
+    </ol>
+  </li>
+  <li><a href="#sec5">续签相关联络方式</a></li>
+</ol>
+</div>
+
+<h2 id="sec1">一、IFA Visa 续签申请流程概览</h2>
+
+<div class="timeline">
+  <div class="timeline-item"><div class="num">①</div><div class="label">安排在港行程<br>（提前 3 个月）</div></div>
+  <div class="timeline-item"><div class="num">②</div><div class="label">准备申请文件<br>（提前 3 个月）</div></div>
+  <div class="timeline-item"><div class="num">③</div><div class="label">完成个人部分<br>（提前 8 周）</div></div>
+  <div class="timeline-item"><div class="num">④</div><div class="label">电邮 HR 跟进<br>（提前 8 周）</div></div>
+  <div class="timeline-item"><div class="num">⑤</div><div class="label">HR 统一处理<br>（7 号 / 22 号）</div></div>
+  <div class="timeline-item"><div class="num">⑥</div><div class="label">缴纳签证费用</div></div>
+  <div class="timeline-item"><div class="num">⑦</div><div class="label">下载新签证<br>（约 7 个工作日）</div></div>
+  <div class="timeline-item"><div class="num">⑧</div><div class="label">新签证交 HR 登记</div></div>
+</div>
+
+<h2 id="sec2">二、续签时间安排</h2>
+
 <table>
-  <tr><th>签证类型</th><th>适用对象</th><th>首次逗留期</th></tr>
-  <tr><td>专才签证（输入内地人才计划）</td><td>内地居民，已获香港公司正式 offer</td><td>依雇佣合同（最长 3 年）</td></tr>
-  <tr><td>高才通（高端人才通行证计划）</td><td>百强大学学士 / 250万年收入</td><td>2-3 年</td></tr>
+  <tr><th>时间节点</th><th>关键动作</th></tr>
+  <tr><td>3 个月前</td><td>开始准备文件，安排在港行程</td></tr>
+  <tr><td>10 周前</td><td>电邮向公司 HR 申请开具收入证明、工作证明</td></tr>
+  <tr><td>8 周前</td><td>完成个人部分，电邮通知 HR</td></tr>
+  <tr><td>HR 固定处理日</td><td>每月 7 号及 22 号统一处理雇主部分</td></tr>
 </table>
-<p>公司主要采用 <strong>专才签证</strong>为 IFA 申请工作签证。本指南以专才签证为例说明续签流程。</p>
 
-<h2>二、续签申请材料清单</h2>
-<p>由公司统一准备的材料：</p>
+<div class="callout">
+<b>⚠ 重要须知：</b>
+<ul>
+  <li>申请人递交申请、<b>缴费</b>及<b>领取电子签证</b>当天，必须身在香港。</li>
+  <li>延长逗留期限的申请，最早可在逗留期限届满前 3 个月内递交，最晚应不少于前 6 周递交。</li>
+  <li>建议至少在签证到期前 10 周准备好文件，并在到期前 8 周将完整资料提交给公司 HR。</li>
+  <li>公司 HR 于每月固定处理日（每月 7 号及 22 号，遇假期则提前至前一个工作日）统一处理续签申请的雇主部分。</li>
+</ul>
+</div>
+
+<div class="critical">
+⚠ <b>特别提醒：</b>即使已提交续签申请，在旧签证到期后、新签证未获批前，除获入境处特别许可外，<b>必须离港等候</b>，请务必预留足够的审批天数。
+</div>
+
+<h2 id="sec3">三、续签文件准备</h2>
+
+<h3>通用文件清单</h3>
 <table>
-  <tr><th>材料</th><th>说明</th></tr>
-  <tr><td>ID 990A 申请表格</td><td>公司填写部分（雇主声明）</td></tr>
-  <tr><td>ID 990B 申请表格</td><td>申请人填写部分</td></tr>
-  <tr><td>雇佣合同</td><td>公司与申请人签署的正式合同</td></tr>
-  <tr><td>公司商业登记证副本</td><td>由公司注册处签发</td></tr>
-  <tr><td>公司近 6 个月银行流水</td><td>证明有实际经营</td></tr>
-  <tr><td>申请人薪俸税评税通知书</td><td>由税务局发出</td></tr>
-  <tr><td>申请人强积金供款记录</td><td>由受托人提供</td></tr>
-  <tr><td>申请人近照</td><td>白底彩照</td></tr>
-  <tr><td>申请人有效旅行证件</td><td>含个人资料页、签证页</td></tr>
+  <tr><th>序号</th><th>文件</th><th>说明</th></tr>
+  <tr><td>01</td><td>有效旅行证件（港澳通行证）</td><td>剩余有效期须不少于 6 个月；建议更换为剩余有效期超过 3 年</td></tr>
+  <tr><td>02</td><td>进入许可 / 入境标签（小白条）</td><td>—</td></tr>
+  <tr><td>03</td><td>现有电子签证（e-Visa）PDF 档案</td><td>—</td></tr>
+  <tr><td>04</td><td>现有香港身份证（正反面扫描）</td><td>—</td></tr>
+  <tr><td>05</td><td>收入证明、工作证明</td><td>需向公司 HR 申请开具</td></tr>
+  <tr><td>06</td><td>近一年税单、强积金 MPF 记录、佣金收入银行流水</td><td>建议准备</td></tr>
+  <tr><td>07</td><td>顾问协议</td><td>—</td></tr>
 </table>
-<p class="callout">📧 材料准备完成后，统一发送至公司签证对接邮箱：<code>[公司签证邮箱]</code></p>
 
-<h2>三、续签处理流程（5 步）</h2>
-
-<div class="step">
-  <div class="step-title">步骤 1：内部预审（5 个工作日）</div>
-  <p>由公司合规部对申请人材料进行预审，核对：</p>
-  <ul>
-    <li>雇佣关系真实性（合同、工资流水、强积金）</li>
-    <li>薪资水平是否达市场水平</li>
-    <li>职位与资历匹配度</li>
-    <li>过去签证期内是否有违规记录</li>
-  </ul>
+<h3>符合顶尖人才资格（如适用）</h3>
+<div class="info">
+<b>资格条件：</b>在港就业 ≥ 2 年，且上一评税年度薪俸税应评税收入 ≥ 200 万港币。<br>
+<b>所需文件：</b>薪俸税评税通知书（收入 ≥ 200 万港币）。<br>
+<i>请以香港入境事务处最新公告为准。</i>
 </div>
 
+<h3>开具收入证明、工作证明流程</h3>
 <div class="step">
-  <div class="step-title">步骤 2：递交入境处（3-5 个工作日）</div>
-  <p>预审通过后，由公司签证专办员：</p>
-  <ul>
-    <li>在 GovHK 网上系统填写申请</li>
-    <li>上传所有材料扫描件</li>
-    <li>在线支付申请费（港币 600 元）</li>
-    <li>提交后获取申请编号</li>
-  </ul>
-</div>
-
-<div class="step">
-  <div class="step-title">步骤 3：等待审批（4-6 周）</div>
-  <p>入境处审批时间一般 <strong>4-6 周</strong>，高峰期可能延长至 8 周。可通过：</p>
-  <ul>
-    <li>GovHK 网上系统查询状态</li>
-    <li>入境处 24 小时查询电话：(852) 3128 8668</li>
-  </ul>
-  <p class="callout">⚠️ 如收到补件通知，需在指定期限内（一般 30 天）补充材料，逾期可能视作撤回申请。</p>
-</div>
-
-<div class="step">
-  <div class="step-title">步骤 4：获批与缴费</div>
-  <p>获批后会收到电子签证（e-Visa），无需到入境处现场领取。申请人：</p>
-  <ul>
-    <li>下载并打印 e-Visa</li>
-    <li>保存电子版备查</li>
-    <li>核对签证有效期与逗留期限</li>
-  </ul>
-</div>
-
-<div class="step">
-  <div class="step-title">步骤 5：入境激活</div>
-  <p>凭 e-Visa 在有效期内入境香港，入境时：</p>
-  <ul>
-    <li>由入境处人员核实身份</li>
-    <li>获发「入境标签」（小白条）</li>
-    <li>小白条是合法逗留凭证，务必妥善保管</li>
-  </ul>
-</div>
-
-<h2>四、特殊场景处理</h2>
-
-<h3>场景 1：续签被拒</h3>
-<p>收到拒签信后，公司合规部会协助：</p>
+<div class="step-title">步骤 1：向公司 HR 提交申请（提前 7 个工作日）</div>
 <ul>
-  <li>分析拒签原因（材料不足/真实性存疑等）</li>
-  <li>准备申诉或重新申请</li>
-  <li>评估申请人合法逗留时间</li>
+  <li><b>收件人：</b><code>[公司 HR 签证邮箱]</code></li>
+  <li><b>邮件标题格式：</b>Visa 续签申请 – [姓名] – 申请收入证明及工作证明</li>
+  <li><b>邮件内文须包含：</b>申请者中文全名、英文全名（与证件一致）、IA CODE、需要申请的收入证明时段（如：2025.1.1-2025.12.31 的佣金证明）</li>
 </ul>
-<p class="callout">📧 拒签处理联系公司合规部：<code>[合规邮箱]</code></p>
-
-<h3>场景 2：雇主变更</h3>
-<p>如 IFA 在签证期内更换雇主：</p>
-<ul>
-  <li>需在新雇主处重新申请工作签证</li>
-  <li>原签证自动失效</li>
-  <li>需在原签证到期前完成新签证申请</li>
-</ul>
-
-<h3>场景 3：转身份（永居）</h3>
-<p>连续通常居住满 7 年可申请永居。需提前准备：</p>
-<ul>
-  <li>7 年签证记录</li>
-  <li>在港居住证明（地址、子女学校、医疗记录等）</li>
-  <li>持续的工作/业务证明</li>
-  <li>税务合规记录</li>
-</ul>
-<p class="callout">📧 永居申请咨询公司账户部：<code>[账户邮箱]</code></p>
-
-<h2>五、关键提醒</h2>
-
-<div class="info-box">
-  <p><strong>⚠️ 真实雇佣原则：</strong>入境处对"挂靠"零容忍，雇佣关系必须真实。薪资不能远低于市场水平，职位需与资历匹配。</p>
-  <p><strong>⚠️ 提前 4 周申请：</strong>建议在签证到期前 4 周提交续签申请，避免出现"断签"风险。</p>
-  <p><strong>⚠️ 资料真实性：</strong>所有材料必须真实、完整，虚假信息会导致拒签甚至追究法律责任。</p>
-  <p><strong>⚠️ 入境处联系方式：</strong></p>
-  <ul>
-    <li>查询电话：(852) 3128 8668（早 7 点 - 晚 11 点）</li>
-    <li>查询邮箱：enquiry@immd.gov.hk</li>
-    <li>办公地址：<span class="red">[入境处办公地址]</span></li>
-  </ul>
 </div>
 
-<h2>六、公司商业登记信息（内部存档）</h2>
+<div class="step">
+<div class="step-title">步骤 2：公司 HR 完成后将电邮通知您</div>
+</div>
+
+<div class="callout">
+⚠ <b>特别提醒：</b>公司开具的收入证明仅限您申请时段内的应收佣金，未出账单的部分不支持提前开具收入证明。<br><br>
+⚠ <b>注意事项：</b>如您对佣金明细有其他疑问，请联系财务部门：<code>[公司财务邮箱]</code>
+</div>
+
+<h2 id="sec4">四、续签具体操作流程</h2>
+
+<h3>进入入境事务处网上服务</h3>
+<ol class="steps">
+  <li>登录香港入境事务处官网，点击顶部导航栏的「网上服务」标签。</li>
+  <li>在下拉菜单中选择「签证 / 进入许可」，然后点击「吸引人才」板块。</li>
+  <li>找到符合的计划（如「非本地毕业生留港 / 回港就业安排 (IANG)」），点击右侧的「即时申请延期」。</li>
+  <li>在跳转页面中，下拉并点击绿色的「网上申请延长逗留期限」按钮，开始流程。</li>
+</ol>
+
+<div class="info">
+<b>入境处官网入口：</b><a href="https://www.immd.gov.hk" target="_blank" rel="noopener">www.immd.gov.hk</a><br>
+<b>路径：</b>网上服务 → 签证/进入许可 → 吸引人才 → IANG → 即时申请延期
+</div>
+
+<h3 id="stage1">第一阶段：个人资料填写</h3>
+
+<h4>1.1 确认声明并开始申请</h4>
+<ol class="steps">
+  <li>仔细阅读服务条款，在说明部分打勾确认「我接受已阅读上述条件且我符合资格使用此网上服务」。</li>
+  <li>在版权告示、私隐政策及免责声明部分，同样打勾确认同意相关条款。</li>
+  <li>在核证安全验证区域，填写左边显示的验证码（若显示不正确或模糊，可尝试刷新或更换浏览器）。</li>
+  <li>确认所有勾选和验证码填写完毕后，点击底部的「开始」按钮正式进入填写页面。</li>
+</ol>
+
+<div class="callout">⚠ 建议使用最新版本浏览器，如遇验证码无法正常显示，建议切换至 Chrome 或 Safari 重试。</div>
+
+<h4>1.2 递交详情与申请人资料</h4>
+<ol class="steps">
+  <li><b>申请数目：</b>选择所有申请人数（一般个人申请选择「1」）。</li>
+  <li><b>基本资料填写：</b>填写您手头上的电子签证编号、出生日期以及港澳通行证到期日。</li>
+  <li><b>「是/否」选项：</b>如果第一次办理 IANG 签证，或上一次是在别的公司签证，请务必按真实情况正确选择，这样系统才会允许您提交公司材料。</li>
+  <li><b>递交申请时必须在港：</b>在网上递交此申请时，所有申请人必须身处香港境内，否则申请将无效且已缴费用不予退还。</li>
+</ol>
+
+<div class="critical">
+<b>递交申请时，申请人必须身处香港境内。</b>若在境外递交，申请将被视为无效，且已缴纳的费用概不退还。请务必在抵港后再进行网上提交操作。
+</div>
+
+<h4>1.3 个人资料填写要点</h4>
 <table>
-  <tr><th>项目</th><th>信息</th></tr>
-  <tr><td>商业登记证号</td><td><span class="red">[商业登记证号]</span></td></tr>
-  <tr><td>公司注册处编号</td><td><span class="red">[公司注册处编号]</span></td></tr>
-  <tr><td>签证专办邮箱</td><td><span class="red">[公司签证邮箱]</span></td></tr>
-  <tr><td>合规部邮箱</td><td><span class="red">[合规邮箱]</span></td></tr>
-  <tr><td>账户部邮箱</td><td><span class="red">[账户邮箱]</span></td></tr>
+  <tr><th>项目</th><th>要点</th></tr>
+  <tr><td>英文姓名</td><td>必须与您的港澳通行证上的英文姓名完全一致</td></tr>
+  <tr><td>个人邮箱</td><td>务必填写正确，后续所有申请进度与通知均会通过该邮箱联系</td></tr>
+  <tr><td>通行证信息</td><td>准确填写港澳通行证的签发日期与届满日期</td></tr>
+  <tr><td>拟申请逗留至</td><td>请填写「小白条时间 + 3 年」</td></tr>
 </table>
+
+<div class="info">
+<b>填写提示：</b>
+<ul>
+  <li>英文姓名如有拼音差异，以通行证为准，不可自行修改。</li>
+  <li>邮箱建议使用常用邮箱，避免遗漏重要通知。</li>
+  <li>「拟申请逗留至」日期计算：以入境小白条上的日期为基准，加上 3 年。</li>
+</ul>
+</div>
+
+<h4>1.4 香港地址填写指引</h4>
+<ol class="steps">
+  <li><b>地址语言：</b>在语言选项中，选择「中文输入」。</li>
+  <li><b>地址类别：</b>在地址类别中，选择「其他地址」（非香港境内选项）。</li>
+  <li><b>手动输入地址：</b>在地址详情中，务必选择「其他」并手动输入您的香港地址，避免系统自动匹配出错。</li>
+  <li><b>确认继续：</b>填写完成后，点击手动输入框下方的「继续」按钮保存并进入下一步。</li>
+</ol>
+
+<div class="callout">⚠ 地址填写时切勿使用系统自动匹配功能，必须选择「其他」后手动输入，否则可能导致地址格式错误，影响申请审批。</div>
+
+<h4>1.5 保证人资料与证明文件</h4>
+<ol class="steps">
+  <li><b>保证人资料选择：</b>在保证人资料选项中，勾选「以公司／就读学校为保证人」。</li>
+  <li><b>保证公司名称：</b>在保证公司/就读学校名称一栏，填写公司的完整官方名称。</li>
+  <li><b>商业登记证号码：</b>准确填写保证公司的商业登记号码 <span class="redact">[公司 BR 号]</span>。</li>
+  <li><b>上传香港身份证：</b>在证明文件区域，上传申请人的香港身份证扫描件（限 1 个档案，大小在 5MB 或以下，格式支持 JPEG, PDF, GIF, PNG 等）。</li>
+</ol>
+
+<div class="info">
+<b>填写提示：</b>
+<ul>
+  <li>公司名称须与商业登记证完全一致，不可缩写。</li>
+  <li>香港身份证须清晰可辨，正反两面均须扫描上传。</li>
+</ul>
+</div>
+
+<h4>1.6 上传必需证明文件</h4>
+<table>
+  <tr><th>区域</th><th>要求</th></tr>
+  <tr><td>旅行证件</td><td>港澳通行证、电子签证、入境小白条（最多 5 个档案，每个 5MB 或以下）</td></tr>
+  <tr><td>香港身份证</td><td>限 1 个档案</td></tr>
+  <tr><td>高收入纳税证明（如适用）</td><td>薪俸税应评税收入 ≥ 200 万港币时提供纳税申报表、纳税凭证或税务结果等</td></tr>
+  <tr><td>其他文件</td><td>工作证明、收入证明、税单、强积金 MPF 记录、学历证明等支持性材料</td></tr>
+</table>
+
+<div class="callout">📁 上传文件格式：JPEG, PDF, GIF, PNG 等，每个 ≤ 5MB</div>
+
+<h4>1.7 个人资料填写完毕：记住临时申请编号</h4>
+<ol class="steps">
+  <li><b>记住临时申请档案编号：</b>个人资料填写完毕后，系统会弹出提示，显示您的「临时申请档案编号」，请务必记住该申请编号（与公司 HR 对接公司申请部分时需要提供）。</li>
+  <li><b>如果暂时不递交：</b>若需补充或暂时不递交，也可以保存此编号，下次登录时通过该编号找回填写的信息。</li>
+</ol>
+
+<div class="critical">⚠ <b>请务必记住此编号！</b>此编号是与公司 HR 对接雇主申请部分的唯一凭证。</div>
+
+<h4>1.8 完成个人部分并通知公司</h4>
+<ol class="steps">
+  <li><b>结束个人部分：</b>请按「保存及离开」结束这部分，并尽快通知聘用公司的代表填写公司的申请部分。</li>
+  <li><b>填写公司资料（如适用）：</b>按「保存」立即开始填写公司的申请部分。</li>
+</ol>
+
+<h3 id="stage2">第二阶段：电邮公司 HR 跟进</h3>
+
+<h4>2.1 发送续签申请邮件</h4>
+<p>完成个人资料部分后，请及时电邮公司 HR 对接公司申请部分。</p>
+<table>
+  <tr><th>项目</th><th>内容</th></tr>
+  <tr><td>收件人</td><td><code>[公司 HR 签证邮箱]</code></td></tr>
+  <tr><td>邮件标题格式</td><td>Visa 续签申请 – [姓名] – [临时申请编号]</td></tr>
+  <tr><td>邮件内文须包含</td><td>申请者全名（与证件一致）、临时申请编号</td></tr>
+</table>
+
+<h4>2.2 公司 HR 完成后的通知方式</h4>
+<p>公司 HR 收到邮件后，会于每月固定处理日（每月 7 号及 22 号，遇假期则提前至前一个工作日）统一处理雇主部分。</p>
+<p>公司申请的结果将电邮通知您：</p>
+<ul>
+  <li>若资料不全，将退回申请；</li>
+  <li>若审核通过后，将通知您已完成雇主部分，请注意查收邮件。</li>
+</ul>
+
+<div class="callout">⚠ <b>注意事项：</b>已完成雇主部分后，您的网上申请手续仍未完成，请及时登录一站通进行缴费。</div>
+
+<h3 id="stage3">第三阶段：缴费</h3>
+
+<div class="critical">⚠ <b>重要提醒：</b>缴费时要求必须身在香港。</div>
+
+<h4>3.1 缴费时间</h4>
+<p>缴费时间由申请人自行决定，但未缴纳签证费用，申请将视为未完成，入境处不会开始审批。</p>
+<p>若签证到期前仍未缴费，可能会因逾期逗留，涉及刑事罪行。</p>
+
+<h4>3.2 缴费方式</h4>
+<table>
+  <tr><th>项目</th><th>内容</th></tr>
+  <tr><td>平台</td><td>香港政府一站通（<a href="https://www.gov.hk" target="_blank" rel="noopener">www.gov.hk</a>）→ 电子签证服务 → 网上付款</td></tr>
+  <tr><td>支付方式</td><td>信用卡、银联卡、缴费灵、转数快、支付宝、微信支付</td></tr>
+  <tr><td>费用</td><td>约 600~1300 港元（以入境处通知为准）</td></tr>
+</table>
+
+<h3 id="stage4">第四阶段：审批结果确认、新签证交 HR 登记</h3>
+
+<h4>4.1 确认审批结果</h4>
+<p>一般而言，入境处会于 <b>七个工作天内</b>向您发出「申请结果通知书」或「领证通知书」。</p>
+<p>如在十个工作天后仍未收到通知书，请致电入境处寻求协助：<br>
+<b>电话：</b>(852) 2824 6111</p>
+
+<h4>4.2 下载电子签证（e-Visa）</h4>
+<div class="critical">⚠ 领取电子签证时，申请人必须身在香港。</div>
+<p>收到入境处「申请结果通知书」后，依以下步骤下载：</p>
+<ol class="steps">
+  <li>登入香港政府一站通（<a href="https://www.gov.hk" target="_blank" rel="noopener">www.gov.hk</a>）</li>
+  <li>点选「电子签证服务」→「下载电子签证」</li>
+  <li>输入申请编号、旅行证件号码及出生日期</li>
+  <li>下载 PDF 档案</li>
+  <li>建议打印 A4 纸本备查</li>
+</ol>
+
+<h4>4.3 交 HR 登记</h4>
+<p>下载电子签证后，请完成以下登记步骤：</p>
+<ol class="steps">
+  <li>将电子签证 PDF 发送至：<code>[公司牌照部邮箱]</code></li>
+  <li>在 IFA 个人专属服务群通知 HR：「新签证已下载」</li>
+  <li>HR 将更新系统信息</li>
+</ol>
+
+<h2 id="sec5">五、续签相关联络方式</h2>
+
+<table>
+  <tr><th>类别</th><th>联系方式</th></tr>
+  <tr><td>HR 续签协助邮箱</td><td><code>[公司 HR 签证邮箱]</code></td></tr>
+  <tr><td>e-Visa 交 HR 登记</td><td><code>[公司牌照部邮箱]</code></td></tr>
+  <tr><td>财务部邮箱（佣金相关）</td><td><code>[公司财务邮箱]</code></td></tr>
+  <tr><td>入境处联系电话</td><td>(852) 2824 6111</td></tr>
+  <tr><td>入境处联系电邮</td><td>enquiry@immd.gov.hk</td></tr>
+  <tr><td>入境处总部地址</td><td>新界将军澳宝邑路 61 号</td></tr>
+</table>
+
+<div class="info">
+⭐ <b>重点提醒摘要：</b>
+<ol>
+  <li><b>必须在港完成关键步骤：</b>递交申请、缴费及领取电子签证，均须在身处香港境内时操作，否则申请无效或不被接纳。</li>
+  <li><b>提前 8 周完成个人部分并通知 HR：</b>建议至少在签证到期前 8 周完成个人资料填写，并发送电邮至 <code>[公司 HR 签证邮箱]</code>，提供临时申请编号与姓名。</li>
+  <li><b>HR 统一处理时间：每月 7 号及 22 号：</b>公司 HR 于每月固定处理日（7 号及 22 号，遇假期则提前至前一个工作日）统一处理雇主部分，请提前安排。</li>
+  <li><b>收到 HR 通知后尽快缴费：</b>雇主部分完成后，申请仍未完成，须及时登录一站通完成缴费，否则入境处不会开始审批。</li>
+</ol>
+</div>
 
 <div class="footer">
-  <p>以上为公司内部 SOP 流程摘要，具体申请与续签要求以香港入境事务处最新公布为准。<br>
-  复杂个案建议咨询专业移民顾问。</p>
+  <p>如有任何疑问，请联系公司 HR。</p>
+  <p>本文件仅供内部参考，请以香港入境事务处最新公告为准。</p>
   <p>恒玥 Yueguard · 2026 年 6 月版</p>
 </div>
 
