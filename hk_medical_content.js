@@ -3392,7 +3392,7 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
   if (typeof contentData === 'undefined' || !contentData || !contentData.categories) return;
   var wikiCat = contentData.categories.find(function(c) { return c.id === 'wiki'; });
   if (!wikiCat) return;
-  if (wikiCat.children && wikiCat.children.find(function(c) { return c.id === 'w26'; })) return;
+  // [FIX 2026-06-24] 不再 return；改为：检测到 w26 已存在则填充 children（不重建）
   
   var medicalChildren = [
     { id: 'hkm_2_6_1',  title: '2.6.1 香港医院大全（主流版）', content: hkMedicalData['2.6.1 香港医院大全（主流版）'].content },
@@ -3410,8 +3410,21 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
     { id: 'hkm_2_6_13', title: '2.6.13 香港客户医疗病例库',   content: hkMedicalData['2.6.13 香港客户医疗病例库'].content },
     { id: 'hkm_2_6_14', title: '2.6.14 香港医疗监管与认证',   content: hkMedicalData['2.6.14 香港医疗监管与认证'].content }
   ];
-  
-  // 找到 w25 的位置，在它之后插入 w26（不要追加到末尾）
+
+  var existingW26 = wikiCat.children && wikiCat.children.find(function(c) { return c.id === 'w26'; });
+  if (existingW26) {
+    // [FIX 2026-06-24] w26 已在 wiki_content.js 中定义（位于 w25 之后、w27 之前）
+    // 仅填充 children，避免重复创建
+    if (!existingW26.children || existingW26.children.length === 0) {
+      existingW26.children = medicalChildren;
+      console.log('已填充 2.6 香港医疗工具包到已有 w26 节点');
+    } else {
+      console.log('2.6 w26 已存在且有 children，跳过');
+    }
+    return;
+  }
+
+  // 兜底：w26 不在源文件中（旧版 wiki_content.js），则创建并插入到 w25 之后
   var w26Entry = {
     id: 'w26',
     name: '2.6 香港医疗工具包',
@@ -3421,9 +3434,9 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
   var w25Index = wikiCat.children.findIndex(function(c) { return c.id === 'w25'; });
   if (w25Index >= 0) {
     wikiCat.children.splice(w25Index + 1, 0, w26Entry);
-    console.log('已注入 2.6 香港医疗工具包（14 份）至 w25 之后，位置索引=' + (w25Index + 1));
+    console.log('已注入 2.6 至 w25 之后（兜底）');
   } else {
     wikiCat.children.push(w26Entry);
-    console.log('未找到 w25，回退追加到末尾');
+    console.log('未找到 w25，追加到末尾');
   }
 })();

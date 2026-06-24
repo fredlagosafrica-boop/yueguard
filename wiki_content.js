@@ -58,6 +58,14 @@ contentData.categories.push({
       ]
     },
     {
+      id: 'w26', name: '2.6 香港医疗工具包',
+      subtitle: '14 份完整工具·医院+基层+连锁+专科+监管',
+      children: [
+        // 由 hk_medical_content.js 末尾 IIFE 自动注入 hkm_2_6_1 ~ hkm_2_6_14
+        // 此处占位，避免依赖 CDN 同步后的 hk_medical_content.js 才能看到 2.6
+      ]
+    },
+    {
       id: 'w27', name: '2.7 香港高优专才的申请与续签',
       subtitle: '高端人才通行证计划（TTPS）全流程指引',
       children: [

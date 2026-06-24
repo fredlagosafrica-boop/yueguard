@@ -27,12 +27,12 @@ function onChunkLoaded() {
 var CDN_BASE = 'https://cdn.jsdelivr.net/gh/fredlagosafrica-boop/yueguard@main/';
 var scripts = [
   CDN_BASE + 'ifa_content.js?v=20260622b',
-  CDN_BASE + 'wiki_content.js?v=20260623a',
+  CDN_BASE + 'wiki_content.js?v=20260624b',
   // [FIX 2026-06-21] hk_medical_content.js (260KB) 恢复首屏加载
   //   让 2.6 香港医疗工具包直接作为「📚 百科全书」下的子分类
   //   之前是懒加载占位卡，导致 2.6 看起来像顶级分类
   //   现在首屏加载（多 60-80KB gzip），用户首屏就能看到完整结构
-  CDN_BASE + 'hk_medical_content.js?v=20260624a',
+  CDN_BASE + 'hk_medical_content.js?v=20260624b',
   CDN_BASE + 'sales_content.js?v=2026052401',
   CDN_BASE + 'referral_content.js?v=20260610',
   CDN_BASE + 'materials_content.js?v=2026060102',
