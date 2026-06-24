@@ -3411,12 +3411,19 @@ ICU（深切治疗）：$30,000-$80,000/日</code></pre>
     { id: 'hkm_2_6_14', title: '2.6.14 香港医疗监管与认证',   content: hkMedicalData['2.6.14 香港医疗监管与认证'].content }
   ];
   
-  wikiCat.children.push({
+  // 找到 w25 的位置，在它之后插入 w26（不要追加到末尾）
+  var w26Entry = {
     id: 'w26',
     name: '2.6 香港医疗工具包',
     subtitle: '14 份完整工具·医院+基层+连锁+专科+监管',
     children: medicalChildren
-  });
-  
-  console.log('已注入 2.6 香港医疗工具包（14 份）');
+  };
+  var w25Index = wikiCat.children.findIndex(function(c) { return c.id === 'w25'; });
+  if (w25Index >= 0) {
+    wikiCat.children.splice(w25Index + 1, 0, w26Entry);
+    console.log('已注入 2.6 香港医疗工具包（14 份）至 w25 之后，位置索引=' + (w25Index + 1));
+  } else {
+    wikiCat.children.push(w26Entry);
+    console.log('未找到 w25，回退追加到末尾');
+  }
 })();
