@@ -19,7 +19,13 @@ contentData.categories.push({
       id: 'content02',
       name: '3.2 小红书题材',
       children: [
-        { id: 'content02a', title: '3.2.1 2025年', content: '<h2>3.2.1 2025年小红书题材</h2><p>内容待补充...</p>' },
+        { id: 'content02a', name: '3.2.1 2025年', children: [
+          { id: 'content02a_01', title: '3.2.1.1 资产配置', content: '<h2>3.2.1.1 资产配置</h2><p>内容待补充...</p>' },
+          { id: 'content02a_02', title: '3.2.1.2 知识科普', content: '<h2>3.2.1.2 知识科普</h2><p>内容待补充...</p>' },
+          { id: 'content02a_03', title: '3.2.1.3 赴港攻略', content: '<h2>3.2.1.3 赴港攻略</h2><p>内容待补充...</p>' },
+          { id: 'content02a_04', title: '3.2.1.4 港式生活', content: '<h2>3.2.1.4 港式生活</h2><p>内容待补充...</p>' },
+          { id: 'content02a_05', title: '3.2.1.5 案例故事', content: '<h2>3.2.1.5 案例故事</h2><p>内容待补充...</p>' }
+        ] },
         { id: 'content02b', title: '3.2.2 2026年', content: '<h2>3.2.2 2026年小红书题材</h2><p>内容待补充...</p>' },
         { id: 'content02c', title: '3.2.3 2027年', content: '<h2>3.2.3 2027年小红书题材</h2><p>内容待补充...</p>' }
       ]
