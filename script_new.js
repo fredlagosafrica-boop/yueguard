@@ -321,7 +321,7 @@ function renderCategories() {
     cbCard.id = 'chatbotLazyCard';
     cbCard.innerHTML = '<div class="cat-icon">🤖</div>' +
       '<div class="cat-name">智能客服问答库</div>' +
-      '<div class="cat-sub">点击加载 · 18个分组198条话术</div>';
+      '<div class="cat-sub">点击加载 · 29个分组312条话术</div>';
     cbCard.onclick = loadChatbotCategory;
     grid.appendChild(cbCard);
   }
