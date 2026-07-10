@@ -37,7 +37,6 @@ var scripts = [
   CDN_BASE + 'referral_content.js?v=20260610',
   CDN_BASE + 'materials_content.js?v=2026060102',
   // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
-  CDN_BASE + 'faq_content.js?v=2026052901',
   CDN_BASE + 'biyuan_content.js?v=2026052301',
 ];
 
