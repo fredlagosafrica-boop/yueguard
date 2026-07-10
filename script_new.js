@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 7;
+const totalChunks = 8; // [2026-07-10] 新增港险产品资料库（第8个一级分类）
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
@@ -38,6 +38,8 @@ var scripts = [
   CDN_BASE + 'materials_content.js?v=2026060102',
   // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
   CDN_BASE + 'biyuan_content.js?v=2026052301',
+  // [2026-07-10] 第8个一级分类：港险产品资料库（香港各主流保司产品介绍·对比）
+  CDN_BASE + 'products_content.js?v=20260710',
 ];
 
 var loadedCount = 0;
