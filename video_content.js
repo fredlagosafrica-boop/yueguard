@@ -47,7 +47,7 @@ contentData.categories.push({
       name: '团队月会',
       children: [
         { id: 'v-02', name: '恒玥团队发展规划与策略', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 团队月会 · 50分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-02.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
-        { id: 'v-05', name: '业务策略与合规风控培训', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 团队月会 · 6分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-05.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
+        { id: 'v-05', name: '业务策略与合规风控培训', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 团队月会 · 86分钟 · 已上线（完整版）</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-05.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
       ]
     },
     {
