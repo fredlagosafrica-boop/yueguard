@@ -535,6 +535,9 @@ function updateBreadcrumbDocOnly(cat, child, item) {
 }
 
 function showCategory(cat) {
+  // [OPT] 点击一级分类时懒加载大文件
+  if (cat.id === 'sales') loadSalesCategory();
+  if (cat.id === '素材') loadMaterialsCategory();
   lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
@@ -591,6 +594,9 @@ function restoreCategory(cat) {
 }
 
 function showChild(cat, child, itemIdToShow) {
+  // [OPT] 点击子分类时懒加载大文件
+  if (cat.id === 'sales') loadSalesCategory();
+  if (cat.id === '素材') loadMaterialsCategory();
   lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
