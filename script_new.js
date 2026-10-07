@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 9;
+const totalChunks = 10;
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
@@ -31,6 +31,7 @@ const scripts = [
   CDN_BASE + 'materials_content.js?v=2026060102',
   CDN_BASE + 'products_content.js?v=20260712',
   CDN_BASE + 'video_content.js?v=20261007',
+  CDN_BASE + 'chatbot_content.js?v=20251015',
 ];
 
 function loadScript(i) {
