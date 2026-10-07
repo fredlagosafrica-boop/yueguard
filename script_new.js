@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 7; // [OPT] 首屏7个，materials和sales懒加载 // [2026-10-07] 新增视频库（第9个一级分类）
+const totalChunks = 9; // [OPT] 首屏7个，materials和sales懒加载 // [2026-10-07] 新增视频库（第9个一级分类）
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
