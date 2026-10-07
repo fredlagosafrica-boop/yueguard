@@ -1,1 +1,29 @@
-ifa_content.js.bak.*
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Backups & temp
+*.bak
+*.bak.*
+*.swp
+*.swo
+.DS_Store
+
+# Build outputs
+materials_output/
+screenshots/
+preview_*.html
+
+# Local working files (not for production)
+build_*.py
+add_*.py
+convert_docx.py
+articles_*.py
+analyze_ref.py
+
+# Force-deploy trigger (just for prod)
+# _force_deploy
+
+# Pre-merge backups
+chatbot_content.js.bak.premerge
