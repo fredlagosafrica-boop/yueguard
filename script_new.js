@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 9; // [OPT] 首屏7个，materials和sales懒加载 // [2026-10-07] 新增视频库（第9个一级分类）
+const totalChunks = 7;
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
@@ -18,187 +18,33 @@ function onChunkLoaded() {
   }
 }
 
-// ─── 动态加载 content chunks（jsDelivr CDN + 多文件懒加载）────
-// [PERF 2026-06-21] 切换 jsDelivr CDN：亚洲节点自动 gzip，总流量从 982KB→~300KB
-// [PERF 2026-06-21] chatbot_content.js (128KB) 改为懒加载：用户点击"智能客服"卡片时才下载
-// [PERF 2026-06-21] hk_medical_content.js (260KB) 改为懒加载：用户进入 2.6 分类时才下载
-  CDN_BASE + 'sales_content.js?v=2026052401',
-//   解决"登录后空白 15s"问题——之前 chatbot_content.js 在 GitHub Pages 上访问极不稳定
-//   实测首次 1.88s 成功，二次请求 15s 超时
-var CDN_BASE = 'https://fredlagosafrica-boop.github.io/yueguard/';
+// ─── 动态加载 content chunks（根目录，无chunks/前缀）────
 var scripts = [
-  CDN_BASE + 'ifa_content.js?v=20260622b',
-  CDN_BASE + 'wiki_content.js?v=20260624b',
-  // [FIX 2026-06-21] hk_medical_content.js (260KB) 恢复首屏加载
-  CDN_BASE + 'sales_content.js?v=2026052401',
-  //   让 2.6 香港医疗工具包直接作为「📚 百科全书」下的子分类
-  //   之前是懒加载占位卡，导致 2.6 看起来像顶级分类
-  //   现在首屏加载（多 60-80KB gzip），用户首屏就能看到完整结构
-  CDN_BASE + 'hk_medical_content.js?v=20260624b',
-  CDN_BASE + 'sales_content.js?v=2026052401',
-  // [OPT] sales_content.js (556KB) 改为懒加载（见 loadSalesCategory）
-  CDN_BASE + 'referral_content.js?v=20260610',
-  // [OPT] materials_content.js (808KB) 改为懒加载（见 loadMaterialsCategory）
-  // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
-  CDN_BASE + 'biyuan_content.js?v=2026052301',
-  CDN_BASE + 'materials_content.js?v=2026060102',
-  // [2026-07-10] 第8个一级分类：港险产品资料库（香港各主流保司产品介绍·对比）
-  CDN_BASE + 'products_content.js?v=20260712',
-  // [2026-10-07] 视频库
-  CDN_BASE + 'video_content.js?v=20261007',
+  'ifa_content.js?v=2026052801',
+  'wiki_content.js?v=2026052301',
+  'sales_content.js?v=2026052320',
+  'referral_content.js?v=20260516',
+  'materials_content.js?v=20260516',
+  'chatbot_content.js?v=20260516',
+  'biyuan_content.js?v=2026052301',
 ];
 
-var loadedCount = 0;
-var loadTimeout = null;
-var totalScripts = scripts.length;
-
-function updateProgress(loaded, total) {
-  var p = document.getElementById('loadProgress');
-  if (p) p.textContent = '⏳ 加载中 ' + loaded + '/' + total;
-}
-
-function tryRender() {
-  if (loadedCount >= totalScripts) {
-    clearTimeout(loadTimeout);
-    var p = document.getElementById('loadProgress');
-    if (p) { p.textContent = '✅ 加载完成，正在渲染...'; setTimeout(function() { if (p) p.style.display = 'none'; }, 500); }
+function loadScript(i) {
+  if (i >= scripts.length) {
     renderCategories();
+    return;
   }
-}
-
-// 并行加载所有 script
-updateProgress(0, totalScripts);
-scripts.forEach(function(url) {
   var script = document.createElement('script');
-  script.src = url;
-  script.async = false; // 保持执行顺序（Firefox 上 async=true 可能乱序）
-  script.onload = function() {
-    loadedCount++;
-    updateProgress(loadedCount, totalScripts);
-    tryRender();
-  };
-  script.onerror = function() {
-    console.error('加载失败（跳过）: ' + url);
-    loadedCount++;
-    updateProgress(loadedCount, totalScripts);
-    tryRender();
-  };
+  script.src = scripts[i];
+  script.onload = function() { loadScript(i + 1); };
+  script.onerror = function() { console.error('Failed to load: ' + scripts[i]); loadScript(i + 1); };
   document.head.appendChild(script);
-});
-
-// 全局超时：15秒后强制渲染（即使未全部加载完）
-// [PERF] 从 25s 缩到 15s，因为并行后正常情况 1-3s 就完了
-loadTimeout = setTimeout(function() {
-  var p = document.getElementById('loadProgress');
-  if (p) { p.textContent = '⚠️ 加载超时（' + loadedCount + '/' + totalScripts + '），已显示已加载内容'; setTimeout(function() { if (p) p.style.display = 'none'; }, 2000); }
-  if (contentData.categories.length > 0) renderCategories();
-}, 15000);
-
-// ─── 懒加载 香港医疗工具包 (2.6) ───
-// [PERF 2026-06-21] 用户进入"2.6 香港医疗工具包"时再加载 hk_medical_content.js (260KB)
-  CDN_BASE + 'sales_content.js?v=2026052401',
-// 避免首屏加载全部 14 份内容
-var medicalPackageLoaded = false;
-var medicalPackageLoading = false;
-function loadMedicalPackage(callback) {
-  if (medicalPackageLoaded) { if (callback) callback(true); return; }
-  if (medicalPackageLoading) {
-    // 等待加载完成
-    var checkInterval = setInterval(function() {
-      if (medicalPackageLoaded) { clearInterval(checkInterval); if (callback) callback(true); }
-    }, 200);
-    return;
-  }
-  medicalPackageLoading = true;
-  var s = document.createElement('script');
-  s.src = CDN_BASE + 'hk_medical_content.js?v=20260624a';
-  CDN_BASE + 'sales_content.js?v=2026052401',
-  s.onload = function() {
-    medicalPackageLoaded = true;
-    medicalPackageLoading = false;
-    console.log('已加载 2.6 香港医疗工具包');
-    if (callback) callback(true);
-  };
-  s.onerror = function() {
-    medicalPackageLoading = false;
-    console.error('加载 2.6 香港医疗工具包失败');
-    if (callback) callback(false);
-  };
-  document.head.appendChild(s);
 }
 
-
-
-// ─── 懒加载 进阶销售 (sales_content.js 556KB) ───
-var salesPackageLoaded = false;
-var salesPackageLoading = false;
-function loadSalesCategory(callback) {
-  if (salesPackageLoaded) { if (callback) callback(true); return; }
-  if (salesPackageLoading) {
-    var checkInterval = setInterval(function() {
-      if (salesPackageLoaded) { clearInterval(checkInterval); if (callback) callback(true); }
-    }, 200);
-    return;
-  }
-  salesPackageLoading = true;
-  var s = document.createElement('script');
-  s.src = CDN_BASE + 'sales_content.js?v=2026052401';
-  s.onload = function() {
-    salesPackageLoaded = true;
-    salesPackageLoading = false;
-    console.log('已加载 进阶销售');
-    loadedChunks++;
-    tryRender();
-    if (callback) callback(true);
-    renderCategories();
-  };
-  s.onerror = function() {
-    salesPackageLoading = false;
-    console.error('加载 进阶销售 失败');
-    if (callback) callback(false);
-  };
-  document.head.appendChild(s);
-}
-
-// ─── 懒加载 素材资料库 (materials_content.js 808KB) ───
-var materialsPackageLoaded = false;
-var materialsPackageLoading = false;
-function loadMaterialsCategory(callback) {
-  if (materialsPackageLoaded) { if (callback) callback(true); return; }
-  if (materialsPackageLoading) {
-    var checkInterval = setInterval(function() {
-      if (materialsPackageLoaded) { clearInterval(checkInterval); if (callback) callback(true); }
-    }, 200);
-    return;
-  }
-  materialsPackageLoading = true;
-  var s = document.createElement('script');
-  s.src = CDN_BASE + 'materials_content.js?v=2026060102';
-  s.onload = function() {
-    materialsPackageLoaded = true;
-    materialsPackageLoading = false;
-    console.log('已加载 素材资料库');
-    loadedChunks++;
-    tryRender();
-    if (callback) callback(true);
-    renderCategories();
-  };
-  s.onerror = function() {
-    materialsPackageLoading = false;
-    console.error('加载 素材资料库 失败');
-    if (callback) callback(false);
-  };
-  document.head.appendChild(s);
-}
+loadScript(0);
 
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
-
-// HTML转义：防止搜索结果注入HTML到属性和文本
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
 
 function handleSearch(keyword) {
   var resultsContainer = document.getElementById('searchResults');
@@ -320,9 +166,9 @@ function handleSearch(keyword) {
           snippet = snippet.replace(new RegExp(keyword, 'gi'), '<mark>$&</mark>');
         }
       }
-      return '<div class="search-result-item" data-type="' + escapeHtml(r.type) + '" data-cat="' + escapeHtml(r.catId || '') + '" data-child="' + escapeHtml(r.childId || '') + '" data-itemid="' + escapeHtml(r.item.id || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
-        '<div class="result-cat">' + escapeHtml(r.cat) + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
-        '<div class="result-title">' + escapeHtml(r.title) + '</div>' +
+      return '<div class="search-result-item" data-type="' + r.type + '" data-cat="' + (r.catId || '') + '" data-child="' + (r.childId || '') + '" data-itemid="' + (r.item.id || '') + '" data-title="' + encodeURIComponent(r.title) + '">' +
+        '<div class="result-cat">' + r.cat + ' ' + (r.type === 'category' ? '(分类)' : r.type === 'child' ? '(子分类)' : '(内容)') + '</div>' +
+        '<div class="result-title">' + r.title + '</div>' +
         (snippet ? '<div class="result-snippet">' + snippet + '</div>' : '') + '</div>';
     }).join('');
   }
@@ -388,56 +234,6 @@ function renderCategories() {
     card.onclick = function() { showCategory(cat); };
     grid.appendChild(card);
   });
-  // [PERF 2026-06-21] 智能客服懒加载占位卡：未加载时显示，点击触发加载
-  if (!contentData.categories.find(function(c) { return c.id === 'chatbot'; })) {
-    var cbCard = document.createElement('div');
-    cbCard.className = 'category-item chatbot-lazy';
-    cbCard.id = 'chatbotLazyCard';
-    cbCard.innerHTML = '<div class="cat-icon">🤖</div>' +
-      '<div class="cat-name">智能客服问答库</div>' +
-      '<div class="cat-sub">点击加载 · 29个分组312条话术</div>';
-    cbCard.onclick = loadChatbotCategory;
-    grid.appendChild(cbCard);
-  }
-  // [FIX 2026-06-21] 香港医疗工具包 (2.6) 现在是首屏加载，不再需要占位卡
-  //   2.6 会自动作为「📚 百科全书」下的子分类出现
-  //   （见 hk_medical_content.js 末尾的 IIFE 注入逻辑）
-  CDN_BASE + 'sales_content.js?v=2026052401',
-}
-
-// [PERF 2026-06-21] 懒加载智能客服：用户点击时才下载 chatbot_content.js
-// 解决 GitHub Pages 跨境访问 chatbot_content.js 慢/超时问题
-function loadChatbotCategory() {
-  var card = document.getElementById('chatbotLazyCard');
-  if (!card) return;
-  // 防止重复点击
-  if (card.dataset.loading === '1') return;
-  card.dataset.loading = '1';
-  card.innerHTML = '<div class="cat-icon">⏳</div>' +
-    '<div class="cat-name">智能客服问答库</div>' +
-    '<div class="cat-sub">正在加载（首次约 1-2s）...</div>';
-
-  var s = document.createElement('script');
-  s.src = CDN_BASE + 'chatbot_content.js?v=20260516';
-  s.onload = function() {
-    // 加载完成后，移除占位卡 + 重新渲染（让真实 chatbot 分类卡片出现）
-    var exists = contentData.categories.find(function(c) { return c.id === 'chatbot'; });
-    if (exists) {
-      renderCategories();
-    } else {
-      card.innerHTML = '<div class="cat-icon">⚠️</div>' +
-        '<div class="cat-name">智能客服问答库</div>' +
-        '<div class="cat-sub">加载完成但未找到内容，点击重试</div>';
-      card.dataset.loading = '';
-    }
-  };
-  s.onerror = function() {
-    card.innerHTML = '<div class="cat-icon">❌</div>' +
-      '<div class="cat-name">智能客服问答库</div>' +
-      '<div class="cat-sub">加载失败，点击重试</div>';
-    card.dataset.loading = '';
-  };
-  document.head.appendChild(s);
 }
 
 // 恢复任意历史视图（用于面包屑点击）
@@ -548,10 +344,6 @@ function updateBreadcrumbDocOnly(cat, child, item) {
 }
 
 function showCategory(cat) {
-  // [OPT] 点击一级分类时懒加载大文件
-  if (cat.id === 'sales') loadSalesCategory();
-  if (cat.id === '素材') loadMaterialsCategory();
-  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
@@ -607,10 +399,6 @@ function restoreCategory(cat) {
 }
 
 function showChild(cat, child, itemIdToShow) {
-  // [OPT] 点击子分类时懒加载大文件
-  if (cat.id === 'sales') loadSalesCategory();
-  if (cat.id === '素材') loadMaterialsCategory();
-  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
   if (!contentArea || !detailArea) return;
@@ -726,30 +514,27 @@ function restoreChild(cat, child) {
 }
 
 function showDoc(catId, childId, itemId) {
-  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   console.log('[DEBUG showDoc] catId:', catId, 'childId:', childId, 'itemId:', itemId);
   console.log('[DEBUG showDoc] REFERRAL_UPDATES["ref-4-2-3"]?', !!window.REFERRAL_UPDATES && !!window.REFERRAL_UPDATES['ref-4-2-3']);
   var cat = contentData.categories.find(function(c) { return c.id === catId; });
   if (!cat) { console.log('[DEBUG showDoc] cat not found!'); return; }
 
   // 递归搜索：支持任意深度的 children + items 混合查找（含稀疏数组防护）
-  // 迭代版 findItemDeep：用栈代替递归，彻底避免堆栈溢出
   function findItemDeep(nodes, targetId) {
     if (!nodes) return null;
-    var stack = nodes.slice ? nodes.slice() : Object.values(nodes).filter(Boolean);
-    while (stack.length > 0) {
-      var node = stack.pop();
-      if (!node) continue;
-      if (node.id === targetId) return node;
-      if (node.items) {
-        for (var j = 0; j < node.items.length; j++) {
-          if (node.items[j] && node.items[j].id === targetId) return node.items[j];
+    for (var i = 0; i < nodes.length; i++) {
+      if (!nodes[i]) continue; // 稀疏数组防护，跳过 undefined/null 空位
+      if (nodes[i].id === targetId) return nodes[i];
+      // items 数组里的直接项目（如 flat 结构）
+      if (nodes[i].items) {
+        for (var j = 0; j < nodes[i].items.length; j++) {
+          if (nodes[i].items[j] && nodes[i].items[j].id === targetId) return nodes[i].items[j];
         }
       }
-      if (node.children) {
-        for (var k = node.children.length - 1; k >= 0; k--) {
-          if (node.children[k]) stack.push(node.children[k]);
-        }
+      // children 嵌套
+      if (nodes[i].children) {
+        var found = findItemDeep(nodes[i].children, targetId);
+        if (found) return found;
       }
     }
     return null;
@@ -796,20 +581,8 @@ function showDoc(catId, childId, itemId) {
   if (docContent) {
     docContent.innerHTML = ''; // 先清空旧内容
     rawContent = item.content || '<p>内容待补充...</p>';
-    // 安全高亮：只在文本节点中替换关键词，不碰HTML标签和属性，防止破坏iframe等结构
     if (lastSearchKeyword) {
-      var tempDiv = document.createElement('div');
-      tempDiv.innerHTML = rawContent;
-      var walk = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
-      var nodesToHighlight = [];
-      while (walk.nextNode()) nodesToHighlight.push(walk.currentNode);
-      nodesToHighlight.forEach(function(textNode) {
-        textNode.textContent = textNode.textContent.replace(
-          new RegExp(lastSearchKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'),
-          '<mark class="search-highlight">$&</mark>'
-        );
-      });
-      rawContent = tempDiv.innerHTML;
+      rawContent = rawContent.replace(new RegExp(lastSearchKeyword, 'gi'), '<mark class="search-highlight">$&</mark>');
     }
     docContent.innerHTML = '<div class="doc-view">' + rawContent + '</div>';
   }
@@ -833,7 +606,6 @@ function showDoc(catId, childId, itemId) {
 }
 
 function goHome() {
-  lastSearchKeyword = ''; // 退出搜索模式，清除残留高亮
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
@@ -908,36 +680,69 @@ function toggleMode() {
 
 // 声明弹窗
 function acceptDisclaimer(){
-  localStorage.setItem("disclaimerAccepted","1");
-  document.getElementById("disclaimerModal").style.display = "none";
+  document.getElementById("disclaimerModal").classList.remove("active");
 }
 function showDisclaimer(){
-  var e = document.getElementById("disclaimerModal");
-  // 仅在密码正确后、未点过同意时弹出
-  if(localStorage.getItem("disclaimerAccepted") !== "1"){
-    e.style.display = "flex";
-  } else {
-    e.style.display = "none";
-  }
+  document.getElementById("disclaimerModal").classList.add("active");
 }
 
-// 密码锁屏（每次访问都需要输入，不记住）
+// 密码锁屏
+var SITE_PASSWORD = "8888";
+
+function getDigitValues(){
+  var boxes = document.querySelectorAll(".lock-digit-box");
+  var val = "";
+  boxes.forEach(function(b){ val += b.value; });
+  return val;
+}
+
 function checkPassword(){
-  var val = document.getElementById("lockInput").value;
-  if(val === "8888"){
+  var val = getDigitValues();
+  if(val.length < 4) return;
+  if(val === SITE_PASSWORD){
+    localStorage.setItem("siteUnlocked","1");
     document.getElementById("passwordLock").style.display = "none";
-    // 每次输入正确密码后都弹出声明
-    localStorage.removeItem("disclaimerAccepted");
     showDisclaimer();
   } else {
     var err = document.getElementById("lockError");
     err.classList.add("show");
-    setTimeout(function(){ err.classList.remove("show"); }, 2000);
+    var boxes = document.querySelectorAll(".lock-digit-box");
+    boxes.forEach(function(b){ b.value = ""; b.classList.remove("filled"); });
+    boxes[0].focus();
+    setTimeout(function(){ err.classList.remove("show"); }, 2500);
   }
 }
-document.getElementById("lockInput").addEventListener("keyup",function(e){
-  if(e.key==="Enter") checkPassword();
-});
+
+// 4格独立输入
 document.addEventListener("DOMContentLoaded",function(){
-  // 锁屏由HTML内联style="display:flex"控制，这里仅在密码正确时隐藏
+  var boxes = document.querySelectorAll(".lock-digit-box");
+  boxes.forEach(function(box, idx){
+    box.addEventListener("input",function(e){
+      var v = this.value.replace(/[^0-9]/g,"").slice(-1);
+      this.value = v;
+      if(v && idx < boxes.length - 1){
+        boxes[idx+1].focus();
+        boxes[idx+1].classList.add("filled");
+      }
+      if(v) this.classList.add("filled");
+    });
+    box.addEventListener("keydown",function(e){
+      if(e.key === "Backspace" && !this.value && idx > 0){
+        boxes[idx-1].focus();
+        boxes[idx-1].classList.remove("filled");
+        boxes[idx-1].value = "";
+      }
+    });
+    box.addEventListener("focus",function(){
+      this.select();
+    });
+  });
+  // 回车提交
+  boxes[boxes.length-1].addEventListener("keydown",function(e){
+    if(e.key === "Enter") checkPassword();
+  });
 });
+
+function showPasswordLock(){
+  document.getElementById("passwordLock").style.display = "flex";
+}
