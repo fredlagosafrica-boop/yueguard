@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 8; // [2026-07-10] 新增港险产品资料库（第8个一级分类）
+const totalChunks = 9; // [2026-10-07] 新增视频库（第9个一级分类）
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
