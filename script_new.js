@@ -31,7 +31,7 @@ const scripts = [
   CDN_BASE + 'materials_content.js?v=2026060102',
   CDN_BASE + 'products_content.js?v=20260712',
   CDN_BASE + 'video_content.js?v=20261007',
-  CDN_BASE + 'chatbot_content.js?v=20251015',
+  CDN_BASE + 'chatbot_content.js?v=20260516',
 ];
 
 function loadScript(i) {
