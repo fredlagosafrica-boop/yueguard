@@ -695,9 +695,14 @@ var SITE_PASSWORD = "8888";
 
 function getDigitValues(){
   var boxes = document.querySelectorAll(".lock-digit-box");
-  var val = "";
-  boxes.forEach(function(b){ val += b.value; });
-  return val;
+  if(boxes.length > 0){
+    var val = "";
+    boxes.forEach(function(b){ val += b.value; });
+    return val;
+  }
+  // [FIX 2026-10-07] 兼容旧版 HTML (#lockInput 单输入框)
+  var oldInput = document.getElementById("lockInput");
+  return oldInput ? oldInput.value : "";
 }
 
 function checkPassword(){
