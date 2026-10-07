@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 9; // [2026-10-07] 新增视频库（第9个一级分类）
+const totalChunks = 7; // [OPT] 首屏7个，materials和sales懒加载 // [2026-10-07] 新增视频库（第9个一级分类）
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
@@ -24,7 +24,7 @@ function onChunkLoaded() {
 // [PERF 2026-06-21] hk_medical_content.js (260KB) 改为懒加载：用户进入 2.6 分类时才下载
 //   解决"登录后空白 15s"问题——之前 chatbot_content.js 在 GitHub Pages 上访问极不稳定
 //   实测首次 1.88s 成功，二次请求 15s 超时
-var CDN_BASE = 'https://fredlagosafrica-boop.github.io/yueguard/';
+var CDN_BASE = 'https://cdn.jsdelivr.net/gh/fredlagosafrica-boop/yueguard@main/';
 var scripts = [
   CDN_BASE + 'ifa_content.js?v=20260622b',
   CDN_BASE + 'wiki_content.js?v=20260624b',
@@ -33,9 +33,9 @@ var scripts = [
   //   之前是懒加载占位卡，导致 2.6 看起来像顶级分类
   //   现在首屏加载（多 60-80KB gzip），用户首屏就能看到完整结构
   CDN_BASE + 'hk_medical_content.js?v=20260624b',
-  CDN_BASE + 'sales_content.js?v=2026052401',
+  // [OPT] sales_content.js (556KB) 改为懒加载（见 loadSalesCategory）
   CDN_BASE + 'referral_content.js?v=20260610',
-  CDN_BASE + 'materials_content.js?v=2026060102',
+  // [OPT] materials_content.js (808KB) 改为懒加载（见 loadMaterialsCategory）
   // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
   CDN_BASE + 'biyuan_content.js?v=2026052301',
   // [2026-07-10] 第8个一级分类：港险产品资料库（香港各主流保司产品介绍·对比）
@@ -116,6 +116,64 @@ function loadMedicalPackage(callback) {
   s.onerror = function() {
     medicalPackageLoading = false;
     console.error('加载 2.6 香港医疗工具包失败');
+    if (callback) callback(false);
+  };
+  document.head.appendChild(s);
+}
+
+
+
+// ─── 懒加载 进阶销售 (sales_content.js 556KB) ───
+var salesPackageLoaded = false;
+var salesPackageLoading = false;
+function loadSalesCategory(callback) {
+  if (salesPackageLoaded) { if (callback) callback(true); return; }
+  if (salesPackageLoading) {
+    var checkInterval = setInterval(function() {
+      if (salesPackageLoaded) { clearInterval(checkInterval); if (callback) callback(true); }
+    }, 200);
+    return;
+  }
+  salesPackageLoading = true;
+  var s = document.createElement('script');
+  s.src = CDN_BASE + 'sales_content.js?v=2026052401';
+  s.onload = function() {
+    salesPackageLoaded = true;
+    salesPackageLoading = false;
+    console.log('已加载 进阶销售');
+    if (callback) callback(true);
+  };
+  s.onerror = function() {
+    salesPackageLoading = false;
+    console.error('加载 进阶销售 失败');
+    if (callback) callback(false);
+  };
+  document.head.appendChild(s);
+}
+
+// ─── 懒加载 素材资料库 (materials_content.js 808KB) ───
+var materialsPackageLoaded = false;
+var materialsPackageLoading = false;
+function loadMaterialsCategory(callback) {
+  if (materialsPackageLoaded) { if (callback) callback(true); return; }
+  if (materialsPackageLoading) {
+    var checkInterval = setInterval(function() {
+      if (materialsPackageLoaded) { clearInterval(checkInterval); if (callback) callback(true); }
+    }, 200);
+    return;
+  }
+  materialsPackageLoading = true;
+  var s = document.createElement('script');
+  s.src = CDN_BASE + 'materials_content.js?v=2026060102';
+  s.onload = function() {
+    materialsPackageLoaded = true;
+    materialsPackageLoading = false;
+    console.log('已加载 素材资料库');
+    if (callback) callback(true);
+  };
+  s.onerror = function() {
+    materialsPackageLoading = false;
+    console.error('加载 素材资料库 失败');
     if (callback) callback(false);
   };
   document.head.appendChild(s);
