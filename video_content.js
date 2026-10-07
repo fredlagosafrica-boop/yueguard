@@ -9,7 +9,7 @@ contentData.categories.push({
       id: 'video-insurance',
       name: '保险基础',
       children: [
-        { id: 'v-01', name: '香港保险UIL', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保险基础 · 82分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-01.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
+        { id: 'v-01', name: '香港保险IUL', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保险基础 · 82分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-01.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
         { id: 'v-08', name: '家庭保障规划方案', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
       ]
     },
