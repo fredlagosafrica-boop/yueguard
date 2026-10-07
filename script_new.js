@@ -141,6 +141,8 @@ function loadSalesCategory(callback) {
     salesPackageLoaded = true;
     salesPackageLoading = false;
     console.log('已加载 进阶销售');
+    loadedChunks++;
+    tryRender();
     if (callback) callback(true);
   };
   s.onerror = function() {
@@ -169,6 +171,8 @@ function loadMaterialsCategory(callback) {
     materialsPackageLoaded = true;
     materialsPackageLoading = false;
     console.log('已加载 素材资料库');
+    loadedChunks++;
+    tryRender();
     if (callback) callback(true);
   };
   s.onerror = function() {
