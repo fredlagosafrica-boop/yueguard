@@ -144,6 +144,7 @@ function loadSalesCategory(callback) {
     loadedChunks++;
     tryRender();
     if (callback) callback(true);
+    renderCategories();
   };
   s.onerror = function() {
     salesPackageLoading = false;
@@ -174,6 +175,7 @@ function loadMaterialsCategory(callback) {
     loadedChunks++;
     tryRender();
     if (callback) callback(true);
+    renderCategories();
   };
   s.onerror = function() {
     materialsPackageLoading = false;
