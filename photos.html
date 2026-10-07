@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>恒玥团队照片库</title>
+ <link rel="stylesheet" href="https://fredlagosafrica-boop.github.io/yueguard/style.css?v=2026052807">
+ <style>
+ /* 照片库特有样式 */
+ .photos-hero {
+   background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+   color: #fff;
+   padding: 24px 20px;
+   border-radius: 12px;
+   margin-bottom: 18px;
+   text-align: center;
+ }
+ .photos-hero h2 { margin: 0 0 6px; font-size: 20px; }
+ .photos-hero p { margin: 0; font-size: 13px; opacity: 0.85; }
+
+ .filter-row {
+   display: flex;
+   gap: 8px;
+   margin-bottom: 14px;
+   flex-wrap: wrap;
+ }
+ .filter-chip {
+   padding: 6px 14px;
+   background: #fff;
+   border: 1px solid #e2e8f0;
+   border-radius: 20px;
+   font-size: 13px;
+   color: #2d3748;
+   cursor: pointer;
+   transition: all 0.2s;
+ }
+ .filter-chip:hover { background: #f7fafc; }
+ .filter-chip.active {
+   background: #2d3748;
+   color: #fff;
+   border-color: #2d3748;
+ }
+
+ .album-grid {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 12px;
+ }
+ .album-card {
+   background: #fff;
+   border-radius: 12px;
+   overflow: hidden;
+   cursor: pointer;
+   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+   transition: all 0.2s;
+ }
+ .album-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+ .album-cover {
+   width: 100%;
+   aspect-ratio: 1 / 1;
+   object-fit: cover;
+   background: #f0f0f0;
+   display: block;
+ }
+ .album-info { padding: 10px 12px; }
+ .album-title { font-size: 14px; color: #2d3748; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
+ .album-meta { font-size: 11px; color: #888; }
+
+ .photo-grid {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 4px;
+ }
+ .photo-grid img {
+   width: 100%;
+   aspect-ratio: 1 / 1;
+   object-fit: cover;
+   border-radius: 4px;
+   cursor: pointer;
+   background: #f0f0f0;
+   transition: opacity 0.2s;
+ }
+ .photo-grid img:hover { opacity: 0.85; }
+
+ /* 灯箱（点击放大） */
+ .lightbox {
+   display: none;
+   position: fixed;
+   top: 0; left: 0; right: 0; bottom: 0;
+   background: rgba(0,0,0,0.92);
+   z-index: 9999;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+ }
+ .lightbox.active { display: flex; }
+ .lightbox-img {
+   max-width: 95vw;
+   max-height: 90vh;
+   object-fit: contain;
+   border-radius: 8px;
+ }
+ .lightbox-close {
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   background: rgba(255,255,255,0.15);
+   border: none;
+   color: #fff;
+   font-size: 24px;
+   width: 44px;
+   height: 44px;
+   border-radius: 50%;
+   cursor: pointer;
+ }
+ .lightbox-counter {
+   position: absolute;
+   bottom: 24px;
+   left: 50%;
+   transform: translateX(-50%);
+   color: rgba(255,255,255,0.7);
+   font-size: 14px;
+ }
+ .lightbox-nav {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background: rgba(255,255,255,0.15);
+   border: none;
+   color: #fff;
+   font-size: 28px;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+ }
+ .lightbox-prev { left: 16px; }
+ .lightbox-next { right: 16px; }
+
+ .empty-state {
+   text-align: center;
+   padding: 60px 20px;
+   color: #999;
+ }
+ .empty-state-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+
+ .back-to-main {
+   background: #fff;
+   border: 1px solid #e2e8f0;
+   padding: 8px 16px;
+   border-radius: 8px;
+   font-size: 14px;
+   color: #2d3748;
+   cursor: pointer;
+   margin-bottom: 15px;
+ }
+ </style>
+</head>
+<body>
+
+<!-- 密码锁屏（复用 8888 密码） -->
+<div id="passwordLock" class="lock-overlay" style="display:flex;">
+ <div class="lock-box">
+  <div class="lock-icon">🔒</div>
+  <h2 class="lock-title">恒玥团队照片库</h2>
+  <p class="lock-subtitle">请输入访问密码</p>
+  <div class="lock-input-row">
+   <input type="password" id="lockInput" class="lock-input" maxlength="4" placeholder="••••" autocomplete="off">
+  </div>
+  <p id="lockError" class="lock-error">密码错误，请重试</p>
+  <button class="lock-btn" onclick="checkPhotosPassword()">进入照片库</button>
+ </div>
+</div>
+
+<!-- 使用声明（复用） -->
+<div id="disclaimerModal" class="modal-overlay">
+ <div class="modal-box">
+  <div class="modal-header">
+   <div class="modal-icon">⚠️</div>
+   <h2 class="modal-title">资料库使用声明及免责条款</h2>
+  </div>
+  <div class="modal-body">
+   <p>本照片库所有照片版权归本机构所有，受相关知识产权法律法规保护。未经本机构书面授权，任何单位及个人不得擅自复制、转载、篡改、传播、商用或以其他方式使用照片内容。</p>
+   <p>本照片库仅限本团队内部参考使用，严禁对外公开、分享或传播。所有照片已移除 EXIF 元数据（拍摄时间/地点/GPS）。</p>
+   <p>照片内容仅作内部活动记录用途，不构成任何业务承诺。擅自传播所产生的一切法律责任，由使用者自行承担。</p>
+  </div>
+  <div class="modal-footer">
+   <button class="modal-btn" onclick="acceptPhotosDisclaimer()">✓ 我已知悉并同意</button>
+  </div>
+ </div>
+</div>
+
+<div class="app-container" id="mainApp" style="display:none;">
+
+ <!-- 顶部导航 -->
+ <button class="back-to-main" onclick="window.location.href='./'">← 返回内容库首页</button>
+
+ <!-- 主页：相册列表 -->
+ <div id="albumListView">
+  <div class="photos-hero">
+   <h2>📷 恒玥团队照片库</h2>
+   <p>团队活动留念 · 仅供内部参考</p>
+  </div>
+
+  <!-- 类目筛选 -->
+  <div class="filter-row" id="categoryFilters"></div>
+
+  <!-- 相册网格 -->
+  <div class="album-grid" id="albumGrid">
+   <div class="empty-state">
+    <div class="empty-state-icon">📷</div>
+    <p>暂无照片，<br>请等待第一批上传</p>
+   </div>
+  </div>
+ </div>
+
+ <!-- 相册详情：单张照片列表 -->
+ <div id="albumDetailView" style="display:none;">
+  <button class="back-btn" onclick="backToAlbums()">← 返回相册列表</button>
+  <div style="background:#fff;padding:16px;border-radius:12px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+   <h2 id="albumTitle" style="margin:0 0 6px;font-size:18px;color:#2d3748;"></h2>
+   <div id="albumMeta" style="font-size:13px;color:#888;"></div>
+   <div id="albumDesc" style="font-size:14px;color:#666;margin-top:8px;line-height:1.6;"></div>
+  </div>
+  <div class="photo-grid" id="photoGrid"></div>
+ </div>
+</div>
+
+<!-- 灯箱（点击放大） -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+ <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
+ <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();navLightbox(-1)">‹</button>
+ <img class="lightbox-img" id="lightboxImg" onclick="event.stopPropagation()" />
+ <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();navLightbox(1)">›</button>
+ <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+// === 复用主站的密码验证逻辑 ===
+const SITE_PASSWORD = '8888';
+const DISCLAIMER_KEY = 'yueguard_photos_disclaimer_accepted';
+
+function checkPhotosPassword() {
+  var input = document.getElementById('lockInput');
+  var err = document.getElementById('lockError');
+  if (!input) return;
+  var val = input.value.trim();
+  if (val === SITE_PASSWORD) {
+    document.getElementById('passwordLock').style.display = 'none';
+    if (localStorage.getItem(DISCLAIMER_KEY) === 'yes') {
+      document.getElementById('mainApp').style.display = '';
+    } else {
+      document.getElementById('disclaimerModal').classList.add('active');
+    }
+  } else {
+    if (err) err.classList.add('show');
+    input.value = '';
+    input.focus();
+  }
+}
+
+function acceptPhotosDisclaimer() {
+  localStorage.setItem(DISCLAIMER_KEY, 'yes');
+  document.getElementById('disclaimerModal').classList.remove('active');
+  document.getElementById('mainApp').style.display = '';
+  loadAlbumIndex();
+}
+
+// Enter 键提交
+document.addEventListener('DOMContentLoaded', function() {
+  var input = document.getElementById('lockInput');
+  if (input) {
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') checkPhotosPassword();
+    });
+    input.focus();
+  }
+});
+
+// === 照片库核心逻辑 ===
+const CATEGORIES = ['全部', '培训活动', '团队月会', '客户答谢宴', '产品发布', '公司年会', '新人入职', '业务拓展', '荣誉资质', '公益活动', '客户签约'];
+const R2_BASE = 'https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos';
+const INDEX_URL = 'https://pub-f29217f852fa38d919879acbe20f8b7.r2.dev/photos/_index.json';  // 占位，会改成真实 URL
+
+let albumIndex = [];        // 所有相册列表
+let currentFilter = '全部';
+let currentAlbum = null;
+let currentPhotoIdx = 0;
+
+async function loadAlbumIndex() {
+  // 暂时从本地内置 JSON 加载（待 index.json 上传 R2 后改为远程）
+  try {
+    const resp = await fetch(INDEX_URL);
+    if (resp.ok) {
+      albumIndex = await resp.json();
+    } else {
+      throw new Error('fetch fail');
+    }
+  } catch (e) {
+    // 用本地占位（开发阶段）
+    albumIndex = window.PHOTO_INDEX_PLACEHOLDER || [];
+  }
+  renderCategoryFilters();
+  renderAlbums();
+}
+
+function renderCategoryFilters() {
+  const wrap = document.getElementById('categoryFilters');
+  if (!wrap) return;
+  wrap.innerHTML = CATEGORIES.map(function(cat) {
+    return '<span class="filter-chip' + (cat === currentFilter ? ' active' : '') + '" onclick="filterBy(\'' + cat + '\')">' + cat + '</span>';
+  }).join('');
+}
+
+function filterBy(cat) {
+  currentFilter = cat;
+  renderCategoryFilters();
+  renderAlbums();
+}
+
+function renderAlbums() {
+  const grid = document.getElementById('albumGrid');
+  if (!grid) return;
+
+  let list = albumIndex.slice();
+  if (currentFilter !== '全部') {
+    list = list.filter(function(a) { return a.category === currentFilter; });
+  }
+
+  if (list.length === 0) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">' +
+      '<div class="empty-state-icon">📷</div>' +
+      '<p>该类目暂无相册</p></div>';
+    return;
+  }
+
+  // 按日期倒序
+  list.sort(function(a, b) { return b.date.localeCompare(a.date); });
+
+  grid.innerHTML = list.map(function(album) {
+    return '<div class="album-card" onclick="openAlbum(\'' + album.id + '\')">' +
+      '<img class="album-cover" src="' + album.cover + '" loading="lazy" alt="' + album.title + '" />' +
+      '<div class="album-info">' +
+        '<div class="album-title">' + album.title + '</div>' +
+        '<div class="album-meta">' + album.date + ' · ' + album.category + ' · ' + album.count + ' 张</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+async function openAlbum(albumId) {
+  const album = albumIndex.find(function(a) { return a.id === albumId });
+  if (!album) return;
+  currentAlbum = album;
+
+  // 加载该相册的 meta.json（拿照片列表）
+  let photos = album.photos || [];
+  if (!photos.length) {
+    try {
+      const resp = await fetch(album.meta_url);
+      if (resp.ok) {
+        const meta = await resp.json();
+        photos = meta.photos || [];
+      }
+    } catch (e) {
+      console.error('加载相册失败', e);
+    }
+  }
+  currentAlbum.photos = photos;
+
+  document.getElementById('albumTitle').textContent = album.title;
+  document.getElementById('albumMeta').textContent = album.date + ' · ' + album.category + ' · ' + photos.length + ' 张';
+  document.getElementById('albumDesc').textContent = album.description || '';
+
+  const grid = document.getElementById('photoGrid');
+  grid.innerHTML = photos.map(function(p, idx) {
+    return '<img src="' + p.thumb_url + '" data-idx="' + idx + '" onclick="openLightbox(' + idx + ')" loading="lazy" />';
+  }).join('');
+
+  document.getElementById('albumListView').style.display = 'none';
+  document.getElementById('albumDetailView').style.display = '';
+  window.scrollTo(0, 0);
+}
+
+function backToAlbums() {
+  document.getElementById('albumListView').style.display = '';
+  document.getElementById('albumDetailView').style.display = 'none';
+  closeLightbox();
+}
+
+// 灯箱
+function openLightbox(idx) {
+  if (!currentAlbum || !currentAlbum.photos) return;
+  currentPhotoIdx = idx;
+  const p = currentAlbum.photos[idx];
+  document.getElementById('lightboxImg').src = p.full_url;
+  document.getElementById('lightboxCounter').textContent = (idx + 1) + ' / ' + currentAlbum.photos.length;
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function navLightbox(delta) {
+  if (!currentAlbum || !currentAlbum.photos) return;
+  const n = currentAlbum.photos.length;
+  currentPhotoIdx = (currentPhotoIdx + delta + n) % n;
+  openLightbox(currentPhotoIdx);
+}
+
+function closeLightbox(e) {
+  if (e && e.target && e.target.tagName === 'IMG') return;
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+</script>
+</body>
+</html>

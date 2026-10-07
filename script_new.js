@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 10;
+const totalChunks = 11;
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
@@ -32,6 +32,7 @@ const scripts = [
   CDN_BASE + 'products_content.js?v=20260712',
   CDN_BASE + 'video_content.js?v=20261007',
   CDN_BASE + 'chatbot_content.js?v=20260516',
+  CDN_BASE + 'team_photos_content.js?v=20261007a',
 ];
 
 function loadScript(i) {
@@ -349,6 +350,11 @@ function updateBreadcrumbDocOnly(cat, child, item) {
 }
 
 function showCategory(cat) {
+  // 🚪 特殊分类：照片库（跳转到独立页面）
+  if (cat.id === 'team-photos') {
+    window.location.href = './photos.html';
+    return;
+  }
   var navArea = document.getElementById('navArea');
   var contentArea = document.getElementById('contentArea');
   var detailArea = document.getElementById('detailArea');
