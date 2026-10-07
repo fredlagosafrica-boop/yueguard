@@ -20,11 +20,6 @@ contentData.categories.push({
           id: 'ref-1-2',
           name: '1.2 正规业务链路',
           content: '<h3>1.2 正规业务链路</h3><p><strong>流程：</strong>客户 → 转介人（引流对接） → 香港持牌经纪/持牌顾问（合规服务） → 香港线下签单 → 保单核保生效 → 过法定冷静期 → 转介人结算转介费 → 售后维护及裂变</p><p><strong>核心原则：</strong>所有销售、咨询、核保、签单环节，必须由香港持牌人员完成，转介人仅承担"桥梁对接"角色，全程坚守合规边界。</p>'
-        },
-        {
-          id: 'ref-1-3',
-          name: '1.3 认识你的支持网络',
-          content: '<h3>1.3 认识你的支持网络</h3><p>作为IFA，你代理多家保险公司的产品，各公司也提供相应支持：例如</p><h4>行业层面资源</h4><ul><li>香港保险业监管局（IA）：牌照申请、续期、监管条例查询 | <a href="https://www.ia.org.hk" target="_blank">www.ia.org.hk</a></li><li>香港保险业联会（HKFI）：行业标准制定、保险从业员认证</li><li>职业训练局（VTC）：资格考试报名、考试成绩查询</li><li>积金局（MPFA）：强积金（MPF）相关规管及指引 | <a href="https://www.mpfa.org.hk" target="_blank">www.mpfa.org.hk</a></li></ul>'
         }
       ]
     },
@@ -125,18 +120,6 @@ contentData.categories.push({
         { id: 'ref-3-5', name: '五、违规责任警示', content: '<h3>五、违规责任警示</h3><p>凡触碰以上签单红线，一经查实将面临监管追责、业务作废、合规处罚、账号风控封禁；同时会引发保单效力争议、理赔纠纷、资金合规风险，相关业务员、转介渠道一律连带追责，严格落实合规一票否决制。</p><h4>监管层面</h4><ul><li>香港持牌顾问违规 → 牌照被吊销、罚款、公示处分</li><li>转介人违规 → 纳入行业黑名单、终止合作、追回转介费</li></ul><h4>保单层面</h4><ul><li>保单被判定无效 → 客户已缴保费无法退还</li><li>理赔争议 → 保单效力存疑无法正常理赔</li></ul><h4>法律层面</h4><ul><li>涉嫌违法 → 追究民事及刑事责任</li><li>客户追偿 → 赔偿客户及保险公司全部损失</li></ul><h4>执行要求</h4><p>所有人员须严格恪守上述红线，不抱侥幸心理，不搞任何变通操作，发现违规苗头立即终止并纠正。</p>'}
       ]
     },
-    // 1.2 入职流程
-    {
-      id: 'ref-5',
-      name: '1.2 入职流程',
-      children: [
-        {
-          id: 'ref-5-1',
-          name: '1.2.1 考牌准备（保险中介人资格考试）',
-          content: '<h3>1.2.1 考牌准备（保险中介人资格考试）</h3><p>以下为香港保险中介人资格考试（IIQE）考前注意事项及核心信息，请仔细阅读。</p><p style="margin-top:15px;"><a href="IIQE%E8%80%83%E5%89%8D%E6%8F%90%E9%86%92.pdf" target="_blank" style="display:inline-block;background:#c9a84c;color:#0a1628;font-size:14px;text-decoration:underline;padding:6px 14px;border-radius:4px;margin:3px 0;">📄 IIQE考前提醒（PDF）</a></p>'
-        }
-      ]
-    },
     // 四、内地保险转介绍业务开发方法
     {
       id: 'ref-4',
@@ -171,7 +154,7 @@ contentData.categories.push({
     {
       id: 'ref-4-3',
       name: '五、转介绍表格图片资料',
-      content: '<h3>五、转介绍表格图片资料</h3><p>以下收录转介绍业务核心协议模板及佣金发放流程文件，供团队内部使用。</p><p style="margin-top:15px;"><div class="pdf-btn-row" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0;"><a href="assets/转介合作协议(2026).pdf" target="_blank" class="pdf-btn" style="padding:10px 18px;background:#1e3a5f;color:#fff;border-radius:8px;">📄 预览</a><a href="assets/转介合作协议(2026).pdf" download="referral_coop_agreement_2026.pdf" class="pdf-btn" style="padding:10px 18px;background:#c9a84c;color:#0a1628;border-radius:8px;">⬇ 下载</a></div><div class="pdf-btn-row" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0;"><a href="assets/转介协议模板（2026）(1).pdf" target="_blank" class="pdf-btn" style="padding:10px 18px;background:#1e3a5f;color:#fff;border-radius:8px;">📄 预览</a><a href="assets/转介协议模板（2026）(1).pdf" download="referral_template_2026.pdf" class="pdf-btn" style="padding:10px 18px;background:#c9a84c;color:#0a1628;border-radius:8px;">⬇ 下载</a></div><div class="pdf-btn-row" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0;"><a href="assets/补充协议(1).pdf" target="_blank" class="pdf-btn" style="padding:10px 18px;background:#1e3a5f;color:#fff;border-radius:8px;">📄 预览</a><a href="assets/补充协议(1).pdf" download="supplementary_agreement.pdf" class="pdf-btn" style="padding:10px 18px;background:#c9a84c;color:#0a1628;border-radius:8px;">⬇ 下载</a></div><div class="pdf-btn-row" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0;"><a href="assets/佣金及转介费发放流程(2026-03-16).pdf" target="_blank" class="pdf-btn" style="padding:10px 18px;background:#1e3a5f;color:#fff;border-radius:8px;">📄 预览</a><a href="assets/佣金及转介费发放流程(2026-03-16).pdf" download="commission流程2026.pdf" class="pdf-btn" style="padding:10px 18px;background:#c9a84c;color:#0a1628;border-radius:8px;">⬇ 下载</a></div></p>'
+      content: '<h3>五、转介绍表格图片资料</h3><p>图片资料稍后补充上传。</p>'
     }
   ]
 });
