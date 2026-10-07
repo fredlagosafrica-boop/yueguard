@@ -1,1 +1,5 @@
-Sun Aug 30 13:59:42 CST 2026
+# Force GitHub Pages rebuild at 2026-10-07 17:51 GMT+8
+# Trigger: [FIX] getDigitValues 兼容旧版 HTML
+# Reason: Password lock screen broken (JS-HTML mismatch)
+import time
+print('deploy-time:', time.time())
