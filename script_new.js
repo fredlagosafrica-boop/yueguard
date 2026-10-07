@@ -25,7 +25,7 @@ function onChunkLoaded() {
   CDN_BASE + 'sales_content.js?v=2026052401',
 //   解决"登录后空白 15s"问题——之前 chatbot_content.js 在 GitHub Pages 上访问极不稳定
 //   实测首次 1.88s 成功，二次请求 15s 超时
-var CDN_BASE = 'https://cdn.jsdelivr.net/gh/fredlagosafrica-boop/yueguard@main/';
+var CDN_BASE = 'https://fredlagosafrica-boop.github.io/yueguard/';
 var scripts = [
   CDN_BASE + 'ifa_content.js?v=20260622b',
   CDN_BASE + 'wiki_content.js?v=20260624b',
