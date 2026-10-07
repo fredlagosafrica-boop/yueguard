@@ -1,5 +1,2 @@
-# Force GitHub Pages rebuild at 2026-10-07 17:51 GMT+8
-# Trigger: [FIX] getDigitValues 兼容旧版 HTML
-# Reason: Password lock screen broken (JS-HTML mismatch)
-import time
-print('deploy-time:', time.time())
+# Force rebuild at 1791367043.525745
+# Trigger: [FIX] .modal-overlay default hidden + .active show
