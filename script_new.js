@@ -40,6 +40,8 @@ var scripts = [
   CDN_BASE + 'biyuan_content.js?v=2026052301',
   // [2026-07-10] 第8个一级分类：港险产品资料库（香港各主流保司产品介绍·对比）
   CDN_BASE + 'products_content.js?v=20260712',
+  // [2026-10-07] 视频库
+  CDN_BASE + 'video_content.js?v=20261007',
 ];
 
 var loadedCount = 0;
