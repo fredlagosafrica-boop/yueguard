@@ -19,7 +19,10 @@ function onChunkLoaded() {
 }
 
 // ─── 动态加载 content chunks（根目录，无chunks/前缀）────
+const CDN_BASE = 'https://fredlagosafrica-boop.github.io/yueguard/';
+
 const scripts = [
+  CDN_BASE + 'sales_content.js?v=2026052401',
   CDN_BASE + 'ifa_content.js?v=20260622b',
   CDN_BASE + 'wiki_content.js?v=20260624b',
   CDN_BASE + 'hk_medical_content.js?v=20260624b',
