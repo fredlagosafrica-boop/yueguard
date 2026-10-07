@@ -22,6 +22,7 @@ function onChunkLoaded() {
 // [PERF 2026-06-21] 切换 jsDelivr CDN：亚洲节点自动 gzip，总流量从 982KB→~300KB
 // [PERF 2026-06-21] chatbot_content.js (128KB) 改为懒加载：用户点击"智能客服"卡片时才下载
 // [PERF 2026-06-21] hk_medical_content.js (260KB) 改为懒加载：用户进入 2.6 分类时才下载
+  CDN_BASE + 'sales_content.js?v=2026052401',
 //   解决"登录后空白 15s"问题——之前 chatbot_content.js 在 GitHub Pages 上访问极不稳定
 //   实测首次 1.88s 成功，二次请求 15s 超时
 var CDN_BASE = 'https://cdn.jsdelivr.net/gh/fredlagosafrica-boop/yueguard@main/';
@@ -29,15 +30,18 @@ var scripts = [
   CDN_BASE + 'ifa_content.js?v=20260622b',
   CDN_BASE + 'wiki_content.js?v=20260624b',
   // [FIX 2026-06-21] hk_medical_content.js (260KB) 恢复首屏加载
+  CDN_BASE + 'sales_content.js?v=2026052401',
   //   让 2.6 香港医疗工具包直接作为「📚 百科全书」下的子分类
   //   之前是懒加载占位卡，导致 2.6 看起来像顶级分类
   //   现在首屏加载（多 60-80KB gzip），用户首屏就能看到完整结构
   CDN_BASE + 'hk_medical_content.js?v=20260624b',
+  CDN_BASE + 'sales_content.js?v=2026052401',
   // [OPT] sales_content.js (556KB) 改为懒加载（见 loadSalesCategory）
   CDN_BASE + 'referral_content.js?v=20260610',
   // [OPT] materials_content.js (808KB) 改为懒加载（见 loadMaterialsCategory）
   // chatbot_content.js 改为懒加载：见 loadChatbotCategory()
   CDN_BASE + 'biyuan_content.js?v=2026052301',
+  CDN_BASE + 'materials_content.js?v=2026060102',
   // [2026-07-10] 第8个一级分类：港险产品资料库（香港各主流保司产品介绍·对比）
   CDN_BASE + 'products_content.js?v=20260712',
   // [2026-10-07] 视频库
@@ -92,6 +96,7 @@ loadTimeout = setTimeout(function() {
 
 // ─── 懒加载 香港医疗工具包 (2.6) ───
 // [PERF 2026-06-21] 用户进入"2.6 香港医疗工具包"时再加载 hk_medical_content.js (260KB)
+  CDN_BASE + 'sales_content.js?v=2026052401',
 // 避免首屏加载全部 14 份内容
 var medicalPackageLoaded = false;
 var medicalPackageLoading = false;
@@ -107,6 +112,7 @@ function loadMedicalPackage(callback) {
   medicalPackageLoading = true;
   var s = document.createElement('script');
   s.src = CDN_BASE + 'hk_medical_content.js?v=20260624a';
+  CDN_BASE + 'sales_content.js?v=2026052401',
   s.onload = function() {
     medicalPackageLoaded = true;
     medicalPackageLoading = false;
@@ -396,6 +402,7 @@ function renderCategories() {
   // [FIX 2026-06-21] 香港医疗工具包 (2.6) 现在是首屏加载，不再需要占位卡
   //   2.6 会自动作为「📚 百科全书」下的子分类出现
   //   （见 hk_medical_content.js 末尾的 IIFE 注入逻辑）
+  CDN_BASE + 'sales_content.js?v=2026052401',
 }
 
 // [PERF 2026-06-21] 懒加载智能客服：用户点击时才下载 chatbot_content.js
