@@ -5,7 +5,7 @@
 const contentData = { categories: [] };
 
 let loadedChunks = 0;
-const totalChunks = 7;
+const totalChunks = 9;
 
 // 视图堆栈：追踪完整导航路径
 // 每个条目: { view: 'home'|'category'|'child'|'doc', catId, childId, itemId }
@@ -19,14 +19,15 @@ function onChunkLoaded() {
 }
 
 // ─── 动态加载 content chunks（根目录，无chunks/前缀）────
-var scripts = [
-  'ifa_content.js?v=2026052801',
-  'wiki_content.js?v=2026052301',
-  'sales_content.js?v=2026052320',
-  'referral_content.js?v=20260516',
-  'materials_content.js?v=20260516',
-  'chatbot_content.js?v=20260516',
-  'biyuan_content.js?v=2026052301',
+const scripts = [
+  CDN_BASE + 'ifa_content.js?v=20260622b',
+  CDN_BASE + 'wiki_content.js?v=20260624b',
+  CDN_BASE + 'hk_medical_content.js?v=20260624b',
+  CDN_BASE + 'referral_content.js?v=20260610',
+  CDN_BASE + 'biyuan_content.js?v=2026052301',
+  CDN_BASE + 'materials_content.js?v=2026060102',
+  CDN_BASE + 'products_content.js?v=20260712',
+  CDN_BASE + 'video_content.js?v=20261007',
 ];
 
 function loadScript(i) {
