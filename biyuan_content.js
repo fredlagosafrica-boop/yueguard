@@ -7,6 +7,83 @@ contentData.categories.push({
   subtitle: '五大战略合作伙伴',
   children: [
     {
+      id: 'biyuan_0',
+      name: '📱 官方入口（小程序/官网）',
+      children: [
+        {
+          id: 'biyuan_0_1',
+          title: '📱 比元家办官方入口汇总',
+          content: `<h2>📱 比元家办 BE ONE FAMILY OFFICE — 官方入口</h2>
+<p><strong>调研时间：</strong>2026-10-09</p>
+<p><strong>定位：</strong>香港全链式家族办公室（FOaaS 模式）</p>
+<hr>
+<h3>🚀 核心入口</h3>
+<ul>
+  <li>🌐 <strong>官网：</strong><a href="https://www.beone-fo.com/" target="_blank">https://www.beone-fo.com/</a></li>
+  <li>📱 <strong>微信小程序：</strong><code>#小程序://比元家族/gkBNXPNnaCtHYKe</code>
+    <br>👉 <em>复制整段（含 #）→ 微信"搜索"粘贴 → 进入小程序</em></li>
+  <li>📡 <strong>团队分享会动态：</strong>2025-10-22 尖沙咀"走进比元"事业分享会</li>
+</ul>
+<hr>
+<h3>👥 核心团队（恒玥对标重点关注）</h3>
+<table border="1" cellpadding="6" style="border-collapse:collapse;width:100%;">
+  <tr style="background:#f0f4f8;">
+    <th>角色</th><th>姓名</th><th>关键背景</th>
+  </tr>
+  <tr>
+    <td>董事会主席</td>
+    <td><strong>容佳明 Derek Yung</strong></td>
+    <td>40 年金融；<strong>前友邦港澳区 CEO + 前香港保诚 CEO</strong>；CFMP / FLMI</td>
+  </tr>
+  <tr>
+    <td>联席创办人 / CEO</td>
+    <td>邓声兴 Kenny Tang</td>
+    <td>20+ 年投资；两家上市公司；港股分析师协会主席</td>
+  </tr>
+  <tr>
+    <td>联席创办人</td>
+    <td>陈珊珊 Athena Chan</td>
+    <td>17+ 年金融；1/4/9 号牌 RO</td>
+  </tr>
+  <tr>
+    <td>COO</td>
+    <td>石启泳 Ken Shek</td>
+    <td>27+ 年；大通 / 美国运通 / 富邦 / AMTD</td>
+  </tr>
+  <tr>
+    <td>董事总经理</td>
+    <td>何敬益 Wayne Ho</td>
+    <td>17+ 年 AMTD；百亿级跨境投融资</td>
+  </tr>
+</table>
+<hr>
+<h3>🎯 业务六大板块</h3>
+<ol>
+  <li>🆔 身份规划</li>
+  <li>🎓 精英教育</li>
+  <li>💰 资产配置</li>
+  <li>🏢 企业服务</li>
+  <li>📈 资本市场</li>
+  <li>🏘️ 地产投资</li>
+</ol>
+<hr>
+<h3>🤝 恒玥与比元关系</h3>
+<p><strong>战略合作：</strong>比元家办是恒玥的<strong>五大战略合作伙伴之一</strong>，通过转介绍模式覆盖保险之外的"身份 / 教育 / 资产"全链需求。</p>
+<p><strong>对标价值：</strong>容佳明（前友邦 / 保诚 CEO）的家族办公室打法 = 恒玥未来升级路径的高级参照。</p>
+<hr>
+<h3>💡 团队使用提示</h3>
+<ul>
+  <li>✅ <strong>客户提问"比元"时：</strong>直接展示本模块做信任铺垫</li>
+  <li>✅ <strong>客户问"家办"业务：</strong>此处作为"我们有 5 大战略合作伙伴"佐证</li>
+  <li>✅ <strong>保险 + 家办交叉销售：</strong>保险成交后用比元家办做"高净值客户深度服务"</li>
+  <li>⚠️ <strong>避免：</strong>直接发小程序 scheme（客户需自己用微信识别）</li>
+</ul>
+<hr>
+<p><em>以上内容由恒玥 Yuaguard 团队整理，仅供内部学习参考，不构成投资建议。</em></p>`
+        }
+      ]
+    },
+    {
       id: 'biyuan_1',
       name: '1. 普晖国际',
       children: [
