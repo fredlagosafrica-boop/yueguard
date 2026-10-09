@@ -102,7 +102,7 @@ def make_thumb(image_path, thumb_path, size=THUMB_SIZE):
 def rclone_sync(local_dir, remote_dir, dry_run=False):
     """rclone 同步本地到 R2"""
     cmd = [
-        '~/bin/rclone', 'sync',
+        os.path.expanduser('~/bin/rclone'), 'sync',
         local_dir, remote_dir,
         '--progress',
         '-v',
@@ -184,8 +184,10 @@ def main():
         full_dest = full_dir / filename
         thumb_dest = thumb_dir / filename
 
-        # EXIF 移除（除非跳过）
-        if args.skip_exif_remove:
+        # EXIF 移除（除非跳过 / dry-run）
+        if args.dry_run:
+            shutil.copy2(src_path, full_dest)
+        elif args.skip_exif_remove:
             shutil.copy2(src_path, full_dest)
         else:
             remove_exif(src_path)
@@ -239,7 +241,7 @@ def main():
     if not args.dry_run:
         # 上传 meta.json
         cmd_meta = [
-            '~/bin/rclone', 'copyto',
+            os.path.expanduser('~/bin/rclone'), 'copyto',
             str(meta_path), f"{r2_remote_base}/meta.json",
         ]
         print(f"\n📋 上传 meta.json")

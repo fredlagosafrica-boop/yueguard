@@ -202,7 +202,11 @@
    <p>团队活动留念 · 仅供内部参考</p>
   </div>
 
-  <!-- 类目筛选 -->
+  <!-- 搜索框 + 类目筛选 -->
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
+   <input type="text" id="searchInput" placeholder="🔍 搜索相册标题、描述、类目..." oninput="handleSearch(this.value)" style="flex:1;padding:8px 12px;border:1px solid #e2e8f0;border-radius:20px;font-size:13px;background:#fff;color:#2d3748;outline:none;" />
+   <span id="searchCount" style="font-size:12px;color:#888;min-width:50px;text-align:right;"></span>
+  </div>
   <div class="filter-row" id="categoryFilters"></div>
 
   <!-- 相册网格 -->
@@ -280,10 +284,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // === 照片库核心逻辑 ===
 const CATEGORIES = ['全部', '培训活动', '团队月会', '客户答谢宴', '产品发布', '公司年会', '新人入职', '业务拓展', '荣誉资质', '公益活动', '客户签约'];
 const R2_BASE = 'https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos';
-const INDEX_URL = 'https://pub-f29217f852fa38d919879acbe20f8b7.r2.dev/photos/_index.json';  // 占位，会改成真实 URL
+const INDEX_URL = 'https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/_index.json';  // 2026-10-09 修复：统一 public dev URL
 
 let albumIndex = [];        // 所有相册列表
 let currentFilter = '全部';
+let currentSearch = '';     // 搜索关键词
 let currentAlbum = null;
 let currentPhotoIdx = 0;
 
@@ -318,6 +323,11 @@ function filterBy(cat) {
   renderAlbums();
 }
 
+function handleSearch(keyword) {
+  currentSearch = keyword.trim().toLowerCase();
+  renderAlbums();
+}
+
 function renderAlbums() {
   const grid = document.getElementById('albumGrid');
   if (!grid) return;
@@ -325,6 +335,18 @@ function renderAlbums() {
   let list = albumIndex.slice();
   if (currentFilter !== '全部') {
     list = list.filter(function(a) { return a.category === currentFilter; });
+  }
+  if (currentSearch) {
+    list = list.filter(function(a) {
+      const hay = (a.title + ' ' + a.description + ' ' + a.category + ' ' + a.date).toLowerCase();
+      return hay.indexOf(currentSearch) !== -1;
+    });
+  }
+
+  // 更新搜索结果计数
+  const countEl = document.getElementById('searchCount');
+  if (countEl) {
+    countEl.textContent = list.length + ' / ' + albumIndex.length;
   }
 
   if (list.length === 0) {
