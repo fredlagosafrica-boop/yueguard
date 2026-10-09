@@ -125,7 +125,16 @@ contentData.categories.push({
     {
       id: 'biyuan_2',
       name: '2. 香港升学中心',
-      children: []
+      children: [
+        {
+          id: 'biyuan_2_1',
+          title: '2. 香港升学中心',
+          content: `<h2>香港升学中心</h2>
+<p>🌐 <strong>官网：</strong><a href="https://www.hkecc.com.cn/" target="_blank" rel="noopener">https://www.hkecc.com.cn/</a> <em>（点击直跳官网）</em></p>
+<hr>
+<p><em>以上内容由恒玥 Yuaguard 团队整理，仅供内部学习参考，不构成投资建议。</em></p>`
+        }
+      ]
     },
     {
       id: 'biyuan_3',
