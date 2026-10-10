@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "updated": "2026-10-10T10:54:45.000000",
+  "count": 2,
+  "albums": [
+    {
+      "id": "2026-10-02_培训活动",
+      "title": "香港大学交流活动",
+      "date": "2026-10-02",
+      "category": "培训活动",
+      "year_month": "2026-10",
+      "count": 9,
+      "cover": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/001.jpg",
+      "description": "恒玥团队香港大学参观交流",
+      "meta_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/meta.json",
+      "photos": [
+        {"id": "001", "name": "226925d96c476ae23f98d409ad498006", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/001.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/001.jpg", "size_full": 1612710, "size_thumb": 34165},
+        {"id": "002", "name": "86a203d7fad62f7a962473af4ed1662b", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/002.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/002.jpg", "size_full": 1808794, "size_thumb": 34608},
+        {"id": "003", "name": "93aa4ee79600df4973157ec32b28d4d2", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/003.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/003.jpg", "size_full": 1905020, "size_thumb": 33704},
+        {"id": "004", "name": "95e7a4893d82c2867c2c21b0c5835f78", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/004.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/004.jpg", "size_full": 2920053, "size_thumb": 33003},
+        {"id": "005", "name": "a9a7d07bdf5a60a613ce7c2fa3a0f573", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/005.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/005.jpg", "size_full": 1971347, "size_thumb": 36017},
+        {"id": "006", "name": "ba3b4979147f8e7c053c8a5b97c32535", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/006.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/006.jpg", "size_full": 2437243, "size_thumb": 41239},
+        {"id": "007", "name": "de86e3a8e4183b57b2f12f6499fbb230", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/007.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/007.jpg", "size_full": 3680193, "size_thumb": 54645},
+        {"id": "008", "name": "f49f6e50bc585e8a43872b5d676febe9", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/008.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/008.jpg", "size_full": 2883292, "size_thumb": 36077},
+        {"id": "009", "name": "fdf873151841e55867bfe721dee322ac", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/full/009.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-10/2026-10-02_培训活动/thumb/009.jpg", "size_full": 2341531, "size_thumb": 36907}
+      ]
+    },
+    {
+      "id": "2026-09-04_培训活动",
+      "title": "团队线下培训",
+      "date": "2026-09-04",
+      "category": "培训活动",
+      "year_month": "2026-09",
+      "count": 16,
+      "cover": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/001.jpg",
+      "description": "恒玥团队线下培训活动",
+      "meta_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/meta.json",
+      "photos": [
+        {"id": "001", "name": "640", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/001.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/001.jpg", "size_full": 147081, "size_thumb": 33795},
+        {"id": "002", "name": "微信图片_2026-03-31_204929_435", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/002.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/002.jpg", "size_full": 198041, "size_thumb": 35246},
+        {"id": "003", "name": "微信图片_20260902162044_1833_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/003.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/003.jpg", "size_full": 138440, "size_thumb": 24819},
+        {"id": "004", "name": "微信图片_20260902162045_1834_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/004.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/004.jpg", "size_full": 212816, "size_thumb": 24393},
+        {"id": "005", "name": "微信图片_20260902162045_1835_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/005.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/005.jpg", "size_full": 280743, "size_thumb": 28611},
+        {"id": "006", "name": "微信图片_20260902162104_1836_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/006.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/006.jpg", "size_full": 269268, "size_thumb": 31263},
+        {"id": "007", "name": "微信图片_20260902162347_1839_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/007.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/007.jpg", "size_full": 271721, "size_thumb": 32290},
+        {"id": "008", "name": "微信图片_20260904122641_1940_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/008.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/008.jpg", "size_full": 1632213, "size_thumb": 35618},
+        {"id": "009", "name": "微信图片_20260904122647_1941_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/009.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/009.jpg", "size_full": 960378, "size_thumb": 21280},
+        {"id": "010", "name": "微信图片_20260904122654_1942_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/010.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/010.jpg", "size_full": 992143, "size_thumb": 28577},
+        {"id": "011", "name": "微信图片_20260904123014_1943_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/011.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/011.jpg", "size_full": 1196737, "size_thumb": 24329},
+        {"id": "012", "name": "微信图片_20260904123023_1944_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/012.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/012.jpg", "size_full": 5033338, "size_thumb": 31283},
+        {"id": "013", "name": "微信图片_20260904123027_1945_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/013.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/013.jpg", "size_full": 1290811, "size_thumb": 34154},
+        {"id": "014", "name": "微信图片_20260904123031_1946_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/014.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/014.jpg", "size_full": 1390192, "size_thumb": 25343},
+        {"id": "015", "name": "微信图片_20260904141548_1877_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/015.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/015.jpg", "size_full": 994565, "size_thumb": 44169},
+        {"id": "016", "name": "微信图片_20260904193632_1904_44", "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/full/016.jpg", "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/016.jpg", "size_full": 3678942, "size_thumb": 31168}
+      ]
+    }
+  ]
+}
