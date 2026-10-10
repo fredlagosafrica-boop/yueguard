@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-10T15:22:30.000000",
+  "updated": "2026-10-10T15:42:00.000000",
   "count": 3,
   "albums": [
     {
@@ -239,7 +239,144 @@
       "cover": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/001.jpg",
       "description": "恒玥团队广州养老院探访公益活动",
       "meta_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/meta.json",
-      "photos": []
+      "photos": [
+        {
+          "id": "001",
+          "name": "微信图片_20260710115811_603_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/001.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/001.jpg",
+          "size_full": 5177592,
+          "size_thumb": 51432
+        },
+        {
+          "id": "002",
+          "name": "微信图片_20260710115813_604_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/002.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/002.jpg",
+          "size_full": 4460036,
+          "size_thumb": 42059
+        },
+        {
+          "id": "003",
+          "name": "微信图片_20260710115815_605_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/003.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/003.jpg",
+          "size_full": 2498997,
+          "size_thumb": 38992
+        },
+        {
+          "id": "004",
+          "name": "微信图片_20260710115816_606_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/004.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/004.jpg",
+          "size_full": 1821182,
+          "size_thumb": 36279
+        },
+        {
+          "id": "005",
+          "name": "微信图片_20260710115818_607_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/005.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/005.jpg",
+          "size_full": 2895894,
+          "size_thumb": 37978
+        },
+        {
+          "id": "006",
+          "name": "微信图片_20260710115819_608_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/006.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/006.jpg",
+          "size_full": 1139254,
+          "size_thumb": 21287
+        },
+        {
+          "id": "007",
+          "name": "微信图片_20260710115820_609_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/007.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/007.jpg",
+          "size_full": 1417382,
+          "size_thumb": 25131
+        },
+        {
+          "id": "008",
+          "name": "微信图片_20260710115821_610_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/008.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/008.jpg",
+          "size_full": 1305748,
+          "size_thumb": 21880
+        },
+        {
+          "id": "009",
+          "name": "微信图片_20260710115823_611_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/009.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/009.jpg",
+          "size_full": 1371421,
+          "size_thumb": 23948
+        },
+        {
+          "id": "010",
+          "name": "微信图片_20260710115824_612_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/010.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/010.jpg",
+          "size_full": 1355300,
+          "size_thumb": 24251
+        },
+        {
+          "id": "011",
+          "name": "微信图片_20260710115825_613_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/011.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/011.jpg",
+          "size_full": 1095228,
+          "size_thumb": 19228
+        },
+        {
+          "id": "012",
+          "name": "微信图片_20260710115826_614_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/012.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/012.jpg",
+          "size_full": 1816110,
+          "size_thumb": 32308
+        },
+        {
+          "id": "013",
+          "name": "微信图片_20260710115828_615_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/013.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/013.jpg",
+          "size_full": 3721272,
+          "size_thumb": 52209
+        },
+        {
+          "id": "014",
+          "name": "微信图片_20260710115829_616_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/014.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/014.jpg",
+          "size_full": 1468005,
+          "size_thumb": 17397
+        },
+        {
+          "id": "015",
+          "name": "微信图片_20260710115831_617_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/015.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/015.jpg",
+          "size_full": 2237965,
+          "size_thumb": 20391
+        },
+        {
+          "id": "016",
+          "name": "微信图片_20260710115832_618_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/016.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/016.jpg",
+          "size_full": 2809205,
+          "size_thumb": 37913
+        },
+        {
+          "id": "017",
+          "name": "微信图片_20260710115834_619_44",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/full/017.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-07/2026-07-10_公益活动/thumb/017.jpg",
+          "size_full": 2314218,
+          "size_thumb": 27403
+        }
+      ]
     }
   ]
 }
