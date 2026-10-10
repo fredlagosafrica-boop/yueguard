@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // === 照片库核心逻辑 ===
 const CATEGORIES = ['全部', '培训活动', '团队月会', '客户答谢宴', '产品发布', '公司年会', '新人入职', '业务拓展', '荣誉资质', '公益活动', '客户签约'];
 const R2_BASE = 'https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos';
-const INDEX_URL = './_index.json';  // 2026-10-10: 放同域避免 CORS，R2 公开 URL 仍用于图片
+const INDEX_URL = './photo-index.json';  // 2026-10-10: 放同域避免 CORS，R2 公开 URL 仍用于图片
 
 let albumIndex = [];        // 所有相册列表
 let currentFilter = '全部';
