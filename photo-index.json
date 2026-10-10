@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated": "2026-10-10T15:42:00.000000",
-  "count": 3,
+  "updated": "2026-10-10T15:52:00.000000",
+  "count": 4,
   "albums": [
     {
       "id": "2026-10-02_培训活动",
@@ -226,6 +226,99 @@
           "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-09/2026-09-04_培训活动/thumb/016.jpg",
           "size_full": 3678942,
           "size_thumb": 31168
+        }
+      ]
+    },
+    {
+      "id": "2026-08-21_培训活动",
+      "title": "2026年行业协会交流活动",
+      "date": "2026-08-21",
+      "category": "培训活动",
+      "year_month": "2026-08",
+      "count": 10,
+      "cover": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/001.jpg",
+      "description": "恒玥团队行业协会交流活动",
+      "meta_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/meta.json",
+      "photos": [
+        {
+          "id": "001",
+          "name": "微信图片_20260821165031_1978_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/001.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/001.jpg",
+          "size_full": 248212,
+          "size_thumb": 24421
+        },
+        {
+          "id": "002",
+          "name": "微信图片_20260821165032_1979_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/002.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/002.jpg",
+          "size_full": 230472,
+          "size_thumb": 25155
+        },
+        {
+          "id": "003",
+          "name": "微信图片_20260821165033_1980_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/003.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/003.jpg",
+          "size_full": 256428,
+          "size_thumb": 29004
+        },
+        {
+          "id": "004",
+          "name": "微信图片_20260821165034_1981_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/004.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/004.jpg",
+          "size_full": 294125,
+          "size_thumb": 30114
+        },
+        {
+          "id": "005",
+          "name": "微信图片_20260821165038_1982_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/005.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/005.jpg",
+          "size_full": 157671,
+          "size_thumb": 20812
+        },
+        {
+          "id": "006",
+          "name": "微信图片_20260821165039_1983_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/006.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/006.jpg",
+          "size_full": 166087,
+          "size_thumb": 22493
+        },
+        {
+          "id": "007",
+          "name": "微信图片_20260821174039_1987_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/007.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/007.jpg",
+          "size_full": 227718,
+          "size_thumb": 24826
+        },
+        {
+          "id": "008",
+          "name": "微信图片_20260821174040_1988_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/008.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/008.jpg",
+          "size_full": 352615,
+          "size_thumb": 32131
+        },
+        {
+          "id": "009",
+          "name": "微信图片_20260821174041_1989_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/009.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/009.jpg",
+          "size_full": 532476,
+          "size_thumb": 42973
+        },
+        {
+          "id": "010",
+          "name": "微信图片_20260821174042_1990_4",
+          "full_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/full/010.jpg",
+          "thumb_url": "https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/photos/2026-08/2026-08-21_培训活动/thumb/010.jpg",
+          "size_full": 328902,
+          "size_thumb": 33460
         }
       ]
     },
