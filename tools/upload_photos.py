@@ -185,13 +185,15 @@ def main():
         thumb_dest = thumb_dir / filename
 
         # EXIF 移除（除非跳过 / dry-run）
+        # 注意：始终 COPY 不 MOVE，保护用户本地原图
         if args.dry_run:
             shutil.copy2(src_path, full_dest)
         elif args.skip_exif_remove:
             shutil.copy2(src_path, full_dest)
         else:
-            remove_exif(src_path)
-            shutil.move(src_path, full_dest)
+            # 先 copy 到 full_dest，再在副本上去除 EXIF（保护原图）
+            shutil.copy2(src_path, full_dest)
+            remove_exif(str(full_dest))  # 去除 EXIF（覆盖的是副本，原图不变）
 
         # 缩略图
         if not args.skip_thumb:
