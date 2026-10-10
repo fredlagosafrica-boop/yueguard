@@ -298,7 +298,7 @@ async function loadAlbumIndex() {
   try {
     const resp = await fetch(INDEX_URL);
     if (resp.ok) {
-      albumIndex = await resp.json();
+      albumIndex = (await resp.json()).albums;
     } else {
       throw new Error('fetch fail');
     }
