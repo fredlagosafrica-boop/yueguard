@@ -253,6 +253,7 @@ function checkPhotosPassword() {
     document.getElementById('passwordLock').style.display = 'none';
     if (localStorage.getItem(DISCLAIMER_KEY) === 'yes') {
       document.getElementById('mainApp').style.display = '';
+      loadAlbumIndex();  // 修复：同意过也加载数据
     } else {
       document.getElementById('disclaimerModal').classList.add('active');
     }
