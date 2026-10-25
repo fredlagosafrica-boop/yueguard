@@ -30,7 +30,7 @@ const scripts = [
   CDN_BASE + 'biyuan_content.js?v=2026052301',
   CDN_BASE + 'materials_content.js?v=2026060102',
   CDN_BASE + 'products_content.js?v=20260712',
-  CDN_BASE + 'video_content.js?v=20261007',
+  CDN_BASE + 'video_content.js?v=20261025',
   CDN_BASE + 'chatbot_content.js?v=20260516',
   CDN_BASE + 'team_photos_content.js?v=20261007a',
 ];
