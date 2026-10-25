@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
 import base64, codecs, urllib.request, json
 
-TOKEN = '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'
+# ⚠️ GitHub PAT 不要寫死在檔案裡 —— 這個倉庫是公開的，
+#    明文 token 會被任何人抓到並拿去用你的 GitHub 帳號 push。
+#    改成從環境變數讀：
+#      export GITHUB_TOKEN=ghp_xxx
+#    或用 credential store（~/.git-credentials，權限 600）。
+import os
+TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+if not TOKEN:
+    raise SystemExit(
+        "請設定 GITHUB_TOKEN 環境變數（export GITHUB_TOKEN=ghp_xxx），\n"
+        "或在 ~/.git-credentials 設定（credential.helper=store）。"
+    )
 REPO = 'fredlagosafrica-boop/yueguard'
 FILE = 'referral_content.js'
 
