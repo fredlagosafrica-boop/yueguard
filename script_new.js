@@ -66,6 +66,21 @@ function chunkFinished() {
 const CDN_BASE = 'https://fredlagosafrica-boop.github.io/yueguard/';
 const CDN_R2   = 'https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/site/';
 
+// 同源優先：無論頁面是從 GitHub Pages 還是 R2 開啟，都先試同源
+// （相對路徑 = 同源，不需要跨網域 CORS，也最快）
+const CDN_SELF  = '';
+
+// 候選順序：同源 → R2 → GitHub Pages
+// ⚠️ 同源不加 ?v= 會被瀏覽器永久快取住舊 chunk —— 改用 hash 參數做 cache buster
+//    （hash 不送給伺服器，但會讓瀏覽器視為不同 URL）
+function candidateUrls(name, ver, attempt) {
+  var self = CDN_SELF + name + '#v=' + ver.replace(/[^0-9a-zA-Z]/g, '');
+  var r2 = CDN_R2 + name + '?v=' + ver.replace(/[^0-9a-zA-Z]/g, '');
+  var gh = CDN_BASE + name + '?' + ver;
+  var list = attempt === 0 ? [self, r2, gh] : (attempt % 2 === 1 ? [r2, self, gh] : [gh, r2, self]);
+  return list;
+}
+
 // [檔名, GitHub 版本參數, 預期位元組數]
 // 預期位元組數用於完整性驗證 —— 截斷時 Content-Length 會大於實際收到的 body
 const scripts = [
@@ -85,13 +100,10 @@ const scripts = [
 const MAX_RETRY = 3;
 let chunkFailures = [];
 
-// 單一 chunk 載入：R2 優先 → GitHub 備援，失敗重試
+// 單一 chunk 載入：同源 → R2 → GitHub Pages，失敗重試
 function loadChunk(def, attempt) {
   var name = def[0], ver = def[1], expect = def[2];
-  // 第 1 次用 R2，之後輪替 / 混搭
-  var urls = (attempt % 2 === 0)
-    ? [CDN_R2 + name, CDN_BASE + name + '?' + ver]
-    : [CDN_BASE + name + '?' + ver, CDN_R2 + name];
+  var urls = candidateUrls(name, ver, attempt);
 
   function tryUrl(idx) {
     if (idx >= urls.length) {
