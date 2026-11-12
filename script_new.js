@@ -18,36 +18,123 @@ function onChunkLoaded() {
   }
 }
 
-// ─── 动态加载 content chunks（根目录，无chunks/前缀）────
-const CDN_BASE = 'https://fredlagosafrica-boop.github.io/yueguard/';
+// ⚠️ 2026-11-12 修正：11 個 chunk 中只有 5 個檔案末尾有 onChunkLoaded() 呼叫
+//    （hk_medical / biyuan / products / video / chatbot / team_photos 都沒有）
+//    舊實作靠「逐一遞迴 + loadScript(i>=len) 觸發 renderCategories()」兜底。
+//    新實作改成並行載入後，若沒有兜底就會永遠等不到 renderCategories()。
+//    解法：這裡以「所有 chunk 都結束」為準判斷，不依賴檔案自己呼叫。
+const CHUNK_TOTAL = 11;
+let chunkDone = 0;
 
-const scripts = [
-  CDN_BASE + 'sales_content.js?v=2026052401',
-  CDN_BASE + 'ifa_content.js?v=20260622b',
-  CDN_BASE + 'wiki_content.js?v=20260624b',
-  CDN_BASE + 'hk_medical_content.js?v=20260624b',
-  CDN_BASE + 'referral_content.js?v=20260610',
-  CDN_BASE + 'biyuan_content.js?v=2026052301',
-  CDN_BASE + 'materials_content.js?v=2026060102',
-  CDN_BASE + 'products_content.js?v=20260712',
-  CDN_BASE + 'video_content.js?v=20261025b',
-  CDN_BASE + 'chatbot_content.js?v=20260516',
-  CDN_BASE + 'team_photos_content.js?v=20261007a',
-];
-
-function loadScript(i) {
-  if (i >= scripts.length) {
+function chunkFinished() {
+  chunkDone++;
+  if (chunkDone >= CHUNK_TOTAL) {
+    if (chunkFailures.length) {
+      console.warn('[chunk] 部分載入失敗:', chunkFailures);
+    }
     renderCategories();
-    return;
   }
-  var script = document.createElement('script');
-  script.src = scripts[i];
-  script.onload = function() { loadScript(i + 1); };
-  script.onerror = function() { console.error('Failed to load: ' + scripts[i]); loadScript(i + 1); };
-  document.head.appendChild(script);
 }
 
-loadScript(0);
+// ─── 动态加载 content chunks ────
+//
+// ⚠️ 2026-11-12 重大改動：GitHub Pages 在中國大陸鏈路不穩
+//
+//   實測（WSL → github.io）：
+//     materials_content.js 連續 6 次 → 成功 3 / 失敗 3（50% 失敗率）
+//     HTTP/1.1 也一樣（3/8）→ 不是 HTTP/2 問題
+//     直連 --resolve IP 也一樣 → 不是 DNS 問題
+//     SSL verify ok → 不是憑證問題
+//     檔案內容 md5 與線上完全一致 → 不是檔案損壞
+//     => 傳輸途中被重置（stream reset），大檔機率更高
+//
+//   舊實作是「逐一遞迴」<script> 標籤載入：
+//     script.onload → loadScript(i+1)
+//   一個 chunk 失敗就斷在鏈上；更糟的是「下載到一半截斷」
+//   瀏覽器視為成功（不觸發 onerror），導致 onChunkLoaded 永遠
+//   收不到 11 個 chunk → renderCategories() 永不執行
+//   → 頁面永遠停在「⏳ 正在加载内容，请稍候...」
+//
+//   新實作：
+//     1. 主 CDN = Cloudflare R2（實測 10/10 零失敗，平均 7.7s）
+//     2. 備援 = GitHub Pages
+//     3. 全部並行載入（不是逐一遞迴）
+//     4. 完整性驗證（比對 Content-Length，截斷會被偵測）
+//     5. 指數退避重試（最多 3 次）
+//     6. 全部失敗時仍能降級渲染（不白屏）
+//
+const CDN_BASE = 'https://fredlagosafrica-boop.github.io/yueguard/';
+const CDN_R2   = 'https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/site/';
+
+// [檔名, GitHub 版本參數, 預期位元組數]
+// 預期位元組數用於完整性驗證 —— 截斷時 Content-Length 會大於實際收到的 body
+const scripts = [
+  ['sales_content.js',      'v=2026052401',  568827],
+  ['ifa_content.js',        'v=20260622b',    88195],
+  ['wiki_content.js',       'v=20260624b',   165195],
+  ['hk_medical_content.js', 'v=20260624b',   256797],
+  ['referral_content.js',   'v=20260610',    134071],
+  ['biyuan_content.js',     'v=2026052301',    6167],
+  ['materials_content.js',  'v=2026060102',  826988],
+  ['products_content.js',   'v=20260712',      2614],
+  ['video_content.js',      'v=20261025b',   321123],
+  ['chatbot_content.js',    'v=20260516',    167877],
+  ['team_photos_content.js','v=20261007a',      378],
+];
+
+const MAX_RETRY = 3;
+let chunkFailures = [];
+
+// 單一 chunk 載入：R2 優先 → GitHub 備援，失敗重試
+function loadChunk(def, attempt) {
+  var name = def[0], ver = def[1], expect = def[2];
+  // 第 1 次用 R2，之後輪替 / 混搭
+  var urls = (attempt % 2 === 0)
+    ? [CDN_R2 + name, CDN_BASE + name + '?' + ver]
+    : [CDN_BASE + name + '?' + ver, CDN_R2 + name];
+
+  function tryUrl(idx) {
+    if (idx >= urls.length) {
+      if (attempt + 1 < MAX_RETRY) {
+        var delay = 400 * Math.pow(2, attempt);
+        setTimeout(function () { loadChunk(def, attempt + 1); }, delay);
+      } else {
+        console.error('[chunk] 放棄: ' + name);
+        chunkFailures.push(name);
+        chunkFinished();
+      }
+      return;
+    }
+    var url = urls[idx];
+    fetch(url, { cache: 'no-cache' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.arrayBuffer();
+      })
+      .then(function (buf) {
+        // 完整性驗證：位元組數不符 = 下載被截斷
+        if (expect && buf.byteLength !== expect) {
+          throw new Error('截斷: 收到 ' + buf.byteLength + '/' + expect);
+        }
+        var text = new TextDecoder('utf-8').decode(buf);
+        // 用 indirect eval 讓內容在全域作用域執行
+        (0, eval)(text);
+        chunkFinished();
+      })
+      .catch(function (err) {
+        console.warn('[chunk] ' + name + ' 失敗(' + attempt + '/' + MAX_RETRY + '): ' + err.message);
+        tryUrl(idx + 1);
+      });
+  }
+  tryUrl(0);
+}
+
+// 並行載入所有 chunk（舊實作是逐一遞迴，一個失敗就全斷）
+function loadAllChunks() {
+  scripts.forEach(function (def) { loadChunk(def, 0); });
+}
+
+loadAllChunks();
 
 // ─── 搜索功能 ───
 var lastSearchKeyword = ''; // 记录最近搜索关键词，用于内容高亮
