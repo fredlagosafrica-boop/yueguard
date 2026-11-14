@@ -92,7 +92,7 @@ const scripts = [
   ['biyuan_content.js',     'v=2026052301',    6167],
   ['materials_content.js',  'v=2026060102',  826988],
   ['products_content.js',   'v=20260712',      2614],
-  ['video_content.js', 'v=20261114f', 329502],
+  ['video_content.js', 'v=20261114g', 329502],
   ['chatbot_content.js',    'v=20260516',    167877],
   ['team_photos_content.js','v=20261007a',      378],
 ];
@@ -820,11 +820,14 @@ function checkPassword(){
     showDisclaimer();
   } else {
     var err = document.getElementById("lockError");
-    err.classList.add("show");
+    if (err) err.classList.add("show");
     var boxes = document.querySelectorAll(".lock-digit-box");
     boxes.forEach(function(b){ b.value = ""; b.classList.remove("filled"); });
-    boxes[0].focus();
-    setTimeout(function(){ err.classList.remove("show"); }, 2500);
+    // [FIX 2026-11-14] 現行頁面用 #lockInput（單輸入框），沒有 .lock-digit-box 時 boxes[0] 為 undefined 會拋錯
+    var focusTarget = boxes.length ? boxes[0] : document.getElementById("lockInput");
+    if (focusTarget) focusTarget.focus();
+    // [FIX 2026-11-14] 提示必須自動消失，否則「密碼錯誤」會一直掛著擋住畫面
+    setTimeout(function(){ if (err) err.classList.remove("show"); }, 2500);
   }
 }
 
