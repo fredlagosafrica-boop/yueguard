@@ -4,7 +4,136 @@
 contentData.categories.push({
   id: 'video',
   name: '🎬 视频库',
+  subtitle: '保司培训 · 保险基础 · 团队月会 · 产品介绍',
+  icon: '🎬',
   children: [
+    {
+    id: 'video-insurer-training',
+    name: '保司培训',
+    children: [
+    {
+    id: 'video-insurer-manulife',
+    name: '1 宏利保险',
+    children: [
+    { id: 'v-14', name: '2026-11-09 宏观经济分析+销售话术', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 73分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-14.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe><p style="margin-top:14px;"><a href="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/assets/%E5%AE%8F%E5%88%A9%E5%9F%B9%E8%AE%AD_%E7%AC%AC%E4%B8%80%E6%97%A5_%E4%B8%BA%E4%BD%95%E8%A6%81%E7%9C%8B%E6%B5%B7%E5%A4%96.pdf" target="_blank" style="display:inline-block;padding:8px 18px;background:#1e3a5f;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;">📄 下载配套 PDF：宏观经济分析+销售话术</a></p></div>' },
+    { id: 'v-15', name: '2026-11-10 公司历史介绍+主力储蓄', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 95分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-15.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe><p style="margin-top:14px;"><a href="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/assets/%E5%AE%8F%E5%88%A9%E5%9F%B9%E8%AE%AD_%E7%AC%AC%E4%BA%8C%E6%97%A5_%E5%AE%8F%E5%88%A9%E9%87%91%E8%9E%8D%E4%BB%8B%E7%BB%8D.pdf" target="_blank" style="display:inline-block;padding:8px 18px;background:#1e3a5f;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;">📄 下载配套 PDF：公司历史介绍+主力储蓄</a></p></div>' },
+    { id: 'v-16', name: '2026-11-11 大额寿险+自愿医保+CI', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 113分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-16.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe><p style="margin-top:14px;"><a href="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/assets/%E5%AE%8F%E5%88%A9%E5%9F%B9%E8%AE%AD_%E7%AC%AC%E4%B8%89%E6%97%A5_%E5%AE%8F%E7%91%9E%E7%BB%88%E8%BA%AB%E5%8D%B3%E6%9C%9F%E5%B9%B4%E9%87%91%E4%BF%9D%E9%99%A9%E8%AE%A1%E5%88%92.pdf" target="_blank" style="display:inline-block;padding:8px 18px;background:#1e3a5f;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;">📄 下载配套 PDF：大额寿险+自愿医保+CI</a></p></div>' },
+    ]
+    },
+    {
+    id: 'video-insurer-axa',
+    name: '2 安盛保险',
+    children: [
+    { id: 'video-insurer-axa-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
+    ]
+    },
+    {
+    id: 'video-insurer-aia',
+    name: '3 友邦保险',
+    children: [
+    { id: 'video-insurer-aia-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
+    ]
+    },
+    {
+    id: 'video-insurer-fw',
+    name: '4 富衛保險',
+    children: [
+    { id: 'v-03', name: '富卫保费融资', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 44分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-03.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
+    ]
+    },
+    {
+    id: 'video-insurer-ctf',
+    name: '5 周大福人壽',
+    children: [
+    { id: 'video-insurer-ctf-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
+    ]
+    },
+    {
+    id: 'video-insurer-sunlife',
+    name: '6 永明保險',
+    children: [
+    { id: 'video-insurer-sunlife-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
+    ]
+    },
+    {
+    id: 'video-insurer-pacific',
+    name: '7 中國太平洋保險',
+    children: [
+    { id: 'video-insurer-pacific-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
+    ]
+    },
+    {
+    id: 'video-insurer-chinalife',
+    name: '8 中國人壽（國壽）',
+    children: [
+    { id: 'video-insurer-chinalife-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
+    ]
+    },
+    {
+          id: 'video-insurer-prudential',
+          name: '9 保誠保險',
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-prudential-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
+    {
+          id: 'video-insurer-andadeath',
+          name: '10 安達人壽',
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-andadeath-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
+    {
+          id: 'video-insurer-generali',
+          name: '11 忠意人壽',
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-generali-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
+    {
+          id: 'video-insurer-lifeline',
+          name: '12 立橋人壽',
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-lifeline-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
+    {
+          id: 'video-insurer-zurich',
+          name: '13 蘇黎世保險',
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-zurich-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
+    {
+          id: 'video-insurer-boclife',
+          name: '14 中銀人壽',
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-boclife-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
+    {
+    id: 'video-insurer-wanton',
+    name: '15 萬通保險',
+    children: [
+    { id: 'v-04', name: '万通保费融资', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 30分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-04.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
+    ]
+    },
+    {
+          id: 'video-insurer-taiping',
+          name: '16 太平人壽',
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-taiping-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  }
+    ]
+    },
     {
       id: 'video-insurance',
       name: '保险基础',
@@ -44,7 +173,7 @@ contentData.categories.push({
     },
     {
       id: 'video-team',
-      name: '团队月会',
+      name: '團隊月会',
       children: [
         { id: 'v-02', name: '恒玥团队发展规划与策略', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 团队月会 · 50分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-02.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
         { id: 'v-05', name: '业务策略与合规风控培训', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 团队月会 · 86分钟 · 已上线（完整版）</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-05.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
@@ -58,136 +187,7 @@ contentData.categories.push({
         { id: 'v-04', name: '万通保费融资', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 产品介绍 · 30分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-04.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
         { id: 'v-11', name: '重大疾病险详解', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
       ]
-    },
-    {
-    id: 'video-insurer-training',
-    name: '保司培训',
-    children: [
-    {
-    id: 'video-insurer-manulife',
-    name: '宏利保险',
-    children: [
-    { id: 'v-14', name: '宏利培训分享（第一日）：为何要看海外', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 73分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-14.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe><p style="margin-top:14px;"><a href="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/assets/%E5%AE%8F%E5%88%A9%E5%9F%B9%E8%AE%AD_%E7%AC%AC%E4%B8%80%E6%97%A5_%E4%B8%BA%E4%BD%95%E8%A6%81%E7%9C%8B%E6%B5%B7%E5%A4%96.pdf" target="_blank" style="display:inline-block;padding:8px 18px;background:#1e3a5f;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;">📄 下载配套 PDF：为什么看海外</a></p></div>' },
-    { id: 'v-15', name: '宏利培训分享（第二日）：宏利金融介绍', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 95分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-15.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe><p style="margin-top:14px;"><a href="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/assets/%E5%AE%8F%E5%88%A9%E5%9F%B9%E8%AE%AD_%E7%AC%AC%E4%BA%8C%E6%97%A5_%E5%AE%8F%E5%88%A9%E9%87%91%E8%9E%8D%E4%BB%8B%E7%BB%8D.pdf" target="_blank" style="display:inline-block;padding:8px 18px;background:#1e3a5f;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;">📄 下载配套 PDF：宏利金融介绍</a></p></div>' },
-    { id: 'v-16', name: '宏利培训分享（第三日）：宏瑞终身即期年金保险计划', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 113分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-16.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe><p style="margin-top:14px;"><a href="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/assets/%E5%AE%8F%E5%88%A9%E5%9F%B9%E8%AE%AD_%E7%AC%AC%E4%B8%89%E6%97%A5_%E5%AE%8F%E7%91%9E%E7%BB%88%E8%BA%AB%E5%8D%B3%E6%9C%9F%E5%B9%B4%E9%87%91%E4%BF%9D%E9%99%A9%E8%AE%A1%E5%88%92.pdf" target="_blank" style="display:inline-block;padding:8px 18px;background:#1e3a5f;color:#fff;border-radius:8px;text-decoration:none;font-size:14px;">📄 下载配套 PDF：宏瑞终身即期年金保险计划</a></p></div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-wanton',
-    name: '万通保险',
-    children: [
-    { id: 'v-04', name: '万通保费融资', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 30分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-04.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-axa',
-    name: '安盛保险',
-    children: [
-    { id: 'video-insurer-axa-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-aia',
-    name: '友邦保险',
-    children: [
-    { id: 'video-insurer-aia-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-fw',
-    name: '富卫保险',
-    children: [
-    { id: 'v-03', name: '富卫保费融资', content: '<div style="padding:20px;text-align:center;background:#1a1a1a;border-radius:12px;"><p style="color:#888;margin-bottom:16px;">🏷 保司培训 · 44分钟 · 已上线</p><iframe src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-library/video-03.html" width="100%" height="460" style="border:none;border-radius:8px;" allowfullscreen></iframe></div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-ctf',
-    name: '周大福',
-    children: [
-    { id: 'video-insurer-ctf-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-sunlife',
-    name: '永明保险',
-    children: [
-    { id: 'video-insurer-sunlife-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-pacific',
-    name: '太平洋人寿',
-    children: [
-    { id: 'video-insurer-pacific-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
-    ]
-    },
-    {
-    id: 'video-insurer-chinalife',
-    name: '中国人寿',
-    children: [
-    { id: 'video-insurer-chinalife-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
-,
-,
-    ]
-    },
-{
-          id: 'video-insurer-prudential',
-          name: '保诚保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
-    children: [
-    { id: 'video-insurer-prudential-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
-    ]
-  },
-{
-          id: 'video-insurer-andadeath',
-          name: '安达保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
-    children: [
-    { id: 'video-insurer-andadeath-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
-    ]
-  },
-{
-          id: 'video-insurer-generali',
-          name: '忠意保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
-    children: [
-    { id: 'video-insurer-generali-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
-    ]
-  },
-{
-          id: 'video-insurer-lifeline',
-          name: '立桥保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
-    children: [
-    { id: 'video-insurer-lifeline-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
-    ]
-  },
-{
-          id: 'video-insurer-zurich',
-          name: '苏黎世保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
-    children: [
-    { id: 'video-insurer-zurich-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
-    ]
-  },
-{
-          id: 'video-insurer-boclife',
-          name: '中银人寿',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
-    children: [
-    { id: 'video-insurer-boclife-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
-    ]
-  },
-{
-          id: 'video-insurer-taiping',
-          name: '太平人寿',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
-    children: [
-    { id: 'video-insurer-taiping-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
-    ]
-  },
-    ]
-    },
+    }
   ]
 });
 
