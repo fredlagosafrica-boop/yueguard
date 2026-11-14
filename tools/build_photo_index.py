@@ -97,7 +97,7 @@ def build_index():
             "count": meta.get("count", 0),
             "cover": meta.get("cover", ""),
             "description": meta.get("description", ""),
-            "meta_url": f"{PUBLIC_BASE}/{path}/meta.json",
+            "meta_url": f"{PUBLIC_BASE}/{path}",  # path 已含 meta.json，避免拼成 meta.json/meta.json
             # 缩略图列表（避免打开相册时再拉 meta）
             "photos": meta.get("photos", []),
         }
