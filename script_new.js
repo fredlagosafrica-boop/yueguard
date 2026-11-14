@@ -92,7 +92,7 @@ const scripts = [
   ['biyuan_content.js',     'v=2026052301',    6167],
   ['materials_content.js',  'v=2026060102',  826988],
   ['products_content.js',   'v=20260712',      2614],
-  ['video_content.js', 'v=20261114d', 329364],
+  ['video_content.js', 'v=20261114e', 329364],
   ['chatbot_content.js',    'v=20260516',    167877],
   ['team_photos_content.js','v=20261007a',      378],
 ];
@@ -852,10 +852,13 @@ document.addEventListener("DOMContentLoaded",function(){
       this.select();
     });
   });
-  // 回车提交
-  boxes[boxes.length-1].addEventListener("keydown",function(e){
-    if(e.key === "Enter") checkPassword();
-  });
+  // 回车提交（頁面可能沒有 .lock-digit-box，改用實際存在的輸入框）
+  var lastBox = boxes.length ? boxes[boxes.length-1] : document.getElementById("lockInput");
+  if(lastBox){
+    lastBox.addEventListener("keydown",function(e){
+      if(e.key === "Enter") checkPassword();
+    });
+  }
 });
 
 function showPasswordLock(){
