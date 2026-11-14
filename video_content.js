@@ -126,6 +126,10 @@ contentData.categories.push({
     name: '中国人寿',
     children: [
     { id: 'video-insurer-chinalife-empty', name: '暂无影片', content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>' },
+,
+,
+    ]
+    },
 {
           id: 'video-insurer-prudential',
           name: '保诚保险',
@@ -161,8 +165,6 @@ contentData.categories.push({
           name: '太平人寿',
           content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
         },
-    ]
-    },
     ]
     },
   ]

@@ -92,7 +92,7 @@ const scripts = [
   ['biyuan_content.js',     'v=2026052301',    6167],
   ['materials_content.js',  'v=2026060102',  826988],
   ['products_content.js',   'v=20260712',      2614],
-  ['video_content.js', 'v=20261114d', 328031],
+  ['video_content.js', 'v=20261114d', 328035],
   ['chatbot_content.js',    'v=20260516',    167877],
   ['team_photos_content.js','v=20261007a',      378],
 ];
