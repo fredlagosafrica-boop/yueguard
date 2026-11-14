@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>恒玥IFA · 客户需求调研分析系统</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  /* === 皇家蓝 C 方案 === */
+  /* 背景层 */
+  --bg-deep1:    #0a1528;
+  --bg-deep2:    #0d1a30;
+  --bg-mid:      #102040;
+  --bg-card:     rgba(18, 35, 75, 0.92);
+  
+  /* 主色系 */
+  --primary:     #1e3a8a;
+  --primary-light:#2563eb;
+  --primary-pale: rgba(30, 58, 138, 0.1);
+  
+  /* 强调色 */
+  --accent:      #e8b020;
+  --accent-light:#f5c842;
+  --accent-pale: rgba(232, 176, 32, 0.08);
+  
+  /* 点缀色 */
+  --gold:        #f59e0b;
+  --gold-light:  #fbbf24;
+  --gold-pale:   rgba(245, 158, 11, 0.08);
+  
+  /* 功能色 */
+  --rose:        #991b1b;
+  --rose-light:  #dc2626;
+  --emerald:     #059669;
+  --emerald-light:#10b981;
+  --violet:      #7c3aed;
+  --cobalt:      #1d4ed8;
+  
+  /* 语义色 */
+  --text-primary: #f5f0e6;
+  --text-muted:  #9ca3af;
+  --text-dim:    #6b7280;
+  --border:       rgba(37, 99, 235, 0.18);
+  --border-light:rgba(37, 99, 235, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
+
+body {
+  background:
+    radial-gradient(1600px 800px at  6% -3%, rgba(30, 58, 138, 0.25), transparent 55%),
+    radial-gradient(1300px 650px at 94% 108%, rgba(232, 176, 32, 0.14), transparent 55%),
+    radial-gradient(900px  450px at 50% 50%, rgba(245, 158, 11, 0.06), transparent 60%),
+    linear-gradient(172deg, #0a1528 0%, #0d1a30 30%, #102040 60%, #0d1a30 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--text-primary);
+  padding: 28px 18px 52px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===================== HEADER ===================== */
+.header {
+  max-width: 1100px;
+  margin: 0 auto 22px;
+  background: linear-gradient(135deg, #030d1e 0%, #071a38 50%, var(--primary) 100%);
+  border-radius: 18px;
+  padding: 24px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(37, 99, 235, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -55%;
+  right: -8%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -35%;
+  left: 6%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(232, 176, 32, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header h1 {
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+  text-shadow: 0 2px 14px rgba(30, 58, 138, 0.5);
+}
+.header p {
+  font-size: 10px;
+  color: rgba(245, 240, 230, 0.45);
+  margin-top: 4px;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+}
+.header-icon {
+  font-size: 34px;
+  filter: drop-shadow(0 2px 12px rgba(232, 176, 32, 0.5));
+}
+
+/* ===================== MAIN CARD ===================== */
+.main-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 30px 32px;
+  box-shadow: 
+    0 6px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(24px);
+  overflow-x: auto;
+}
+
+/* ===================== SECTION ===================== */
+.section { margin-bottom: 22px; }
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.section-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--bg-deep1);
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.section-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent-light);
+  letter-spacing: 0.5px;
+}
+
+.section-en {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-left: auto;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+/* ===================== TABLE ===================== */
+.info-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 720px;
+}
+.info-table th {
+  background: var(--primary-pale);
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-light);
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border);
+}
+.info-table td {
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--border);
+  border-top: 1.5px solid var(--border-light);
+  vertical-align: middle;
+}
+.info-table tr:first-child td { border-top: none; }
+.info-table tr:last-child td { border-bottom: none; }
+.info-table tr:hover td { background: rgba(30, 58, 138, 0.06); }
+.label-cell {
+  font-size: 14px;
+  color: var(--text-muted);
+  background: rgba(2, 8, 20, 0.6);
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ===================== INPUT ===================== */
+.input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.25s;
+  background: rgba(2, 8, 20, 0.65);
+  color: var(--text-primary);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232, 176, 32, 0.12), inset 0 1px 4px rgba(0, 0, 0, 0.25);
+  background: rgba(2, 8, 20, 0.88);
+}
+.input::placeholder { color: var(--text-dim); font-weight: 400; }
+
+/* ===================== AMOUNT ===================== */
+.amount-cell { padding: 8px 14px !important; }
+.amount-wrapper { display: flex; flex-direction: column; gap: 7px; width: 100%; }
+.amount-row { display: flex; align-items: center; gap: 8px; }
+.amount-num {
+  flex: 0 0 76px;
+  padding: 9px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 700;
+  outline: none;
+  background: rgba(2, 8, 20, 0.65);
+  color: var(--text-primary);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+.amount-num:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(232, 176, 32, 0.15);
+}
+.amount-slider {
+  flex: 1;
+  height: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(30, 58, 138, 0.3) 0%, rgba(232, 176, 32, 0.25) 100%);
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.amount-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  cursor: pointer;
+  border: 2px solid var(--bg-deep1);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35), 0 0 10px rgba(232, 176, 32, 0.35);
+  transition: transform 0.15s;
+}
+.amount-slider::-webkit-slider-thumb:hover { transform: scale(1.18); }
+.amount-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  cursor: pointer;
+  border: 2px solid var(--bg-deep1);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+.amount-presets { display: flex; gap: 5px; flex-wrap: wrap; }
+.amount-preset {
+  padding: 4px 11px;
+  border-radius: 22px;
+  font-size: 10px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: rgba(2, 8, 20, 0.8);
+  transition: all 0.18s;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.amount-preset:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  background: rgba(232, 176, 32, 0.08);
+}
+.amount-preset.selected {
+  background: linear-gradient(135deg, var(--accent), #a37812);
+  color: var(--bg-deep1);
+  border-color: var(--accent-light);
+  font-weight: 800;
+  box-shadow: 0 2px 12px rgba(232, 176, 32, 0.3);
+}
+.amount-unit {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+/* ===================== TAG ===================== */
+.tag-group { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag {
+  padding: 7px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  background: rgba(2, 8, 20, 0.8);
+  transition: all 0.22s;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  background: rgba(232, 176, 32, 0.08);
+}
+.tag.selected {
+  background: linear-gradient(135deg, var(--primary), var(--cobalt));
+  color: #fff;
+  border-color: var(--primary-light);
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ===================== TOGGLE ===================== */
+.toggle-group { display: inline-flex; gap: 4px; }
+.toggle-btn {
+  padding: 7px 19px;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: rgba(2, 8, 20, 0.8);
+  color: var(--text-muted);
+  transition: all 0.22s;
+  font-weight: 700;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+.toggle-btn.selected {
+  background: linear-gradient(135deg, var(--primary), var(--cobalt));
+  color: #fff;
+  border-color: var(--primary-light);
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ===================== PRIORITY ===================== */
+.priority-btn {
+  padding: 8px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: rgba(2, 8, 20, 0.8);
+  color: var(--text-muted);
+  width: 60px;
+  display: inline-block;
+  transition: all 0.22s;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.priority-btn:hover { transform: translateY(-1px); }
+.priority-btn.ph {
+  background: linear-gradient(135deg, var(--rose-light), var(--rose));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(153, 27, 27, 0.45);
+}
+.priority-btn.pm {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  color: var(--bg-deep1);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(232, 176, 32, 0.4);
+}
+.priority-btn.pl {
+  background: linear-gradient(135deg, var(--primary), var(--cobalt));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.4);
+}
+
+/* ===================== META ROW ===================== */
+.meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+.meta-label {
+  font-size: 12px;
+  color: var(--accent-light);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* ===================== ACTION ===================== */
+.action-row {
+  display: flex;
+  gap: 18px;
+  margin: 24px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 14px 34px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text-muted);
+  border: 2px solid var(--border);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+  box-shadow: 0 0 24px rgba(232, 176, 32, 0.15), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--cobalt));
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(30, 58, 138, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(30, 58, 138, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.btn-success {
+  background: linear-gradient(135deg, var(--accent), #a37812);
+  color: var(--bg-deep1);
+  box-shadow: 0 6px 24px rgba(232, 176, 32, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(232, 176, 32, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ===================== REPORT ===================== */
+.report-panel {
+  display: none;
+  margin-top: 28px;
+  padding: 24px 20px 20px;
+  border-top: 2px dashed var(--border);
+  background: rgba(5, 15, 40, 0.95);
+  border-radius: 14px;
+}
+.report-panel.show { display: block; }
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+.report-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 2px 10px rgba(232, 176, 32, 0.25);
+}
+#reportDate { font-size: 10px; color: var(--text-dim); font-weight: 600; white-space: nowrap; }
+
+.overall-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 28px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+}
+.badge-s {
+  background: linear-gradient(135deg, var(--rose-light), var(--rose));
+  color: #fff;
+  box-shadow: 0 5px 22px rgba(153, 27, 27, 0.5);
+}
+.badge-a {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  color: var(--bg-deep1);
+  box-shadow: 0 5px 22px rgba(232, 176, 32, 0.5);
+}
+.badge-b {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  color: #fff;
+  box-shadow: 0 5px 22px rgba(37, 99, 235, 0.5);
+}
+.badge-c {
+  background: linear-gradient(135deg, var(--primary), var(--cobalt));
+  color: #fff;
+  box-shadow: 0 5px 22px rgba(30, 58, 138, 0.5);
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.score-card {
+  background: linear-gradient(180deg, rgba(7, 16, 38, 0.94), rgba(3, 13, 30, 0.97));
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px;
+  text-align: center;
+  transition: all 0.3s;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.score-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(232, 176, 32, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-4px) scale(1.03);
+}
+.score-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.score-value {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.score-bar {
+  height: 5px;
+  background: rgba(30, 58, 138, 0.18);
+  border-radius: 3px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease;
+  box-shadow: 0 0 8px currentColor;
+}
+.score-desc {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 7px;
+  font-weight: 600;
+}
+
+.report-section {
+  margin-bottom: 14px;
+  background: rgba(2, 8, 20, 0.5);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.report-section-title {
+  font-size: 13px;
+  color: var(--accent-light);
+  font-weight: 800;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+.report-section-title::before {
+  content: '◆';
+  color: var(--accent);
+  font-size: 10px;
+}
+
+.tag-recommend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  margin: 4px 6px 4px 0;
+  border: 1px solid transparent;
+  font-weight: 700;
+}
+.tag-recommend.high {
+  background: rgba(153, 27, 27, 0.18);
+  color: #fca5a5;
+  border-color: rgba(252, 165, 165, 0.3);
+}
+.tag-recommend.mid {
+  background: rgba(232, 176, 32, 0.15);
+  color: #fcd34d;
+  border-color: rgba(252, 211, 77, 0.3);
+}
+.tag-recommend.low {
+  background: rgba(5, 150, 105, 0.15);
+  color: #6ee7b7;
+  border-color: rgba(110, 231, 183, 0.25);
+}
+
+.advice-list { list-style: none; }
+.advice-list li {
+  padding: 11px 0;
+  font-size: 13px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-light);
+  font-weight: 600;
+  line-height: 1.7;
+}
+.advice-list li:last-child { border-bottom: none; }
+.advice-list li::before {
+  content: '✓';
+  color: var(--emerald-light);
+  font-weight: 800;
+  margin-top: 1px;
+  flex-shrink: 0;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.45);
+}
+
+.coverage-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.coverage-table th {
+  background: var(--primary-pale);
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--accent-light);
+  font-weight: 700;
+  border-bottom: 2px solid var(--border);
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+.coverage-table td {
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  border-top: 1.5px solid var(--border-light);
+  font-size: 13px;
+  font-weight: 600;
+}
+.coverage-table tr:first-child td { border-top: none; }
+.coverage-table tr:last-child td { border-bottom: none; }
+
+.sign-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.sign-item { display: flex; align-items: center; gap: 12px; }
+.sign-label { font-size: 12px; color: var(--text-dim); flex-shrink: 0; font-weight: 700; }
+.sign-line { flex: 1; border-bottom: 1px solid rgba(37, 99, 235, 0.2); height: 30px; }
+
+.footer {
+  text-align: center;
+  padding: 18px;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.footer span { color: var(--accent); text-shadow: 0 0 10px rgba(232, 176, 32, 0.35); }
+.report-panel p { font-size: 14px; line-height: 1.85; color: var(--text-primary); font-weight: 600; }
+.report-panel strong { color: var(--accent-light); }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  body { padding: 20px 12px 44px; }
+  .header { padding: 20px 22px; }
+  .header h1 { font-size: 18px; }
+  .main-card { padding: 20px 16px; }
+  .meta-row { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .score-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .sign-row { grid-template-columns: 1fr; }
+  .action-row { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+ <div>
+  <h1>恒玥 IFA · 客户需求调研分析系统</h1>
+  <p>y u e g u a r d · C L I E N T N E E D S A N A L Y S I S</p>
+ </div>
+ <div class="header-icon">🌙</div>
+</div>
+
+<div class="main-card">
+
+ <div class="meta-row">
+  <div><div class="meta-label">客户姓名</div><input class="input" type="text" id="clientName" placeholder="请输入"></div>
+  <div><div class="meta-label">性别</div><div class="tag-group" data-field="gender" style="margin-top:1px"><span class="tag selected">男</span><span class="tag">女</span></div></div>
+  <div><div class="meta-label">年龄</div><input class="input" type="number" id="clientAge" placeholder="例：35"></div>
+ </div>
+
+ <div class="section">
+  <div class="section-title">
+   <div class="section-icon" style="background:var(--accent);">①</div>
+   <div class="section-name">基本信息</div>
+   <div class="section-en">BASIC INFORMATION</div>
+  </div>
+  <table class="info-table">
+   <thead><tr><th style="width:88px">项目</th><th>选项</th><th style="width:88px">项目</th><th>选项</th><th style="width:88px">项目</th><th>选项</th></tr></thead>
+   <tbody>
+    <tr><td class="label-cell">职业 / 行业</td><td colspan="5"><div class="tag-group" data-field="occupation"><span class="tag selected">企业高管</span><span class="tag">企业主</span><span class="tag">专业人士</span><span class="tag">上班族</span><span class="tag">自由职业</span><span class="tag">退休</span></div></td></tr>
+    <tr><td class="label-cell">家庭结构</td><td><div class="tag-group" data-field="family"><span class="tag selected">未婚</span><span class="tag">已婚无子女</span><span class="tag">一孩</span><span class="tag">二孩</span><span class="tag">三孩及以上</span><span class="tag">单亲</span></div></td><td class="label-cell">家庭角色</td><td><div class="tag-group" data-field="familyRole"><span class="tag selected">家庭支柱</span><span class="tag">配偶</span><span class="tag">子女</span><span class="tag">父母</span></div></td><td class="label-cell">常住地</td><td><div class="tag-group" data-field="residence"><span class="tag selected">内地</span><span class="tag">香港</span><span class="tag">海外</span></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="section">
+  <div class="section-title">
+   <div class="section-icon" style="background:var(--rose-light);">①.5</div>
+   <div class="section-name">健康状况</div>
+   <div class="section-en">HEALTH STATUS</div>
+  </div>
+  <table class="info-table">
+   <thead><tr><th style="width:88px">项目</th><th>选项</th><th style="width:88px">项目</th><th>选项</th><th style="width:88px">项目</th><th>选项</th></tr></thead>
+   <tbody>
+    <tr><td class="label-cell">吸烟习惯</td><td><div class="tag-group" data-field="smoking"><span class="tag selected">不吸烟</span><span class="tag">偶尔</span><span class="tag">经常</span></div></td><td class="label-cell">饮酒习惯</td><td><div class="tag-group" data-field="drinking"><span class="tag selected">不饮酒</span><span class="tag">偶尔</span><span class="tag">经常</span></div></td><td class="label-cell">体检状况</td><td><div class="tag-group" data-field="checkup"><span class="tag selected">每年定期</span><span class="tag">偶尔</span><span class="tag">很少</span></div></td></tr>
+    <tr><td class="label-cell">既往病史</td><td><div class="tag-group" data-field="illness"><span class="tag selected">无</span><span class="tag">有</span></div></td><td class="label-cell">家族病史</td><td><div class="tag-group" data-field="familyIll"><span class="tag selected">无</span><span class="tag">有</span></div></td><td class="label-cell">体脂水平</td><td><div class="tag-group" data-field="bmi"><span class="tag selected">正常</span><span class="tag">偏瘦</span><span class="tag">偏胖</span></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="section">
+  <div class="section-title">
+   <div class="section-icon" style="background:var(--violet);">①.7</div>
+   <div class="section-name">已购保险品类</div>
+   <div class="section-en">EXISTING COVERAGE</div>
+  </div>
+  <table class="info-table">
+   <thead><tr><th style="width:85px">险种</th><th style="width:115px">是否已购</th><th style="width:185px">年缴保费（万）</th><th style="width:85px">险种</th><th style="width:115px">是否已购</th><th style="width:185px">年缴保费（万）</th></tr></thead>
+   <tbody>
+    <tr><td class="label-cell">医疗险</td><td style="text-align:center"><div class="toggle-group" data-field="own-medical"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-medical')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-medical')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-medical" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-medical" placeholder="金额" step="0.5" min="0" max="500"><input class="amount-slider" type="range" min="0" max="100" step="0.5" value="0" data-target="own-medical"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="1">1</span><span class="amount-preset" data-val="2">2</span><span class="amount-preset" data-val="3">3</span><span class="amount-preset" data-val="5">5</span><span class="amount-preset" data-val="10">10</span><span class="amount-preset" data-val="20">20</span></div></div></td><td class="label-cell">重疾险</td><td style="text-align:center"><div class="toggle-group" data-field="own-critical"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-critical')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-critical')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-critical" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-critical" placeholder="金额" step="0.5" min="0" max="500"><input class="amount-slider" type="range" min="0" max="100" step="0.5" value="0" data-target="own-critical"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="5">5</span><span class="amount-preset" data-val="10">10</span><span class="amount-preset" data-val="15">15</span><span class="amount-preset" data-val="20">20</span><span class="amount-preset" data-val="30">30</span><span class="amount-preset" data-val="50">50</span></div></div></td></tr>
+    <tr><td class="label-cell">意外险</td><td style="text-align:center"><div class="toggle-group" data-field="own-accident"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-accident')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-accident')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-accident" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-accident" placeholder="金额" step="0.5" min="0" max="100"><input class="amount-slider" type="range" min="0" max="20" step="0.5" value="0" data-target="own-accident"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="0.3">0.3</span><span class="amount-preset" data-val="0.5">0.5</span><span class="amount-preset" data-val="1">1</span><span class="amount-preset" data-val="2">2</span><span class="amount-preset" data-val="3">3</span><span class="amount-preset" data-val="5">5</span></div></div></td><td class="label-cell">寿险</td><td style="text-align:center"><div class="toggle-group" data-field="own-life"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-life')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-life')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-life" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-life" placeholder="金额" step="0.5" min="0" max="500"><input class="amount-slider" type="range" min="0" max="100" step="0.5" value="0" data-target="own-life"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="3">3</span><span class="amount-preset" data-val="5">5</span><span class="amount-preset" data-val="10">10</span><span class="amount-preset" data-val="15">15</span><span class="amount-preset" data-val="20">20</span><span class="amount-preset" data-val="50">50</span></div></div></td></tr>
+    <tr><td class="label-cell">储蓄分红险</td><td style="text-align:center"><div class="toggle-group" data-field="own-savings"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-savings')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-savings')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-savings" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-savings" placeholder="金额" step="5" min="0" max="2000"><input class="amount-slider" type="range" min="0" max="200" step="5" value="0" data-target="own-savings"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="5">5</span><span class="amount-preset" data-val="10">10</span><span class="amount-preset" data-val="20">20</span><span class="amount-preset" data-val="50">50</span><span class="amount-preset" data-val="100">100</span><span class="amount-preset" data-val="200">200</span></div></div></td><td class="label-cell">高端医疗</td><td style="text-align:center"><div class="toggle-group" data-field="own-premium"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-premium')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-premium')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-premium" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-premium" placeholder="金额" step="0.5" min="0" max="500"><input class="amount-slider" type="range" min="0" max="100" step="0.5" value="0" data-target="own-premium"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="5">5</span><span class="amount-preset" data-val="8">8</span><span class="amount-preset" data-val="10">10</span><span class="amount-preset" data-val="15">15</span><span class="amount-preset" data-val="20">20</span><span class="amount-preset" data-val="30">30</span></div></div></td></tr>
+    <tr><td class="label-cell">年金险</td><td style="text-align:center"><div class="toggle-group" data-field="own-annuity"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-annuity')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-annuity')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-annuity" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-annuity" placeholder="金额" step="0.5" min="0" max="500"><input class="amount-slider" type="range" min="0" max="100" step="0.5" value="0" data-target="own-annuity"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="3">3</span><span class="amount-preset" data-val="5">5</span><span class="amount-preset" data-val="6">6</span><span class="amount-preset" data-val="10">10</span><span class="amount-preset" data-val="15">15</span><span class="amount-preset" data-val="20">20</span></div></div></td><td class="label-cell">家财险</td><td style="text-align:center"><div class="toggle-group" data-field="own-property"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'own-property')">无</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'own-property')">有</div></div></td><td class="amount-cell"><div class="amount-wrapper" id="wrapper-own-property" style="display:none"><div class="amount-row"><input class="amount-num" type="number" id="own-property" placeholder="金额" step="0.1" min="0" max="20"><input class="amount-slider" type="range" min="0" max="10" step="0.1" value="0" data-target="own-property"><span class="amount-unit">万</span></div><div class="amount-presets"><span class="amount-preset" data-val="0.1">0.1</span><span class="amount-preset" data-val="0.3">0.3</span><span class="amount-preset" data-val="0.5">0.5</span><span class="amount-preset" data-val="1">1</span><span class="amount-preset" data-val="2">2</span><span class="amount-preset" data-val="5">5</span></div></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="section">
+  <div class="section-title">
+   <div class="section-icon" style="background:var(--emerald);">②</div>
+   <div class="section-name">财务状况</div>
+   <div class="section-en">FINANCIAL STATUS</div>
+  </div>
+  <table class="info-table">
+   <thead><tr><th style="width:88px">项目</th><th style="width:205px">输入 + 滚轮</th><th>快捷金额</th><th style="width:88px">项目</th><th style="width:205px">输入 + 滚轮</th><th>快捷金额</th></tr></thead>
+   <tbody>
+    <tr><td class="label-cell">年收入</td><td class="amount-cell"><div class="amount-wrapper"><div class="amount-row"><input class="amount-num" type="number" id="annualIncome" placeholder="输入" step="1" min="0" max="5000"><input class="amount-slider" type="range" min="0" max="500" step="5" value="0" data-target="annualIncome"><span class="amount-unit">万</span></div><div class="amount-presets" data-target="annualIncome"><span class="amount-preset" data-val="30">30</span><span class="amount-preset" data-val="50">50</span><span class="amount-preset" data-val="80">80</span><span class="amount-preset" data-val="100">100</span><span class="amount-preset" data-val="150">150</span><span class="amount-preset" data-val="200">200</span></div></div></td><td></td><td class="label-cell">总资产</td><td class="amount-cell"><div class="amount-wrapper"><div class="amount-row"><input class="amount-num" type="number" id="totalAsset" placeholder="输入" step="1" min="0" max="10000"><input class="amount-slider" type="range" min="0" max="2000" step="10" value="0" data-target="totalAsset"><span class="amount-unit">万</span></div><div class="amount-presets" data-target="totalAsset"><span class="amount-preset" data-val="100">100</span><span class="amount-preset" data-val="200">200</span><span class="amount-preset" data-val="500">500</span><span class="amount-preset" data-val="800">800</span><span class="amount-preset" data-val="1000">1000</span><span class="amount-preset" data-val="2000">2000</span></div></div></td><td></td></tr>
+    <tr><td class="label-cell">负债</td><td class="amount-cell"><div class="amount-wrapper"><div class="amount-row"><input class="amount-num" type="number" id="debt" placeholder="输入" step="1" min="0" max="5000"><input class="amount-slider" type="range" min="0" max="500" step="5" value="0" data-target="debt"><span class="amount-unit">万</span></div><div class="amount-presets" data-target="debt"><span class="amount-preset" data-val="0">0</span><span class="amount-preset" data-val="50">50</span><span class="amount-preset" data-val="100">100</span><span class="amount-preset" data-val="200">200</span><span class="amount-preset" data-val="300">300</span><span class="amount-preset" data-val="500">500</span></div></div></td><td></td><td class="label-cell">年保费预算</td><td class="amount-cell"><div class="amount-wrapper"><div class="amount-row"><input class="amount-num" type="number" id="premiumBudget" placeholder="输入" step="1" min="0" max="500"><input class="amount-slider" type="range" min="0" max="50" step="1" value="0" data-target="premiumBudget"><span class="amount-unit">万</span></div><div class="amount-presets" data-target="premiumBudget"><span class="amount-preset" data-val="3">3</span><span class="amount-preset" data-val="5">5</span><span class="amount-preset" data-val="8">8</span><span class="amount-preset" data-val="10">10</span><span class="amount-preset" data-val="15">15</span><span class="amount-preset" data-val="20">20</span></div></div></td><td></td></tr>
+    <tr><td class="label-cell">收入来源</td><td colspan="5"><div class="tag-group" data-field="incomeSource"><span class="tag selected">工薪</span><span class="tag">企业经营</span><span class="tag">投资收益</span><span class="tag">混合</span></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="section">
+  <div class="section-title">
+   <div class="section-icon" style="background:var(--accent);">③</div>
+   <div class="section-name">保障需求</div>
+   <div class="section-en">PROTECTION NEEDS</div>
+  </div>
+  <table class="info-table">
+   <thead><tr><th style="width:145px">需求类型</th><th>说明</th><th style="width:105px">优先级</th></tr></thead>
+   <tbody>
+    <tr><td class="label-cell">重大疾病保障</td><td style="font-size:14px;color:var(--text-muted)">确诊即赔，覆盖治疗费+收入损失</td><td><div class="priority-btn ph" data-needs="critical">高</div></td></tr>
+    <tr><td class="label-cell">住院医疗保障</td><td style="font-size:14px;color:var(--text-muted)">实报实销，覆盖社保外的医疗费用</td><td><div class="priority-btn pm" data-needs="medical">中</div></td></tr>
+    <tr><td class="label-cell">意外身故/伤残</td><td style="font-size:14px;color:var(--text-muted)">高杠杆，保障家庭经济安全</td><td><div class="priority-btn ph" data-needs="accident">高</div></td></tr>
+    <tr><td class="label-cell">人寿保障</td><td style="font-size:14px;color:var(--text-muted)">家庭责任，覆盖房贷/子女教育</td><td><div class="priority-btn pm" data-needs="life">中</div></td></tr>
+    <tr><td class="label-cell">子女教育金</td><td style="font-size:14px;color:var(--text-muted)">提前规划，专款专用</td><td><div class="priority-btn pl" data-needs="education">低</div></td></tr>
+    <tr><td class="label-cell">退休规划</td><td style="font-size:14px;color:var(--text-muted)">长期储蓄，稳健增值</td><td><div class="priority-btn pl" data-needs="retirement">低</div></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="section">
+  <div class="section-title">
+   <div class="section-icon" style="background:var(--cobalt);">④</div>
+   <div class="section-name">投资偏好</div>
+   <div class="section-en">INVESTMENT PREFERENCE</div>
+  </div>
+  <table class="info-table">
+   <thead><tr><th style="width:88px">项目</th><th>选项</th></tr></thead>
+   <tbody>
+    <tr><td class="label-cell">风险承受能力</td><td><div class="tag-group" data-field="risk"><span class="tag selected">保守型</span><span class="tag">稳健型</span><span class="tag">积极型</span></div></td></tr>
+    <tr><td class="label-cell">投资期限</td><td><div class="tag-group" data-field="horizon"><span class="tag selected">短期 1-3年</span><span class="tag">中期 3-5年</span><span class="tag">长期 5年+</span></div></td></tr>
+    <tr><td class="label-cell">期望收益率</td><td><div class="tag-group" data-field="returnExp"><span class="tag selected">4%以下</span><span class="tag">4-8%</span><span class="tag">8-12%</span><span class="tag">12%以上</span></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="section">
+  <div class="section-title">
+   <div class="section-icon" style="background:var(--violet);">⑤</div>
+   <div class="section-name">保单服务需求</div>
+   <div class="section-en">POLICY SERVICE</div>
+  </div>
+  <table class="info-table">
+   <thead><tr><th style="width:145px">服务类型</th><th>说明</th><th style="width:105px">是否需要</th></tr></thead>
+   <tbody>
+    <tr><td class="label-cell">保单检视</td><td style="font-size:14px;color:var(--text-muted)">梳理已有保单，查漏补缺</td><td><div class="toggle-group" data-field="need-review"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'need-review')">否</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'need-review')">是</div></div></td></tr>
+    <tr><td class="label-cell">理赔协助</td><td style="font-size:14px;color:var(--text-muted)">专业指导，快速理赔</td><td><div class="toggle-group" data-field="need-claim"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'need-claim')">否</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'need-claim')">是</div></div></td></tr>
+    <tr><td class="label-cell">家庭保障方案</td><td style="font-size:14px;color:var(--text-muted)">量身定制，覆盖全家庭</td><td><div class="toggle-group" data-field="need-family"><div class="toggle-btn selected" data-val="0" onclick="toggleOwn(this,'need-family')">否</div><div class="toggle-btn" data-val="1" onclick="toggleOwn(this,'need-family')">是</div></div></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="action-row">
+  <button class="btn btn-outline" onclick="resetForm()">🔄 重置</button>
+  <button class="btn btn-primary" onclick="generateReport()">📊 生成报告</button>
+  <button class="btn btn-success" id="btnPdf" onclick="exportPDF()">📥 导出PDF</button>
+ </div>
+
+ <div class="report-panel" id="reportPanel">
+  <div class="report-header">
+   <div class="report-title">客户保障需求分析报告</div>
+   <div id="reportDate"></div>
+  </div>
+  <div id="overallBadge" class="overall-badge"></div>
+  <div class="score-grid" id="scoreGrid"></div>
+  <div id="reportContent"></div>
+  <div class="sign-row">
+   <div class="sign-item"><span class="sign-label">顾问签名</span><div class="sign-line"></div></div>
+   <div class="sign-item"><span class="sign-label">客户确认</span><div class="sign-line"></div></div>
+  </div>
+ </div>
+
+</div>
+
+<div class="footer">
+ 恒玥 Yuanguard · IFA独立理财顾问服务 · <span>YUEGUARD</span> · 仅供内部使用
+</div>
+
+<script>
+function toggleOwn(btn, field) {
+ const group = btn.closest('.toggle-group');
+ group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('selected'));
+ btn.classList.add('selected');
+ const val = btn.getAttribute('data-val');
+ const wrapperId = 'wrapper-' + field;
+ const wrapper = document.getElementById(wrapperId);
+ if (wrapper) {
+ wrapper.style.display = (val === '1') ? 'block' : 'none';
+ if (val === '0') { const numInput = wrapper.querySelector('.amount-num'); if (numInput) numInput.value = ''; }
+ }
+}
+document.querySelectorAll('.amount-preset').forEach(btn => {
+ btn.addEventListener('click', () => {
+ const targetId = btn.closest('.amount-wrapper').querySelector('.amount-slider').getAttribute('data-target');
+ const val = parseFloat(btn.getAttribute('data-val'));
+ const numInput = document.getElementById(targetId);
+ if (numInput) numInput.value = val;
+ const slider = btn.closest('.amount-wrapper').querySelector('.amount-slider');
+ if (slider) slider.value = val;
+ btn.closest('.amount-presets').querySelectorAll('.amount-preset').forEach(b => b.classList.remove('selected'));
+ btn.classList.add('selected');
+ });
+});
+document.querySelectorAll('.amount-num').forEach(input => {
+ input.addEventListener('input', () => {
+ const wrapper = input.closest('.amount-wrapper');
+ const slider = wrapper.querySelector('.amount-slider');
+ const val = parseFloat(input.value) || 0;
+ if (slider) { const max = parseFloat(slider.max); slider.value = Math.min(Math.max(val, slider.min), max); }
+ wrapper.querySelectorAll('.amount-preset').forEach(b => b.classList.remove('selected'));
+ });
+});
+document.querySelectorAll('.amount-slider').forEach(slider => {
+ slider.addEventListener('input', () => {
+ const targetId = slider.getAttribute('data-target');
+ const numInput = document.getElementById(targetId);
+ if (numInput) numInput.value = slider.value;
+ });
+});
+document.querySelectorAll('.tag-group').forEach(group => {
+ group.querySelectorAll('.tag').forEach(tag => {
+ tag.addEventListener('click', () => {
+ group.querySelectorAll('.tag').forEach(t => t.classList.remove('selected'));
+ tag.classList.add('selected');
+ });
+ });
+});
+document.querySelectorAll('.priority-btn').forEach(btn => {
+ btn.addEventListener('click', () => {
+ const parent = btn.closest('td');
+ parent.querySelectorAll('.priority-btn').forEach(b => { b.classList.remove('selected-h'); b.style.background = ''; b.style.color = ''; b.style.borderColor = ''; b.style.boxShadow = ''; });
+ btn.classList.add('selected-h');
+ const cls = btn.className.replace('priority-btn', '').trim();
+ if (cls === 'ph') { btn.style.background = 'linear-gradient(135deg, var(--rose-light), var(--rose))'; btn.style.color = '#fff'; btn.style.borderColor = 'transparent'; btn.style.boxShadow = '0 4px 14px rgba(153,27,27,0.45)'; }
+ else if (cls === 'pm') { btn.style.background = 'linear-gradient(135deg, var(--accent-light), var(--accent))'; btn.style.color = 'var(--bg-deep1)'; btn.style.borderColor = 'transparent'; btn.style.boxShadow = '0 4px 14px rgba(232,176,32,0.4)'; }
+ else { btn.style.background = 'linear-gradient(135deg, var(--primary), var(--cobalt))'; btn.style.color = '#fff'; btn.style.borderColor = 'transparent'; btn.style.boxShadow = '0 4px 14px rgba(30,58,138,0.4)'; }
+ });
+});
+function getSelected(field) { const g = document.querySelector(`[data-field="${field}"]`); if (!g) return null; const sel = g.querySelector('.selected'); return sel ? sel.textContent.trim() : null; }
+function getToggleVal(field) { const g = document.querySelector(`.toggle-group[data-field="${field}"]`); if (!g) return 0; const sel = g.querySelector('.toggle-btn.selected'); return sel ? parseInt(sel.getAttribute('data-val')) : 0; }
+
+function generateReport() {
+ const name = document.getElementById('clientName').value || '未填写';
+ const age = document.getElementById('clientAge').value;
+ const gender = getSelected('gender') || '未填写';
+ const income = parseFloat(document.getElementById('annualIncome').value) || 0;
+ const asset = parseFloat(document.getElementById('totalAsset').value) || 0;
+ const debt = parseFloat(document.getElementById('debt').value) || 0;
+ const premiumBudget = parseFloat(document.getElementById('premiumBudget').value) || 0;
+ const hasInsurance = ['own-medical','own-critical','own-accident','own-life','own-savings','own-premium','own-annuity','own-property'].map(f => getToggleVal(f)).reduce((a,b) => a+b, 0);
+ const needsHigh = document.querySelectorAll('.priority-btn.ph').length;
+ const needsMed = document.querySelectorAll('.priority-btn.pm').length;
+ const healthRisk = (getSelected('smoking') !== '不吸烟' || getSelected('illness') === '有' || getSelected('familyIll') === '有') ? 1 : 0;
+ let coverageScore = Math.min(hasInsurance * 12, 60);
+ let financialScore = Math.min(Math.round((income + asset/20) / 15), 25);
+ let needScore = Math.min((needsHigh * 8 + needsMed * 4) * (healthRisk ? 1.2 : 1), 15);
+ let totalScore = Math.min(Math.round(coverageScore + financialScore + needScore), 100);
+ let grade = totalScore >= 80 ? 'S' : totalScore >= 65 ? 'A' : totalScore >= 50 ? 'B' : 'C';
+ document.getElementById('reportDate').textContent = new Date().toLocaleDateString('zh-CN', { year:'numeric', month:'long', day:'numeric' });
+ document.getElementById('overallBadge').className = 'overall-badge badge-' + grade.toLowerCase();
+ document.getElementById('overallBadge').textContent = '综合评分：' + grade;
+ document.getElementById('scoreGrid').innerHTML = `
+ <div class="score-card"><div class="score-label">保障覆盖</div><div class="score-value" style="color:var(--primary-light)">${coverageScore}/60</div><div class="score-bar"><div class="score-bar-fill" style="width:${coverageScore/60*100}%;background:var(--primary)"></div></div><div class="score-desc">已有 ${hasInsurance} 类保险</div></div>
+ <div class="score-card"><div class="score-label">财务实力</div><div class="score-value" style="color:var(--emerald-light)">${financialScore}/25</div><div class="score-bar"><div class="score-bar-fill" style="width:${financialScore/25*100}%;background:var(--emerald)"></div></div><div class="score-desc">年收入 ${income} 万</div></div>
+ <div class="score-card"><div class="score-label">需求强度</div><div class="score-value" style="color:var(--accent-light)">${needScore}/15</div><div class="score-bar"><div class="score-bar-fill" style="width:${needScore/15*100}%;background:var(--accent)"></div></div><div class="score-desc">高优需求 ${needsHigh} 项</div></div>
+ <div class="score-card"><div class="score-label">总分</div><div class="score-value" style="color:var(--violet)">${totalScore}</div><div class="score-bar"><div class="score-bar-fill" style="width:${totalScore}%;background:var(--violet)"></div></div><div class="score-desc">等级：${grade}</div></div>`;
+ document.getElementById('reportContent').innerHTML = `
+ <div class="report-section"><div class="report-section-title">客户画像</div><p><strong>${name}</strong> ${gender}${age ? ' · ' + age + '岁' : ''} · ${getSelected('occupation') || ''} · ${getSelected('family') || ''}家庭</p></div>
+ <div class="report-section"><div class="report-section-title">保障缺口分析</div><p>当前持有 ${hasInsurance} 类保险产品，年缴保费合计 <strong>${getToggleVal('own-medical') + getToggleVal('own-critical') + getToggleVal('own-accident') + getToggleVal('own-life') + getToggleVal('own-savings') + getToggleVal('own-premium') + getToggleVal('own-annuity') + getToggleVal('own-property') > 0 ? '已填写' : '待补充'}</strong> 万元。</p></div>
+ <div class="report-section"><div class="report-section-title">核心建议</div><ul class="advice-list"><li>建议优先配置 <span class="tag-recommend high">重大疾病保障</span> 作为家庭经济支柱的核心防线</li><li>住院医疗险与意外险形成基础保障闭环，年保费预算 <strong>${premiumBudget > 0 ? premiumBudget + '万' : '待评估'}</strong></li><li>家庭结构为 ${getSelected('family') || '未填写'}，建议针对性规划 <span class="tag-recommend mid">子女教育金</span> 或 <span class="tag-recommend low">退休规划</span></li><li>总资产 ${asset} 万 / 负债 ${debt} 万，财务健康度需进一步评估</li></ul></div>
+ <div class="report-section"><div class="report-section-title">保险产品配置方向</div><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="tag-recommend high">重疾险</span><span class="tag-recommend high">医疗险</span><span class="tag-recommend high">意外险</span><span class="tag-recommend mid">寿险</span><span class="tag-recommend mid">年金险</span><span class="tag-recommend low">储蓄分红</span></div></div>`;
+ document.getElementById('reportPanel').classList.add('show');
+ document.getElementById('reportPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function exportPDF() {
+ const btn = document.getElementById('btnPdf');
+ btn.textContent = '⏳ 生成中...';
+ btn.disabled = true;
+
+ // 确保报告面板已显示
+ const reportPanel = document.getElementById('reportPanel');
+ if (!reportPanel.classList.contains('show')) {
+   alert('请先生成报告后再导出PDF');
+   btn.innerHTML = '📥 导出PDF';
+   btn.disabled = false;
+   return;
+ }
+
+ // 使用html2canvas截图报告区域，scale=3高清
+ const canvasEl = document.createElement('canvas');
+ const origDisplay = reportPanel.style.display;
+ const origOverflow = document.body.style.overflow;
+
+ html2canvas(reportPanel, {
+   scale: 3,
+   backgroundColor: '#0a1528',
+   useCORS: true,
+   logging: false,
+   allowTaint: true
+ }).then(canvas => {
+   const { jsPDF } = window.jspdf;
+   const pdf = new jsPDF('p', 'mm', 'a4');
+   const pageW = pdf.internal.pageSize.getWidth();
+   const pageH = pdf.internal.pageSize.getHeight();
+
+   // 背景色
+   pdf.setFillColor(10, 21, 40);
+   pdf.rect(0, 0, pageW, pageH, 'F');
+
+   // 截图嵌入PDF
+   const imgData = canvas.toDataURL('image/png', 1.0);
+   const imgW = pageW;
+   const imgH = (canvas.height / canvas.width) * imgW;
+   const ratio = imgW / canvas.width;
+
+   // 分页
+   const availH = pageH - 10;
+   let srcY = 0;
+   let destY = 5;
+   let pageNum = 0;
+
+   while (srcY < canvas.height) {
+     if (pageNum > 0) {
+       pdf.addPage();
+       pdf.setFillColor(10, 21, 40);
+       pdf.rect(0, 0, pageW, pageH, 'F');
+       destY = 5;
+     }
+     const srcH = Math.min(availH / ratio, canvas.height - srcY);
+     const destH = srcH * ratio;
+
+     const tmpCanvas = document.createElement('canvas');
+     tmpCanvas.width = canvas.width;
+     tmpCanvas.height = srcH;
+     const ctx = tmpCanvas.getContext('2d');
+     ctx.drawImage(canvas, 0, srcY, canvas.width, srcH, 0, 0, canvas.width, srcH);
+     const pageImg = tmpCanvas.toDataURL('image/png', 1.0);
+     pdf.addImage(pageImg, 'PNG', 0, destY, imgW, destH);
+
+     srcY += srcH;
+     pageNum++;
+   }
+
+   const clientName = document.getElementById('clientName').value || 'Hengyu';
+   pdf.save('Hengyu_KYC_' + clientName + '_' + new Date().toLocaleDateString('en-GB').replace(/\//g, '-') + '.pdf');
+   btn.innerHTML = '📥 导出PDF';
+   btn.disabled = false;
+ }).catch(err => {
+   console.error('PDF export error:', err);
+   btn.innerHTML = '📥 导出PDF';
+   btn.disabled = false;
+ });
+}
+
+function resetForm() {
+ document.querySelectorAll('.input').forEach(i => i.value = '');
+ document.querySelectorAll('.tag').forEach(t => { if (t.textContent.trim() === '企业高管' || t.textContent.trim() === '未婚' || t.textContent.trim() === '家庭支柱' || t.textContent.trim() === '内地' || t.textContent.trim() === '不吸烟' || t.textContent.trim() === '不饮酒' || t.textContent.trim() === '每年定期' || t.textContent.trim() === '无' || t.textContent.trim() === '正常' || t.textContent.trim() === '工薪' || t.textContent.trim() === '保守型' || t.textContent.trim() === '短期 1-3年' || t.textContent.trim() === '4%以下') t.classList.add('selected'); else t.classList.remove('selected'); });
+ document.querySelectorAll('.toggle-btn').forEach(b => { if (b.textContent.trim() === '无' || b.textContent.trim() === '否') b.classList.add('selected'); else b.classList.remove('selected'); });
+ document.querySelectorAll('.amount-num').forEach(n => n.value = '');
+ document.querySelectorAll('.amount-slider').forEach(s => s.value = s.min || 0);
+ document.querySelectorAll('.amount-wrapper').forEach(w => w.style.display = 'none');
+ document.querySelectorAll('.priority-btn').forEach((b, i) => {
+ b.classList.remove('selected-h');
+ b.style.background = '';
+ b.style.color = '';
+ b.style.borderColor = '';
+ b.style.boxShadow = '';
+ if (i === 0 || i === 2) { b.classList.add('selected-h'); b.style.background = 'linear-gradient(135deg, var(--rose-light), var(--rose))'; b.style.color = '#fff'; b.style.borderColor = 'transparent'; b.style.boxShadow = '0 4px 14px rgba(153,27,27,0.45)'; }
+ else if (i === 1 || i === 3) { b.classList.add('selected-h'); b.style.background = 'linear-gradient(135deg, var(--accent-light), var(--accent))'; b.style.color = 'var(--bg-deep1)'; b.style.borderColor = 'transparent'; b.style.boxShadow = '0 4px 14px rgba(232,176,32,0.4)'; }
+ else { b.classList.add('selected-h'); b.style.background = 'linear-gradient(135deg, var(--primary), var(--cobalt))'; b.style.color = '#fff'; b.style.borderColor = 'transparent'; b.style.boxShadow = '0 4px 14px rgba(30,58,138,0.4)'; }
+ });
+ document.getElementById('reportPanel').classList.remove('show');
+}
+</script>
+</body>
+</html>
