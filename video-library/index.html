@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>恒玥 IFA 内容库</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #fff; min-height: 100vh; }
+    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+    /* 密码验证界面 */
+    .login-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; }
+    .login-screen h1 { font-size: 1.8rem; margin-bottom: 8px; color: #f0a500; }
+    .login-screen p { color: #888; margin-bottom: 30px; font-size: 0.9rem; }
+    .login-box { background: #1a1a1a; padding: 40px; border-radius: 16px; width: 100%; max-width: 360px; text-align: center; }
+    .login-box input { width: 100%; padding: 14px 16px; border: 1px solid #333; border-radius: 10px; background: #111; color: #fff; font-size: 1rem; margin-bottom: 16px; outline: none; }
+    .login-box input:focus { border-color: #f0a500; }
+    .login-box button { width: 100%; padding: 14px; background: #f0a500; color: #000; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    .login-box button:hover { background: #e09500; }
+    .login-error { color: #ff4444; font-size: 0.85rem; margin-top: 12px; display: none; }
+
+    /* 内容界面 */
+    .content-screen { display: none; }
+    .header { padding: 30px 0 20px; border-bottom: 1px solid #222; margin-bottom: 30px; }
+    .header h1 { font-size: 1.5rem; color: #f0a500; margin-bottom: 4px; }
+    .header p { color: #666; font-size: 0.85rem; }
+    .video-count { color: #f0a500; font-weight: 600; }
+
+    /* 搜索 */
+    .search-bar { margin-bottom: 16px; }
+    .search-bar input { width: 100%; padding: 12px 16px; border: 1px solid #333; border-radius: 10px; background: #1a1a1a; color: #fff; font-size: 0.95rem; outline: none; }
+    .search-bar input:focus { border-color: #f0a500; }
+    .search-bar input::placeholder { color: #555; }
+
+    /* 分类标签 */
+    .category-bar { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .cat-tag { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; border: 1px solid #333; background: #1a1a1a; color: #666; transition: all 0.2s; }
+    .cat-tag:hover { border-color: #555; color: #888; }
+    .cat-tag.active { background: #f0a500; color: #000; border-color: #f0a500; font-weight: 600; }
+
+    .video-list { display: flex; flex-direction: column; gap: 12px; }
+    .video-card { background: #1a1a1a; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; cursor: pointer; transition: background 0.2s; border: 1px solid #222; }
+    .video-card:hover { background: #222; border-color: #333; }
+    .video-thumb { width: 80px; height: 45px; background: #111; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #f0a500; font-size: 1.5rem; }
+    .video-info { flex: 1; min-width: 0; }
+    .video-title { font-size: 0.95rem; font-weight: 500; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .video-meta { font-size: 0.8rem; color: #666; }
+    .video-arrow { color: #444; font-size: 1.2rem; flex-shrink: 0; }
+
+    .logout-btn { background: none; border: 1px solid #333; color: #666; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; margin-top: 30px; }
+    .logout-btn:hover { border-color: #555; color: #888; }
+
+    .empty-state { text-align: center; padding: 60px 20px; color: #444; }
+    .empty-state .icon { font-size: 3rem; margin-bottom: 16px; }
+    .search-empty { text-align: center; padding: 40px 20px; color: #555; font-size: 0.9rem; }
+    .loading { text-align: center; padding: 60px 20px; color: #555; font-size: 0.9rem; }
+
+    @media (max-width: 480px) {
+      .video-thumb { width: 60px; height: 34px; font-size: 1.2rem; }
+      .video-title { font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 密码验证界面 -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <h1>恒玥 IFA</h1>
+    <p>内部培训内容库 · 请输入访问密码</p>
+    <input type="password" id="passwordInput" placeholder="请输入访问密码" onkeypress="if(event.key==='Enter')checkPassword()">
+    <button onclick="checkPassword()">进入内容库</button>
+    <div class="login-error" id="loginError">密码错误，请重试</div>
+  </div>
+</div>
+
+<!-- 内容界面 -->
+<div id="contentScreen" class="content-screen">
+  <div class="container">
+    <div class="header">
+      <h1>📚 恒玥 IFA 内容库</h1>
+      <p>内部培训视频 · 仅限授权人员查看 · 共 <span class="video-count" id="videoCount">0</span> 个视频</p>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍 搜索视频标题..." oninput="filterVideos()">
+    </div>
+    <div class="category-bar" id="categoryBar"></div>
+    <div class="video-list" id="videoList"></div>
+    <button class="logout-btn" onclick="logout()">退出登录</button>
+  </div>
+</div>
+
+<script>
+const PASSWORD = 'yuanguard2026'; // 访问密码
+
+let categories = [];
+let videos = [];
+let activeCategory = '全部';
+
+async function loadVideos() {
+  try {
+    const resp = await fetch('videos.json?_=' + Date.now());
+    const data = await resp.json();
+    categories = ['全部', ...(data.categories || [])];
+    videos = data.videos || [];
+    renderCategories();
+    filterVideos();
+  } catch (e) {
+    document.getElementById('videoList').innerHTML = '<div class="search-empty">加载数据失败，请刷新重试</div>';
+  }
+}
+
+function renderCategories() {
+  const bar = document.getElementById('categoryBar');
+  bar.innerHTML = categories.map(cat =>
+    `<span class="cat-tag${cat === activeCategory ? ' active' : ''}" onclick="setCategory('${cat}')">${cat}</span>`
+  ).join('');
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  renderCategories();
+  filterVideos();
+}
+
+function filterVideos() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const filtered = videos.filter(v => {
+    const matchCat = activeCategory === '全部' || v.category === activeCategory;
+    const matchSearch = !query || v.title.toLowerCase().includes(query);
+    return matchCat && matchSearch;
+  });
+  renderVideoList(filtered);
+}
+
+function renderVideoList(list) {
+  const listEl = document.getElementById('videoList');
+  document.getElementById('videoCount').textContent = videos.length;
+  if (list.length === 0) {
+    listEl.innerHTML = '<div class="search-empty">没有找到匹配的视频，试试其他关键词或分类</div>';
+    return;
+  }
+  listEl.innerHTML = list.map(v => {
+    const playable = v.status === '已上线' && v.file;
+    const page = playable ? `video-${v.id}.html` : '#';
+    const arrow = playable ? '›' : '⏳';
+    return `
+    <div class="video-card"${playable ? ` onclick="location.href='${page}'"` : ''}>
+      <div class="video-thumb">▶</div>
+      <div class="video-info">
+        <div class="video-title">${v.id}. ${v.title}</div>
+        <div class="video-meta">🏷 ${v.category || ''} · ⏱ ${v.duration || ''} · ${v.status || ''}</div>
+      </div>
+      <div class="video-arrow">${arrow}</div>
+    </div>
+  `}).join('');
+}
+
+function checkPassword() {
+  const pwd = document.getElementById('passwordInput').value;
+  if (pwd === PASSWORD) {
+    sessionStorage.setItem('authenticated', 'true');
+    showContent();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('passwordInput').value = '';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('authenticated');
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('contentScreen').style.display = 'none';
+  document.getElementById('passwordInput').value = '';
+}
+
+function showContent() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('contentScreen').style.display = 'block';
+  loadVideos();
+}
+
+// 页面加载时检查是否已登录
+if (sessionStorage.getItem('authenticated') === 'true') {
+  showContent();
+}
+</script>
+</body>
+</html>

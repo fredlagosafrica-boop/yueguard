@@ -1,0 +1,174 @@
+{
+  "categories": [
+    "保险基础",
+    "客户开发",
+    "退休规划",
+    "产品对比",
+    "理赔指南",
+    "团队月会",
+    "产品介绍",
+    "保司培训"
+  ],
+  "videos": [
+    {
+      "id": "01",
+      "title": "香港保险IUL",
+      "category": "产品介绍",
+      "duration": "82分钟",
+      "status": "已上线",
+      "file": "meeting-01/index.m3u8",
+      "uploaded": "2026-10-07",
+      "note": "香港保险基础知识培训 - 恒玥团队月会"
+    },
+    {
+      "id": "02",
+      "title": "恒玥团队发展规划与策略",
+      "category": "团队月会",
+      "duration": "50分钟",
+      "status": "已上线",
+      "file": "video-02/index.m3u8",
+      "uploaded": "2026-10-07",
+      "note": "恒玥团队发展规划与策略（2026年10月）"
+    },
+    {
+      "id": "03",
+      "title": "富卫保费融资",
+      "category": "产品介绍",
+      "duration": "44分钟",
+      "status": "已上线",
+      "file": "video-03/index.m3u8",
+      "uploaded": "2026-10-07",
+      "note": "富卫保费融资培训（2026年8月7日）"
+    },
+    {
+      "id": "04",
+      "title": "万通保费融资",
+      "category": "产品介绍",
+      "duration": "30分钟",
+      "status": "已上线",
+      "file": "video-04/index.m3u8",
+      "uploaded": "2026-10-07",
+      "note": "万通保费融资培训（2026年10月2日）"
+    },
+    {
+      "id": "05",
+      "title": "业务策略与合规风控培训",
+      "category": "团队月会",
+      "duration": "86分钟",
+      "status": "已上线",
+      "file": "video-05/index.m3u8",
+      "uploaded": "2026-10-07",
+      "note": "业务策略与合规风控培训（2026年10月2日）- 完整版"
+    },
+    {
+      "id": "06",
+      "title": "香港保险vs内地保险对比",
+      "category": "产品对比",
+      "duration": "60分钟",
+      "status": "即将上线",
+      "file": "",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "07",
+      "title": "高净值客户开发策略",
+      "category": "客户开发",
+      "duration": "60分钟",
+      "status": "即将上线",
+      "file": "",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "08",
+      "title": "家庭保障规划方案",
+      "category": "保险基础",
+      "duration": "60分钟",
+      "status": "即将上线",
+      "file": "",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "09",
+      "title": "保险理赔流程指南",
+      "category": "理赔指南",
+      "duration": "60分钟",
+      "status": "即将上线",
+      "file": "",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "10",
+      "title": "退休规划与年金险",
+      "category": "退休规划",
+      "duration": "60分钟",
+      "status": "即将上线",
+      "file": "",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "11",
+      "title": "重大疾病险详解",
+      "category": "产品介绍",
+      "duration": "60分钟",
+      "status": "即将上线",
+      "file": "",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "12",
+      "title": "跨境资产配置",
+      "category": "产品对比",
+      "duration": "60分钟",
+      "status": "即将上线",
+      "file": "",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "13",
+      "title": "測試影片-流程驗證",
+      "category": "保险基础",
+      "duration": "20秒",
+      "status": "已上线",
+      "file": "video-13/index.m3u8",
+      "uploaded": "",
+      "note": ""
+    },
+    {
+      "id": "14",
+      "title": "宏利培训分享（第一日）：为何要看海外",
+      "category": "保司培训",
+      "duration": "73分钟",
+      "status": "已上线",
+      "file": "video-14/index.m3u8",
+      "uploaded": "2026-11-14",
+      "note": "恒玥团队线上学习沙龙 · 2026年11月9日 · 宏利金融分享第一日。对比中国、美国、加拿大、日本、德国、英国等地的10年期国债收益率与夏普比率，分析海外资产配置的价值。"
+    },
+    {
+      "id": "15",
+      "title": "宏利培训分享（第二日）：宏利金融介绍",
+      "category": "保司培训",
+      "duration": "95分钟",
+      "status": "已上线",
+      "file": "video-15/index.m3u8",
+      "uploaded": "2026-11-14",
+      "note": "恒玥团队线上学习沙龙 · 2026年11月10日 · 宏利金融公司背景介绍：139年历史全球金融服务集团，业务遍及亚洲、加拿大及美国，截至2026年6月30日管理资产约18,000亿加元，创办人为加拿大首任总理麦克唐纳，1897年进驻香港，在多伦多、纽约及菲律宾上市，港交所股份代号945。"
+    },
+    {
+      "id": "16",
+      "title": "宏利培训分享（第三日）：宏瑞终身即期年金保险计划",
+      "category": "保司培训",
+      "duration": "113分钟",
+      "status": "已上线",
+      "file": "video-16/index.m3u8",
+      "uploaded": "2026-11-14",
+      "note": "恒玥团队线上学习沙龙 · 2026年11月11日 · 宏瑞终身即期年金保险计划（GoldenStart Whole Life Immediate Annuity Insurance Plan）：具有储蓄成分的长期分红人寿产品，为指定疾病预先锁定终期红利选项，并于患上严重认知障碍或柏金逊病时提供额外的年度赔偿，适用于寻求稳定可预期终身入息的客户。"
+    }
+  ]
+}

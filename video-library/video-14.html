@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>宏利培训分享（第一日）：为何要看海外</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0d0d0d;color:#fff;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;display:flex;flex-direction:column}
+  header{padding:16px 24px;border-bottom:1px solid #222;display:flex;align-items:center;gap:12px}
+  header h1{font-size:1.05rem;font-weight:500;flex:1}
+  .back{color:#f0a500;text-decoration:none;font-size:.9rem}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
+  video{width:100%;max-width:1100px;max-height:75vh;background:#000;border-radius:12px}
+  .meta{padding:12px 24px;border-top:1px solid #222;color:#666;font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← 返回影片庫</a>
+  <h1>宏利培训分享（第一日）：为何要看海外</h1>
+</header>
+<main>
+  <video controls playsinline preload="metadata"
+         poster="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-14/poster.jpg"
+         src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-14/index.m3u8"></video>
+</main>
+<div class="meta">73分钟 · 恒玥团队线上学习沙龙 · 2026年11月9日 · 宏利金融分享第一日。对比中国、美国、加拿大、日本、德国、英国等地的10年期国债收益率与夏普比率，分析海外资产配置的价值。</div>
+<script src="hls.min.js"></script>
+<script>
+(function(){
+  var v=document.querySelector('video');
+  var src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-14/index.m3u8";
+  var nativeOK = v.canPlayType('application/vnd.apple.mpegurl');
+  if(nativeOK === 'probably' && !window.Hls){ v.src=src; return; }
+  if(window.Hls && window.Hls.isSupported()){
+    var h=new Hls({enableWorker:true});
+    h.loadSource(src); h.attachMedia(v);
+  } else {
+    document.querySelector('main').innerHTML='<p style="color:#888">此瀏覽器不支援 HLS 播放</p>';
+  }
+})();
+</script>
+</body>
+</html>
