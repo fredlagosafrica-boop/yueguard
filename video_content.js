@@ -133,38 +133,59 @@ contentData.categories.push({
 {
           id: 'video-insurer-prudential',
           name: '保诚保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
-        },
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-prudential-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
 {
           id: 'video-insurer-andadeath',
           name: '安达保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
-        },
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-andadeath-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
 {
           id: 'video-insurer-generali',
           name: '忠意保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
-        },
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-generali-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
 {
           id: 'video-insurer-lifeline',
           name: '立桥保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
-        },
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-lifeline-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
 {
           id: 'video-insurer-zurich',
           name: '苏黎世保险',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
-        },
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-zurich-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
 {
           id: 'video-insurer-boclife',
           name: '中银人寿',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
-        },
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-boclife-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
 {
           id: 'video-insurer-taiping',
           name: '太平人寿',
-          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>'
-        },
+          content: '<div style="padding:40px;text-align:center;color:#555;">⏳ 即将上线，敬请期待</div>',
+    children: [
+    { id: 'video-insurer-taiping-empty', name: '暂无影片', content: '<div style=\"padding:40px;text-align:center;color:#555;\">⏳ 即将上线，敬请期待</div>' }
+    ]
+  },
     ]
     },
   ]
