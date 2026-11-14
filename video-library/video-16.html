@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>宏利培训分享（第三日）：宏瑞终身即期年金保险计划</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0d0d0d;color:#fff;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;display:flex;flex-direction:column}
+  header{padding:16px 24px;border-bottom:1px solid #222;display:flex;align-items:center;gap:12px}
+  header h1{font-size:1.05rem;font-weight:500;flex:1}
+  .back{color:#f0a500;text-decoration:none;font-size:.9rem}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
+  video{width:100%;max-width:1100px;max-height:75vh;background:#000;border-radius:12px}
+  .meta{padding:12px 24px;border-top:1px solid #222;color:#666;font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← 返回影片庫</a>
+  <h1>宏利培训分享（第三日）：宏瑞终身即期年金保险计划</h1>
+</header>
+<main>
+  <video controls playsinline preload="metadata"
+         poster="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-16/poster.jpg"
+         src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-16/index.m3u8"></video>
+</main>
+<div class="meta">113分钟 · 恒玥团队线上学习沙龙 · 2026年11月11日 · 宏瑞终身即期年金保险计划（GoldenStart Whole Life Immediate Annuity Insurance Plan）：具有储蓄成分的长期分红人寿产品，为指定疾病预先锁定终期红利选项，并于患上严重认知障碍或柏金逊病时提供额外的年度赔偿，适用于寻求稳定可预期终身入息的客户。</div>
+<script src="hls.min.js"></script>
+<script>
+(function(){
+  var v=document.querySelector('video');
+  var src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-16/index.m3u8";
+  var nativeOK = v.canPlayType('application/vnd.apple.mpegurl');
+  if(nativeOK === 'probably' && !window.Hls){ v.src=src; return; }
+  if(window.Hls && window.Hls.isSupported()){
+    var h=new Hls({enableWorker:true});
+    h.loadSource(src); h.attachMedia(v);
+  } else {
+    document.querySelector('main').innerHTML='<p style="color:#888">此瀏覽器不支援 HLS 播放</p>';
+  }
+})();
+</script>
+</body>
+</html>

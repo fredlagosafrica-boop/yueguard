@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>宏利培训分享（第二日）：宏利金融介绍</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0d0d0d;color:#fff;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;display:flex;flex-direction:column}
+  header{padding:16px 24px;border-bottom:1px solid #222;display:flex;align-items:center;gap:12px}
+  header h1{font-size:1.05rem;font-weight:500;flex:1}
+  .back{color:#f0a500;text-decoration:none;font-size:.9rem}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
+  video{width:100%;max-width:1100px;max-height:75vh;background:#000;border-radius:12px}
+  .meta{padding:12px 24px;border-top:1px solid #222;color:#666;font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← 返回影片庫</a>
+  <h1>宏利培训分享（第二日）：宏利金融介绍</h1>
+</header>
+<main>
+  <video controls playsinline preload="metadata"
+         poster="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-15/poster.jpg"
+         src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-15/index.m3u8"></video>
+</main>
+<div class="meta">95分钟 · 恒玥团队线上学习沙龙 · 2026年11月10日 · 宏利金融公司背景介绍：139年历史全球金融服务集团，业务遍及亚洲、加拿大及美国，截至2026年6月30日管理资产约18,000亿加元，创办人为加拿大首任总理麦克唐纳，1897年进驻香港，在多伦多、纽约及菲律宾上市，港交所股份代号945。</div>
+<script src="hls.min.js"></script>
+<script>
+(function(){
+  var v=document.querySelector('video');
+  var src="https://pub-f29217f852fa48bc815f42ffe1af9244.r2.dev/video-15/index.m3u8";
+  var nativeOK = v.canPlayType('application/vnd.apple.mpegurl');
+  if(nativeOK === 'probably' && !window.Hls){ v.src=src; return; }
+  if(window.Hls && window.Hls.isSupported()){
+    var h=new Hls({enableWorker:true});
+    h.loadSource(src); h.attachMedia(v);
+  } else {
+    document.querySelector('main').innerHTML='<p style="color:#888">此瀏覽器不支援 HLS 播放</p>';
+  }
+})();
+</script>
+</body>
+</html>
